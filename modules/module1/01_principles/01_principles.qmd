@@ -1,0 +1,544 @@
+---
+title: "1 - Principles of Data Visualization"
+subtitle: "Week 1<br>8/22/2023 💻 🧰 📊 🥳"
+author: "Jessica Cooperstone, Ph.D."
+format: 
+  revealjs:
+    incremental: true
+    theme: jc_style.scss
+    footer: "[01 Principles](https://datavisualizing.netlify.app/module1.html), © Jessica Cooperstone, 2023"
+---
+
+## Introductions 👋 {.center_title}
+
+::: nonincremental
+-   Name
+-   Program
+-   Why you decided to take this class
+-   One thing you hope to learn
+:::
+
+# Course logistics 🗺️ {.center_title}
+
+## Teaching Team {.center_title}
+
+### Instructor: Jessica Cooperstone
+
+✉️ [cooperstone.1\@osu.edu](cooperstone.1@osu.edu)\
+\
+
+### TA: Daniel Quiroz Moreno<br>
+
+✉️ [quirozmoreno.1\@osu.edu](quirozmoreno.1@osu.edu)\
+\
+
+### Office hours: [go.osu.edu/dataviz-times](https://go.osu.edu/dataviz-times)
+
+## Website {.center_title}
+
+If you have found these slides, you've made it to the website! (Good job.)\
+\
+
+### **All course materials will be posted to, or linked to from [datavisualizing.netlify.app](https://datavisualizing.netlify.app/)**
+
+\
+
+## Syllabus
+
+-   A full version of the syllabus can be found on Carmen
+
+-   A trimmed version of the syllabus can be found on our [course site](https://datavisualizing.netlify.app/syllabus.html)
+
+## Attendance {.center_title .smaller}
+
+::: incremental
+-   <p>Class will taught in a hybrid, synchronous manner, meaning I expect you to attend class during class time. This attendance can happen in person, or virtually via [Zoom](https://go.osu.edu/dataviz-zoom) I have found that students who attend in person are more engaged, and tend to master material more quickly. But, it is up to you how you want to attend.</p>
+
+-   I will record class time for those who want to 1) revisit material or 2) can't attend (this should be uncommon). These recordings are not to replace coming to class.
+:::
+
+## How class will be?
+
+-   A combination of lecture, code run-throughs, live coding, and hands-on exercises.
+
+-   Bring a laptop (not tablet) to class with R and RStudio downloaded
+
+-   Come with your questions!
+
+-   Engage as much as you can!
+
+## Previous programming experience
+
+## Assigments {.center_title .smaller}
+
+-   **Module assignments:** After each module, there will be an assignment to provide practice for the techniques learned in class.
+
+-   **Class reflections:** After 10 of the 15 weeks, you will write a 1 paragraph reflection on the material that was presented in class. This can include your thoughts on how you will use these lessons in your own research and data visualizations, ways in which you have investigated this topic (or expect to) on your own, or what else you'd like to learn in this area. The purpose of this assignment is not to be burdensome, but to keep you engaged in the course material, and providing feedback to me on what parts you've found useful, what you've struggled with, and what you'd like to see more of in the future.
+
+-   **Capstone assignment:** At the end of the semester, you will complete a capstone assignment where you create a series of visualizations based on your research data, data coming from your lab, or other data that is publicly available. I expect this assignment to be completed in R Markdown, annotated, and knitted into an easy-to-read .html file. I also expect your code to be fully commented such that I can understand what you are doing with each step, and why.
+
+## Late assignments {.smaller}
+
+-   I expect you will turn assignments in on time. Late assignments are not accepted. If there are extenuating circumstances that prevent you from turning in an assignment on time, please connect with me as soon as possible after such a situation arises for discussion about a possible deadline extension.
+
+# Academic integrity 🏫 {.center_title}
+
+-   It is fine for you to work with your classmates/labmates/whoever, but I expect you to turn in your own independent assignments representing your work
+
+-   All assignments are open book, googling/investigating is required!
+
+## 🗓 Schedule
+
+This is our tentative class schedule - but subject to change depending on our pacing, and your interests!
+
+## 🗓️ Schedule (part 1)
+
+```{r schedule1, echo=FALSE, warning=FALSE}
+library(readxl)
+library(knitr)
+library(tidyverse)
+schedule <- read_excel("files/schedule_modules.xlsx",
+                       sheet = "Schedule_date")
+
+schedule_1 <- schedule[1:2,]
+schedule_2 <- schedule[3:6,]
+schedule_3 <- schedule[7:10,]
+schedule_4 <- schedule[11:nrow(schedule),]
+```
+
+```{r}
+kable(schedule_1)
+```
+
+## 🗓️ Schedule (part 2)
+
+```{r schedule2, echo = FALSE}
+kable(schedule_2)
+```
+
+## 🗓️ Schedule (part 3)
+
+```{r schedule3, echo = FALSE}
+kable(schedule_3)
+```
+
+## 🗓️ Schedule (part 4) {.smaller}
+
+```{r schedule4, echo = FALSE}
+kable(schedule_4)
+```
+
+# Why do we visualize our data? 🗣️ {.center_title}
+
+## There may be a data dinosaur 🦖 {background-color="#fff"}
+
+```{r echo = FALSE, fig.alt="A gif of 13 different datasets (include one who's points make the shape of a dinosaur) that all have the same mean and standard deviation, but have very different distributions"}
+knitr::include_graphics("img/dinosaurus.gif")
+```
+
+Figure by [Alberto Cairo](https://www.autodesk.com/research/publications/same-stats-different-graphs)
+
+## To understand distribution {background-color="#fff"}
+
+Anscombe's quartet 🎻
+
+```{r echo = FALSE}
+#| column: page
+#| layout-nrow: 2
+#| fig-height: 2.5
+#| fig-width: 4
+
+anscombe %>%
+  ggplot(aes(x = x1, y = y1)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme_minimal()
+
+anscombe %>%
+  ggplot(aes(x = x2, y = y2)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme_minimal()
+
+anscombe %>%
+  ggplot(aes(x = x3, y = y3)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme_minimal()
+
+anscombe %>%
+  ggplot(aes(x = x4, y = y4)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  theme_minimal()
+```
+
+## To discover data secrets {.center_title background-color="#fff"}
+
+```{r echo = FALSE, fig.alt="A 3 panel figure showing raw data, boxplots, and violin plots demonstrating how boxplots don't fully explain the distribution of data"}
+knitr::include_graphics("img/boxplots.gif")
+```
+
+Figures from [Justin Matejka and George Fitzmaurice](https://www.autodesk.com/research/publications/same-stats-different-graphs)
+
+## To convey our message
+
+```{r echo = FALSE, fig.alt="Figure from Bilbrey et al., 2021 New Phytologist showing the locations on the apple genetic map (17 chromosomes) where there are significant associations between metabolomic features, and genomic markers.", fig.cap="Bilbrey et al., New Phytologist, 2021"}
+#| fig-align: center
+knitr::include_graphics("img/apple_chr_map.png")
+```
+
+## The data visualization process {.center_title}
+
+```{r echo = FALSE, fig.alt="A figure with three circles, and arrows between the first and second, and second and third. First circle says data, middle circle says analyst, and third right-most circle says learner. In between data and analyst= is explore, analyze and learn, and in between analyst and learner is explain, explore and persuade."}
+knitr::include_graphics("img/explore_explain.png")
+```
+
+<p>Figure adapted from one by [Rick Scavetta](https://twitter.com/rick_scavetta?lang=en)</p>
+
+# Small changes can make a big difference (and some examples)
+
+## Simple changes improve interpretability {.center_title background-color="#fff"}
+
+```{r echo = FALSE, message = FALSE, warning = FALSE}
+library(gapminder)
+library(tidyverse)
+library(ggpubr)
+```
+
+```{r echo=FALSE}
+#| column: page
+#| layout-nrow: 1
+#| fig-height: 5.5
+#| fig-width: 5
+
+gapminder %>%
+  filter(continent == "Asia" & year == "2007") %>%
+  ggplot(aes(x = lifeExp, y = country)) +
+    geom_col() + theme_bw() + 
+  theme(axis.text = element_text(size =12))
+
+```
+
+## Simple changes improve interpretability {.center_title background-color="#fff"}
+
+```{r echo=FALSE}
+#| column: page
+#| layout-nrow: 1
+#| fig-height: 5.5
+#| fig-width: 5
+
+gapminder %>%
+  filter(continent == "Asia" & year == "2007") %>%
+  ggplot(aes(x = lifeExp, y = country)) +
+    geom_col() + theme_bw() + 
+  theme(axis.text = element_text(size =12))
+
+gapminder %>%
+  filter(continent == "Asia" & year == "2007") %>%
+  ggplot(aes(x = lifeExp, y = reorder(country, lifeExp))) +
+    geom_col() + theme_bw() +
+   theme(axis.text = element_text(size =12))
+```
+
+## Encoding data with easy-to-process visual clues
+
+Length is easier to see than angles or areas.
+
+```{r echo = FALSE}
+data <- data.frame(
+  group=LETTERS[1:5],
+  value=c(14,15,17,19,20)
+)
+```
+
+```{r}
+#| column: page
+#| layout-nrow: 1
+#| fig-height: 4.5
+#| fig-width: 5
+
+data %>%
+  ggplot(aes(x="", y=value, fill=group)) +
+  geom_bar(stat="identity", width=1, color = "black") +
+  coord_polar("y", start=0) +
+  theme_void()
+
+
+```
+
+## Encoding data with easy-to-process visual clues
+
+Length is easier to see than angles or areas.
+
+```{r}
+#| column: page
+#| layout-nrow: 1
+#| fig-height: 4.5
+#| fig-width: 5
+
+data %>%
+  ggplot(aes(x="", y=value, fill=group)) +
+  geom_bar(stat="identity", width=1, color = "black") +
+  coord_polar("y", start=0) +
+  theme_void()
+
+
+
+data %>%
+  ggplot(aes(x = group, y = value, fill=group)) +
+  geom_col(color = "black") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+## Color scales should be intuitive and accessible
+
+```{r echo = FALSE, fig.alt="Figure with two maps of Georgia, depciting COVID cases per 100K people from July 2, 2020 and July 17, 2020. The color scale goes from white, to light blue, to dark blue, then to red, and the number of people in the different bins are not the same across plots. "}
+knitr::include_graphics("img/georgia_covid.png")
+```
+
+. . .
+
+These are not.
+
+## Show your data if you can
+
+#barbarplots
+
+```{r}
+#| column: page
+#| layout-ncol: 3
+#| fig-height: 4
+#| fig-width: 3.5
+
+gapminder %>%
+  filter(year == 2007) %>%
+  ggplot(aes(x = continent, y = lifeExp)) +
+  stat_summary(geom = "bar") +
+  theme_minimal() +
+  labs(x = "Continent",
+       y = "Life expectancy in 2017",
+       title = "Life expectancy by continent",
+       subtitle = "Data from the Gapminder project")
+```
+
+## Show your data if you can
+
+#barbarplots
+
+```{r}
+#| column: page
+#| layout-ncol: 3
+#| fig-height: 4
+#| fig-width: 3.5
+
+gapminder %>%
+  filter(year == 2007) %>%
+  ggplot(aes(x = continent, y = lifeExp)) +
+  stat_summary(geom = "bar") +
+  theme_minimal() +
+  labs(x = "Continent",
+       y = "Life expectancy in 2017",
+       title = "Life expectancy by continent",
+       subtitle = "Data from the Gapminder project")
+
+gapminder %>%
+  filter(year == 2007) %>%
+  ggplot(aes(x = continent, y = lifeExp)) +
+  geom_boxplot() +
+  theme_minimal() +
+  labs(x = "Continent",
+       y = "Life expectancy in 2017",
+       title = "Life expectancy by continent",
+       subtitle = "Data from the Gapminder project")
+```
+
+## Show your data if you can
+
+#barbarplots
+
+```{r}
+#| column: page
+#| layout-ncol: 3
+#| fig-height: 4
+#| fig-width: 3
+
+gapminder %>%
+  filter(year == 2007) %>%
+  ggplot(aes(x = continent, y = lifeExp)) +
+  stat_summary(geom = "bar") +
+  theme_minimal() +
+  labs(x = "Continent",
+       y = "Life expectancy in 2017",
+       title = "Life expectancy by continent",
+       subtitle = "Data from the Gapminder project")
+
+gapminder %>%
+  filter(year == 2007) %>%
+  ggplot(aes(x = continent, y = lifeExp)) +
+  geom_boxplot() +
+  theme_minimal() +
+  labs(x = "Continent",
+       y = "Life expectancy in 2017",
+       title = "Life expectancy by continent",
+       subtitle = "Data from the Gapminder project")
+
+gapminder %>%
+  filter(year == 2007) %>%
+  ggplot(aes(x = continent, y = lifeExp)) +
+  geom_boxplot(outlier.shape = NA) +
+  geom_jitter(width = 0.3) +
+  theme_minimal() +
+  labs(x = "Continent",
+       y = "Life expectancy in 2017",
+       title = "Life expectancy by continent",
+       subtitle = "Data from the Gapminder project")
+```
+
+## Cut your axes with care
+
+```{r echo = FALSE, fig.alt="Figure showing the average height of women (y-axis) from different countries (x-axis). But the y-axis only goes from 5 foot to 5 foot 7 inches, making women from India look tiny and women from Latvia seem enormous."}
+#| fig-align: center
+knitr::include_graphics("img/women_height.png")
+```
+
+## Cut your axes with care
+
+```{r}
+#| column: page
+#| layout-ncol: 2
+#| fig-height: 4
+#| fig-width: 4.5
+
+gapminder %>%
+  filter(year == 2007) %>%
+  ggplot(aes(x = continent, y = lifeExp)) +
+  stat_summary(geom = "bar") +
+  theme_minimal() +
+  labs(x = "Continent",
+       y = "Life expectancy in 2017",
+       title = "Life expectancy by continent",
+       subtitle = "Data from the Gapminder project")
+```
+
+## Cut your axes with care
+
+```{r}
+#| column: page
+#| layout-ncol: 2
+#| fig-height: 4
+#| fig-width: 4.5
+
+gapminder %>%
+  filter(year == 2007) %>%
+  ggplot(aes(x = continent, y = lifeExp)) +
+  stat_summary(geom = "bar") +
+  theme_minimal() +
+  labs(x = "Continent",
+       y = "Life expectancy in 2017",
+       title = "Life expectancy by continent",
+       subtitle = "Data from the Gapminder project")
+
+gapminder %>%
+  filter(year == 2007) %>%
+  ggplot(aes(x = continent, y = lifeExp)) +
+  stat_summary(geom = "bar") +
+  theme_minimal() +
+  coord_cartesian(ylim = c(55, 82)) +
+  labs(x = "Continent",
+       y = "Life expectancy in 2017",
+       title = "Life expectancy by continent",
+       subtitle = "Data from the Gapminder project")
+```
+
+## Avoid figure spaghetti 🍝
+
+```{r}
+library(tidyverse)
+library(hrbrthemes)
+library(kableExtra)
+options(knitr.table.format = "html")
+library(babynames)
+library(viridis)
+library(DT)
+library(plotly)
+
+# Load dataset from github
+data <- babynames %>% 
+  filter(name %in% c("Mary","Emma", "Ida", "Ashley", "Amanda", "Jessica",    
+                     "Patricia", "Linda", "Deborah",   "Dorothy", "Betty", "Helen")) %>%
+  filter(sex=="F")
+
+# Plot
+data %>%
+  ggplot( aes(x=year, y=n, group=name, color=name)) +
+    geom_line() +
+    scale_color_viridis(discrete = TRUE) +
+    theme(
+      legend.position="none",
+      plot.title = element_text(size=14)
+    ) +
+    labs(title = "A spaghetti chart of baby names popularity",
+         color = "Name",
+         y = "Number of babies",
+         caption = "From https://www.data-to-viz.com/caveat/spaghetti.html") +
+    theme_minimal()
+```
+
+## Avoid figure spaghetti 🍝
+
+```{r}
+tmp <- data %>%
+  mutate(name2=name)
+
+tmp %>%
+  ggplot( aes(x=year, y=n)) +
+    geom_line( data=tmp %>% dplyr::select(-name), aes(group=name2), color="grey", size=0.5, alpha=0.5) +
+    geom_line( aes(color=name), color="#69b3a2", size=1.2 )+
+    scale_color_viridis(discrete = TRUE) +
+    theme_minimal() +
+    theme(
+      legend.position="none",
+      plot.title = element_text(size=14),
+      panel.grid = element_blank()
+    ) +
+    labs(title = "A spaghetti chart of baby names popularity",
+         caption = "From https://www.data-to-viz.com/caveat/spaghetti.html",
+         y = "Number of babies") +
+    facet_wrap(~name) 
+```
+
+## Be consistent among figures
+
+-   Use the same color schemes/shapes across figures
+
+-   If you're ordering/grouping, do so in the same manner
+
+## Make sure your plot has a clear message 🍕
+
+```{r echo = FALSE, fig.alt="Figure showing the average height of women (y-axis) from different countries (x-axis). But the y-axis only goes from 5 foot to 5 foot 7 inches, making women from India look tiny and women from Latvia seem enormous."}
+#| fig-align: center
+knitr::include_graphics("img/bad_pizza.png")
+```
+
+## Marie Kondo your plots
+
+Declutter, and keep only parts that are informative (and spark joy) 😻
+
+```{r echo = FALSE, fig.alt="A very ugly 3D plot showing life expectancy across the 5 continents where the 3D makes it hard to read, it has duplicative legends, and meaningless colors.", fig.cap="From https://socviz.co/lookatdata.html"}
+#| fig-align: center
+knitr::include_graphics("img/bad_life_expectancy.png")
+```
+
+## Oral presentation and publication figures might not be the same
+
+# Some take home messages
+
+## What should you think about when making visualizations?
+
+1.  Who are you talking to? 📢
+
+2.  What are you trying to convey? 📝
+
+3.  How can you fairly represent your data? 🚯

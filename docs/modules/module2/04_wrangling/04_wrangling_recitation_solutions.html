@@ -1,0 +1,1860 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jessica Cooperstone">
+
+<title>💻🧰📊🥳 - Wrangling your data 🤠 Recitation Solutions</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../img/code-slash.png" rel="icon" type="image/png">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../favicon.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">💻🧰📊🥳</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-home" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Home</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-home">    
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-syllabus" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Syllabus</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-syllabus">    
+        <li>
+    <a class="dropdown-item" href="../../../syllabus/syllabus.html" rel="" target="">
+ <span class="dropdown-text">Syllabus</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-course-content" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Course content</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-course-content">    
+        <li class="dropdown-header">Module 1 - Principles</li>
+        <li>
+    <a class="dropdown-item" href="../../../modules/module1/01_principles/01_principles.html" rel="" target="">
+ <span class="dropdown-text">Week 1 - Principles</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module1/02_good-and-bad/02_goodbad.html" rel="" target="">
+ <span class="dropdown-text">Week 2 - Good and bad visualizations</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Module 2 - Coding fundamentals</li>
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/03_rmarkdown/03_Rmd.html" rel="" target="">
+ <span class="dropdown-text">Week 3 - R Markdown</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/04_wrangling/04_wrangling.html" rel="" target="">
+ <span class="dropdown-text">Week 4 - Wrangling</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/05_ggplot101/05_ggplot101.html" rel="" target="">
+ <span class="dropdown-text">Week 5 - ggplot101</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/06_ggplot102/06_ggplot102.html" rel="" target="">
+ <span class="dropdown-text">Week 6 - ggplot102</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Module 3 - Data exploration</li>
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/07_distributions/07_distributions.html" rel="" target="">
+ <span class="dropdown-text">Week 7 - Data distributions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/08_correlations/08_correlations.html" rel="" target="">
+ <span class="dropdown-text">Week 8 - Correlations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/09_add-stats/09_add-stats.html" rel="" target="">
+ <span class="dropdown-text">Week 9 - Adding statistics</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Module 4 - Putting it together</li>
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/10_pca/10_pca.html" rel="" target="">
+ <span class="dropdown-text">Week 10 - Principal components analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/11_manhattan/11_manhattan.html" rel="" target="">
+ <span class="dropdown-text">Week 11 - Manhattan plots</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/12_interactive-plots/12_interactive-plots.html" rel="" target="">
+ <span class="dropdown-text">Week 12 - Interactive plots</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/13_leftovers/13_leftovers.html" rel="" target="">
+ <span class="dropdown-text">Week 13 - Leftovers</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-recitations" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Recitations</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-recitations">    
+        <li class="dropdown-header">Module 2 - Coding fundamentals</li>
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/03_rmarkdown/03_Rmd_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 3 - R Markdown</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/04_wrangling/04_wrangling_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 4 - Wrangling</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/05_ggplot101/05_ggplot101_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 5 - ggplot101</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/06_ggplot102/06_ggplot102_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 6 - ggplot102</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Module 3 - Data exploration</li>
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/07_distributions/07_distributions_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 7 - Data distributions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/08_correlations/08_correlations_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 8 - Correlations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/09_add-stats/09_add-stats_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 9 - Adding statistics</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Module 4 - Putting it together</li>
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/10_pca/10_pca_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 10 - Principal components analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/11_manhattan/11_manhattan_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 11 - Manhattan plots</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/12_interactive-plots/12_interactive-plots_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 12 - Interactive plots</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/13_leftovers/13_leftovers_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 13 - Leftovers</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-assignments" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Assignments</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-assignments">    
+        <li class="dropdown-header">Module assignments</li>
+        <li>
+    <a class="dropdown-item" href="../../../assignments/modules/module1/module_1_assignment.html" rel="" target="">
+ <span class="dropdown-text">Module 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../assignments/modules/module2/module_2_assignment.html" rel="" target="">
+ <span class="dropdown-text">Module 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../assignments/modules/module3/module_3_assignment.html" rel="" target="">
+ <span class="dropdown-text">Module 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../assignments/modules/module4/module_4_assignment.html" rel="" target="">
+ <span class="dropdown-text">Module 4</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Reflections</li>
+        <li>
+    <a class="dropdown-item" href="../../../assignments/reflections.html" rel="" target="">
+ <span class="dropdown-text">Reflection instructions</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Capstone assignment</li>
+        <li>
+    <a class="dropdown-item" href="../../../assignments/capstone.html" rel="" target="">
+ <span class="dropdown-text">Capstone instructions</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-solutions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Solutions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-solutions">    
+        <li class="dropdown-header">Module assignments</li>
+        <li>
+    <a class="dropdown-item" href="../../../assignments/modules/module2/module2_solution.qmd" rel="" target="">
+ <span class="dropdown-text">Module 2 solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../assignments/modules/module3/module3_solution.qmd" rel="" target="">
+ <span class="dropdown-text">Module 3 solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../assignments/modules/module4/module4_solution.qmd" rel="" target="">
+ <span class="dropdown-text">Module 4 solutions</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Recitations</li>
+        <li>
+    <a class="dropdown-item" href="../../../rmds/03_Rmd_recitation_solutions.html" rel="" target="">
+ <span class="dropdown-text">Week 3 - R Markdown solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/04_wrangling/04_wrangling_recitation_solutions.html" rel="" target="">
+ <span class="dropdown-text">Week 4 - Wrangling solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/05_ggplot101/05_ggplot101_recitation_solutions.html" rel="" target="">
+ <span class="dropdown-text">Week 5 - ggplot101 solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/06_ggplot102/06_ggplot102_recitation_solutions.qmd" rel="" target="">
+ <span class="dropdown-text">Week 6 - ggplot102 solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/07_distributions/07_distributions_recitation_solutions.qmd" rel="" target="">
+ <span class="dropdown-text">Week 7 - Data distributions solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/08_correlations/08_correlations_recitation_solutions.qmd" rel="" target="">
+ <span class="dropdown-text">Week 8 - Correlations solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/09_add_stats/09_add-stats_recitation_solutions.qmd" rel="" target="">
+ <span class="dropdown-text">Week 9 - Adding statistics solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/10_pca/10_pca_recitation_solutions.qmd" rel="" target="">
+ <span class="dropdown-text">Week 10 - Principal components analysis solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/11_manhattan/11_manhattan_recitation_solutions.qmd" rel="" target="">
+ <span class="dropdown-text">Week 11 - Manhattan plots solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/12_interactive-plots/12_interactive-plots_recitation_solutions.qmd" rel="" target="">
+ <span class="dropdown-text">Week 12 - Interactive plots solution</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/13_leftovers/13_leftovers_recitation_solutions.qmd" rel="" target="">
+ <span class="dropdown-text">Week 13 - Leftovers solutions</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+    <a href="https://github.com/jcooperstone/rdataviz" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../rmds/03_Rmd_recitation_solutions.html">Recitations</a></li><li class="breadcrumb-item"><a href="../../../modules/module2/04_wrangling/04_wrangling_recitation_solutions.html">Week 4 - Wrangling solutions</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Module assignments</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../assignments/modules/module2/module2_solution.qmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 2 solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../assignments/modules/module3/module3_solution.qmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 3 solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../assignments/modules/module4/module4_solution.qmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 4 solutions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Recitations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../rmds/03_Rmd_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 3 - R Markdown solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module2/04_wrangling/04_wrangling_recitation_solutions.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Week 4 - Wrangling solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module2/05_ggplot101/05_ggplot101_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 5 - ggplot101 solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module2/06_ggplot102/06_ggplot102_recitation_solutions.qmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 6 - ggplot102 solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module3/07_distributions/07_distributions_recitation_solutions.qmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 7 - Data distributions solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module3/08_correlations/08_correlations_recitation_solutions.qmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 8 - Correlations solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module3/09_add_stats/09_add-stats_recitation_solutions.qmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 9 - Adding statistics solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module4/10_pca/10_pca_recitation_solutions.qmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 10 - Principal components analysis solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module4/11_manhattan/11_manhattan_recitation_solutions.qmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 11 - Manhattan plots solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module4/12_interactive-plots/12_interactive-plots_recitation_solutions.qmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 12 - Interactive plots solution</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module4/13_leftovers/13_leftovers_recitation_solutions.qmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 13 - Leftovers solutions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#load-data" id="toc-load-data" class="nav-link" data-scroll-target="#load-data">Load data</a></li>
+  </ul></li>
+  <li><a href="#explore-your-data" id="toc-explore-your-data" class="nav-link" data-scroll-target="#explore-your-data">Explore your data</a></li>
+  <li><a href="#modifying-data" id="toc-modifying-data" class="nav-link" data-scroll-target="#modifying-data">Modifying data</a></li>
+  <li><a href="#calculating-summaries" id="toc-calculating-summaries" class="nav-link" data-scroll-target="#calculating-summaries">Calculating summaries</a></li>
+  <li><a href="#joining-data" id="toc-joining-data" class="nav-link" data-scroll-target="#joining-data">Joining data</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Wrangling your data 🤠 Recitation Solutions</h1>
+<p class="subtitle lead">Week 4</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jessica Cooperstone </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Today you are going to be practicing what you learned in the <a href="04_wrangling.html">wrangling</a> lesson. The more you practice modifying your data the easier it becomes. Remember, there are many ways to accomplish the same outcome. In the recitation solutions, I will show you a few different ways to answer the prompts and you can see how they differ, and use the ones that resonate with you.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="load-data" class="level3">
+<h3 class="anchored" data-anchor-id="load-data">Load data</h3>
+<p>To practice, we will be using some data I have extracted from <a href="https://www.gapminder.org/">Gapminder</a>. I am linking to two files that you can download to your computer, and then read them in like we learned in class.</p>
+<ul>
+<li>Data on the happiness index for many countries for many years</li>
+<li>Data on the life expectancy for many countries for many years</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in happiness data from your computer</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mine has the path below since i have a subfolder called data where</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># the happiness data is living</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>happiness <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/hapiscore_whr.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 163 Columns: 19
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (1): country
+dbl (18): 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, ...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in life expectancy data from your computer</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>life_expectancy <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/life_expectancy.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 195 Columns: 302
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr   (1): country
+dbl (301): 1800, 1801, 1802, 1803, 1804, 1805, 1806, 1807, 1808, 1809, 1810,...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="explore-your-data" class="level2">
+<h2 class="anchored" data-anchor-id="explore-your-data">Explore your data</h2>
+<p>Write some code that lets you explore that is in these two datasets.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># see data structure with glimpse</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(happiness)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 163
+Columns: 19
+$ country &lt;chr&gt; "Afghanistan", "Angola", "Albania", "United Arab Emirates", "A…
+$ `2005`  &lt;dbl&gt; NA, NA, NA, NA, NA, NA, 73.4, NA, NA, NA, 72.6, NA, NA, NA, NA…
+$ `2006`  &lt;dbl&gt; NA, NA, NA, 67.3, 63.1, 42.9, NA, 71.2, 47.3, NA, NA, 33.3, 38…
+$ `2007`  &lt;dbl&gt; NA, NA, 46.3, NA, 60.7, 48.8, 72.8, NA, 45.7, NA, 72.2, NA, 40…
+$ `2008`  &lt;dbl&gt; 37.2, NA, NA, NA, 59.6, 46.5, 72.5, 71.8, 48.2, 35.6, 71.2, 36…
+$ `2009`  &lt;dbl&gt; 44.0, NA, 54.9, 68.7, 64.2, 41.8, NA, NA, 45.7, 37.9, NA, NA, …
+$ `2010`  &lt;dbl&gt; 47.6, NA, 52.7, 71.0, 64.4, 43.7, 74.5, 73.0, 42.2, NA, 68.5, …
+$ `2011`  &lt;dbl&gt; 38.3, 55.9, 58.7, 71.2, 67.8, 42.6, 74.1, 74.7, 46.8, 37.1, 71…
+$ `2012`  &lt;dbl&gt; 37.8, 43.6, 55.1, 72.2, 64.7, 43.2, 72.0, 74.0, 49.1, NA, 69.3…
+$ `2013`  &lt;dbl&gt; 35.7, 39.4, 45.5, 66.2, 65.8, 42.8, 73.6, 75.0, 54.8, NA, 71.0…
+$ `2014`  &lt;dbl&gt; 31.3, 38.0, 48.1, 65.4, 66.7, 44.5, 72.9, 69.5, 52.5, 29.1, 68…
+$ `2015`  &lt;dbl&gt; 39.8, NA, 46.1, 65.7, 67.0, 43.5, 73.1, 70.8, 51.5, NA, 69.0, …
+$ `2016`  &lt;dbl&gt; 42.2, NA, 45.1, 68.3, 64.3, 43.3, 72.5, 70.5, 53.0, NA, 69.5, …
+$ `2017`  &lt;dbl&gt; 26.6, NA, 46.4, 70.4, 60.4, 42.9, 72.6, 72.9, 51.5, NA, 69.3, …
+$ `2018`  &lt;dbl&gt; 26.9, NA, 50.0, 66.0, 57.9, 50.6, 71.8, 74.0, 51.7, 37.8, 68.9…
+$ `2019`  &lt;dbl&gt; 23.8, NA, 50.0, 67.1, 60.9, 54.9, 72.3, 72.0, 51.7, NA, 67.7, …
+$ `2020`  &lt;dbl&gt; NA, NA, 53.6, 64.6, 59.0, NA, 71.4, 72.1, NA, NA, 68.4, 44.1, …
+$ `2021`  &lt;dbl&gt; 24.4, NA, 52.5, 67.3, 59.1, 53.0, 71.1, 70.8, NA, NA, 68.8, 44…
+$ `2022`  &lt;dbl&gt; 18.6, NA, 52.8, 65.7, 60.2, 53.4, 71.0, 71.0, NA, NA, 68.6, 43…</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># look at all columns and first 6 rows with head</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(happiness)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 19
+  country  `2005` `2006` `2007` `2008` `2009` `2010` `2011` `2012` `2013` `2014`
+  &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 Afghani…     NA   NA     NA     37.2   44     47.6   38.3   37.8   35.7   31.3
+2 Angola       NA   NA     NA     NA     NA     NA     55.9   43.6   39.4   38  
+3 Albania      NA   NA     46.3   NA     54.9   52.7   58.7   55.1   45.5   48.1
+4 United …     NA   67.3   NA     NA     68.7   71     71.2   72.2   66.2   65.4
+5 Argenti…     NA   63.1   60.7   59.6   64.2   64.4   67.8   64.7   65.8   66.7
+6 Armenia      NA   42.9   48.8   46.5   41.8   43.7   42.6   43.2   42.8   44.5
+# ℹ 8 more variables: `2015` &lt;dbl&gt;, `2016` &lt;dbl&gt;, `2017` &lt;dbl&gt;, `2018` &lt;dbl&gt;,
+#   `2019` &lt;dbl&gt;, `2020` &lt;dbl&gt;, `2021` &lt;dbl&gt;, `2022` &lt;dbl&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this will open the file for you to look through in R</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># View(happiness)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># see data structure with glimpse</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(life_expectancy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 195
+Columns: 302
+$ country &lt;chr&gt; "Afghanistan", "Angola", "Albania", "Andorra", "United Arab Em…
+$ `1800`  &lt;dbl&gt; 28.2, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1801`  &lt;dbl&gt; 28.2, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1802`  &lt;dbl&gt; 28.2, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1803`  &lt;dbl&gt; 28.2, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1804`  &lt;dbl&gt; 28.2, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1805`  &lt;dbl&gt; 28.2, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1806`  &lt;dbl&gt; 28.1, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1807`  &lt;dbl&gt; 28.1, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1808`  &lt;dbl&gt; 28.1, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1809`  &lt;dbl&gt; 28.1, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1810`  &lt;dbl&gt; 28.1, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1811`  &lt;dbl&gt; 28.1, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1812`  &lt;dbl&gt; 28.1, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1813`  &lt;dbl&gt; 28.1, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1814`  &lt;dbl&gt; 28.1, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1815`  &lt;dbl&gt; 28.1, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1816`  &lt;dbl&gt; 28.1, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1817`  &lt;dbl&gt; 28.0, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1818`  &lt;dbl&gt; 28.0, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1819`  &lt;dbl&gt; 28.0, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1820`  &lt;dbl&gt; 28.0, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1821`  &lt;dbl&gt; 28.0, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1822`  &lt;dbl&gt; 28.0, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1823`  &lt;dbl&gt; 28.0, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1824`  &lt;dbl&gt; 28.0, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1825`  &lt;dbl&gt; 27.9, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1826`  &lt;dbl&gt; 27.9, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1827`  &lt;dbl&gt; 27.9, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1828`  &lt;dbl&gt; 27.9, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1829`  &lt;dbl&gt; 27.9, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1830`  &lt;dbl&gt; 27.9, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1831`  &lt;dbl&gt; 27.9, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1832`  &lt;dbl&gt; 27.9, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1833`  &lt;dbl&gt; 27.9, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1834`  &lt;dbl&gt; 27.9, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1835`  &lt;dbl&gt; 27.9, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1836`  &lt;dbl&gt; 27.8, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1837`  &lt;dbl&gt; 27.8, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1838`  &lt;dbl&gt; 27.8, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1839`  &lt;dbl&gt; 27.8, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1840`  &lt;dbl&gt; 27.8, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1841`  &lt;dbl&gt; 27.8, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1842`  &lt;dbl&gt; 27.8, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1843`  &lt;dbl&gt; 27.8, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1844`  &lt;dbl&gt; 27.8, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1845`  &lt;dbl&gt; 27.8, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1846`  &lt;dbl&gt; 27.7, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1847`  &lt;dbl&gt; 27.7, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1848`  &lt;dbl&gt; 27.7, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1849`  &lt;dbl&gt; 27.7, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1850`  &lt;dbl&gt; 27.7, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1851`  &lt;dbl&gt; 27.7, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1852`  &lt;dbl&gt; 27.7, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1853`  &lt;dbl&gt; 27.7, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1854`  &lt;dbl&gt; 27.7, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1855`  &lt;dbl&gt; 27.6, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1856`  &lt;dbl&gt; 27.6, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1857`  &lt;dbl&gt; 27.6, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1858`  &lt;dbl&gt; 27.6, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1859`  &lt;dbl&gt; 27.6, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1860`  &lt;dbl&gt; 27.6, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1861`  &lt;dbl&gt; 27.6, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1862`  &lt;dbl&gt; 27.6, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1863`  &lt;dbl&gt; 27.6, 27.0, 35.4, NA, 30.7, 33.2, 34.0, 33.5, 34.0, 34.4, 29.2…
+$ `1864`  &lt;dbl&gt; 27.6, 27.0, 35.4, NA, 30.7, 33.2, 33.5, 33.5, 34.0, 34.4, 28.6…
+$ `1865`  &lt;dbl&gt; 27.5, 27.0, 35.4, NA, 30.7, 33.2, 33.0, 33.5, 34.0, 34.4, 28.1…
+$ `1866`  &lt;dbl&gt; 27.5, 27.0, 35.4, NA, 30.7, 33.2, 32.4, 33.5, 34.0, 34.4, 27.6…
+$ `1867`  &lt;dbl&gt; 27.5, 27.0, 35.4, NA, 30.7, 33.2, 31.9, 33.5, 34.0, 34.4, 27.1…
+$ `1868`  &lt;dbl&gt; 27.5, 27.0, 35.4, NA, 30.7, 33.2, 31.4, 33.5, 34.0, 34.4, 26.6…
+$ `1869`  &lt;dbl&gt; 27.5, 27.0, 35.4, NA, 30.7, 33.2, 31.4, 33.5, 34.0, 34.4, 26.6…
+$ `1870`  &lt;dbl&gt; 27.5, 27.0, 35.4, NA, 30.7, 33.2, 31.5, 33.5, 34.0, 34.4, 26.6…
+$ `1871`  &lt;dbl&gt; 27.7, 27.2, 35.4, NA, 30.9, 33.2, 31.5, 33.5, 34.6, 34.5, 26.6…
+$ `1872`  &lt;dbl&gt; 27.9, 27.4, 35.4, NA, 31.0, 33.2, 31.6, 33.5, 35.1, 34.5, 26.5…
+$ `1873`  &lt;dbl&gt; 28.1, 27.6, 35.4, NA, 31.2, 33.2, 31.6, 33.5, 35.6, 34.6, 26.4…
+$ `1874`  &lt;dbl&gt; 28.3, 27.7, 35.3, NA, 31.3, 33.3, 31.8, 33.5, 36.2, 34.6, 26.5…
+$ `1875`  &lt;dbl&gt; 28.5, 27.9, 35.3, NA, 31.5, 33.3, 32.0, 33.6, 36.7, 34.7, 26.6…
+$ `1876`  &lt;dbl&gt; 28.7, 28.1, 35.3, NA, 31.6, 33.3, 32.2, 33.6, 37.2, 34.7, 26.7…
+$ `1877`  &lt;dbl&gt; 28.9, 28.3, 35.3, NA, 31.8, 33.3, 32.4, 33.6, 37.8, 34.8, 26.8…
+$ `1878`  &lt;dbl&gt; 29.1, 28.5, 35.3, NA, 32.0, 33.2, 32.6, 33.6, 38.3, 34.8, 26.8…
+$ `1879`  &lt;dbl&gt; 29.3, 28.7, 35.3, NA, 32.1, 33.2, 32.8, 33.6, 38.8, 34.9, 26.9…
+$ `1880`  &lt;dbl&gt; 29.4, 28.9, 35.2, NA, 32.3, 33.2, 33.0, 33.6, 39.4, 34.9, 27.0…
+$ `1881`  &lt;dbl&gt; 29.6, 29.1, 35.2, NA, 32.4, 33.1, 33.2, 33.6, 39.9, 35.0, 27.0…
+$ `1882`  &lt;dbl&gt; 29.8, 29.3, 35.2, NA, 32.6, 33.0, 33.4, 33.6, 40.4, 35.2, 27.1…
+$ `1883`  &lt;dbl&gt; 30.0, 29.4, 35.2, NA, 32.8, 33.0, 33.6, 33.6, 41.0, 35.5, 27.2…
+$ `1884`  &lt;dbl&gt; 30.2, 29.6, 35.2, NA, 32.9, 32.9, 33.8, 33.6, 41.5, 35.7, 27.3…
+$ `1885`  &lt;dbl&gt; 30.4, 29.8, 35.2, NA, 33.1, 32.8, 34.0, 33.6, 42.0, 35.9, 27.3…
+$ `1886`  &lt;dbl&gt; 30.6, 30.0, 35.1, NA, 33.2, 33.1, 34.2, 33.6, 42.6, 36.1, 27.4…
+$ `1887`  &lt;dbl&gt; 30.8, 30.2, 35.1, NA, 33.4, 33.4, 34.4, 33.6, 43.1, 36.4, 27.4…
+$ `1888`  &lt;dbl&gt; 31.0, 30.4, 35.1, NA, 33.5, 33.7, 34.6, 33.6, 43.6, 36.6, 27.5…
+$ `1889`  &lt;dbl&gt; 31.2, 30.6, 35.1, NA, 33.7, 34.0, 34.8, 33.6, 44.2, 36.8, 27.6…
+$ `1890`  &lt;dbl&gt; 31.4, 30.8, 35.1, NA, 33.9, 34.3, 35.0, 33.6, 44.7, 37.1, 27.6…
+$ `1891`  &lt;dbl&gt; 31.6, 30.9, 35.1, NA, 34.0, 34.1, 35.2, 33.6, 45.2, 37.3, 27.7…
+$ `1892`  &lt;dbl&gt; 31.8, 31.1, 35.0, NA, 34.2, 34.0, 35.4, 33.6, 45.8, 37.8, 27.7…
+$ `1893`  &lt;dbl&gt; 32.0, 31.3, 35.0, NA, 34.3, 33.9, 35.6, 33.6, 46.3, 38.2, 27.8…
+$ `1894`  &lt;dbl&gt; 32.2, 31.5, 35.0, NA, 34.5, 33.8, 35.8, 33.6, 46.8, 38.7, 27.8…
+$ `1895`  &lt;dbl&gt; 32.4, 31.7, 35.0, NA, 34.6, 33.6, 36.0, 33.6, 47.4, 39.2, 27.9…
+$ `1896`  &lt;dbl&gt; 32.5, 31.9, 35.0, NA, 34.8, 34.3, 36.2, 33.6, 47.9, 39.6, 27.9…
+$ `1897`  &lt;dbl&gt; 32.7, 32.1, 35.0, NA, 35.0, 35.1, 36.4, 33.6, 48.4, 40.1, 28.0…
+$ `1898`  &lt;dbl&gt; 32.9, 32.3, 35.0, NA, 35.1, 35.8, 36.2, 33.7, 49.0, 40.6, 27.7…
+$ `1899`  &lt;dbl&gt; 33.1, 32.5, 34.9, NA, 35.3, 36.5, 36.1, 33.7, 49.5, 41.0, 27.4…
+$ `1900`  &lt;dbl&gt; 33.3, 32.6, 34.9, NA, 35.4, 37.2, 35.9, 33.7, 50.0, 41.5, 27.1…
+$ `1901`  &lt;dbl&gt; 33.5, 32.8, 34.9, NA, 35.6, 37.8, 36.1, 33.7, 50.6, 42.0, 27.2…
+$ `1902`  &lt;dbl&gt; 33.7, 33.0, 34.9, NA, 35.7, 38.4, 36.4, 33.7, 51.1, 41.0, 27.3…
+$ `1903`  &lt;dbl&gt; 33.9, 33.2, 34.9, NA, 35.9, 39.0, 36.6, 33.7, 51.6, 40.1, 27.4…
+$ `1904`  &lt;dbl&gt; 34.1, 33.4, 34.9, NA, 36.1, 39.6, 36.9, 33.7, 52.2, 40.7, 27.4…
+$ `1905`  &lt;dbl&gt; 34.3, 33.6, 34.8, NA, 36.2, 40.2, 37.1, 33.7, 52.7, 41.3, 27.5…
+$ `1906`  &lt;dbl&gt; 34.5, 33.8, 34.8, NA, 36.4, 41.0, 37.4, 33.7, 53.2, 42.0, 27.6…
+$ `1907`  &lt;dbl&gt; 34.7, 34.0, 34.8, NA, 36.5, 41.8, 37.6, 33.7, 53.8, 42.6, 27.7…
+$ `1908`  &lt;dbl&gt; 34.9, 34.2, 34.8, NA, 36.7, 42.6, 37.9, 33.7, 54.3, 43.2, 27.8…
+$ `1909`  &lt;dbl&gt; 35.0, 34.4, 34.8, NA, 36.8, 43.4, 38.1, 33.7, 54.8, 43.8, 27.8…
+$ `1910`  &lt;dbl&gt; 35.2, 34.5, 34.8, NA, 37.0, 44.2, 38.4, 33.7, 55.4, 44.5, 27.9…
+$ `1911`  &lt;dbl&gt; 35.4, 34.7, 34.7, NA, 37.2, 44.7, 41.4, 33.7, 55.9, 45.1, 30.2…
+$ `1912`  &lt;dbl&gt; 35.6, 34.9, 34.7, NA, 37.3, 45.3, 41.8, 33.7, 56.4, 45.6, 30.4…
+$ `1913`  &lt;dbl&gt; 35.8, 35.1, 34.7, NA, 37.5, 45.9, 39.6, 33.7, 57.0, 46.2, 28.4…
+$ `1914`  &lt;dbl&gt; 36.0, 35.3, 34.7, NA, 37.6, 46.4, 39.2, 33.7, 57.5, 46.8, 28.0…
+$ `1915`  &lt;dbl&gt; 36.2, 35.5, 34.7, NA, 37.8, 47.0, 38.8, 33.7, 58.0, 47.3, 27.5…
+$ `1916`  &lt;dbl&gt; 36.4, 35.7, 34.7, NA, 38.0, 47.8, 38.8, 33.7, 58.6, 47.9, 27.4…
+$ `1917`  &lt;dbl&gt; 36.6, 35.9, 34.6, NA, 38.1, 48.7, 35.8, 33.7, 59.1, 48.5, 24.8…
+$ `1918`  &lt;dbl&gt; 9.59, 13.90, 19.00, NA, 31.70, 42.50, 27.00, 21.90, 55.00, 32.…
+$ `1919`  &lt;dbl&gt; 36.9, 36.2, 34.6, NA, 38.4, 50.3, 37.0, 33.8, 60.2, 49.6, 25.4…
+$ `1920`  &lt;dbl&gt; 37.1, 36.4, 34.6, NA, 38.6, 51.2, 28.0, 33.8, 60.7, 50.2, 23.6…
+$ `1921`  &lt;dbl&gt; 37.3, 36.6, 34.6, NA, 38.7, 51.7, 38.0, 33.8, 61.3, 50.7, 25.9…
+$ `1922`  &lt;dbl&gt; 37.5, 36.8, 34.6, NA, 38.9, 52.2, 39.0, 34.6, 63.1, 51.3, 26.5…
+$ `1923`  &lt;dbl&gt; 37.7, 37.0, 34.5, NA, 39.0, 52.7, 39.9, 35.4, 62.0, 51.9, 27.2…
+$ `1924`  &lt;dbl&gt; 37.9, 37.2, 34.5, NA, 39.2, 53.2, 42.4, 36.3, 62.8, 52.4, 29.0…
+$ `1925`  &lt;dbl&gt; 38.1, 37.4, 34.5, NA, 39.4, 53.7, 41.5, 37.1, 63.5, 53.0, 28.1…
+$ `1926`  &lt;dbl&gt; 38.3, 37.6, 34.5, NA, 39.5, 54.1, 44.7, 38.0, 63.2, 53.6, 30.4…
+$ `1927`  &lt;dbl&gt; 38.4, 37.8, 34.5, NA, 39.7, 54.4, 44.0, 38.8, 63.2, 54.1, 29.7…
+$ `1928`  &lt;dbl&gt; 38.6, 37.9, 34.5, NA, 39.8, 54.8, 45.5, 39.6, 63.2, 54.7, 30.7…
+$ `1929`  &lt;dbl&gt; 38.8, 38.1, 34.5, NA, 40.0, 55.2, 44.3, 40.5, 63.4, 55.3, 29.6…
+$ `1930`  &lt;dbl&gt; 39.0, 38.3, 35.3, NA, 40.1, 55.5, 43.6, 41.3, 65.2, 55.8, 28.9…
+$ `1931`  &lt;dbl&gt; 39.2, 38.5, 36.1, NA, 40.3, 55.6, 42.0, 42.1, 65.7, 56.4, 27.4…
+$ `1932`  &lt;dbl&gt; 39.4, 38.7, 37.0, NA, 40.5, 55.6, 39.5, 43.0, 66.0, 56.7, 25.4…
+$ `1933`  &lt;dbl&gt; 39.6, 38.9, 37.9, NA, 40.6, 55.6, 33.0, 43.8, 65.8, 57.0, 19.8…
+$ `1934`  &lt;dbl&gt; 39.8, 39.1, 38.7, NA, 40.8, 55.6, 46.0, 44.7, 65.2, 57.3, 30.0…
+$ `1935`  &lt;dbl&gt; 39.9, 39.3, 39.6, NA, 40.9, 55.6, 47.5, 45.5, 65.4, 57.6, 30.9…
+$ `1936`  &lt;dbl&gt; 40.1, 39.5, 40.4, NA, 41.1, 56.6, 49.2, 46.3, 65.6, 57.9, 32.0…
+$ `1937`  &lt;dbl&gt; 40.3, 39.6, 41.3, NA, 41.3, 57.7, 48.2, 47.2, 66.1, 58.2, 31.1…
+$ `1938`  &lt;dbl&gt; 40.5, 39.8, 42.1, NA, 41.4, 58.7, 49.9, 48.0, 66.2, 58.5, 32.1…
+$ `1939`  &lt;dbl&gt; 40.7, 40.0, 41.6, NA, 41.6, 59.7, 52.3, 48.9, 66.1, 58.0, 33.6…
+$ `1940`  &lt;dbl&gt; 40.9, 40.2, 40.7, NA, 41.7, 60.7, 49.8, 49.7, 66.6, 57.7, 31.6…
+$ `1941`  &lt;dbl&gt; 41.0, 40.7, 40.1, NA, 41.9, 61.3, 27.4, 50.5, 66.5, 56.4, 21.2…
+$ `1942`  &lt;dbl&gt; 41.2, 41.3, 38.7, NA, 42.0, 61.9, 23.5, 51.4, 66.2, 54.0, 18.6…
+$ `1943`  &lt;dbl&gt; 41.4, 41.8, 35.8, NA, 42.2, 62.5, 21.1, 52.2, 66.7, 50.1, 17.1…
+$ `1944`  &lt;dbl&gt; 41.6, 42.3, 32.9, NA, 42.4, 63.2, 27.5, 53.1, 68.4, 39.1, 22.0…
+$ `1945`  &lt;dbl&gt; 41.8, 42.9, 45.4, NA, 42.5, 63.8, 35.4, 53.9, 68.8, 31.4, 28.7…
+$ `1946`  &lt;dbl&gt; 42.0, 43.4, 48.3, NA, 45.6, 63.7, 49.6, 54.8, 68.3, 55.9, 35.3…
+$ `1947`  &lt;dbl&gt; 42.2, 43.9, 49.7, NA, 48.8, 63.6, 41.5, 55.6, 69.0, 61.2, 29.6…
+$ `1948`  &lt;dbl&gt; 42.4, 44.5, 50.5, NA, 52.0, 63.5, 47.0, 56.5, 68.9, 63.2, 34.9…
+$ `1949`  &lt;dbl&gt; 42.5, 45.0, 51.4, NA, 55.2, 63.4, 47.9, 57.3, 69.5, 63.4, 36.5…
+$ `1950`  &lt;dbl&gt; 42.7, 45.6, 52.2, 74.6, 58.4, 63.3, 48.2, 58.1, 69.4, 64.8, 37…
+$ `1951`  &lt;dbl&gt; 42.9, 45.6, 53.6, 74.7, 58.5, 63.5, 49.0, 58.7, 69.2, 65.5, 38…
+$ `1952`  &lt;dbl&gt; 43.1, 45.6, 54.5, 74.8, 58.6, 64.2, 50.0, 59.3, 69.5, 66.7, 39…
+$ `1953`  &lt;dbl&gt; 43.5, 45.6, 55.4, 75.0, 58.7, 64.1, 51.1, 59.8, 69.9, 67.2, 40…
+$ `1954`  &lt;dbl&gt; 43.3, 45.6, 56.1, 75.1, 58.8, 64.7, 52.1, 60.3, 70.2, 67.3, 41…
+$ `1955`  &lt;dbl&gt; 43.9, 45.5, 56.3, 75.2, 58.9, 64.5, 53.3, 60.9, 70.3, 67.7, 42…
+$ `1956`  &lt;dbl&gt; 44.1, 45.7, 58.0, 75.3, 58.8, 65.2, 54.5, 61.5, 70.4, 67.8, 43…
+$ `1957`  &lt;dbl&gt; 44.3, 45.8, 59.3, 75.4, 59.3, 65.2, 55.7, 61.9, 70.6, 67.8, 44…
+$ `1958`  &lt;dbl&gt; 44.5, 45.9, 61.0, 75.5, 59.6, 65.4, 56.5, 62.6, 71.0, 68.4, 45…
+$ `1959`  &lt;dbl&gt; 44.7, 46.1, 61.7, 75.6, 59.7, 65.4, 58.0, 63.3, 70.9, 68.5, 46…
+$ `1960`  &lt;dbl&gt; 45.0, 46.3, 62.5, 75.7, 60.3, 65.3, 59.2, 63.8, 71.1, 69.0, 48…
+$ `1961`  &lt;dbl&gt; 45.3, 44.8, 63.3, 75.8, 60.8, 65.7, 60.4, 64.8, 71.3, 69.6, 50…
+$ `1962`  &lt;dbl&gt; 45.5, 45.0, 63.3, 75.9, 61.3, 65.8, 61.4, 65.5, 71.2, 69.7, 51…
+$ `1963`  &lt;dbl&gt; 45.7, 45.2, 63.8, 76.0, 61.6, 65.8, 62.0, 65.8, 71.2, 69.8, 53…
+$ `1964`  &lt;dbl&gt; 45.9, 45.4, 64.4, 76.2, 62.1, 65.8, 62.9, 66.1, 71.0, 70.0, 54…
+$ `1965`  &lt;dbl&gt; 46.1, 45.6, 64.8, 76.3, 62.6, 66.1, 63.6, 66.7, 71.1, 70.1, 55…
+$ `1966`  &lt;dbl&gt; 46.3, 45.8, 65.5, 76.4, 63.0, 66.6, 64.2, 67.1, 71.1, 70.2, 56…
+$ `1967`  &lt;dbl&gt; 46.5, 46.0, 66.1, 76.5, 63.4, 66.5, 64.7, 67.2, 71.1, 70.2, 57…
+$ `1968`  &lt;dbl&gt; 46.7, 46.2, 66.5, 76.7, 63.8, 66.0, 65.1, 67.6, 71.0, 70.3, 58…
+$ `1969`  &lt;dbl&gt; 46.9, 46.4, 67.1, 76.8, 64.2, 65.9, 65.3, 68.0, 71.2, 70.2, 58…
+$ `1970`  &lt;dbl&gt; 47.1, 46.6, 67.8, 77.0, 64.0, 66.1, 65.9, 68.3, 71.2, 70.2, 59…
+$ `1971`  &lt;dbl&gt; 47.3, 46.8, 68.3, 77.1, 64.9, 66.9, 66.4, 68.9, 71.4, 70.4, 61…
+$ `1972`  &lt;dbl&gt; 47.3, 47.0, 68.8, 77.2, 65.1, 67.3, 66.8, 69.4, 71.8, 70.7, 61…
+$ `1973`  &lt;dbl&gt; 47.3, 47.2, 69.3, 77.4, 65.4, 67.7, 67.2, 69.8, 71.9, 71.1, 62…
+$ `1974`  &lt;dbl&gt; 47.4, 47.4, 69.8, 77.5, 65.7, 67.9, 67.9, 70.0, 72.0, 71.2, 63…
+$ `1975`  &lt;dbl&gt; 47.5, 47.5, 70.2, 77.7, 66.0, 68.0, 68.2, 70.2, 72.5, 71.4, 64…
+$ `1976`  &lt;dbl&gt; 47.7, 47.5, 70.7, 77.8, 66.3, 67.0, 69.0, 70.3, 72.8, 71.8, 65…
+$ `1977`  &lt;dbl&gt; 47.9, 47.7, 71.1, 78.0, 66.6, 67.7, 69.5, 70.6, 73.3, 72.2, 65…
+$ `1978`  &lt;dbl&gt; 46.4, 47.8, 71.7, 78.1, 67.0, 69.0, 69.7, 71.0, 73.8, 72.4, 64…
+$ `1979`  &lt;dbl&gt; 44.7, 48.0, 71.3, 78.2, 67.3, 69.8, 70.2, 71.6, 74.2, 72.6, 65…
+$ `1980`  &lt;dbl&gt; 43.7, 48.1, 71.3, 78.3, 67.6, 70.2, 70.2, 72.1, 74.5, 72.8, 66…
+$ `1981`  &lt;dbl&gt; 44.3, 48.2, 71.3, 78.4, 68.0, 70.3, 70.5, 72.6, 74.8, 73.1, 66…
+$ `1982`  &lt;dbl&gt; 44.1, 48.2, 71.4, 78.5, 68.1, 70.9, 70.8, 73.2, 74.9, 73.3, 66…
+$ `1983`  &lt;dbl&gt; 42.3, 48.2, 71.2, 78.5, 67.9, 70.7, 70.8, 73.8, 75.3, 73.5, 66…
+$ `1984`  &lt;dbl&gt; 39.9, 48.4, 71.4, 78.6, 68.4, 70.8, 71.1, 73.5, 75.5, 73.9, 66…
+$ `1985`  &lt;dbl&gt; 42.0, 48.6, 71.9, 78.7, 68.5, 71.7, 71.3, 73.8, 75.6, 74.3, 66…
+$ `1986`  &lt;dbl&gt; 43.3, 48.6, 72.3, 78.8, 68.5, 72.0, 71.7, 74.0, 76.0, 74.7, 66…
+$ `1987`  &lt;dbl&gt; 45.9, 48.6, 72.2, 78.8, 68.5, 72.1, 71.8, 74.2, 76.2, 75.1, 66…
+$ `1988`  &lt;dbl&gt; 48.5, 48.6, 72.4, 78.9, 68.5, 72.1, 55.3, 74.3, 76.4, 75.5, 66…
+$ `1989`  &lt;dbl&gt; 52.7, 49.4, 72.5, 79.0, 68.6, 72.3, 71.0, 74.3, 76.5, 75.7, 67…
+$ `1990`  &lt;dbl&gt; 53.8, 49.7, 72.8, 79.0, 68.7, 72.5, 70.6, 74.0, 77.0, 76.0, 66…
+$ `1991`  &lt;dbl&gt; 53.8, 50.3, 72.6, 79.1, 68.7, 72.7, 70.3, 74.0, 77.4, 76.1, 66…
+$ `1992`  &lt;dbl&gt; 54.2, 50.3, 73.2, 79.2, 68.8, 72.8, 69.4, 74.0, 77.6, 76.3, 64…
+$ `1993`  &lt;dbl&gt; 54.4, 49.0, 73.8, 79.3, 68.8, 73.0, 69.0, 73.4, 77.9, 76.5, 64…
+$ `1994`  &lt;dbl&gt; 53.9, 50.3, 74.6, 79.5, 68.7, 73.4, 69.5, 73.3, 78.0, 76.7, 63…
+$ `1995`  &lt;dbl&gt; 54.3, 51.2, 74.6, 79.8, 68.8, 73.4, 70.1, 73.3, 78.3, 77.0, 64…
+$ `1996`  &lt;dbl&gt; 54.7, 51.7, 74.5, 80.0, 68.9, 73.5, 70.4, 74.0, 78.5, 77.3, 65…
+$ `1997`  &lt;dbl&gt; 54.5, 51.6, 72.9, 80.2, 69.0, 73.6, 71.1, 73.5, 78.8, 77.7, 65…
+$ `1998`  &lt;dbl&gt; 53.3, 50.6, 74.8, 80.4, 69.2, 73.7, 71.6, 74.5, 79.1, 77.9, 66…
+$ `1999`  &lt;dbl&gt; 54.7, 51.9, 75.1, 80.6, 69.2, 73.8, 71.9, 74.7, 79.4, 78.2, 66…
+$ `2000`  &lt;dbl&gt; 54.7, 52.8, 75.4, 80.8, 69.1, 74.2, 72.4, 74.8, 79.7, 78.5, 66…
+$ `2001`  &lt;dbl&gt; 54.8, 53.4, 76.0, 80.9, 69.2, 74.3, 72.5, 75.1, 80.1, 78.9, 67…
+$ `2002`  &lt;dbl&gt; 55.5, 54.5, 75.9, 81.1, 69.4, 74.3, 72.7, 75.4, 80.3, 79.0, 67…
+$ `2003`  &lt;dbl&gt; 56.5, 55.1, 75.6, 81.2, 69.3, 74.4, 72.8, 75.6, 80.6, 79.1, 67…
+$ `2004`  &lt;dbl&gt; 57.1, 55.5, 75.8, 81.3, 69.1, 74.9, 73.0, 75.7, 80.9, 79.5, 67…
+$ `2005`  &lt;dbl&gt; 57.6, 56.4, 76.2, 81.4, 69.2, 75.3, 73.0, 75.9, 81.2, 79.8, 67…
+$ `2006`  &lt;dbl&gt; 58.0, 57.0, 76.9, 81.5, 69.5, 75.4, 73.1, 75.9, 81.5, 80.1, 67…
+$ `2007`  &lt;dbl&gt; 58.5, 58.0, 77.5, 81.7, 70.0, 75.3, 73.5, 75.1, 81.5, 80.3, 68…
+$ `2008`  &lt;dbl&gt; 59.2, 58.8, 77.6, 81.8, 70.4, 75.7, 73.5, 75.2, 81.7, 80.5, 68…
+$ `2009`  &lt;dbl&gt; 59.9, 59.5, 78.0, 81.8, 70.6, 75.8, 73.6, 75.8, 81.9, 80.5, 68…
+$ `2010`  &lt;dbl&gt; 60.5, 60.2, 78.1, 81.8, 70.8, 75.9, 73.9, 75.9, 82.1, 80.8, 69…
+$ `2011`  &lt;dbl&gt; 61.0, 60.8, 78.1, 81.9, 71.0, 76.0, 74.2, 76.0, 82.3, 81.0, 69…
+$ `2012`  &lt;dbl&gt; 61.4, 61.4, 78.2, 81.9, 71.2, 76.2, 74.6, 76.0, 82.6, 81.2, 69…
+$ `2013`  &lt;dbl&gt; 61.9, 62.1, 78.3, 82.0, 71.6, 76.3, 75.1, 76.1, 82.7, 81.3, 69…
+$ `2014`  &lt;dbl&gt; 61.9, 63.0, 78.2, 82.0, 73.0, 76.5, 75.2, 76.0, 82.7, 81.5, 69…
+$ `2015`  &lt;dbl&gt; 61.9, 63.5, 78.1, 82.0, 73.2, 76.5, 75.1, 76.0, 82.7, 81.6, 70…
+$ `2016`  &lt;dbl&gt; 62.0, 63.9, 78.2, 82.1, 73.4, 76.2, 75.3, 76.0, 83.0, 81.8, 70…
+$ `2017`  &lt;dbl&gt; 62.9, 64.2, 78.3, 82.1, 73.5, 76.3, 75.5, 76.1, 83.0, 82.0, 70…
+$ `2018`  &lt;dbl&gt; 62.7, 64.6, 78.4, 82.1, 73.7, 76.5, 75.6, 76.2, 82.9, 82.1, 70…
+$ `2019`  &lt;dbl&gt; 63.3, 65.1, 78.5, 82.2, 73.9, 76.6, 75.7, 76.3, 82.9, 82.2, 71…
+$ `2020`  &lt;dbl&gt; 63.4, 65.2, 77.9, NA, 74.0, 74.6, 74.0, 76.3, 82.9, 81.5, 70.4…
+$ `2021`  &lt;dbl&gt; 64.0, 65.8, 78.7, NA, 74.2, 76.9, 76.0, 76.5, 83.2, 82.4, 71.2…
+$ `2022`  &lt;dbl&gt; 64.3, 66.1, 78.8, NA, 74.3, 77.0, 76.1, 76.7, 83.3, 82.6, 71.3…
+$ `2023`  &lt;dbl&gt; 64.6, 66.4, 79.0, NA, 74.4, 77.2, 76.3, 76.8, 83.5, 82.8, 71.4…
+$ `2024`  &lt;dbl&gt; 64.9, 66.8, 79.1, NA, 74.6, 77.3, 76.4, 76.9, 83.6, 82.9, 71.5…
+$ `2025`  &lt;dbl&gt; 65.2, 67.1, 79.2, NA, 74.7, 77.5, 76.5, 77.1, 83.7, 83.1, 71.6…
+$ `2026`  &lt;dbl&gt; 65.4, 67.4, 79.4, NA, 74.8, 77.6, 76.7, 77.2, 83.8, 83.2, 71.7…
+$ `2027`  &lt;dbl&gt; 65.7, 67.7, 79.5, NA, 75.0, 77.8, 76.8, 77.3, 84.0, 83.4, 71.8…
+$ `2028`  &lt;dbl&gt; 66.0, 68.0, 79.7, NA, 75.1, 77.9, 77.0, 77.4, 84.1, 83.6, 71.9…
+$ `2029`  &lt;dbl&gt; 66.2, 68.3, 79.8, NA, 75.2, 78.0, 77.1, 77.6, 84.2, 83.7, 72.0…
+$ `2030`  &lt;dbl&gt; 66.4, 68.6, 80.0, NA, 75.4, 78.2, 77.2, 77.7, 84.3, 83.9, 72.1…
+$ `2031`  &lt;dbl&gt; 66.6, 68.9, 80.2, NA, 75.5, 78.3, 77.4, 77.8, 84.4, 84.1, 72.2…
+$ `2032`  &lt;dbl&gt; 66.9, 69.2, 80.3, NA, 75.6, 78.5, 77.5, 78.0, 84.6, 84.2, 72.3…
+$ `2033`  &lt;dbl&gt; 67.1, 69.4, 80.5, NA, 75.8, 78.6, 77.7, 78.1, 84.7, 84.4, 72.4…
+$ `2034`  &lt;dbl&gt; 67.3, 69.7, 80.7, NA, 75.9, 78.8, 77.8, 78.2, 84.8, 84.5, 72.5…
+$ `2035`  &lt;dbl&gt; 67.5, 70.0, 80.8, NA, 76.0, 78.9, 77.9, 78.3, 84.9, 84.7, 72.7…
+$ `2036`  &lt;dbl&gt; 67.7, 70.2, 80.9, NA, 76.2, 79.1, 78.1, 78.5, 85.0, 84.8, 72.8…
+$ `2037`  &lt;dbl&gt; 67.9, 70.5, 81.1, NA, 76.3, 79.2, 78.2, 78.6, 85.2, 84.9, 72.9…
+$ `2038`  &lt;dbl&gt; 68.0, 70.7, 81.2, NA, 76.4, 79.4, 78.3, 78.7, 85.3, 85.0, 73.0…
+$ `2039`  &lt;dbl&gt; 68.2, 70.9, 81.3, NA, 76.6, 79.5, 78.5, 78.8, 85.4, 85.2, 73.1…
+$ `2040`  &lt;dbl&gt; 68.4, 71.1, 81.5, NA, 76.7, 79.7, 78.6, 79.0, 85.5, 85.3, 73.2…
+$ `2041`  &lt;dbl&gt; 68.6, 71.4, 81.6, NA, 76.8, 79.8, 78.7, 79.1, 85.6, 85.4, 73.3…
+$ `2042`  &lt;dbl&gt; 68.8, 71.6, 81.8, NA, 77.0, 80.0, 78.9, 79.2, 85.7, 85.5, 73.5…
+$ `2043`  &lt;dbl&gt; 68.9, 71.8, 81.9, NA, 77.1, 80.1, 79.0, 79.3, 85.8, 85.6, 73.6…
+$ `2044`  &lt;dbl&gt; 69.1, 72.0, 82.0, NA, 77.2, 80.3, 79.1, 79.5, 86.0, 85.8, 73.7…
+$ `2045`  &lt;dbl&gt; 69.2, 72.2, 82.2, NA, 77.3, 80.4, 79.3, 79.6, 86.1, 85.9, 73.8…
+$ `2046`  &lt;dbl&gt; 69.4, 72.4, 82.3, NA, 77.5, 80.6, 79.4, 79.7, 86.2, 86.0, 73.9…
+$ `2047`  &lt;dbl&gt; 69.5, 72.5, 82.4, NA, 77.6, 80.7, 79.5, 79.8, 86.3, 86.1, 74.0…
+$ `2048`  &lt;dbl&gt; 69.7, 72.7, 82.6, NA, 77.7, 80.8, 79.7, 80.0, 86.4, 86.2, 74.2…
+$ `2049`  &lt;dbl&gt; 69.8, 72.9, 82.7, NA, 77.9, 81.0, 79.8, 80.1, 86.5, 86.3, 74.3…
+$ `2050`  &lt;dbl&gt; 70.0, 73.1, 82.8, NA, 78.0, 81.2, 79.9, 80.2, 86.6, 86.5, 74.4…
+$ `2051`  &lt;dbl&gt; 70.2, 73.3, 83.0, NA, 78.1, 81.3, 80.0, 80.3, 86.8, 86.6, 74.5…
+$ `2052`  &lt;dbl&gt; 70.3, 73.4, 83.1, NA, 78.2, 81.4, 80.2, 80.5, 86.9, 86.7, 74.6…
+$ `2053`  &lt;dbl&gt; 70.4, 73.6, 83.3, NA, 78.4, 81.6, 80.3, 80.6, 87.0, 86.8, 74.7…
+$ `2054`  &lt;dbl&gt; 70.6, 73.8, 83.4, NA, 78.5, 81.7, 80.5, 80.7, 87.1, 86.9, 74.9…
+$ `2055`  &lt;dbl&gt; 70.7, 73.9, 83.5, NA, 78.6, 81.9, 80.6, 80.8, 87.2, 87.0, 75.0…
+$ `2056`  &lt;dbl&gt; 70.9, 74.1, 83.7, NA, 78.7, 82.0, 80.7, 81.0, 87.3, 87.1, 75.1…
+$ `2057`  &lt;dbl&gt; 71.0, 74.2, 83.8, NA, 78.8, 82.2, 80.9, 81.1, 87.4, 87.3, 75.2…
+$ `2058`  &lt;dbl&gt; 71.1, 74.4, 83.9, NA, 79.0, 82.3, 81.0, 81.2, 87.5, 87.4, 75.3…
+$ `2059`  &lt;dbl&gt; 71.3, 74.5, 84.0, NA, 79.1, 82.4, 81.1, 81.3, 87.7, 87.5, 75.5…
+$ `2060`  &lt;dbl&gt; 71.4, 74.7, 84.1, NA, 79.2, 82.6, 81.3, 81.5, 87.8, 87.6, 75.6…
+$ `2061`  &lt;dbl&gt; 71.5, 74.8, 84.3, NA, 79.3, 82.7, 81.4, 81.6, 87.9, 87.7, 75.7…
+$ `2062`  &lt;dbl&gt; 71.7, 75.0, 84.4, NA, 79.4, 82.8, 81.5, 81.7, 88.0, 87.8, 75.8…
+$ `2063`  &lt;dbl&gt; 71.8, 75.1, 84.5, NA, 79.5, 83.0, 81.7, 81.8, 88.1, 87.9, 75.9…
+$ `2064`  &lt;dbl&gt; 72.0, 75.3, 84.6, NA, 79.7, 83.1, 81.8, 82.0, 88.2, 88.0, 76.1…
+$ `2065`  &lt;dbl&gt; 72.1, 75.4, 84.7, NA, 79.8, 83.2, 81.9, 82.1, 88.3, 88.1, 76.2…
+$ `2066`  &lt;dbl&gt; 72.2, 75.5, 84.8, NA, 79.9, 83.4, 82.1, 82.2, 88.5, 88.3, 76.3…
+$ `2067`  &lt;dbl&gt; 72.3, 75.7, 84.9, NA, 80.0, 83.5, 82.2, 82.3, 88.6, 88.4, 76.4…
+$ `2068`  &lt;dbl&gt; 72.5, 75.8, 85.0, NA, 80.1, 83.6, 82.3, 82.5, 88.7, 88.5, 76.6…
+$ `2069`  &lt;dbl&gt; 72.6, 76.0, 85.2, NA, 80.2, 83.7, 82.5, 82.6, 88.8, 88.6, 76.7…
+$ `2070`  &lt;dbl&gt; 72.7, 76.1, 85.3, NA, 80.3, 83.9, 82.6, 82.7, 88.9, 88.7, 76.8…
+$ `2071`  &lt;dbl&gt; 72.9, 76.2, 85.4, NA, 80.4, 84.0, 82.7, 82.8, 89.0, 88.8, 76.9…
+$ `2072`  &lt;dbl&gt; 73.0, 76.4, 85.5, NA, 80.5, 84.1, 82.9, 82.9, 89.1, 88.9, 77.1…
+$ `2073`  &lt;dbl&gt; 73.1, 76.5, 85.6, NA, 80.7, 84.2, 83.0, 83.0, 89.2, 89.0, 77.2…
+$ `2074`  &lt;dbl&gt; 73.3, 76.6, 85.7, NA, 80.8, 84.3, 83.1, 83.2, 89.3, 89.1, 77.3…
+$ `2075`  &lt;dbl&gt; 73.4, 76.8, 85.8, NA, 80.9, 84.5, 83.3, 83.3, 89.5, 89.3, 77.5…
+$ `2076`  &lt;dbl&gt; 73.5, 76.9, 85.9, NA, 81.0, 84.6, 83.4, 83.4, 89.6, 89.4, 77.6…
+$ `2077`  &lt;dbl&gt; 73.7, 77.0, 86.0, NA, 81.0, 84.7, 83.5, 83.5, 89.7, 89.5, 77.7…
+$ `2078`  &lt;dbl&gt; 73.8, 77.2, 86.1, NA, 81.2, 84.8, 83.6, 83.6, 89.8, 89.6, 77.8…
+$ `2079`  &lt;dbl&gt; 74.0, 77.3, 86.2, NA, 81.3, 84.9, 83.8, 83.7, 89.9, 89.7, 78.0…
+$ `2080`  &lt;dbl&gt; 74.1, 77.4, 86.3, NA, 81.3, 85.0, 83.9, 83.8, 90.0, 89.8, 78.1…
+$ `2081`  &lt;dbl&gt; 74.2, 77.5, 86.4, NA, 81.4, 85.1, 84.0, 84.0, 90.1, 89.9, 78.3…
+$ `2082`  &lt;dbl&gt; 74.3, 77.7, 86.5, NA, 81.5, 85.3, 84.1, 84.1, 90.2, 90.0, 78.4…
+$ `2083`  &lt;dbl&gt; 74.5, 77.8, 86.6, NA, 81.6, 85.4, 84.3, 84.2, 90.3, 90.1, 78.5…
+$ `2084`  &lt;dbl&gt; 74.6, 77.9, 86.7, NA, 81.7, 85.5, 84.4, 84.3, 90.5, 90.2, 78.7…
+$ `2085`  &lt;dbl&gt; 74.8, 78.0, 86.8, NA, 81.8, 85.6, 84.5, 84.4, 90.6, 90.3, 78.8…
+$ `2086`  &lt;dbl&gt; 74.9, 78.2, 86.9, NA, 81.9, 85.7, 84.6, 84.5, 90.7, 90.5, 78.9…
+$ `2087`  &lt;dbl&gt; 75.0, 78.3, 87.0, NA, 82.0, 85.8, 84.7, 84.6, 90.8, 90.6, 79.1…
+$ `2088`  &lt;dbl&gt; 75.2, 78.4, 87.1, NA, 82.1, 85.9, 84.8, 84.7, 90.9, 90.7, 79.2…
+$ `2089`  &lt;dbl&gt; 75.3, 78.6, 87.2, NA, 82.2, 86.0, 85.0, 84.8, 91.0, 90.8, 79.3…
+$ `2090`  &lt;dbl&gt; 75.4, 78.7, 87.3, NA, 82.3, 86.1, 85.1, 84.9, 91.1, 90.9, 79.5…
+$ `2091`  &lt;dbl&gt; 75.5, 78.8, 87.4, NA, 82.4, 86.2, 85.2, 85.0, 91.3, 91.0, 79.6…
+$ `2092`  &lt;dbl&gt; 75.7, 79.0, 87.5, NA, 82.5, 86.3, 85.3, 85.1, 91.4, 91.1, 79.7…
+$ `2093`  &lt;dbl&gt; 75.8, 79.1, 87.6, NA, 82.6, 86.5, 85.4, 85.2, 91.5, 91.2, 79.9…
+$ `2094`  &lt;dbl&gt; 76.0, 79.2, 87.7, NA, 82.7, 86.5, 85.5, 85.3, 91.6, 91.3, 80.0…
+$ `2095`  &lt;dbl&gt; 76.1, 79.3, 87.8, NA, 82.8, 86.7, 85.6, 85.4, 91.7, 91.5, 80.1…
+$ `2096`  &lt;dbl&gt; 76.2, 79.5, 87.9, NA, 82.9, 86.8, 85.7, 85.5, 91.8, 91.6, 80.3…
+$ `2097`  &lt;dbl&gt; 76.4, 79.6, 88.0, NA, 83.0, 86.9, 85.8, 85.6, 91.9, 91.7, 80.4…
+$ `2098`  &lt;dbl&gt; 76.5, 79.7, 88.2, NA, 83.1, 87.0, 86.0, 85.7, 92.0, 91.8, 80.5…
+$ `2099`  &lt;dbl&gt; 76.6, 79.9, 88.3, NA, 83.2, 87.1, 86.1, 85.8, 92.1, 91.9, 80.7…
+$ `2100`  &lt;dbl&gt; 76.8, 80.0, 88.4, NA, 83.3, 87.2, 86.2, 85.9, 92.3, 92.0, 80.8…</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># look at all columns and first 6 rows with head</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(life_expectancy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 302
+  country  `1800` `1801` `1802` `1803` `1804` `1805` `1806` `1807` `1808` `1809`
+  &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 Afghani…   28.2   28.2   28.2   28.2   28.2   28.2   28.1   28.1   28.1   28.1
+2 Angola     27     27     27     27     27     27     27     27     27     27  
+3 Albania    35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4   35.4
+4 Andorra    NA     NA     NA     NA     NA     NA     NA     NA     NA     NA  
+5 United …   30.7   30.7   30.7   30.7   30.7   30.7   30.7   30.7   30.7   30.7
+6 Argenti…   33.2   33.2   33.2   33.2   33.2   33.2   33.2   33.2   33.2   33.2
+# ℹ 291 more variables: `1810` &lt;dbl&gt;, `1811` &lt;dbl&gt;, `1812` &lt;dbl&gt;, `1813` &lt;dbl&gt;,
+#   `1814` &lt;dbl&gt;, `1815` &lt;dbl&gt;, `1816` &lt;dbl&gt;, `1817` &lt;dbl&gt;, `1818` &lt;dbl&gt;,
+#   `1819` &lt;dbl&gt;, `1820` &lt;dbl&gt;, `1821` &lt;dbl&gt;, `1822` &lt;dbl&gt;, `1823` &lt;dbl&gt;,
+#   `1824` &lt;dbl&gt;, `1825` &lt;dbl&gt;, `1826` &lt;dbl&gt;, `1827` &lt;dbl&gt;, `1828` &lt;dbl&gt;,
+#   `1829` &lt;dbl&gt;, `1830` &lt;dbl&gt;, `1831` &lt;dbl&gt;, `1832` &lt;dbl&gt;, `1833` &lt;dbl&gt;,
+#   `1834` &lt;dbl&gt;, `1835` &lt;dbl&gt;, `1836` &lt;dbl&gt;, `1837` &lt;dbl&gt;, `1838` &lt;dbl&gt;,
+#   `1839` &lt;dbl&gt;, `1840` &lt;dbl&gt;, `1841` &lt;dbl&gt;, `1842` &lt;dbl&gt;, `1843` &lt;dbl&gt;, …</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this will open the file for you to look through in R</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># View(life_expectancy)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>How many observations there in each dataset?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(happiness)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 163  19</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(life_expectancy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 195 302</code></pre>
+</div>
+</div>
+<p>What years do the data contain information for?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>happiness_long <span class="ot">&lt;-</span> happiness <span class="sc">|&gt;</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">!</span>country,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"year"</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"happy_value"</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>happiness_long <span class="sc">|&gt;</span> </span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">min_year =</span> <span class="fu">min</span>(year),</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">max_year =</span> <span class="fu">max</span>(year))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  min_year max_year
+  &lt;chr&gt;    &lt;chr&gt;   
+1 2005     2022    </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>life_expectancy_long <span class="ot">&lt;-</span> life_expectancy <span class="sc">|&gt;</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">!</span>country,</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"year"</span>,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"life_exp"</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>life_expectancy_long <span class="sc">|&gt;</span> </span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">min_year =</span> <span class="fu">min</span>(year),</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">max_year =</span> <span class="fu">max</span>(year))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  min_year max_year
+  &lt;chr&gt;    &lt;chr&gt;   
+1 1800     2100    </code></pre>
+</div>
+</div>
+</section>
+<section id="modifying-data" class="level2">
+<h2 class="anchored" data-anchor-id="modifying-data">Modifying data</h2>
+<p>Create a new dataset for life_expectancy that only includes observed data (i.e., remove the projected data after 2022).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>life_expectancy_actual <span class="ot">&lt;-</span> life_expectancy_long <span class="sc">|&gt;</span> </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&lt;=</span> <span class="dv">2022</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>life_expectancy_actual <span class="ot">&lt;-</span> life_expectancy <span class="sc">|&gt;</span> </span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country, <span class="fu">num_range</span>(<span class="at">prefix =</span> <span class="st">""</span>, <span class="co"># since there is no prefix here</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>                            <span class="at">range =</span> <span class="dv">1800</span><span class="sc">:</span><span class="dv">2022</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="calculating-summaries" class="level2">
+<h2 class="anchored" data-anchor-id="calculating-summaries">Calculating summaries</h2>
+<p>What country has the highest average happiness index in 2022?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># highest happiness is 2022</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># note you can have columns that use non-standard R naming convention</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># like here where columns are numbers</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># but you need to refer to them surrounded by backticks</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>happiness <span class="sc">|&gt;</span> </span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country, <span class="st">`</span><span class="at">2022</span><span class="st">`</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">2022</span><span class="st">`</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 163 × 2
+   country     `2022`
+   &lt;chr&gt;        &lt;dbl&gt;
+ 1 Finland       78  
+ 2 Denmark       75.9
+ 3 Iceland       75.3
+ 4 Israel        74.7
+ 5 Netherlands   74  
+ 6 Sweden        74  
+ 7 Norway        73.2
+ 8 Switzerland   72.4
+ 9 Luxembourg    72.3
+10 New Zealand   71.2
+# ℹ 153 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or we could use clean_names</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>happiness <span class="sc">|&gt;</span> </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country, x2022) <span class="sc">|&gt;</span> </span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(x2022))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 163 × 2
+   country     x2022
+   &lt;chr&gt;       &lt;dbl&gt;
+ 1 Finland      78  
+ 2 Denmark      75.9
+ 3 Iceland      75.3
+ 4 Israel       74.7
+ 5 Netherlands  74  
+ 6 Sweden       74  
+ 7 Norway       73.2
+ 8 Switzerland  72.4
+ 9 Luxembourg   72.3
+10 New Zealand  71.2
+# ℹ 153 more rows</code></pre>
+</div>
+</div>
+<p>What about overall average highest index?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if you want to calculate and have missing values</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># you need to remove them as the default is to not</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># using select in rowMeans</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>happiness <span class="sc">|&gt;</span> </span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mean_happiness =</span> <span class="fu">rowMeans</span>(<span class="fu">select</span>(happiness, <span class="sc">-</span>country),</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_happiness))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 163 × 20
+   country `2005` `2006` `2007` `2008` `2009` `2010` `2011` `2012` `2013` `2014`
+   &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+ 1 Denmark   80.2   NA     78.3   79.7   76.8   77.7   77.9   75.2   75.9   75.1
+ 2 Finland   NA     76.7   NA     76.7   NA     73.9   73.5   74.2   74.5   73.8
+ 3 Switze…   NA     74.7   NA     NA     75.3   NA     NA     77.8   NA     74.9
+ 4 Norway    NA     74.2   NA     76.3   NA     NA     NA     76.8   NA     74.4
+ 5 Iceland   NA     NA     NA     68.9   NA     NA     NA     75.9   75     NA  
+ 6 Nether…   74.6   NA     74.5   76.3   NA     75     75.6   74.7   74.1   73.2
+ 7 Sweden    73.8   NA     72.4   75.2   72.7   75     73.8   75.6   74.3   72.4
+ 8 Canada    74.2   NA     74.8   74.9   74.9   76.5   74.3   74.2   75.9   73  
+ 9 New Ze…   NA     73     76     73.8   NA     72.2   71.9   72.5   72.8   73.1
+10 Austra…   73.4   NA     72.8   72.5   NA     74.5   74.1   72     73.6   72.9
+# ℹ 153 more rows
+# ℹ 9 more variables: `2015` &lt;dbl&gt;, `2016` &lt;dbl&gt;, `2017` &lt;dbl&gt;, `2018` &lt;dbl&gt;,
+#   `2019` &lt;dbl&gt;, `2020` &lt;dbl&gt;, `2021` &lt;dbl&gt;, `2022` &lt;dbl&gt;,
+#   mean_happiness &lt;dbl&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rowMeans</span>(happiness[,<span class="sc">-</span><span class="dv">1</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] 33.87143 44.22500 50.52000 67.80667 62.69412 46.15000 72.60000 72.22000
+  [9] 49.40714 35.50000 69.66250 41.03571 42.58125 46.89412 46.98571 60.15833
+ [17] 52.58000 55.71429 62.05000 57.20588 65.56471 51.96667 39.53077 35.16000
+ [25] 73.27647 75.04167 63.60000 51.41176 46.88182 46.62353 42.21111 46.09231
+ [33] 61.56471 38.88571 70.51765 54.20000 61.18667 66.35000 68.40000 48.25000
+ [41] 76.75882 52.84706 53.72727 57.12353 44.79412 65.03529 57.41875 43.69000
+ [49] 76.23333 66.68824 45.75833 69.08235 43.67647 47.80588 43.32500 46.20000
+ [57] 56.08750 62.47333 59.90000 54.26923 54.77500 57.06667 39.53636 54.10000
+ [65] 52.19412 43.94706 70.43125 48.61333 47.25714 74.68000 72.54118 63.02941
+ [73] 57.48889 50.74118 60.27647 58.52941 44.12353 52.32353 42.76471 58.92941
+ [81] 62.74545 50.05455 45.25294 40.46000 55.43333 43.33125 40.05000 59.42353
+ [89] 70.61667 55.35000 50.35833 56.46471 39.84167 52.00000 66.34118 49.78667
+ [97] 42.39375 63.90000 43.95455 53.40000 51.54000 47.59000 44.32857 58.76667
+[105] 39.87143 58.38667 45.92500 42.72000 49.69333 57.30588 74.51250 74.83333
+[113] 48.01176 72.87500 68.50000 51.21176 66.49375 55.60588 52.76471 59.54375
+[121] 55.26667 55.68125 46.38000 65.70000 57.35000 55.25294 36.54167 65.29412
+[129] 43.78000 45.12353 65.15333 40.14286 59.90000 51.83333 53.70667 34.02500
+[137] 62.70000 61.18571 61.41333 73.76471 44.93333 40.15714 40.68667 36.52727
+[145] 60.46471 49.81765 56.00000 62.82000 47.18571 51.50588 63.31333 36.96471
+[153] 43.07059 48.16471 62.88824 70.70000 58.32500 59.19412 53.56471 39.13333
+[161] 49.39412 44.23750 38.00000</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using indexing in rowMeans</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>happiness <span class="sc">|&gt;</span> </span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mean_happiness =</span> <span class="fu">rowMeans</span>(happiness[<span class="sc">-</span><span class="dv">1</span>], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_happiness)) <span class="sc">|&gt;</span> </span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country, mean_happiness, <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 163 × 20
+   country     mean_happiness `2005` `2006` `2007` `2008` `2009` `2010` `2011`
+   &lt;chr&gt;                &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+ 1 Denmark               76.8   80.2   NA     78.3   79.7   76.8   77.7   77.9
+ 2 Finland               76.2   NA     76.7   NA     76.7   NA     73.9   73.5
+ 3 Switzerland           75.0   NA     74.7   NA     NA     75.3   NA     NA  
+ 4 Norway                74.8   NA     74.2   NA     76.3   NA     NA     NA  
+ 5 Iceland               74.7   NA     NA     NA     68.9   NA     NA     NA  
+ 6 Netherlands           74.5   74.6   NA     74.5   76.3   NA     75     75.6
+ 7 Sweden                73.8   73.8   NA     72.4   75.2   72.7   75     73.8
+ 8 Canada                73.3   74.2   NA     74.8   74.9   74.9   76.5   74.3
+ 9 New Zealand           72.9   NA     73     76     73.8   NA     72.2   71.9
+10 Australia             72.6   73.4   NA     72.8   72.5   NA     74.5   74.1
+# ℹ 153 more rows
+# ℹ 11 more variables: `2012` &lt;dbl&gt;, `2013` &lt;dbl&gt;, `2014` &lt;dbl&gt;, `2015` &lt;dbl&gt;,
+#   `2016` &lt;dbl&gt;, `2017` &lt;dbl&gt;, `2018` &lt;dbl&gt;, `2019` &lt;dbl&gt;, `2020` &lt;dbl&gt;,
+#   `2021` &lt;dbl&gt;, `2022` &lt;dbl&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivoting and then calculating mean after group_by country</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>happiness_long <span class="sc">|&gt;</span> </span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">|&gt;</span> </span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_happiness =</span> <span class="fu">mean</span>(happy_value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mean_happiness))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 163 × 2
+   country     mean_happiness
+   &lt;chr&gt;                &lt;dbl&gt;
+ 1 Denmark               76.8
+ 2 Finland               76.2
+ 3 Switzerland           75.0
+ 4 Norway                74.8
+ 5 Iceland               74.7
+ 6 Netherlands           74.5
+ 7 Sweden                73.8
+ 8 Canada                73.3
+ 9 New Zealand           72.9
+10 Australia             72.6
+# ℹ 153 more rows</code></pre>
+</div>
+</div>
+<p>How many countries had an average life expectancy over 80 years in 2022?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># with long data</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co"># to see what the countries are</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>life_expectancy_long <span class="sc">|&gt;</span> <span class="co"># long data</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2022</span>) <span class="sc">|&gt;</span>  <span class="co"># only 2022</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(life_exp <span class="sc">&gt;</span> <span class="dv">80</span>) <span class="co"># filter for over 80 years</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 36 × 3
+   country     year  life_exp
+   &lt;chr&gt;       &lt;chr&gt;    &lt;dbl&gt;
+ 1 Australia   2022      83.3
+ 2 Austria     2022      82.6
+ 3 Belgium     2022      81.9
+ 4 Canada      2022      82.6
+ 5 Switzerland 2022      84.4
+ 6 Chile       2022      80.6
+ 7 Colombia    2022      80.7
+ 8 Costa Rica  2022      80.6
+ 9 Cyprus      2022      81.3
+10 Germany     2022      81.7
+# ℹ 26 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># to see how many there are</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>life_expectancy_long <span class="sc">|&gt;</span> </span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2022</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(life_exp <span class="sc">&gt;</span> <span class="dv">80</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>() <span class="co"># counts rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 36</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># with wide data</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># to see what the countries are</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>life_expectancy <span class="sc">|&gt;</span> </span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country, <span class="st">`</span><span class="at">2022</span><span class="st">`</span>) <span class="sc">|&gt;</span> <span class="co"># pick the columns country and 2022</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">2022</span><span class="st">`</span> <span class="sc">&gt;</span> <span class="dv">80</span>) <span class="co"># filter for 2022 &gt; 80</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 36 × 2
+   country     `2022`
+   &lt;chr&gt;        &lt;dbl&gt;
+ 1 Australia     83.3
+ 2 Austria       82.6
+ 3 Belgium       81.9
+ 4 Canada        82.6
+ 5 Switzerland   84.4
+ 6 Chile         80.6
+ 7 Colombia      80.7
+ 8 Costa Rica    80.6
+ 9 Cyprus        81.3
+10 Germany       81.7
+# ℹ 26 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># to see how many there are</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>life_expectancy <span class="sc">|&gt;</span> </span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country, <span class="st">`</span><span class="at">2022</span><span class="st">`</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">2022</span><span class="st">`</span> <span class="sc">&gt;</span> <span class="dv">80</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 36</code></pre>
+</div>
+</div>
+<p>What countries are in the top 10 percentile for happiness? What about the bottom? What about for life expectancy? You can calculate this for the most recent data, for the mean, or really for whatever you want. Remember there are lots of ways to do this. Hint - try using the functions in the <code>slice_()</code> family.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># happiness</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># top 10th percentile</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>happiness_long <span class="sc">|&gt;</span> </span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">|&gt;</span> </span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_happiness =</span> <span class="fu">mean</span>(happy_value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(<span class="at">order_by =</span> mean_happiness, <span class="at">prop =</span> <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 16 × 2
+   country       mean_happiness
+   &lt;chr&gt;                  &lt;dbl&gt;
+ 1 Denmark                 76.8
+ 2 Finland                 76.2
+ 3 Switzerland             75.0
+ 4 Norway                  74.8
+ 5 Iceland                 74.7
+ 6 Netherlands             74.5
+ 7 Sweden                  73.8
+ 8 Canada                  73.3
+ 9 New Zealand             72.9
+10 Australia               72.6
+11 Israel                  72.5
+12 Austria                 72.2
+13 United States           70.7
+14 Luxembourg              70.6
+15 Costa Rica              70.5
+16 Ireland                 70.4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># how many countries do we have?</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(happiness)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 163</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># how many countries are in the each decile?</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(happiness) <span class="sc">*</span> <span class="fl">0.1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 16.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># we want to pick the top 16 countries</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>happiness_long <span class="sc">|&gt;</span> </span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">|&gt;</span> </span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_happiness =</span> <span class="fu">mean</span>(happy_value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>mean_happiness) <span class="sc">|&gt;</span> </span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">top_n</span>(<span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Selecting by mean_happiness</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 16 × 2
+   country       mean_happiness
+   &lt;chr&gt;                  &lt;dbl&gt;
+ 1 Denmark                 76.8
+ 2 Finland                 76.2
+ 3 Switzerland             75.0
+ 4 Norway                  74.8
+ 5 Iceland                 74.7
+ 6 Netherlands             74.5
+ 7 Sweden                  73.8
+ 8 Canada                  73.3
+ 9 New Zealand             72.9
+10 Australia               72.6
+11 Israel                  72.5
+12 Austria                 72.2
+13 United States           70.7
+14 Luxembourg              70.6
+15 Costa Rica              70.5
+16 Ireland                 70.4</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># life expectancy in 2022</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="co"># top 10th percentile</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>life_expectancy_long <span class="sc">|&gt;</span> </span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2022</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(<span class="at">order_by =</span> life_exp, <span class="at">prop =</span> <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 19 × 3
+   country          year  life_exp
+   &lt;chr&gt;            &lt;chr&gt;    &lt;dbl&gt;
+ 1 Singapore        2022      85.3
+ 2 Japan            2022      85.2
+ 3 Hong Kong, China 2022      84.8
+ 4 Iceland          2022      84.5
+ 5 Switzerland      2022      84.4
+ 6 Spain            2022      83.5
+ 7 Israel           2022      83.5
+ 8 Italy            2022      83.5
+ 9 Luxembourg       2022      83.4
+10 Norway           2022      83.4
+11 Australia        2022      83.3
+12 France           2022      83.3
+13 South Korea      2022      83.3
+14 Sweden           2022      83.3
+15 Malta            2022      83  
+16 Austria          2022      82.6
+17 Canada           2022      82.6
+18 Ireland          2022      82.5
+19 Finland          2022      82.4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># bottom 10th percentile</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="co"># top 10th percentile</span></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>life_expectancy_long <span class="sc">|&gt;</span> </span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2022</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(<span class="at">order_by =</span> <span class="sc">-</span>life_exp, <span class="at">prop =</span> <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 19 × 3
+   country                  year  life_exp
+   &lt;chr&gt;                    &lt;chr&gt;    &lt;dbl&gt;
+ 1 Lesotho                  2022      53  
+ 2 Central African Republic 2022      53.4
+ 3 Eswatini                 2022      59.3
+ 4 Somalia                  2022      59.4
+ 5 Solomon Islands          2022      59.5
+ 6 Mozambique               2022      59.6
+ 7 Chad                     2022      61.3
+ 8 Kiribati                 2022      61.4
+ 9 Zimbabwe                 2022      61.7
+10 Guinea-Bissau            2022      61.9
+11 Guinea                   2022      62.2
+12 Botswana                 2022      62.6
+13 Burkina Faso             2022      62.9
+14 Mali                     2022      63  
+15 Sierra Leone             2022      63  
+16 Niger                    2022      63.6
+17 Zambia                   2022      64  
+18 Afghanistan              2022      64.3
+19 Cameroon                 2022      64.3</code></pre>
+</div>
+</div>
+<p>Which country has had their happiness index increase the most from 2012 to 2022? Which dropped the most?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>happiness <span class="sc">|&gt;</span> </span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">change_2022_2012 =</span> <span class="st">`</span><span class="at">2022</span><span class="st">`</span> <span class="sc">-</span> <span class="st">`</span><span class="at">2012</span><span class="st">`</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country, change_2022_2012) <span class="sc">|&gt;</span> </span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(change_2022_2012))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 163 × 2
+   country     change_2022_2012
+   &lt;chr&gt;                  &lt;dbl&gt;
+ 1 Guinea                  14.2
+ 2 Honduras                14.2
+ 3 Romania                 14.2
+ 4 Hungary                 13.6
+ 5 Congo, Rep.             13.5
+ 6 Bulgaria                12.5
+ 7 Benin                   11.8
+ 8 Senegal                 11.8
+ 9 Bahrain                 11.4
+10 Nepal                   11.3
+# ℹ 153 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>happiness <span class="sc">|&gt;</span> </span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">change_2022_2012 =</span> <span class="st">`</span><span class="at">2022</span><span class="st">`</span> <span class="sc">-</span> <span class="st">`</span><span class="at">2012</span><span class="st">`</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country, change_2022_2012) <span class="sc">|&gt;</span> </span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(change_2022_2012)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 163 × 2
+   country          change_2022_2012
+   &lt;chr&gt;                       &lt;dbl&gt;
+ 1 Lebanon                     -21.8
+ 2 Afghanistan                 -19.2
+ 3 Venezuela                   -18.6
+ 4 Zimbabwe                    -17.5
+ 5 Congo, Dem. Rep.            -14.3
+ 6 Botswana                    -14  
+ 7 Zambia                      -10.3
+ 8 Jordan                      -10.1
+ 9 Mexico                       -9.9
+10 Malawi                       -7.8
+# ℹ 153 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="joining-data" class="level2">
+<h2 class="anchored" data-anchor-id="joining-data">Joining data</h2>
+<p>Try joining the happiness and life_expectancy datasets together and use the different <code>*_join()</code> functions so you can see how they differ. Check their dimensions and look at them. Think about how you might want to do different joins in different situations.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>left_joined <span class="ot">&lt;-</span> </span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(<span class="at">x =</span> life_expectancy, <span class="at">y =</span> happiness, <span class="at">by =</span> <span class="st">"country"</span>) </span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>right_joined <span class="ot">&lt;-</span> </span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(<span class="at">x =</span> life_expectancy, <span class="at">y =</span> happiness, <span class="at">by =</span> <span class="st">"country"</span>)</span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a>inner_joined <span class="ot">&lt;-</span> </span>
+<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(<span class="at">x =</span> life_expectancy, <span class="at">y =</span> happiness, <span class="at">by =</span> <span class="st">"country"</span>)</span>
+<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a>full_joined <span class="ot">&lt;-</span> </span>
+<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(<span class="at">x =</span> life_expectancy, <span class="at">y =</span> happiness, <span class="at">by =</span> <span class="st">"country"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(left_joined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 195 320</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(right_joined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 163 320</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(inner_joined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 163 320</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(full_joined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 195 320</code></pre>
+</div>
+</div>
+<p>If you wanted to create a plot that allowed you to see the correlation between happiness score and life expectancy in 2022, which joined dataset would you use and why?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># with wide data</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>for_correlation_wide <span class="ot">&lt;-</span></span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(<span class="at">x =</span> life_expectancy <span class="sc">|&gt;</span> <span class="fu">select</span>(country, <span class="st">`</span><span class="at">2022</span><span class="st">`</span>), </span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> happiness <span class="sc">|&gt;</span> <span class="fu">select</span>(country, <span class="st">`</span><span class="at">2022</span><span class="st">`</span>), </span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">by =</span> <span class="st">"country"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">life_expectancy_2022 =</span> <span class="st">`</span><span class="at">2022.x</span><span class="st">`</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">happy_value_2022 =</span> <span class="st">`</span><span class="at">2022.y</span><span class="st">`</span>)</span>
+<span id="cb71-8"><a href="#cb71-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-9"><a href="#cb71-9" aria-hidden="true" tabindex="-1"></a><span class="co"># with long data</span></span>
+<span id="cb71-10"><a href="#cb71-10" aria-hidden="true" tabindex="-1"></a>life_expectancy_2005_2022 <span class="ot">&lt;-</span> life_expectancy <span class="sc">|&gt;</span> </span>
+<span id="cb71-11"><a href="#cb71-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country, <span class="st">`</span><span class="at">2005</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2022</span><span class="st">`</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb71-12"><a href="#cb71-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">`</span><span class="at">2005</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2022</span><span class="st">`</span>,</span>
+<span id="cb71-13"><a href="#cb71-13" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"year"</span>,</span>
+<span id="cb71-14"><a href="#cb71-14" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"life_expectancy"</span>)</span>
+<span id="cb71-15"><a href="#cb71-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-16"><a href="#cb71-16" aria-hidden="true" tabindex="-1"></a>for_correlation_long <span class="ot">&lt;-</span> </span>
+<span id="cb71-17"><a href="#cb71-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(<span class="at">x =</span> life_expectancy_2005_2022, <span class="at">y =</span> happiness_long,</span>
+<span id="cb71-18"><a href="#cb71-18" aria-hidden="true" tabindex="-1"></a>             <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"country"</span>, <span class="st">"year"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>I am not expecting you to be able to make a plot but I wanted to just give you a sense of the kinds of things you’ll be learning in class.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>extremes <span class="ot">&lt;-</span> for_correlation_wide <span class="sc">|&gt;</span> </span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(life_expectancy_2022 <span class="sc">&gt;</span> <span class="dv">85</span> <span class="sc">|</span> happy_value_2022 <span class="sc">&lt;</span> <span class="dv">38</span>)</span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>for_correlation_wide <span class="sc">|&gt;</span> </span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> life_expectancy_2022, <span class="at">y =</span> happy_value_2022)) <span class="sc">+</span></span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a>  ggrepel<span class="sc">::</span><span class="fu">geom_label_repel</span>(<span class="at">data =</span> extremes,</span>
+<span id="cb72-9"><a href="#cb72-9" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">aes</span>(<span class="at">x =</span> life_expectancy_2022, <span class="at">y =</span> happy_value_2022, </span>
+<span id="cb72-10"><a href="#cb72-10" aria-hidden="true" tabindex="-1"></a>                                <span class="at">label =</span> country),</span>
+<span id="cb72-11"><a href="#cb72-11" aria-hidden="true" tabindex="-1"></a>                            <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb72-12"><a href="#cb72-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb72-13"><a href="#cb72-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Life expectancy, 2022"</span>,</span>
+<span id="cb72-14"><a href="#cb72-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Happiness index, 2022"</span>,</span>
+<span id="cb72-15"><a href="#cb72-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Relationship between life expectancy and happiness index"</span>,</span>
+<span id="cb72-16"><a href="#cb72-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Data from Gapminder"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="04_wrangling_recitation_solutions_files/figure-html/a plot-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© Jessica Cooperstone, 2023</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jcooperstone/rdataviz">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>
