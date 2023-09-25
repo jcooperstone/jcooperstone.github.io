@@ -532,78 +532,78 @@
     "text": "Make a Manhattan plot.\nColor by chromosome, make sure the x-axis breaks are appropriate, be sure your y-axis is -log10 pvalue. Label the top 3 most significant points with their SNP number."
   },
   {
-    "objectID": "modules/module4/12_interactive-plots/12_interactive_plots.html",
-    "href": "modules/module4/12_interactive-plots/12_interactive_plots.html",
+    "objectID": "modules/module4/12_interactive-plots/12_interactive-plots.html",
+    "href": "modules/module4/12_interactive-plots/12_interactive-plots.html",
     "title": "Interactive plots with plotly and ggplotly",
     "section": "",
     "text": "Get familiar with plotly\nDiscuss options for interactive plots"
   },
   {
-    "objectID": "modules/module4/12_interactive-plots/12_interactive_plots.html#installing-plotly",
-    "href": "modules/module4/12_interactive-plots/12_interactive_plots.html#installing-plotly",
+    "objectID": "modules/module4/12_interactive-plots/12_interactive-plots.html#installing-plotly",
+    "href": "modules/module4/12_interactive-plots/12_interactive-plots.html#installing-plotly",
     "title": "Interactive plots with plotly and ggplotly",
     "section": "Installing plotly",
     "text": "Installing plotly\n\n# From CRAN\ninstall.packages(\"plotly\")\n\n# From github\ndevtools::install_github(\"ropensci/plotly\")"
   },
   {
-    "objectID": "modules/module4/12_interactive-plots/12_interactive_plots.html#ggplotly",
-    "href": "modules/module4/12_interactive-plots/12_interactive_plots.html#ggplotly",
+    "objectID": "modules/module4/12_interactive-plots/12_interactive-plots.html#ggplotly",
+    "href": "modules/module4/12_interactive-plots/12_interactive-plots.html#ggplotly",
     "title": "Interactive plots with plotly and ggplotly",
     "section": "ggplotly()",
     "text": "ggplotly()\n\n\n\n\n\n\n\n\n\nImage retrieved from this blog."
   },
   {
-    "objectID": "modules/module4/12_interactive-plots/12_interactive_plots.html#description",
-    "href": "modules/module4/12_interactive-plots/12_interactive_plots.html#description",
+    "objectID": "modules/module4/12_interactive-plots/12_interactive-plots.html#description",
+    "href": "modules/module4/12_interactive-plots/12_interactive-plots.html#description",
     "title": "Interactive plots with plotly and ggplotly",
     "section": "Description",
     "text": "Description\nThis function converts a ggplot2::ggplot() object to a plotly object.\nggplotly(\n  p = ggplot2::last_plot(),\n  width = NULL,\n  height = NULL,\n  tooltip = \"all\",\n  dynamicTicks = FALSE,\n  layerData = 1,\n  originalData = TRUE,\n  source = \"A\",\n  ...\n)\nNow, we are going to explore using plotly on ggplot objects using ggplotly()."
   },
   {
-    "objectID": "modules/module4/12_interactive-plots/12_interactive_plots.html#basic-scatter-plot",
-    "href": "modules/module4/12_interactive-plots/12_interactive_plots.html#basic-scatter-plot",
+    "objectID": "modules/module4/12_interactive-plots/12_interactive-plots.html#basic-scatter-plot",
+    "href": "modules/module4/12_interactive-plots/12_interactive-plots.html#basic-scatter-plot",
     "title": "Interactive plots with plotly and ggplotly",
     "section": "Basic scatter plot",
     "text": "Basic scatter plot\n\nggpenguins &lt;- palmerpenguins::penguins %&gt;% \n  ggplot(aes( bill_length_mm , body_mass_g, color = species )) + \n  geom_point() + \n  scale_color_d3() + # from ggsci\n  theme_bw() +\n  labs(x = \"Bill length, in mm\",\n       y = \"Body mass, in g\",\n       fill = \"Species\",\n       title = \"Palmer penguin body mass by bill length\")\n\nggpenguins\n\n\n\n\nThings you can do with an interactive plot:\n\nZoom in and out\nTurn off groups (click on the legend)\nDownload plot as .png\n\n\nggplotly(ggpenguins)"
   },
   {
-    "objectID": "modules/module4/12_interactive-plots/12_interactive_plots.html#pca",
-    "href": "modules/module4/12_interactive-plots/12_interactive_plots.html#pca",
+    "objectID": "modules/module4/12_interactive-plots/12_interactive-plots.html#pca",
+    "href": "modules/module4/12_interactive-plots/12_interactive-plots.html#pca",
     "title": "Interactive plots with plotly and ggplotly",
     "section": "PCA",
     "text": "PCA\n\n# Library here just to make emphasis \nlibrary(ggfortify)\n\nIn this case we are going to explore a new library ggfortify that accepts prcomp results and creates an automatic scores PCA plot.\nAfter you perform PCA analysis, you can use autorplot() to create a ggplot2 object for using in the ggplotly() function.\n\ndf &lt;- iris[1:4] # Extract numeric variables\n\npca_res &lt;- prcomp(df, scale. = TRUE) # Making PCA\n\np &lt;- autoplot(pca_res, data = iris, colour = 'Species') + # PCA autoplot\n  scale_color_d3() +\n  labs(title = \"Scores plot of iris data\")\n\nggplotly(p)"
   },
   {
-    "objectID": "modules/module4/12_interactive-plots/12_interactive_plots.html#boxplots",
-    "href": "modules/module4/12_interactive-plots/12_interactive_plots.html#boxplots",
+    "objectID": "modules/module4/12_interactive-plots/12_interactive-plots.html#boxplots",
+    "href": "modules/module4/12_interactive-plots/12_interactive-plots.html#boxplots",
     "title": "Interactive plots with plotly and ggplotly",
     "section": "Boxplots",
     "text": "Boxplots\nData used here is midwest from ggplot2 which contains demographic information from census data collected in the 2000 US census. The variable percollege includes what percentage of the respondents are college educated.\n\nboxplot &lt;- ggplot(midwest, aes(state, percollege, color = state) ) + \n  geom_boxplot() +\n  scale_color_d3() +\n  theme_bw() + \n  coord_flip() +\n  labs(title = \"Percentage of college educated respondents\")\n\nggplotly(boxplot)"
   },
   {
-    "objectID": "modules/module4/12_interactive-plots/12_interactive_plots.html#barplots",
-    "href": "modules/module4/12_interactive-plots/12_interactive_plots.html#barplots",
+    "objectID": "modules/module4/12_interactive-plots/12_interactive-plots.html#barplots",
+    "href": "modules/module4/12_interactive-plots/12_interactive-plots.html#barplots",
     "title": "Interactive plots with plotly and ggplotly",
     "section": "Barplots",
     "text": "Barplots\n\nstack_barplot &lt;- ggplot(mpg, aes(class))   + \n  geom_bar(aes(fill = drv)) + \n  scale_fill_d3() + \n  theme_bw() +\n  labs(title = \"Class of cars in the mpg datase\")\n\nggplotly(stack_barplot)"
   },
   {
-    "objectID": "modules/module4/12_interactive-plots/12_interactive_plots.html#tooltip",
-    "href": "modules/module4/12_interactive-plots/12_interactive_plots.html#tooltip",
+    "objectID": "modules/module4/12_interactive-plots/12_interactive-plots.html#tooltip",
+    "href": "modules/module4/12_interactive-plots/12_interactive-plots.html#tooltip",
     "title": "Interactive plots with plotly and ggplotly",
     "section": "Tooltip",
     "text": "Tooltip\nTooltip is an argument that controls the text that is shown when you hover the mouse over data. By default, all aes mapping variables are shown. You can modify the order and the variables that are shown in the tooltip.\nIn the penguins data we have more variables that may want to include in the text shown in our plotly plot such as sex and island.\n\n# dt[seq(10),] subset the ten first row and then use glimpse to shorten the output\nglimpse(palmerpenguins::penguins[seq(10), ]) \n\nRows: 10\nColumns: 8\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…\n$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…\n\n\n\nggplotly(ggpenguins)\n\n\n\n\n\n\n“colour” is requiered and “color” is not supported in ggplotly()\n\n\nggplotly(ggpenguins,\n         tooltip = c(\"colour\") )"
   },
   {
-    "objectID": "modules/module4/12_interactive-plots/12_interactive_plots.html#changing-hover-details",
-    "href": "modules/module4/12_interactive-plots/12_interactive_plots.html#changing-hover-details",
+    "objectID": "modules/module4/12_interactive-plots/12_interactive-plots.html#changing-hover-details",
+    "href": "modules/module4/12_interactive-plots/12_interactive-plots.html#changing-hover-details",
     "title": "Interactive plots with plotly and ggplotly",
     "section": "Changing hover details",
     "text": "Changing hover details\nYou might not like the default hover text aesthetics, and can change them! You can do this using style and layout and adding these functions using the pipe %&gt;%.\nCode taken from BioDash\n\n# setting fonts for the plot\nfont &lt;- list(\n  family = \"Arial\",\n  size = 15,\n  color = \"white\")\n\n# setting hover label specs\nlabel &lt;- list(\n  bgcolor = \"#3d1b40\",\n  bordercolor = \"transparent\",\n  font = font) # we can do this bc we already set font\n\n# amending our ggplotly call to include new fonts and hover label specs\nggplotly(ggpenguins, tooltip = \"colour\") %&gt;%\n  style(hoverlabel = label) %&gt;%\n  layout(font = font)"
   },
   {
-    "objectID": "modules/module4/12_interactive-plots/12_interactive_plots.html#helpful-resources",
-    "href": "modules/module4/12_interactive-plots/12_interactive_plots.html#helpful-resources",
+    "objectID": "modules/module4/12_interactive-plots/12_interactive-plots.html#helpful-resources",
+    "href": "modules/module4/12_interactive-plots/12_interactive-plots.html#helpful-resources",
     "title": "Interactive plots with plotly and ggplotly",
     "section": "Helpful resources",
     "text": "Helpful resources\n\nUsing different fonts: link\nggfortify: link\nggsci: link"
@@ -690,14 +690,14 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "About this site\n\n1 + 1\n\n[1] 2\n\n\n\n\n\n Back to top"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "HCS 7100: Data Visualization in R",
     "section": "",
-    "text": "The Ohio State University, Fall 2023\nInstructor: Jessica Cooperstone\n\n\n\n\n\nDatasaurus Dozen by Alberto Cairo"
+    "text": "The Ohio State University, Fall 2023\nInstructor: Jessica Cooperstone\n\n\n\n\n\nDatasaurus Dozen by Alberto Cairo\n\n\n\n Back to top"
   },
   {
     "objectID": "assignments/modules/module2/module_2_assignment.html",
@@ -809,14 +809,14 @@
     "href": "assignments/modules/module3/module_3_assignment.html",
     "title": "Module 3 Assignment",
     "section": "",
-    "text": "This is your assignment for Module 3 Data Exploration, focused on the material you learned in the lectures and recitation activities on data distributions, correlations, and annotating statistics.\nSubmission info:\n\nPlease submit this assignment by uploading a knitted .html to Carmen\nYour headers should be logical and your report and code annotated with descriptions of what you’re doing\nMake sure you include the Code Download button so that I can see your code as well\nCustomize the YAML and the document so you like how it looks\n\nRemember there are often many ways to reach the same end product. I have showed you many ways in class to achieve a similar end product, you only need to show me one of them. As long as your answer is reasonable, you will get full credit even if its different than what I intended.\n\nThis assignment will be due on Friday, October 31, 2023, at 11:59pm.\n\n\n\nThe data we will be using was collected by the US Department of Education and collated by tuitiontracker.org. You can learn more about the data by going through the readme here.\n\ntuition_cost &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/tuition_cost.csv')\n\nsalary_potential &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/salary_potential.csv')\n\nFor a little hint, here are the packages I used to complete this task. Yours might not be exactly the same.\n\nlibrary(tidyverse)\nlibrary(scales)\nlibrary(ggridges)\nlibrary(ggdist)\nlibrary(ggpubr)\nlibrary(rstatix)\nlibrary(corrplot)\nlibrary(Hmisc)"
+    "text": "This is your assignment for Module 3, focused on the material you learned in the lectures and recitation activities on data distributions, correlations, and annotating statistics.\nSubmission info:\n\nPlease submit this assignment by uploading a knitted .html to Carmen\nYour headers should be logical and your report and code annotated with descriptions of what you’re doing\nMake sure you include the Code Download button so that I can see your code as well\nCustomize the YAML and the document so you like how it looks\n\nRemember there are often many ways to reach the same end product. I have showed you many ways in class to achieve a similar end product, you only need to show me one of them. As long as your answer is reasonable, you will get full credit even if its different than what I intended.\n\nThis assignment will be due on Friday, October 31, 2023, at 11:59pm.\n\n\n\nThe data we will be using was collected by the US Department of Education and collated by tuitiontracker.org. You can learn more about the data by going through the readme here.\n\ntuition_cost &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/tuition_cost.csv')\n\nsalary_potential &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/salary_potential.csv')\n\nFor a little hint, here are the packages I used to complete this task. Yours might not be exactly the same.\n\nlibrary(tidyverse)\nlibrary(scales)\nlibrary(ggridges)\nlibrary(ggdist)\nlibrary(ggpubr)\nlibrary(rstatix)\nlibrary(corrplot)\nlibrary(Hmisc)"
   },
   {
     "objectID": "assignments/modules/module3/module_3_assignment.html#introduction",
     "href": "assignments/modules/module3/module_3_assignment.html#introduction",
     "title": "Module 3 Assignment",
     "section": "",
-    "text": "This is your assignment for Module 3 Data Exploration, focused on the material you learned in the lectures and recitation activities on data distributions, correlations, and annotating statistics.\nSubmission info:\n\nPlease submit this assignment by uploading a knitted .html to Carmen\nYour headers should be logical and your report and code annotated with descriptions of what you’re doing\nMake sure you include the Code Download button so that I can see your code as well\nCustomize the YAML and the document so you like how it looks\n\nRemember there are often many ways to reach the same end product. I have showed you many ways in class to achieve a similar end product, you only need to show me one of them. As long as your answer is reasonable, you will get full credit even if its different than what I intended.\n\nThis assignment will be due on Friday, October 31, 2023, at 11:59pm.\n\n\n\nThe data we will be using was collected by the US Department of Education and collated by tuitiontracker.org. You can learn more about the data by going through the readme here.\n\ntuition_cost &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/tuition_cost.csv')\n\nsalary_potential &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/salary_potential.csv')\n\nFor a little hint, here are the packages I used to complete this task. Yours might not be exactly the same.\n\nlibrary(tidyverse)\nlibrary(scales)\nlibrary(ggridges)\nlibrary(ggdist)\nlibrary(ggpubr)\nlibrary(rstatix)\nlibrary(corrplot)\nlibrary(Hmisc)"
+    "text": "This is your assignment for Module 3, focused on the material you learned in the lectures and recitation activities on data distributions, correlations, and annotating statistics.\nSubmission info:\n\nPlease submit this assignment by uploading a knitted .html to Carmen\nYour headers should be logical and your report and code annotated with descriptions of what you’re doing\nMake sure you include the Code Download button so that I can see your code as well\nCustomize the YAML and the document so you like how it looks\n\nRemember there are often many ways to reach the same end product. I have showed you many ways in class to achieve a similar end product, you only need to show me one of them. As long as your answer is reasonable, you will get full credit even if its different than what I intended.\n\nThis assignment will be due on Friday, October 31, 2023, at 11:59pm.\n\n\n\nThe data we will be using was collected by the US Department of Education and collated by tuitiontracker.org. You can learn more about the data by going through the readme here.\n\ntuition_cost &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/tuition_cost.csv')\n\nsalary_potential &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-10/salary_potential.csv')\n\nFor a little hint, here are the packages I used to complete this task. Yours might not be exactly the same.\n\nlibrary(tidyverse)\nlibrary(scales)\nlibrary(ggridges)\nlibrary(ggdist)\nlibrary(ggpubr)\nlibrary(rstatix)\nlibrary(corrplot)\nlibrary(Hmisc)"
   },
   {
     "objectID": "assignments/modules/module3/module_3_assignment.html#data-distributions-visualization-3-pts",
@@ -926,21 +926,21 @@
   {
     "objectID": "rmds/03_Rmd_recitation_solutions.html",
     "href": "rmds/03_Rmd_recitation_solutions.html",
-    "title": "RMarkdown Recitation Solutions",
+    "title": "R Markdown Recitation Solutions",
     "section": "",
     "text": "This will be your template RMarkdown document for playing around with RMarkdown. This was opened using the default Rmd settings. You are going to be playing around with the 3 components of an Rmd:\n\ntext\ncode\nthe YAML (aka the header)\n\nTo see if each of your changes has worked, you will need to knit."
   },
   {
     "objectID": "rmds/03_Rmd_recitation_solutions.html#r-markdown-recitation",
     "href": "rmds/03_Rmd_recitation_solutions.html#r-markdown-recitation",
-    "title": "RMarkdown Recitation Solutions",
+    "title": "R Markdown Recitation Solutions",
     "section": "",
     "text": "This will be your template RMarkdown document for playing around with RMarkdown. This was opened using the default Rmd settings. You are going to be playing around with the 3 components of an Rmd:\n\ntext\ncode\nthe YAML (aka the header)\n\nTo see if each of your changes has worked, you will need to knit."
   },
   {
     "objectID": "rmds/03_Rmd_recitation_solutions.html#second-biggest-header",
     "href": "rmds/03_Rmd_recitation_solutions.html#second-biggest-header",
-    "title": "RMarkdown Recitation Solutions",
+    "title": "R Markdown Recitation Solutions",
     "section": "Second biggest header",
     "text": "Second biggest header\n\nThird biggest header\n\n\nFour biggest header\nYou get the idea.\nAdd a hyperlink to our class website\nAdd an image. Note you will do this differently if you are adding an image from internet vs one you have on your local machine. Also remember your working directory is the location of your Rmd and you may want to have a directory called img where images are stored.\n\n\n\nThis is my dog Nacho\n\n\nAdd a block quote\n\nHere is an important block quote\n\nMake a bulleted list\n\nThing 1\nThing 2\nThing 3\nThis also works\nTo make\nA bulleted list\n\n\nYou can also\nMake\nNumbered lists"
   },
@@ -980,22 +980,22 @@
     "text": "Visualization 2\nRecreate a plot in the vein of the one here. You can make the same interactive plot (use the data from 2007, which is slightly older and different from what you see in the online plot), or choose to animate it over year. Or do both.\nUse the data gapminder::gapminder which you can access from R."
   },
   {
-    "objectID": "modules/module4/12_interactive-plots/12_interactive_plots_recitation.html",
-    "href": "modules/module4/12_interactive-plots/12_interactive_plots_recitation.html",
+    "objectID": "modules/module4/12_interactive-plots/12_interactive-plots_recitation.html",
+    "href": "modules/module4/12_interactive-plots/12_interactive-plots_recitation.html",
     "title": "Interactive plots with plotly and ggplotly recitation",
     "section": "",
     "text": "Today we are going to work with microbiome data. In this recitation we are going to provide microbiome data as the result of the shotgun sequencing of the pig gut microbiome.\n\nPig microbiome study: paper, data."
   },
   {
-    "objectID": "modules/module4/12_interactive-plots/12_interactive_plots_recitation.html#how-many-rows-and-columns-do-the-data-have",
-    "href": "modules/module4/12_interactive-plots/12_interactive_plots_recitation.html#how-many-rows-and-columns-do-the-data-have",
+    "objectID": "modules/module4/12_interactive-plots/12_interactive-plots_recitation.html#how-many-rows-and-columns-do-the-data-have",
+    "href": "modules/module4/12_interactive-plots/12_interactive-plots_recitation.html#how-many-rows-and-columns-do-the-data-have",
     "title": "Interactive plots with plotly and ggplotly recitation",
     "section": "How many rows and columns do the data have?",
     "text": "How many rows and columns do the data have?"
   },
   {
-    "objectID": "modules/module4/12_interactive-plots/12_interactive_plots_recitation.html#how-many-phyla-do-the-data-contains-and-how-many-columns-represents-metadata-of-the-experiment",
-    "href": "modules/module4/12_interactive-plots/12_interactive_plots_recitation.html#how-many-phyla-do-the-data-contains-and-how-many-columns-represents-metadata-of-the-experiment",
+    "objectID": "modules/module4/12_interactive-plots/12_interactive-plots_recitation.html#how-many-phyla-do-the-data-contains-and-how-many-columns-represents-metadata-of-the-experiment",
+    "href": "modules/module4/12_interactive-plots/12_interactive-plots_recitation.html#how-many-phyla-do-the-data-contains-and-how-many-columns-represents-metadata-of-the-experiment",
     "title": "Interactive plots with plotly and ggplotly recitation",
     "section": "How many phyla do the data contains and how many columns represents metadata of the experiment?",
     "text": "How many phyla do the data contains and how many columns represents metadata of the experiment?\n\nCreate a new column with a new phyla assignation\nKeep the phyla when they are Firmicutes or Bacteroidetes, otherwise assign Phyla to “Other phyla”.\n\n\n\n\n\n\nNeed a hint? (Click to expand)\n\n\n\n\n\nHint: You may need to pivot the data to evaluate the column names as observations\n\n\n\n\n\nCompute the cumulative abundance by the new Phyla levels that you created\n\n\nCreate the bar plot in ggplot\n\n\nCreate the plot interactive"
@@ -1439,7 +1439,7 @@
     "href": "modules/module2/03_rmarkdown/03_Rmd.html#yaml-header",
     "title": "R Markdown for Reproducible Research",
     "section": "YAML Header",
-    "text": "YAML Header\nThe YAML (Yet Another Markdown Language, or YAML ain’t markup language, if you want to learn more about this name and its origins, you can read about it at this stack overflow post) is at the top of your document and is surrounded by ---.\nThe YAML is where you can set the content that will show up on the top of your knitted document.\n\ntitle: “Your title but put it in quotes”\nauthor: “The author and still in quotes”\ndate: the date you want at the top of your doc in quotes. If you want this to be today’s date (whatever that is) you can use “2023-09-22”\noutput: will indicate the format of your compiled document. I would recommend for this class you use html_document as it is the richest format. Your output will be a .html file, which you can save or share.\n\nHere’s a simple example.\n\n---\ntitle: \"This is my descriptive title\"\nauthor: \"Jess\"\ndate: \"May 10, 2022\"\noutput: html_document\n---\n\nIn the YAML, you can also set options that govern how your document will be compiled within output. For example, you can add a table of contents, make that toc float, add a theme, number your sections, and add a button that allows someone to click and access your .Rmd from your knitted .html file. This last one is especially nice because it allows you to send one viewable document, and if someone wants to edit it, they can download and do so easily.\nHere’s an example of what a more customized YAML could look like.\n\n---\ntitle: \"This is my descriptive title\"\nauthor: \"Jess\"\ndate: \"May 10, 2022\"\noutput: \n  html_document:\n    toc: true\n    toc_float: true\n    number_sections: true\n    theme: flatly\n    code_download: true\n---\n\nBe sure you pay attention to the indents (which are 2 or 4 spaces, and not tabs), as the YAML is picky here. If your indents are not correct, you will get an error when you knit. (Pro tip: you can set in RStudio to insert spaces when you click tab by going to Preferences &gt; Code &gt; Use spaces for tab (and indicate 2).)\nAbove are just some of the options that I like to put in my YAML, but there are tons more. Additional output options that are explained on the second page of the RStudio R Markdown cheatsheet."
+    "text": "YAML Header\nThe YAML (Yet Another Markdown Language, or YAML ain’t markup language, if you want to learn more about this name and its origins, you can read about it at this stack overflow post) is at the top of your document and is surrounded by ---.\nThe YAML is where you can set the content that will show up on the top of your knitted document.\n\ntitle: “Your title but put it in quotes”\nauthor: “The author and still in quotes”\ndate: the date you want at the top of your doc in quotes. If you want this to be today’s date (whatever that is) you can use “2023-09-25”\noutput: will indicate the format of your compiled document. I would recommend for this class you use html_document as it is the richest format. Your output will be a .html file, which you can save or share.\n\nHere’s a simple example.\n\n---\ntitle: \"This is my descriptive title\"\nauthor: \"Jess\"\ndate: \"May 10, 2022\"\noutput: html_document\n---\n\nIn the YAML, you can also set options that govern how your document will be compiled within output. For example, you can add a table of contents, make that toc float, add a theme, number your sections, and add a button that allows someone to click and access your .Rmd from your knitted .html file. This last one is especially nice because it allows you to send one viewable document, and if someone wants to edit it, they can download and do so easily.\nHere’s an example of what a more customized YAML could look like.\n\n---\ntitle: \"This is my descriptive title\"\nauthor: \"Jess\"\ndate: \"May 10, 2022\"\noutput: \n  html_document:\n    toc: true\n    toc_float: true\n    number_sections: true\n    theme: flatly\n    code_download: true\n---\n\nBe sure you pay attention to the indents (which are 2 or 4 spaces, and not tabs), as the YAML is picky here. If your indents are not correct, you will get an error when you knit. (Pro tip: you can set in RStudio to insert spaces when you click tab by going to Preferences &gt; Code &gt; Use spaces for tab (and indicate 2).)\nAbove are just some of the options that I like to put in my YAML, but there are tons more. Additional output options that are explained on the second page of the RStudio R Markdown cheatsheet."
   },
   {
     "objectID": "modules/module2/03_rmarkdown/03_Rmd.html#text",
@@ -1713,103 +1713,5 @@
     "title": "1 - Principles of Data Visualization",
     "section": "What should you think about when making visualizations?",
     "text": "What should you think about when making visualizations?\n\nWho are you talking to? 📢\nWhat are you trying to convey? 📝\nHow can you fairly represent your data? 🚯\n\n\n\n01 Principles, © Jessica Cooperstone, 2023"
-  },
-  {
-    "objectID": "modules/module4/12_interactive-plots/12_interactive-plots.html",
-    "href": "modules/module4/12_interactive-plots/12_interactive-plots.html",
-    "title": "Interactive plots with plotly and ggplotly",
-    "section": "",
-    "text": "Get familiar with plotly\nDiscuss options for interactive plots"
-  },
-  {
-    "objectID": "modules/module4/12_interactive-plots/12_interactive-plots.html#installing-plotly",
-    "href": "modules/module4/12_interactive-plots/12_interactive-plots.html#installing-plotly",
-    "title": "Interactive plots with plotly and ggplotly",
-    "section": "Installing plotly",
-    "text": "Installing plotly\n\n# From CRAN\ninstall.packages(\"plotly\")\n\n# From github\ndevtools::install_github(\"ropensci/plotly\")"
-  },
-  {
-    "objectID": "modules/module4/12_interactive-plots/12_interactive-plots.html#ggplotly",
-    "href": "modules/module4/12_interactive-plots/12_interactive-plots.html#ggplotly",
-    "title": "Interactive plots with plotly and ggplotly",
-    "section": "ggplotly()",
-    "text": "ggplotly()\n\n\n\n\n\n\n\n\n\nImage retrieved from this blog."
-  },
-  {
-    "objectID": "modules/module4/12_interactive-plots/12_interactive-plots.html#description",
-    "href": "modules/module4/12_interactive-plots/12_interactive-plots.html#description",
-    "title": "Interactive plots with plotly and ggplotly",
-    "section": "Description",
-    "text": "Description\nThis function converts a ggplot2::ggplot() object to a plotly object.\nggplotly(\n  p = ggplot2::last_plot(),\n  width = NULL,\n  height = NULL,\n  tooltip = \"all\",\n  dynamicTicks = FALSE,\n  layerData = 1,\n  originalData = TRUE,\n  source = \"A\",\n  ...\n)\nNow, we are going to explore using plotly on ggplot objects using ggplotly()."
-  },
-  {
-    "objectID": "modules/module4/12_interactive-plots/12_interactive-plots.html#basic-scatter-plot",
-    "href": "modules/module4/12_interactive-plots/12_interactive-plots.html#basic-scatter-plot",
-    "title": "Interactive plots with plotly and ggplotly",
-    "section": "Basic scatter plot",
-    "text": "Basic scatter plot\n\nggpenguins &lt;- palmerpenguins::penguins %&gt;% \n  ggplot(aes( bill_length_mm , body_mass_g, color = species )) + \n  geom_point() + \n  scale_color_d3() + # from ggsci\n  theme_bw() +\n  labs(x = \"Bill length, in mm\",\n       y = \"Body mass, in g\",\n       fill = \"Species\",\n       title = \"Palmer penguin body mass by bill length\")\n\nggpenguins\n\n\n\n\nThings you can do with an interactive plot:\n\nZoom in and out\nTurn off groups (click on the legend)\nDownload plot as .png\n\n\nggplotly(ggpenguins)"
-  },
-  {
-    "objectID": "modules/module4/12_interactive-plots/12_interactive-plots.html#pca",
-    "href": "modules/module4/12_interactive-plots/12_interactive-plots.html#pca",
-    "title": "Interactive plots with plotly and ggplotly",
-    "section": "PCA",
-    "text": "PCA\n\n# Library here just to make emphasis \nlibrary(ggfortify)\n\nIn this case we are going to explore a new library ggfortify that accepts prcomp results and creates an automatic scores PCA plot.\nAfter you perform PCA analysis, you can use autorplot() to create a ggplot2 object for using in the ggplotly() function.\n\ndf &lt;- iris[1:4] # Extract numeric variables\n\npca_res &lt;- prcomp(df, scale. = TRUE) # Making PCA\n\np &lt;- autoplot(pca_res, data = iris, colour = 'Species') + # PCA autoplot\n  scale_color_d3() +\n  labs(title = \"Scores plot of iris data\")\n\nggplotly(p)"
-  },
-  {
-    "objectID": "modules/module4/12_interactive-plots/12_interactive-plots.html#boxplots",
-    "href": "modules/module4/12_interactive-plots/12_interactive-plots.html#boxplots",
-    "title": "Interactive plots with plotly and ggplotly",
-    "section": "Boxplots",
-    "text": "Boxplots\nData used here is midwest from ggplot2 which contains demographic information from census data collected in the 2000 US census. The variable percollege includes what percentage of the respondents are college educated.\n\nboxplot &lt;- ggplot(midwest, aes(state, percollege, color = state) ) + \n  geom_boxplot() +\n  scale_color_d3() +\n  theme_bw() + \n  coord_flip() +\n  labs(title = \"Percentage of college educated respondents\")\n\nggplotly(boxplot)"
-  },
-  {
-    "objectID": "modules/module4/12_interactive-plots/12_interactive-plots.html#barplots",
-    "href": "modules/module4/12_interactive-plots/12_interactive-plots.html#barplots",
-    "title": "Interactive plots with plotly and ggplotly",
-    "section": "Barplots",
-    "text": "Barplots\n\nstack_barplot &lt;- ggplot(mpg, aes(class))   + \n  geom_bar(aes(fill = drv)) + \n  scale_fill_d3() + \n  theme_bw() +\n  labs(title = \"Class of cars in the mpg datase\")\n\nggplotly(stack_barplot)"
-  },
-  {
-    "objectID": "modules/module4/12_interactive-plots/12_interactive-plots.html#tooltip",
-    "href": "modules/module4/12_interactive-plots/12_interactive-plots.html#tooltip",
-    "title": "Interactive plots with plotly and ggplotly",
-    "section": "Tooltip",
-    "text": "Tooltip\nTooltip is an argument that controls the text that is shown when you hover the mouse over data. By default, all aes mapping variables are shown. You can modify the order and the variables that are shown in the tooltip.\nIn the penguins data we have more variables that may want to include in the text shown in our plotly plot such as sex and island.\n\n# dt[seq(10),] subset the ten first row and then use glimpse to shorten the output\nglimpse(palmerpenguins::penguins[seq(10), ]) \n\nRows: 10\nColumns: 8\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…\n$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…\n\n\n\nggplotly(ggpenguins)\n\n\n\n\n\n\n“colour” is requiered and “color” is not supported in ggplotly()\n\n\nggplotly(ggpenguins,\n         tooltip = c(\"colour\") )"
-  },
-  {
-    "objectID": "modules/module4/12_interactive-plots/12_interactive-plots.html#changing-hover-details",
-    "href": "modules/module4/12_interactive-plots/12_interactive-plots.html#changing-hover-details",
-    "title": "Interactive plots with plotly and ggplotly",
-    "section": "Changing hover details",
-    "text": "Changing hover details\nYou might not like the default hover text aesthetics, and can change them! You can do this using style and layout and adding these functions using the pipe %&gt;%.\nCode taken from BioDash\n\n# setting fonts for the plot\nfont &lt;- list(\n  family = \"Arial\",\n  size = 15,\n  color = \"white\")\n\n# setting hover label specs\nlabel &lt;- list(\n  bgcolor = \"#3d1b40\",\n  bordercolor = \"transparent\",\n  font = font) # we can do this bc we already set font\n\n# amending our ggplotly call to include new fonts and hover label specs\nggplotly(ggpenguins, tooltip = \"colour\") %&gt;%\n  style(hoverlabel = label) %&gt;%\n  layout(font = font)"
-  },
-  {
-    "objectID": "modules/module4/12_interactive-plots/12_interactive-plots.html#helpful-resources",
-    "href": "modules/module4/12_interactive-plots/12_interactive-plots.html#helpful-resources",
-    "title": "Interactive plots with plotly and ggplotly",
-    "section": "Helpful resources",
-    "text": "Helpful resources\n\nUsing different fonts: link\nggfortify: link\nggsci: link"
-  },
-  {
-    "objectID": "modules/module4/12_interactive-plots/12_interactive-plots_recitation.html",
-    "href": "modules/module4/12_interactive-plots/12_interactive-plots_recitation.html",
-    "title": "Interactive plots with plotly and ggplotly recitation",
-    "section": "",
-    "text": "Today we are going to work with microbiome data. In this recitation we are going to provide microbiome data as the result of the shotgun sequencing of the pig gut microbiome.\n\nPig microbiome study: paper, data."
-  },
-  {
-    "objectID": "modules/module4/12_interactive-plots/12_interactive-plots_recitation.html#how-many-rows-and-columns-do-the-data-have",
-    "href": "modules/module4/12_interactive-plots/12_interactive-plots_recitation.html#how-many-rows-and-columns-do-the-data-have",
-    "title": "Interactive plots with plotly and ggplotly recitation",
-    "section": "How many rows and columns do the data have?",
-    "text": "How many rows and columns do the data have?"
-  },
-  {
-    "objectID": "modules/module4/12_interactive-plots/12_interactive-plots_recitation.html#how-many-phyla-do-the-data-contains-and-how-many-columns-represents-metadata-of-the-experiment",
-    "href": "modules/module4/12_interactive-plots/12_interactive-plots_recitation.html#how-many-phyla-do-the-data-contains-and-how-many-columns-represents-metadata-of-the-experiment",
-    "title": "Interactive plots with plotly and ggplotly recitation",
-    "section": "How many phyla do the data contains and how many columns represents metadata of the experiment?",
-    "text": "How many phyla do the data contains and how many columns represents metadata of the experiment?\n\nCreate a new column with a new phyla assignation\nKeep the phyla when they are Firmicutes or Bacteroidetes, otherwise assign Phyla to “Other phyla”.\n\n\n\n\n\n\nNeed a hint? (Click to expand)\n\n\n\n\n\nHint: You may need to pivot the data to evaluate the column names as observations\n\n\n\n\n\nCompute the cumulative abundance by the new Phyla levels that you created\n\n\nCreate the bar plot in ggplot\n\n\nCreate the plot interactive"
   }
 ]

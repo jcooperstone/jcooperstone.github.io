@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Introduction
-This is your assignment for Module 2, focused on the material you learned in the lectures and recitation activities on [RMarkdown](2_03_rmarkdown/03_Rmd.html), [wrangling](2_04_wrangling/04_wrangling.html), [ggplot101](2_04_ggplot/04_ggplot.html), and [ggplot102](2_05_themes_labels_facets/05_ggplot102.html). 
+This is your assignment for Module 2, focused on the material you learned in the lectures and recitation activities on RMarkdown, wrangling, ggplot101, and ggplot102. 
 
 You will submit this assignment by uploading a knitted .html to Carmen. Make sure you include the Code Download button so that I can see your code as well. Customize the YAML and the document so you like how it looks.
 
