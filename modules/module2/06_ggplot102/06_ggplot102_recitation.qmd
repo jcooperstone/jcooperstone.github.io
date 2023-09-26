@@ -56,14 +56,24 @@ glimpse(tuesdata$breed_rank)
 ## Investigating
 Write code to determine what the 5 most popular dog breeds in 2020 were. There are many ways to do this.
 
+::: {.callout-tip collapse="true"}
+#### Need a hint about how to do this? (Click to expand)
+Create a new variable that is a sum of all the ranks from 2013, allowing a composite score of the popularity of each dog breed across this time period.
+:::
 
-What are the 5 most popular and the 5 least popular dogs across this time frame? There are many ways to do this. Hint: create a new variable that is a sum of all the ranks from 2013, allowing a composite score of the popularity of each dog breed across this time period.
+What are the 5 most popular and the 5 least popular dogs across this time frame? There are many ways to do this. 
+
+## Visualization 1
+Create a plot where you take the 12 most popular dogs from 2020, and plot their popularity rank from 2013 to 2020. 
+
+::: {.callout-tip collapse="true"}
+#### Need a hint about how to do this? (Click to expand)
+To facet, you need to have the variable you want to facet in one column.
+:::
 
 
-Create a plot where you take the 12 most popular dogs from 2020, and plot their popularity rank from 2013 to 2020. Hint, to facet, you need to have the variable you want to facet in one column.
-
-
+## Visualization 2
 Alter the aesthetics of this plot until you think it looks good.
 
-
+## Investigate more
 What dog has jumped in the rankings most from 2013 to 2020? What has dropped the most?
