@@ -1,10 +1,12 @@
 project:
   type: website
   output-dir: docs
+  resources: 
+    - CNAME
 
 website:
   title: "💻🧰📊🥳"
-  site-url: https://rdataviz.com 
+  site-url: https://www.rdataviz.com/
   description: "HCS 7100: Data Visualization in R"
   favicon: img/code-slash.png
   back-to-top-navigation: true
@@ -28,7 +30,7 @@ website:
   # footer
   page-footer:
     border: true
-    left: "© Jessica Cooperstone, 2023"
+    left: "Created with RStudio and [Quarto](https://quarto.org/) <br> © Jessica Cooperstone, 2023, License: [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)"
     right:
       - icon: github
         href: https://github.com/jcooperstone/rdataviz
