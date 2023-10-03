@@ -2,6 +2,10 @@
 title: "Wrangling your data 🤠, the basics"
 author: "Jessica Cooperstone"
 subtitle: "Week 4"
+format:
+  html:
+    toc: true
+    toc-depth: 4
 ---
 
 ```{r setup, include=FALSE}

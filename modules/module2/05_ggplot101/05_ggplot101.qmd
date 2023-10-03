@@ -2,6 +2,10 @@
 title: "ggplot 101 (and 🍅)"
 author: "Jessica Cooperstone"
 subtitle: "Week 5"
+format:
+  html:
+    toc: true
+    toc-depth: 4
 ---
 
 

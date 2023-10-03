@@ -2,6 +2,10 @@
 title: "ggplot 102: Facets, Scales, Labels, and Themes (and still 🍅)"
 author: "Jessica Cooperstone"
 subtitle: "Week 6"
+format:
+  html:
+    toc: true
+    toc-depth: 4
 ---
 
 ```{r setup, include=FALSE}

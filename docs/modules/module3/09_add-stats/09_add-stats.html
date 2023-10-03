@@ -99,7 +99,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="../../../styles.css">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -475,21 +474,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#load-libraries-and-data" id="toc-load-libraries-and-data" class="nav-link" data-scroll-target="#load-libraries-and-data">Load libraries and data</a></li>
   </ul></li>
   <li><a href="#group-comparisons-t-tests-or-similar" id="toc-group-comparisons-t-tests-or-similar" class="nav-link" data-scroll-target="#group-comparisons-t-tests-or-similar">2 group comparisons (t-tests or similar)</a>
+  <ul>
+  <li><a href="#testing-assumptions" id="toc-testing-assumptions" class="nav-link" data-scroll-target="#testing-assumptions">Testing assumptions</a>
   <ul class="collapse">
-  <li><a href="#testing-assumptions" id="toc-testing-assumptions" class="nav-link" data-scroll-target="#testing-assumptions">Testing assumptions</a></li>
+  <li><a href="#normality" id="toc-normality" class="nav-link" data-scroll-target="#normality">Normality</a></li>
+  <li><a href="#constant-variance" id="toc-constant-variance" class="nav-link" data-scroll-target="#constant-variance">Constant variance</a></li>
+  </ul></li>
   <li><a href="#non-parametric-t-test" id="toc-non-parametric-t-test" class="nav-link" data-scroll-target="#non-parametric-t-test">Non-parametric t-test</a></li>
-  <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot">Plot</a></li>
+  <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot">Plot</a>
+  <ul class="collapse">
+  <li><a href="#using-stat_compare_means" id="toc-using-stat_compare_means" class="nav-link" data-scroll-target="#using-stat_compare_means">Using <code>stat_compare_means()</code></a></li>
+  <li><a href="#manually-with-geom_text-or-annotate" id="toc-manually-with-geom_text-or-annotate" class="nav-link" data-scroll-target="#manually-with-geom_text-or-annotate">Manually with <code>geom_text()</code> or <code>annotate()</code></a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#group-comparisons-anova-or-similar" id="toc-group-comparisons-anova-or-similar" class="nav-link" data-scroll-target="#group-comparisons-anova-or-similar">&gt;2 group comparisons (ANOVA or similar)</a>
+  <ul>
+  <li><a href="#testing-assumptions-1" id="toc-testing-assumptions-1" class="nav-link" data-scroll-target="#testing-assumptions-1">Testing assumptions</a>
   <ul class="collapse">
-  <li><a href="#testing-assumptions-1" id="toc-testing-assumptions-1" class="nav-link" data-scroll-target="#testing-assumptions-1">Testing assumptions</a></li>
+  <li><a href="#normality-1" id="toc-normality-1" class="nav-link" data-scroll-target="#normality-1">Normality</a></li>
+  <li><a href="#constant-variance-1" id="toc-constant-variance-1" class="nav-link" data-scroll-target="#constant-variance-1">Constant variance</a></li>
+  </ul></li>
   <li><a href="#anova" id="toc-anova" class="nav-link" data-scroll-target="#anova">ANOVA</a></li>
   <li><a href="#posthoc-group-analysis" id="toc-posthoc-group-analysis" class="nav-link" data-scroll-target="#posthoc-group-analysis">Posthoc group analysis</a></li>
-  <li><a href="#plot-1" id="toc-plot-1" class="nav-link" data-scroll-target="#plot-1">Plot</a></li>
+  <li><a href="#plot-1" id="toc-plot-1" class="nav-link" data-scroll-target="#plot-1">Plot</a>
+  <ul class="collapse">
+  <li><a href="#using-stat_compare_means-1" id="toc-using-stat_compare_means-1" class="nav-link" data-scroll-target="#using-stat_compare_means-1">Using <code>stat_compare_means()</code></a></li>
+  <li><a href="#manually-with-geom_text-or-annotate-1" id="toc-manually-with-geom_text-or-annotate-1" class="nav-link" data-scroll-target="#manually-with-geom_text-or-annotate-1">Manually with <code>geom_text()</code> or <code>annotate()</code></a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#useful-resources" id="toc-useful-resources" class="nav-link" data-scroll-target="#useful-resources">Useful resources</a></li>
   </ul>
@@ -1499,7 +1514,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Created with RStudio and <a href="https://quarto.org/">Quarto</a> <br> © Jessica Cooperstone, 2023, License: <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a></div>   
+    <div class="nav-footer-left">Created with RStudio and <a href="https://quarto.org/">Quarto</a> <br> © Jessica Cooperstone, 2023, License: <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a> <br> <a href="https://osu-codeclub.github.io/#category=website">Want to make a website like this one?</a></div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>

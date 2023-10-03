@@ -2,6 +2,10 @@
 title: "Manhattan Plots"
 author: "Jessica Cooperstone"
 subtitle: "Week 11"
+format:
+  html:
+    toc: true
+    toc-depth: 4
 ---
 
 

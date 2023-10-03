@@ -99,7 +99,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="../../../styles.css">
 </head>
 
 <body class="nav-sidebar floating nav-fixed">
@@ -475,20 +474,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#load-libraries-and-data" id="toc-load-libraries-and-data" class="nav-link" data-scroll-target="#load-libraries-and-data">Load libraries and data</a></li>
   </ul></li>
   <li><a href="#facets" id="toc-facets" class="nav-link" data-scroll-target="#facets">Facets</a></li>
   <li><a href="#scales" id="toc-scales" class="nav-link" data-scroll-target="#scales">Scales</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#position-scales" id="toc-position-scales" class="nav-link" data-scroll-target="#position-scales">Position scales</a></li>
   <li><a href="#color-scales" id="toc-color-scales" class="nav-link" data-scroll-target="#color-scales">Color scales</a></li>
   </ul></li>
   <li><a href="#labels" id="toc-labels" class="nav-link" data-scroll-target="#labels">Labels</a></li>
   <li><a href="#themes" id="toc-themes" class="nav-link" data-scroll-target="#themes">Themes</a>
+  <ul>
+  <li><a href="#complete-themes-from-ggplot" id="toc-complete-themes-from-ggplot" class="nav-link" data-scroll-target="#complete-themes-from-ggplot">Complete themes from ggplot</a>
   <ul class="collapse">
-  <li><a href="#complete-themes-from-ggplot" id="toc-complete-themes-from-ggplot" class="nav-link" data-scroll-target="#complete-themes-from-ggplot">Complete themes from ggplot</a></li>
-  <li><a href="#complete-themes-from-other-packages" id="toc-complete-themes-from-other-packages" class="nav-link" data-scroll-target="#complete-themes-from-other-packages">Complete themes from other packages</a></li>
+  <li><a href="#theme_minimal" id="toc-theme_minimal" class="nav-link" data-scroll-target="#theme_minimal"><code>theme_minimal()</code></a></li>
+  <li><a href="#theme_classic" id="toc-theme_classic" class="nav-link" data-scroll-target="#theme_classic"><code>theme_classic()</code></a></li>
+  <li><a href="#theme_bw" id="toc-theme_bw" class="nav-link" data-scroll-target="#theme_bw"><code>theme_bw()</code></a></li>
+  <li><a href="#theme_dark" id="toc-theme_dark" class="nav-link" data-scroll-target="#theme_dark"><code>theme_dark()</code></a></li>
+  <li><a href="#theme_void" id="toc-theme_void" class="nav-link" data-scroll-target="#theme_void"><code>theme_void()</code></a></li>
+  </ul></li>
+  <li><a href="#complete-themes-from-other-packages" id="toc-complete-themes-from-other-packages" class="nav-link" data-scroll-target="#complete-themes-from-other-packages">Complete themes from other packages</a>
+  <ul class="collapse">
+  <li><a href="#theme_tufte" id="toc-theme_tufte" class="nav-link" data-scroll-target="#theme_tufte"><code>theme_tufte()</code></a></li>
+  <li><a href="#theme_excel" id="toc-theme_excel" class="nav-link" data-scroll-target="#theme_excel"><code>theme_excel()</code></a></li>
+  <li><a href="#theme_ipsum" id="toc-theme_ipsum" class="nav-link" data-scroll-target="#theme_ipsum"><code>theme_ipsum()</code></a></li>
+  </ul></li>
   <li><a href="#modify-components-of-a-theme" id="toc-modify-components-of-a-theme" class="nav-link" data-scroll-target="#modify-components-of-a-theme">Modify components of a theme</a></li>
   <li><a href="#setting-an-active-theme" id="toc-setting-an-active-theme" class="nav-link" data-scroll-target="#setting-an-active-theme">Setting an active theme</a></li>
   </ul></li>
@@ -1338,7 +1349,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Created with RStudio and <a href="https://quarto.org/">Quarto</a> <br> © Jessica Cooperstone, 2023, License: <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a></div>   
+    <div class="nav-footer-left">Created with RStudio and <a href="https://quarto.org/">Quarto</a> <br> © Jessica Cooperstone, 2023, License: <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a> <br> <a href="https://osu-codeclub.github.io/#category=website">Want to make a website like this one?</a></div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>

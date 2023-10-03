@@ -1,5 +1,9 @@
 ---
 title: "Syllabus"
+format:
+  html:
+    toc: true
+    toc-depth: 4
 ---
 
 
@@ -69,7 +73,7 @@ There are no required textbooks for this course, though you will find many of th
 - Microsoft Office 365: All Ohio State students are now eligible for free Microsoft Office 365. Full instructions for downloading and installation can be found at [go.osu.edu/office365help](www.go.osu.edu/office365help).
 
 ## Prior R experience
-You do not need to be an R expert for this class, but I will assume working-level knowledge of R programming.  If you have no experience with R, but would still like to take this class, you can. I ask then you get yourself up to speed by taking this free online class https://www.edx.org/course/data-science-r-basics (audit only) before the start of the 3rd week of class.  The course will take 8-16 hours to complete so please leave yourself enough time to do so before week 3. Tips and tricks in R will be scattered throughout the course material.
+You do not need to be an R expert for this class, but I will assume working-level knowledge of R programming.  If you have no experience with R, but would still like to take this class, you can. I ask then you get yourself up to speed by taking this free online class [https://www.edx.org/course/data-science-r-basics](https://www.edx.org/course/data-science-r-basics) (audit only) before the start of the 3rd week of class.  The course will take 8-16 hours to complete so please leave yourself enough time to do so before week 3. Tips and tricks in R will be scattered throughout the course material.
 
 ## Grading
 ### How your grade is calculated 
@@ -115,7 +119,7 @@ There will be 10 class reflections (you can select which classes you want to ref
 ### Late assignments
 I expect you will turn assignments in on time. Late assignments are not accepted. If there are extenuating circumstances that prevent you from turning in an assignment on time, please connect with me as soon as possible after such a situation arises for discussion about a possible deadline extension. 
 
-Please refer to the [Assignments tab](https://datavisualizing.netlify.app/assignments.html) or Carmen for  due dates.
+Please refer to the Assignments tab or Carmen for due dates.
 
 ### Grading scale
 ```{r, echo = FALSE}

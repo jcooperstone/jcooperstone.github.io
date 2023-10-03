@@ -2,6 +2,10 @@
 title: "Principal Components Analysis"
 author: "Jessica Cooperstone"
 subtitle: "Week 10"
+format:
+  html:
+    toc: true
+    toc-depth: 4
 ---
 
 

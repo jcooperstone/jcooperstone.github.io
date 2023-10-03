@@ -99,10 +99,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="../../../styles.css">
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-sidebar floating nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -386,29 +385,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
-  <ul class="collapse">
-  <li><a href="#libraries" id="toc-libraries" class="nav-link" data-scroll-target="#libraries">Libraries</a></li>
-  <li><a href="#read-in-data" id="toc-read-in-data" class="nav-link" data-scroll-target="#read-in-data">Read in data</a></li>
-  </ul></li>
-  <li><a href="#full-pipe-and-plot" id="toc-full-pipe-and-plot" class="nav-link" data-scroll-target="#full-pipe-and-plot">Full pipe and plot</a></li>
-  <li><a href="#playing-around" id="toc-playing-around" class="nav-link" data-scroll-target="#playing-around">Playing around</a>
-  <ul class="collapse">
-  <li><a href="#try-using-different-geoms-besides-geom_point-and-geom_line.-which-might-make-sense-in-this-situation" id="toc-try-using-different-geoms-besides-geom_point-and-geom_line.-which-might-make-sense-in-this-situation" class="nav-link" data-scroll-target="#try-using-different-geoms-besides-geom_point-and-geom_line.-which-might-make-sense-in-this-situation">Try using different geoms besides <code>geom_point()</code> and <code>geom_line()</code>. Which might make sense in this situation?</a></li>
-  <li><a href="#can-you-color-all-the-lines-blue" id="toc-can-you-color-all-the-lines-blue" class="nav-link" data-scroll-target="#can-you-color-all-the-lines-blue">Can you color all the lines blue?</a></li>
-  <li><a href="#can-you-color-the-data-based-on-year" id="toc-can-you-color-the-data-based-on-year" class="nav-link" data-scroll-target="#can-you-color-the-data-based-on-year">Can you color the data based on year?</a></li>
-  <li><a href="#can-you-color-and-change-shape-based-on-country" id="toc-can-you-color-and-change-shape-based-on-country" class="nav-link" data-scroll-target="#can-you-color-and-change-shape-based-on-country">Can you color and change shape based on country?</a></li>
-  <li><a href="#can-you-make-a-plot-showing-the-distribution-of-weights-of-all-giant-pumpkins-entered-in-2021" id="toc-can-you-make-a-plot-showing-the-distribution-of-weights-of-all-giant-pumpkins-entered-in-2021" class="nav-link" data-scroll-target="#can-you-make-a-plot-showing-the-distribution-of-weights-of-all-giant-pumpkins-entered-in-2021">Can you make a plot showing the distribution of weights of all giant pumpkins entered in 2021?</a></li>
-  <li><a href="#can-you-make-a-boxplot-showing-the-distribution-of-weights-of-all-giant-pumpkins-across-all-years" id="toc-can-you-make-a-boxplot-showing-the-distribution-of-weights-of-all-giant-pumpkins-across-all-years" class="nav-link" data-scroll-target="#can-you-make-a-boxplot-showing-the-distribution-of-weights-of-all-giant-pumpkins-across-all-years">Can you make a boxplot showing the distribution of weights of all giant pumpkins across all years?</a></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -527,15 +504,15 @@ chr (14): id, place, weight_lbs, grower_name, city, state_prov, country, gpc...
 <pre><code># A tibble: 9 × 15
   year       type  place weight_lbs grower_name         city  state_prov country
   &lt;date&gt;     &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;               &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;  
-1 2013-09-27 P     1          2032  Mathison, Tim       Napa  California United…
-2 2014-09-27 P     1          2324. Meier, Beni         Pfun… Other      Switze…
-3 2015-09-27 P     1          2230. Wallace, Ron        Gree… Rhode Isl… United…
-4 2016-09-27 P     1          2625. Willemijns, Mathias Deur… East Flan… Belgium
-5 2017-09-27 P     1          2363  Holland, Joel       Sumn… Washington United…
-6 2018-09-27 P     1          2528  Geddes, Steve       Bosc… New Hamps… United…
-7 2019-09-27 P     1          2517  Haist, Karl &amp; Beve… Clar… New York   United…
-8 2020-09-27 P     1          2594. Paton, Ian &amp; Stuart Ever… England    United…
-9 2021-09-27 P     1          2703. Cutrupi, Stefano    Radd… Tuscany    Italy  
+1 2013-10-03 P     1          2032  Mathison, Tim       Napa  California United…
+2 2014-10-03 P     1          2324. Meier, Beni         Pfun… Other      Switze…
+3 2015-10-03 P     1          2230. Wallace, Ron        Gree… Rhode Isl… United…
+4 2016-10-03 P     1          2625. Willemijns, Mathias Deur… East Flan… Belgium
+5 2017-10-03 P     1          2363  Holland, Joel       Sumn… Washington United…
+6 2018-10-03 P     1          2528  Geddes, Steve       Bosc… New Hamps… United…
+7 2019-10-03 P     1          2517  Haist, Karl &amp; Beve… Clar… New York   United…
+8 2020-10-03 P     1          2594. Paton, Ian &amp; Stuart Ever… England    United…
+9 2021-10-03 P     1          2703. Cutrupi, Stefano    Radd… Tuscany    Italy  
 # ℹ 7 more variables: gpc_site &lt;chr&gt;, seed_mother &lt;chr&gt;,
 #   pollinator_father &lt;chr&gt;, ott &lt;chr&gt;, est_weight &lt;chr&gt;, pct_chart &lt;chr&gt;,
 #   variety &lt;chr&gt;</code></pre>
@@ -1026,7 +1003,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">Created with RStudio and <a href="https://quarto.org/">Quarto</a> <br> © Jessica Cooperstone, 2023, License: <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a></div>   
+    <div class="nav-footer-left">Created with RStudio and <a href="https://quarto.org/">Quarto</a> <br> © Jessica Cooperstone, 2023, License: <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a> <br> <a href="https://osu-codeclub.github.io/#category=website">Want to make a website like this one?</a></div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>

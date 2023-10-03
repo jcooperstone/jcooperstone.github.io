@@ -30,7 +30,7 @@ website:
   # footer
   page-footer:
     border: true
-    left: "Created with RStudio and [Quarto](https://quarto.org/) <br> © Jessica Cooperstone, 2023, License: [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)"
+    left: "Created with RStudio and [Quarto](https://quarto.org/) <br> © Jessica Cooperstone, 2023, License: [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) <br> [Want to make a website like this one?](https://osu-codeclub.github.io/#category=website)"
     right:
       - icon: github
         href: https://github.com/jcooperstone/rdataviz
@@ -61,7 +61,8 @@ website:
     - id: syllabus
       title: "Syllabus"
       contents:
-        - href: syllabus/syllabus.qmd
+       - href: syllabus/syllabus.qmd
+         text: Syllabus
 
     - id: modules
       title: "Course content"
@@ -210,10 +211,8 @@ website:
 format:
   html:
     theme:
-      light: [flatly, theme-light.scss]
-      dark: [darkly, theme-dark.scss]
-    toc: true
-    css: styles.css
+      light: flatly
+      dark: darkly
 
 
 resources:

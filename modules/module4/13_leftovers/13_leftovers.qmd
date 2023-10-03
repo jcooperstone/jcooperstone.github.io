@@ -2,6 +2,10 @@
 title: "Leftover tidbits"
 author: "Jessica Cooperstone"
 subtitle: "Week 13"
+format:
+  html:
+    toc: true
+    toc-depth: 4
 ---
 
 

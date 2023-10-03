@@ -2,6 +2,10 @@
 title: "Understanding Data Distributions"
 author: "Jessica Cooperstone"
 subtitle: "Week 7"
+format:
+  html:
+    toc: true
+    toc-depth: 4
 ---
 
 
@@ -114,7 +118,7 @@ alkaloids %>%
 
 Change the levels of the data so the reordering happens to every plot in the future.
 ```{r relevelling}
-# what type of variable is class?
+# what type of variable is Class?
 class(alkaloids$Class)
 
 # convert to factor, and set levels
@@ -186,7 +190,7 @@ alkaloids %>%
 
 We could also look at these distribution more like histograms and it provides to us some additional information. When coupled with faceting, this can be very powerful.
 
-```{r histogram}
+```{r histogram, warning = FALSE, message = FALSE}
 alkaloids %>%
   ggplot(aes(x = Tomatine)) +
   geom_histogram(bins = 75) + # default is bins = 30
@@ -194,7 +198,7 @@ alkaloids %>%
   facet_wrap(vars(Class))
 ```
 
-```{r density}
+```{r density, warning = FALSE, message = FALSE}
 alkaloids %>%
   ggplot(aes(x = Tomatine)) +
   geom_density() +
@@ -237,7 +241,7 @@ alkaloids %>%
 
 
 #### Changing class labels
-I am bothered by the fact that S. pimpinellifolium (a species of wild tomato) is not indicated in italics. We don't want to italicize all of the `Class labels`, just *S. pimpinellifolium*. Let's fix that.
+I am bothered by the fact that S. pimpinellifolium (a species of wild tomato) is not indicated in italics. We don't want to italicize all of the `labels`, just *S. pimpinellifolium*. Let's fix that.
 
 We can start by creating a vector of the labels how we want them to appear in the plot.
 ```{r set-class-labels}
@@ -324,7 +328,7 @@ alkaloids %>%
   theme(legend.position = c(.18, .99),
         legend.justification = c("right", "top"),
         legend.box.just = "right",
-        legend.box.background = element_rect(size = 0.5),
+        legend.box.background = element_rect(color = "black"),
         legend.box.margin = margin(5, 5, 5, 5)) +
   labs(shape = "Year",
        y = "Alpha-tomatine (µg/100 g fresh weight)") 

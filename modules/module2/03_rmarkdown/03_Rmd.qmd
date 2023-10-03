@@ -2,6 +2,10 @@
 title: "R Markdown for Reproducible Research"
 author: "Jessica Cooperstone"
 subtitle: "Week 3"
+format:
+  html:
+    toc: true
+    toc-depth: 4
 ---
 
 
