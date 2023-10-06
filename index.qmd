@@ -2,9 +2,10 @@
 title: "HCS 7100: Data Visualization in R"
 ---
 
-The Ohio State University, Fall 2023
+The Ohio State University, Autumn 2023
 
-Instructor: [Jessica Cooperstone](https://www.cooperstonelab.com/)
+Instructor: [Jessica Cooperstone](https://www.cooperstonelab.com/) <br>
+Teaching assistant: [Daniel Quiroz Moreno](https://github.com/DanielQuiroz97)
 
 ```{r echo = FALSE, fig.alt="A gif of 13 different datasets (include one who's points make the shape of a dinosaur) that all have the same mean and standard deviation, but have very different distributions"}
 knitr::include_graphics("modules/module1/01_principles/img/dinosaurus.gif")
