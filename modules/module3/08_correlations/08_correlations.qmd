@@ -16,12 +16,12 @@ knitr::opts_chunk$set(echo = TRUE)
 knitr::include_graphics("https://imgs.xkcd.com/comics/correlation.png")
 ```
 
-
 ## Introduction
 
 We will will building on our lessons on ggplot101 and ggplot102 which focused on an overall understanding of the grammar of graphics, basic syntax, adding data, aesthetic mappings, geoms, facets, scales, labels, and themes. Today we are going to apply what we learned towards trying to better understanding and visualize correlations within our data. To do this we will also use some ggplot extension packages.
 
 ### Load libraries and data
+
 Before we get started, let's load our libraries.
 
 ```{r libraries, warning = FALSE, message = FALSE}
@@ -106,10 +106,10 @@ alkaloids %>%
        title = "Relationship between Alpha-Tomatine and Total Steroidal Alkaloids \nAcross Different Germplasm in the Red Tomato Clade")
 ```
 
-
 ### Faceted scatterplots
 
 We may be able to see trends by tomato class more easily if we facet our scatterplots. I also am demonstrating here how within the ggplot function you can make alter the aesthetics you plot - here I am turning data that is present as µg/100 g to mg/100 g by dividing by 1000 and changing the axis labels accordingly.
+
 ```{r faceted sc atterplots}
 alkaloids %>%
   ggplot(aes(x = Total/1000, y = Tomatine/1000, color = Class)) +
@@ -123,12 +123,12 @@ alkaloids %>%
        title = "Relationship between Alpha-Tomatine and Total Steroidal Alkaloids \nAcross Different Germplasm in the Red Tomato Clade")
 ```
 
-
 ## Correlation matrix with `cor()`
 
 [`cor()`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/cor) is a function from base R that will allow you to create a correlation matrix.
 
-Before we use `cor()` we will clean up our dataset to include only the variables we want to correlate. 
+Before we use `cor()` we will clean up our dataset to include only the variables we want to correlate.
+
 ```{r alkaloid colnames}
 colnames(alkaloids)
 ```
@@ -156,7 +156,8 @@ alkaloids_totals <- alkaloids %>%
 colnames(alkaloids_totals)
 ```
 
-Now we can create a correlation matrix to see how each of our 10 alkaloids is correlated to the concentration of each other alkaloid (including the compile metric of `Total` which sums all the alkaloids).
+Now we can create a correlation matrix to see how each of our 10 alkaloids is correlated to the concentration of each other alkaloid (including the compile metric of `Total` which sums all the alkaloids). The default for `cor()` is to use Pearson's correlation coefficient, but you can set to use Spearman `method = "spearman"` or Kendall `method = "kendall"` if you prefer. Check the documentation for [`cor()`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/cor) for more information.
+
 ```{r alkaloids cor}
 alkaloids_cor <- alkaloids_totals %>%
   select(all_of(alkaloid_total_names)) %>%
@@ -170,27 +171,30 @@ Note the diagonal is all composed of 1s. This makes sense because the correlatio
 
 ## Using `ggcorrplot()` from `ggcorrplot`
 
-Use the function `ggcorrplot()` without any additional arguments besides the correlation matrix `alkaloids_cor`. In general, I think if you want to make a bunch of correlation plots quickly, and don't intend to publish them, ``ggcorrplot()` works well, but the visuals of the plot are quite difficult to customize.
+Use the function `ggcorrplot()` without any additional arguments besides the correlation matrix `alkaloids_cor`. In general, I think if you want to make a bunch of correlation plots quickly, and don't intend to publish them, \``ggcorrplot()` works well, but the visuals of the plot are quite difficult to customize.
+
 ```{r ggcorrplot}
 library(ggcorrplot)
 
 ggcorrplot(alkaloids_cor)
 ```
 
-This is not a perfect plot but its a good starting point. Correlation matrices are inherently symmetric, meaning if we display only the top or bottom triangle, we do not lose any information. We will work on editing this plot in different ways to show more information and make it more beautiful. 
+This is not a perfect plot but its a good starting point. Correlation matrices are inherently symmetric, meaning if we display only the top or bottom triangle, we do not lose any information. We will work on editing this plot in different ways to show more information and make it more beautiful.
 
 We could also make the plot circles instead of squares at the same time.
+
 ```{r ggcorrplot lower circle}
 ggcorrplot(alkaloids_cor, 
            method = "circle",
            type = "lower")
 ```
 
-In general, I think if you want to make a bunch of correlation plots quickly, and don't intend to publish them, ``ggcorrplot()` works well, but the visuals of the plot are quite difficult to customize.
+In general, I think if you want to make a bunch of correlation plots quickly, and don't intend to publish them, \``ggcorrplot()` works well, but the visuals of the plot are quite difficult to customize.
 
 ## Using `corrplot()` from `corrplot`
 
 Similarly, you can use a base R plotting based package `corrplot()` to make correlation plots. The customization syntax here is quite different from what we've been working with in ggplot, but I wanted you to feel familiar with some base R tools.
+
 ```{r corrplot}
 library(corrplot)
 
@@ -200,6 +204,7 @@ corrplot(alkaloids_cor, type = "lower")
 I have used `corrplot()` in publications before and felt like I couldn't customize the plots as much as I wanted. In the process of putting together this content, I learned some news ways to customize these plots that are actually very nice. Here are some parameters you can modify in R. You can also order your variables by hierarchical clustering.
 
 First we will start (as we always do) by wrangling.
+
 ```{r rcorr wrangling}
 # create matrix for correlation
 alkaloids_to_cor <- alkaloids_totals %>%
@@ -235,6 +240,7 @@ rownames(alkaloids_rcorr$P) <- alkaloid_labels
 ```
 
 Now we are ready to plot
+
 ```{r rcorr customized, fig.height=6, fig.width = 6}
 corrplot(alkaloids_rcorr$r, # the correlation matrix
          type = "lower", # lower triangle
@@ -264,9 +270,10 @@ to_corr <- alkaloids_totals %>%
 ggcorr(to_corr)
 ```
 
-There is only one labeled axis - this is because there is no diagonal in these plots, like we saw with `ggcorrplot()` and `corrplot()`. 
+There is only one labeled axis - this is because there is no diagonal in these plots, like we saw with `ggcorrplot()` and `corrplot()`.
 
 We can now spend some time improving the aesthetics of our plot.
+
 ```{r ggcorr customized}
 ggcorr(to_corr, # data for correlation
        low = "#f1a340", # -1 correlation color
@@ -287,13 +294,15 @@ For this example, we have very long label names which are really difficult to wr
 ### `ggpairs()`
 
 We can also use the function `GGally::ggpairs()` to make a matrix of correlation related plots.
+
 ```{r ggpairs}
 alkaloids_totals %>%
-  ggpairs(columns = c(10, 14, 16), # pick the 10th 14th and 16th columns
+  ggpairs(columns = c("Tomatine", "TotalLycoperosideFGEsculeosideA", "Total"), # pick variables
           aes(color = Class))
 ```
 
 Let's customized a bit.
+
 ```{r ggpairs customized}
 # remove zeroes since they don't log transform
 # make log transformed columns
@@ -306,7 +315,7 @@ alkaloids_totals_log <- alkaloids_totals %>%
          log10_total = log10(Total))
 
 alkaloids_totals_log %>%
-    ggpairs(columns = c(17, 18, 19),
+    ggpairs(columns = c("log10_tomatine", "log10_FGA", "log10_total"),
           aes(color = Class, alpha = 0.5), # note alpha inside aes which is weird idk why
           columnLabels = c("Alpha-Tomatine", "Lycoperoside F/G\n Escueloside A", "Total Alkaloids"))
 ```
@@ -326,6 +335,7 @@ head(melted_alkaloids_cor)
 ```
 
 First pass minimalist plotting
+
 ```{r manual plotting 1}
 melted_alkaloids_cor %>%
   ggplot(aes(x = Var1, y = Var2, fill = value)) +
@@ -337,6 +347,7 @@ Lots to fix! What if we want only the upper or lower triangle, again since this 
 ### Upper triangle
 
 Keep only the upper triangle.
+
 ```{r create upper triangle}
 # "save as"
 alkaloids_upper <- alkaloids_cor
@@ -355,6 +366,7 @@ head(melted_alkaloids_upper) # yup
 ### Lower triangle
 
 Create a lower triangle object to plot.
+
 ```{r create lower triangle}
 # "save as"
 alkaloids_lower <- alkaloids_cor
@@ -371,9 +383,10 @@ head(melted_alkaloids_lower) # yup
 ```
 
 Plot
+
 ```{r manual-lower}
 # remember we made alkaloid_labels
-View(alkaloid_labels)
+print(alkaloid_labels)
 
 melted_alkaloids_lower %>%
   ggplot(aes(x = Var1, y = Var2, fill = value)) +
