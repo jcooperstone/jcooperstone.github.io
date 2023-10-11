@@ -195,8 +195,8 @@ website:
               text: Week 6 - ggplot102 solutions
             - href: modules/module3/07_distributions/07_distributions_recitation_solutions.qmd
               text: Week 7 - Data distributions solutions
-            # - href: modules/module3/08_correlations/08_correlations_recitation_solutions.qmd
-            #   text: Week 8 - Correlations solutions
+            - href: modules/module3/08_correlations/08_correlations_recitation_solutions.qmd
+              text: Week 8 - Correlations solutions
             # - href: modules/module3/09_add_stats/09_add-stats_recitation_solutions.qmd
             #   text: Week 9 - Adding statistics solutions
             # - href: modules/module4/10_pca/10_pca_recitation_solutions.qmd
