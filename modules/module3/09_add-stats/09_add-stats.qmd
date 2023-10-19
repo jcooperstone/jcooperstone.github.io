@@ -80,7 +80,7 @@ It looks like there is a difference here. Before adding the statistics to our pl
 
 ### Testing assumptions
 
-Briefly, in order to use parametric procedures (like a t-test), we need to be sure our data meets the assumptions for 1) normality and 2) constant variance. 
+Briefly, in order to use parametric procedures (like a t-test), we need to be sure our data meets the assumptions for 1) normality and 2) constant variance. This is just one way to do these tests, there are others that I am not going to go over.
 
 ```{r normal distribution, echo=FALSE, fig.align="center", fig.alt="An orange normal distribution and a blue bimodal distribution where the orange distribution tells the blue one it is not normal", fig.cap="Illustration by [Allison Horst](https://github.com/allisonhorst/stats-illustrations)", out.width="70%",}
 knitr::include_graphics("img/not_normal.png")
@@ -112,13 +112,15 @@ Can we visualize normality another way?
 ```{r body mass histogram by sex}
 penguins %>%
   drop_na(body_mass_g, sex) %>%
-  ggplot(aes(x = body_mass_g, fill = sex)) +
-  geom_histogram() +
-  facet_wrap(vars(sex)) +
-  theme_classic() +
+  ggplot(aes(x = body_mass_g, y = sex, fill = sex)) +
+  ggridges::geom_density_ridges(alpha = 0.7) +
+  scale_y_discrete(labels = c("Female", "Male")) +
+  theme_classic() +  
   theme(legend.position = "none") +
   labs(x = "Body Mass (g)",
-       y = "Count")
+       y = "Sex",
+       title = "Distribution of body weights for male and female penguins")
+
 ```
 
 Some of these distribution are bimodal (i.e., not normal). This is likely because we have 3 different species of penguins here. You can see below that actually each species looks reasonably normal.
@@ -204,8 +206,9 @@ by_sex_pval <- penguins %>%
 
 # plot
 penguins_by_sex +
+  ylim(2500, 7500) + # adjust the y-axis so there's space for the label
   annotate(geom = "text", x = 2, y = 6500, label = "*", size = 6) +
-  annotate(geom = "text", x = 2, y = 7200,
+  annotate(geom = "text", x = 2, y = 7000,
            label = glue("Wilcoxon signed rank test \np-value = {by_sex_pval$p}"))
 ```
 
@@ -220,7 +223,8 @@ Are there significant differences in body mass
   drop_na(body_mass_g, species, sex) %>%
   filter(sex == "female") %>%
   ggplot(aes(x = species, y = body_mass_g, fill = species)) +
-  geom_boxplot(outlier.shape = NA) +
+  geom_violin(outlier.shape = NA,
+              draw_quantiles = 0.5) + # add the median by drawing 50% quantile
   ggdist::geom_dots(side = "both", color = "black", alpha = 0.5) +
   theme_minimal() +
   theme(legend.position = "none") +
