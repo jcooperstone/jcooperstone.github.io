@@ -197,7 +197,7 @@ website:
               text: Week 7 - Data distributions solutions
             - href: modules/module3/08_correlations/08_correlations_recitation_solutions.qmd
               text: Week 8 - Correlations solutions
-            - href: modules/module3/09_add_stats/09_add-stats_recitation_solutions.qmd
+            - href: modules/module3/09_add-stats/09_add-stats_recitation_solutions.qmd
               text: Week 9 - Adding statistics solutions
             # - href: modules/module4/10_pca/10_pca_recitation_solutions.qmd
             #   text: Week 10 - Principal components analysis solutions
