@@ -937,13 +937,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="run-pca" class="level2">
 <h2 class="anchored" data-anchor-id="run-pca">Run PCA</h2>
 <p>There are many packages that have functions that run PCA (including ) but I think the most common function used is a part of base R, and is called <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/prcomp"><code>prcomp()</code></a>.</p>
-<blockquote class="blockquote">
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Note, PCA will allow zeroes, but will throw an error if you feed it NAs.</p>
-</blockquote>
+</div>
+</div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>alkaloids_pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(alkaloid_blups_trim[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)],</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">scale =</span> <span class="cn">TRUE</span>, <span class="co"># default is false</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">center =</span> <span class="cn">TRUE</span>) <span class="co"># true is the default</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">center =</span> <span class="cn">TRUE</span>) <span class="co"># default is true, just being explicit</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s investigate <code>alkaloids_pca</code>.</p>
 <div class="cell">
@@ -1131,7 +1141,7 @@ Cumulative Proportion  0.99627 1.00000 1.0000000</code></pre>
 </div>
 </div>
 <p>By looking at the summary we can see, for example, that the first two PCs explain 62.19% of variance.</p>
-<p>We are going to go over making scree, scores and loadings plots using helper functions, and manually via ggplot. The helper functions allow you look at each plot type simply. This is an important step because when you make your plots with ggplot, you want to be sure they look how they should.</p>
+<p>We are going to go over making scree, scores and loadings plots using helper functions (here, they start <code>fviz_()</code> and come from the package <a href="https://www.rdocumentation.org/packages/factoextra/versions/1.0.7"><code>factoextra</code></a>, and manually via ggplot. The helper functions allow you look at each plot type simply. This is an important step because when you make your plots with ggplot, you want to be sure they look how they should.</p>
 </section>
 <section id="scree-plot" class="level2">
 <h2 class="anchored" data-anchor-id="scree-plot">Scree plot</h2>
@@ -1145,7 +1155,7 @@ Cumulative Proportion  0.99627 1.00000 1.0000000</code></pre>
 <p><img src="10_pca_files/figure-html/fviz_eig-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>You can actually do this very easily with base R plotting as well. If you weren’t planning to publish this type of plot, it might not be important it look beautiful, and then both of these options would be great and quick.</p>
+<p>You can actually do this very easily with base R plotting as well. If you weren’t planning to publish this type of plot, it might not be important it look beautiful, and then both of these options would be great and quick. Note though that the base R plot is plotting at a different scale.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(alkaloids_pca)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -1206,7 +1216,7 @@ Cumulative Proportion  0.99627 1.00000 1.0000000</code></pre>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Principal component"</span>,</span>
 <span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Percent variance explained"</span>,</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Scree plot of 10 alkalois analyzed across 107 tomato accessions"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Scree plot of 10 alkaloids analyzed across 107 tomato accessions"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="10_pca_files/figure-html/scree plot prettier-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1261,7 +1271,7 @@ Cumulative Proportion  0.99627 1.00000 1.0000000</code></pre>
 <span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> PC1, <span class="at">y =</span> PC2, <span class="at">fill =</span> Species)) <span class="sc">+</span></span>
 <span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
 <span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="fl">2.5</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
 <span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>) <span class="sc">+</span></span>
 <span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="fu">glue</span>(<span class="st">"PC1: {PC1_percent}%"</span>), </span>
