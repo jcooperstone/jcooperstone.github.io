@@ -474,3 +474,7 @@ Voila.
 
 -   [Code club about PCA by Jelmer Poelstra](https://biodash.github.io/codeclub/s03e03_pca/)
 -   [factoextra](https://www.rdocumentation.org/packages/factoextra/versions/1.0.7)
+```{r}
+ggpattern::geom_density_pattern()
+```
+

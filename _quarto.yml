@@ -199,8 +199,8 @@ website:
               text: Week 8 - Correlations solutions
             - href: modules/module3/09_add-stats/09_add-stats_recitation_solutions.qmd
               text: Week 9 - Adding statistics solutions
-            # - href: modules/module4/10_pca/10_pca_recitation_solutions.qmd
-            #   text: Week 10 - Principal components analysis solutions
+            - href: modules/module4/10_pca/10_pca_recitation_solutions.qmd
+              text: Week 10 - Principal components analysis solutions
             # - href: modules/module4/11_manhattan/11_manhattan_recitation_solutions.qmd
             #   text: Week 11 - Manhattan plots solutions 
             # - href: modules/module4/12_interactive-plots/12_interactive-plots_recitation_solutions.qmd
