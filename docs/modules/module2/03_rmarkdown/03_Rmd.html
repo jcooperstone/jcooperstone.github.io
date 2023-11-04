@@ -300,6 +300,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../../../assignments/modules/module2/module_2_solutions.html" rel="" target="">
  <span class="dropdown-text">Module 2 solutions</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../../assignments/modules/module3/module_3_solutions.html" rel="" target="">
+ <span class="dropdown-text">Module 3 solutions</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Recitation solutions</li>
         <li>
@@ -672,7 +676,7 @@ A minute long introduction to R Markdown
 <ul>
 <li>title: “Your title but put it in quotes”</li>
 <li>author: “The author and still in quotes”</li>
-<li>date: the date you want at the top of your doc in quotes. If you want this to be today’s date (whatever that is) you can use “2023-11-01”</li>
+<li>date: the date you want at the top of your doc in quotes. If you want this to be today’s date (whatever that is) you can use “<code>Sys.Date()</code>”</li>
 <li>output: will indicate the format of your compiled document. I would recommend for this class you use html_document as it is the richest format. Your output will be a .html file, which you can save or share.</li>
 </ul>
 <p>Here’s a simple example.</p>
@@ -730,7 +734,7 @@ A minute long introduction to R Markdown
 </div>
 </div>
 <p>Note, the headers are useful and will indicate the levels in your table of contents. You want to use them, and make them meaningful for your document.</p>
-<p>You can use Markdown to insert tables, images, mathematical formulas, block quotes, and almost anything else you’d like. You can even write your <a href="https://bookdown.org/">papers and dissertation</a> in R Markdown. This <a href="https://datavisualizing.netlify.app/">course website</a> is made with <a href="https://rstudio.github.io/distill/">distill</a> and R Markdown. My <a href="www.cooperstonelab.com">lab website</a> is made with <a href="https://hugo-apero-docs.netlify.app/">R Markdown and the hugo Aperó theme</a>. Here are some links where you can find lots of other Markdown syntactical information:</p>
+<p>You can use Markdown to insert tables, images, mathematical formulas, block quotes, and almost anything else you’d like. You can even write your <a href="https://bookdown.org/">papers and dissertation</a> in R Markdown. The old version of this <a href="https://datavisualizing.netlify.app/">course website</a> is made with <a href="https://rstudio.github.io/distill/">distill</a> and R Markdown. My <a href="www.cooperstonelab.com">lab website</a> is made with <a href="https://hugo-apero-docs.netlify.app/">R Markdown and the hugo Aperó theme</a>. <a href="https://quarto.org/">Quarto</a> and <code>.qmd</code> documents are a slightly updated version of RMarkdown with some new functionality (<a href="https://community.rstudio.com/t/i-use-like-r-markdown-why-should-i-try-out-quarto/133752">here</a> you can find some discussion about the different between the two). Here are some links where you can find lots of other Markdown syntactical information:</p>
 <ul>
 <li><a href="https://www.markdownguide.org/cheat-sheet/">Markdown Guide</a></li>
 <li><a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf?_ga=2.18808953.1342527773.1652110638-1577376121.1638478125">R Markdown reference guide</a></li>
@@ -764,10 +768,8 @@ A minute long introduction to R Markdown
 <li>the play button runs the current chunk</li>
 </ul>
 <p>You can still add comments within a code chunk, but you need to comment them out using #.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># here is my in chunk annotation</span></span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># here is my in chunk annotation</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">some_function</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>When you knit your R Markdown, this process will run all of the code in your document. This means if you have code that throws errors or doesn’t work, your document <strong>will not knit</strong>. This is some of why I am asking you to knit for your final assignments - all your code needs to work!</p>
 <p>You can also embed code <strong>inline</strong> (i.e., within your text).</p>
 <table class="table">

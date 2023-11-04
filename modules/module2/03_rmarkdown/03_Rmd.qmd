@@ -109,7 +109,7 @@ The YAML is where you can set the content that will show up on the top of your k
 
 -   title: "Your title but put it in quotes"
 -   author: "The author and still in quotes"
--   date: the date you want at the top of your doc in quotes. If you want this to be today's date (whatever that is) you can use "`r Sys.Date()`"
+-   date: the date you want at the top of your doc in quotes. If you want this to be today's date (whatever that is) you can use "`Sys.Date()`"
 -   output: will indicate the format of your compiled document. I would recommend for this class you use html_document as it is the richest format. Your output will be a .html file, which you can save or share.
 
 Here's a simple example.
@@ -168,7 +168,7 @@ knitr::include_graphics("img/syntax.png")
 
 Note, the headers are useful and will indicate the levels in your table of contents. You want to use them, and make them meaningful for your document.
 
-You can use Markdown to insert tables, images, mathematical formulas, block quotes, and almost anything else you'd like. You can even write your [papers and dissertation](https://bookdown.org/) in R Markdown. This [course website](https://datavisualizing.netlify.app/) is made with [distill](https://rstudio.github.io/distill/) and R Markdown. My [lab website](www.cooperstonelab.com) is made with [R Markdown and the hugo Aperó theme](https://hugo-apero-docs.netlify.app/). Here are some links where you can find lots of other Markdown syntactical information:
+You can use Markdown to insert tables, images, mathematical formulas, block quotes, and almost anything else you'd like. You can even write your [papers and dissertation](https://bookdown.org/) in R Markdown. The old version of this [course website](https://datavisualizing.netlify.app/) is made with [distill](https://rstudio.github.io/distill/) and R Markdown. My [lab website](www.cooperstonelab.com) is made with [R Markdown and the hugo Aperó theme](https://hugo-apero-docs.netlify.app/). [Quarto](https://quarto.org/) and `.qmd` documents are a slightly updated version of RMarkdown with some new functionality ([here](https://community.rstudio.com/t/i-use-like-r-markdown-why-should-i-try-out-quarto/133752) you can find some discussion about the different between the two). Here are some links where you can find lots of other Markdown syntactical information:
 
 -   [Markdown Guide](https://www.markdownguide.org/cheat-sheet/)
 -   [R Markdown reference guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf?_ga=2.18808953.1342527773.1652110638-1577376121.1638478125)
@@ -199,7 +199,7 @@ The code goes in the empty line, and there can be more than 1 bit of code per ch
 
 You can still add comments within a code chunk, but you need to comment them out using #.
 
-```{r in chunk annotation, eval = FALSE}
+```r 
 # here is my in chunk annotation
 some_function()
 ```
