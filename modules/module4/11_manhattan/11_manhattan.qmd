@@ -46,9 +46,16 @@ gwas <- read_csv("data/nph17693-sup-0007-tables16.csv") # be patient
 ```
 
 ```{r read data actually, echo = FALSE}
+<<<<<<< HEAD
+gwas <- read_csv("/Users/jessicacooperstone/Library/CloudStorage/OneDrive-TheOhioStateUniversity/BuckeyeBox Data/JLC_Files/OSU/research/personnel/emma bilbrey/Thesis/Publication/New Phy Submission/PostAcceptance/Bilbrey_NewPhyt2021_TablesS12toS20/TableS16_LCMS_Neg_Ped_mGWASresults.csv")
+```
+
+
+=======
 gwas <- read_csv("~/OneDrive - The Ohio State University/BuckeyeBox Data/JLC_Files/OSU/teaching/data-viz/extra_stuff/nph17693-sup-0007-tables16.csv") # be patient
 ```
 
+>>>>>>> parent of 318577e (Updating manhattan plots 11)
 What are the dimensions of this dataframe? What kind of object is it?
 
 ```{r dim blups}

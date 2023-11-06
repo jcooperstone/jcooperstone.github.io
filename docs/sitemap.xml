@@ -54,7 +54,11 @@
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module4/11_manhattan/11_manhattan.html</loc>
+<<<<<<< HEAD
+    <lastmod>2023-11-06T21:16:45.171Z</lastmod>
+=======
     <lastmod>2023-11-04T19:03:53.168Z</lastmod>
+>>>>>>> parent of 318577e (Updating manhattan plots 11)
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module4/12_interactive-plots/12_interactive-plots_recitation.html</loc>
