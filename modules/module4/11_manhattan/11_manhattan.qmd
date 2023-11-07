@@ -46,16 +46,9 @@ gwas <- read_csv("data/nph17693-sup-0007-tables16.csv") # be patient
 ```
 
 ```{r read data actually, echo = FALSE}
-<<<<<<< HEAD
 gwas <- read_csv("/Users/jessicacooperstone/Library/CloudStorage/OneDrive-TheOhioStateUniversity/BuckeyeBox Data/JLC_Files/OSU/research/personnel/emma bilbrey/Thesis/Publication/New Phy Submission/PostAcceptance/Bilbrey_NewPhyt2021_TablesS12toS20/TableS16_LCMS_Neg_Ped_mGWASresults.csv")
 ```
 
-
-=======
-gwas <- read_csv("~/OneDrive - The Ohio State University/BuckeyeBox Data/JLC_Files/OSU/teaching/data-viz/extra_stuff/nph17693-sup-0007-tables16.csv") # be patient
-```
-
->>>>>>> parent of 318577e (Updating manhattan plots 11)
 What are the dimensions of this dataframe? What kind of object is it?
 
 ```{r dim blups}
@@ -167,7 +160,7 @@ gwas %>%
   theme_classic() +
   theme(legend.position = "none") + # legend not really necessary
   labs(x = "Chromosome",
-       y = expression("-log"[10]* "P-Value"),
+       y = expression("-log"[10]*"P-Value"),
        title = "GWAS of chlorogenic acid in apple")
 ```
 
@@ -188,7 +181,7 @@ gwas %>%
   theme(legend.position = "none",
         plot.title = element_text(hjust = 0.5)) + 
   labs(x = "Chromosome",
-       y = expression("-log"[10]* "P-Value"),
+       y = expression("-log"[10]*"P-Value"),
        title = "Manhattan Plot after GWAS for Chlorogenic Acid in Apple")
 ```
 
@@ -208,7 +201,7 @@ gwas %>%
   theme(legend.position = "none",
         plot.title = element_text(hjust = 0.5)) + 
   labs(x = "Chromosome",
-       y = expression("-log"[10]* "P-Value"),
+       y = expression("-log"[10]*"P-Value"),
        title = "Manhattan Plot after GWAS for Chlorogenic Acid in Apple")
 ```
 
@@ -230,7 +223,7 @@ gwas %>%
   theme(legend.position = "none",
         plot.title = element_text(hjust = 0.5)) + 
   labs(x = "Chromosome",
-       y = expression("-log"[10]* "P-Value"),
+       y = expression("-log"[10]*"P-Value"),
        title = "Manhattan Plot after GWAS for Chlorogenic Acid in Apple")
 ```
 
@@ -256,7 +249,7 @@ gwas %>%
   theme(legend.position = "none",
         plot.title = element_text(hjust = 0.5)) + 
   labs(x = "Chromosome",
-       y = expression("-log"[10]* "P-Value"),
+       y = expression("-log"[10]*"P-Value"),
        title = "Manhattan Plot after GWAS for Chlorogenic Acid in Apple")
 ```
 
@@ -274,7 +267,7 @@ gwas %>%
   geom_point(data = chlorogenic_acid_sig, 
              aes(x = Index, y = X353.09194_2.23795), color = "red") +
   geom_label_repel(data = biggest_pval,
-                   aes(x = Index, y = X353.09194_2.23795, label = Index)) +
+                   aes(x = Index, y = X353.09194_2.23795, label = glue("Index: {Index}"))) +
   geom_hline(yintercept = bonferroni_pval, color = "grey", linetype = "dashed") +
   scale_x_continuous(expand = c(0,0),
                      breaks = (set_axis$center + set_axis$min), 
@@ -284,7 +277,7 @@ gwas %>%
   theme(legend.position = "none",
         plot.title = element_text(hjust = 0.5)) + 
   labs(x = "Chromosome",
-       y = expression("-log"[10]* "P-Value"),
+       y = expression("-log"[10]*"P-Value"),
        title = "Manhattan Plot after GWAS for Chlorogenic Acid in Apple")
 ```
 
@@ -298,7 +291,7 @@ To make this wrangling easier, we will convert our data, as we have many times b
 
 ```{r gwas tidy}
 gwas_tidy <- gwas %>%
-  pivot_longer(cols = 4:ncol(.),
+  pivot_longer(cols = starts_with("X"),
                names_to = "Feature",
                values_to = "NegLog10P")
 ```
@@ -348,7 +341,7 @@ gwas_tidy %>%
   theme(legend.position = "none",
         plot.title = element_text(hjust = 0.5)) + 
   labs(x = "Chromosome",
-       y = expression("-log"[10]* "P-Value"),
+       y = expression("-log"[10]*"P-Value"),
        title = "Manhattan Plot after GWAS for 417.13237 m/z at retention time 1.82968 in Apple")
 ```
 
@@ -413,21 +406,30 @@ head_short(gwas_top50_wide)
 
 ### Writing a function to plot
 
-Here, we are just modifying our plotting code slightly to allow it to be run across different features. Here, `feature_of_interest` is just the name I've assigned here, but you could pick whatever name you want.
+Here, we are just modifying our plotting code slightly to allow it to be run across different features. The first thing we will do is to use our favorite function `pivot_longer()` to create tidy data.
+```{r}
+gwas_top50_long <- gwas_top50_wide %>%
+  pivot_longer(cols = starts_with("X"),
+               names_to = "feature",
+               values_to = "pvalue")
+```
+
+Then we can write a function to plot, where we will iterate across `feature_of_interest`. Here, `feature_of_interest` is just the name I've assigned here, but you could easily call it `x` or `i` or whatever.
 
 ```{r}
 # write a function to make your plots across the features of interest
 manhattan_plot <- function(feature_of_interest){
-gwas_top50_wide %>% # our df with only the top 50
-  ggplot(aes(x = Index, color = Linkage_Group)) +
-  geom_point(aes_string(y =  as.name(feature_of_interest))) + # note aes_string, and as.name(feature_of_interest)
+  gwas_top50_long %>% # our df with only the top 50, but long
+  filter(feature == feature_of_interest) %>% # pick the feature_of_interest only
+  ggplot(aes(x = Index, y = pvalue, color = Linkage_Group)) +
+  geom_point() + 
   geom_hline(yintercept = bonferroni_pval, color = "grey", linetype = "dashed") +
   scale_x_continuous(expand = c(0,0),
                      breaks = (set_axis$center + set_axis$min), 
                      labels = set_axis$Linkage_Group) +
   scale_color_manual(values = rep(c("black", "gray"),17)) +
   labs(x = "Chromosome",
-       y = expression("-log"[10]* "P-Value"),
+       y = expression("-log"[10]*"P-Value"),
        title = glue("{feature_of_interest}")) + # here we glue the feature name in the title
   theme_classic() +
   theme(legend.position = "none",
@@ -435,32 +437,43 @@ gwas_top50_wide %>% # our df with only the top 50
   }
 ```
 
+We are going to iterate over the names `features_to_plot`. I'm creating a vector of the names of the features we want to iterate over.
+```{r}
+features_to_plot <- unique(gwas_top50_long$feature)
+```
+
 ### Applying the function with lapply()
 
-Once we have our function written, we can use a function in the `apply()` family of functions (here, [`lapply()`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/lapply) which applies and creates a list). Here I'm just printing the first 10 plots in the list
+Once we have our function written, we can use a function in the `apply()` family of functions (here, [`lapply()`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/lapply) which applies and creates a list). Here I'm just printing the first 6 plots in the list.
 
 ```{r}
 # use lapply to run your function over the features of interest
 # if you don't want your plots to print, you should assign them to something
-my_plots <- lapply(names(gwas_top50_wide[,4:53]), # what to apply over
-       manhattan_plot) # what function to use
+my_plots <- lapply(X = features_to_plot, # what to iterate over
+                   FUN = manhattan_plot) # what function to use
 
-# print the first 10
-my_plots[1:10]
+# print the first 6
+my_plots[1:6]
 ```
 
+### Saving out plots
+But you can print them all, save particular ones using`ggsave()`, or do what we are going to do here, which is save each of them to a new folder, each as their own `.svg` because why use raster when you can vectorize.
 
-But you can print them all, save particular ones using`ggsave()`, write them all to a pdf, take each one and edit it more, or do anything else with them.
+First we will create a vector of what we want our file names to look like. Then we will save.
 ```{r save to pdf, eval = FALSE}
-pdf("top50_plots.pdf") # create a file name for the printed plots to go in
+# use str_c to combine two character vectors
+# here, features_to_plot and adding .svg so the file name 
+# includes the extension type
+# then set that as the names for my_plots
+names(my_plots) <- str_c(features_to_plot, ".svg")
 
-# for loop to print each plot
-for(i in 1:50) {
-    print(my_plots[[i]])
-}
-dev.off() # closes the plot above
+# use pwalk to "walk" across the different plots and save them
+pwalk(list(names(my_plots), my_plots), # what to iterate over and output
+      ggsave, # what the function is
+      path = "img/") # where they should go
 ```
 
+Now all of your plots are in your working directory. Remember, you need to add the directory `img` if you want to save with the code I'm using here.
 
 ## Useful resources
 
