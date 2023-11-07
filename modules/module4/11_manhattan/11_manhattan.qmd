@@ -437,6 +437,12 @@ manhattan_plot <- function(feature_of_interest){
   }
 ```
 
+Before trying to use our function on 50 features, let's try it out on one. We can provide our feature of interest as a string.
+```{r}
+manhattan_plot("X599.12186_2.10421")
+```
+
+
 We are going to iterate over the names `features_to_plot`. I'm creating a vector of the names of the features we want to iterate over.
 ```{r}
 features_to_plot <- unique(gwas_top50_long$feature)
