@@ -338,6 +338,7 @@ salary_cost_join %>%
        caption = "Asterisks indicates a significant difference using the Wilcoxon Rank Sun test")
 ```
 
+
 #### With geom_text()
 ```{r}
 salary_cost_join %>%
@@ -368,6 +369,56 @@ salary_cost_join %>%
   labs(x = "University type",
        y = "Mid Career Pay, in US Dollars",
        title = "Differences in average mid career pay across public \nand private US universities/colleges",
+       caption = "Asterisks indicates a significant difference using the Wilcoxon Rank Sun test")
+```
+
+##### And a faceted plot
+I learned how to use `geom_text()` and `geom_segment()` to add stats annotation on a faceted plot with the help of [this blog post](https://www.r-bloggers.com/2018/11/adding-different-annotation-to-each-facet-in-ggplot/). 
+First I create a dataframe that includes the coordinates of where the segments and text should go, and then I make the plot.
+
+```{r, out.width = "70%", fig.align = "center", echo = FALSE}
+knitr::include_graphics("img/annotation-info.png")
+```
+
+This [image](https://www.r-bloggers.com/2018/11/adding-different-annotation-to-each-facet-in-ggplot/) helps you to see what the different variables are.
+
+```{r}
+# create a dataframe that includes
+text_to_plot <- data.frame(
+  x1 = c(1, 1), x2 = c(2, 2), 
+  y1 = c(100000, 170000), y2 = c(120000, 190000), 
+  xstar = c(1.5, 1.5), ystar = c(130000, 200000),
+  label = c("*", "*"),
+  pay_stage = c("early_career_pay", "mid_career_pay")
+)
+
+salary_cost_join_tidy %>%
+  drop_na(type, pay_stage, pay) %>%
+  filter(type %in% c("Private", "Public")) %>%
+  ggplot(aes(x = type, y = pay, fill = pay_stage)) +
+  geom_boxplot(alpha = 0.5) +
+  scale_x_discrete(labels = c("Private", "Public")) +
+  scale_y_continuous(labels = dollar) +
+  scale_fill_manual(values = c("#fc8d62", "#8da0cb")) +
+  facet_wrap(vars(pay_stage),
+             labeller = labeller(pay_stage = pay_stage_labels)) +
+  geom_text(data = text_to_plot,
+            aes(x = xstar,  y = ystar, label = label), size = 8) +
+  geom_segment(data = text_to_plot, 
+               aes(x = x1, xend = x1, 
+                   y = y1, yend = y2), color = "black") +
+  geom_segment(data = text_to_plot,
+               aes(x = x2, xend = x2, 
+                   y = y1, yend = y2), color = "black") +
+  geom_segment(data = text_to_plot, 
+               aes(x = x1, xend = x2, 
+                   y = y2, yend = y2), color = "black") +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  ylim(c(0, 210000)) +
+  labs(x = "University Type",
+       y = "Yearly Pay, in US Dollars",
+       title = "Differences in early and mid career pay across public \nand private US universities/colleges",
        caption = "Asterisks indicates a significant difference using the Wilcoxon Rank Sun test")
 ```
 

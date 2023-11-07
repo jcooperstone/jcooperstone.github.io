@@ -37,7 +37,7 @@ Today we are going to continue to use some different real research data collecte
 
 We will be reading in [Table S16](https://nph-onlinelibrary-wiley-com.proxy.lib.ohio-state.edu/action/downloadSupplement?doi=10.1111%2Fnph.17693&file=nph17693-sup-0007-TableS16.csv) which includes the -log10 p-values for the GWAS conducted across all apples for all features found in the LC-MS negative ionization mode metabolomics dataset.
 
-The data is present in a .csv file, so we will use the function `read_csv()` from the tidyverse. We want to import Supplemental Table 16. You can indicate which sheet you want to import in the arguments to `read_excel()`.
+The data is present in a .csv file, so we will use the function `read_csv()` from the tidyverse. We want to import Supplemental Table 16. 
 
 This will take a second, its a big file.
 
@@ -119,9 +119,13 @@ At its core, a Manhattan plot is a scatter plot. The data we are working with ha
 
 We will start with the feature that represents chlorogenic acid, a caffeoyl-quinic acid you find in apples. The column we want is `X353.09194_2.23795`. The data is already present as the -log10 p-value for the relationship between allelic variation at that marker, and relative abundance of chlorogenic acid.
 
-```{r manhattan plot}
+```{r manhattan plot, message = FALSE, warning = FALSE}
+# rename X353.09194_2.23795 to chlorogenic_acid
+gwas <- gwas %>%
+  rename(chlorogenic_acid = `X353.09194_2.23795`)
+
 gwas %>%
-  ggplot(aes(x = Index, y = X353.09194_2.23795, color = Linkage_Group)) +
+  ggplot(aes(x = Index, y = chlorogenic_acid, color = Linkage_Group)) +
   geom_point()
 ```
 
@@ -133,7 +137,7 @@ See how color is plotted on a continuous scale? This is because `Linkage_Group` 
 gwas$Linkage_Group <- as.factor(gwas$Linkage_Group)
 
 gwas %>%
-  ggplot(aes(x = Index, y = X353.09194_2.23795, color = Linkage_Group)) +
+  ggplot(aes(x = Index, y = chlorogenic_acid, color = Linkage_Group)) +
   geom_point()
 ```
 
@@ -153,7 +157,7 @@ If we want to label the x-axis with breaks for each chromosome, we have to do so
 
 ```{r axis breaks by chr}
 gwas %>%
-  ggplot(aes(x = Index, y = X353.09194_2.23795, color = Linkage_Group)) +
+  ggplot(aes(x = Index, y = chlorogenic_acid, color = Linkage_Group)) +
   geom_point() +
   scale_x_continuous(breaks = (set_axis$center + set_axis$min), 
                      labels = set_axis$Linkage_Group) +
@@ -172,7 +176,7 @@ What you will see in a lot of papers is people simply alternate the colors of th
 
 ```{r alternate colors}
 gwas %>%
-  ggplot(aes(x = Index, y = X353.09194_2.23795, color = Linkage_Group)) +
+  ggplot(aes(x = Index, y = chlorogenic_acid, color = Linkage_Group)) +
   geom_point() +
   scale_x_continuous(breaks = (set_axis$center + set_axis$min), 
                      labels = set_axis$Linkage_Group) +
@@ -191,7 +195,7 @@ The gap between chromosome 1 and the y-axis of the plot sort of bothers me. Let'
 
 ```{r remove front gap}
 gwas %>%
-  ggplot(aes(x = Index, y = X353.09194_2.23795, color = Linkage_Group)) +
+  ggplot(aes(x = Index, y = chlorogenic_acid, color = Linkage_Group)) +
   geom_point() +
   scale_x_continuous(expand = c(0,0),
                      breaks = (set_axis$center + set_axis$min), 
@@ -212,7 +216,7 @@ gwas %>%
 bonferroni_pval <- -log10(0.05/nrow(gwas))
 
 gwas %>%
-  ggplot(aes(x = Index, y = X353.09194_2.23795, color = Linkage_Group)) +
+  ggplot(aes(x = Index, y = chlorogenic_acid, color = Linkage_Group)) +
   geom_point() +
   geom_hline(yintercept = bonferroni_pval, color = "grey", linetype = "dashed") +
   scale_x_continuous(expand = c(0,0),
@@ -232,14 +236,14 @@ gwas %>%
 ```{r}
 # select all SNPs with -log10 pvalue > bonferroni cutoff for chlorogenic acid
 chlorogenic_acid_sig <- gwas %>%
-  filter(X353.09194_2.23795 > bonferroni_pval) %>%
-  select(Index, Linkage_Group, Genetic_Distance, X353.09194_2.23795)
+  filter(chlorogenic_acid > bonferroni_pval) %>%
+  select(Index, Linkage_Group, Genetic_Distance, chlorogenic_acid)
 
 gwas %>%
-  ggplot(aes(x = Index, y = X353.09194_2.23795, color = Linkage_Group)) +
+  ggplot(aes(x = Index, y = chlorogenic_acid, color = Linkage_Group)) +
   geom_point() +
   geom_point(data = chlorogenic_acid_sig, 
-             aes(x = Index, y = X353.09194_2.23795), color = "red") +
+             aes(x = Index, y = chlorogenic_acid), color = "red") +
   geom_hline(yintercept = bonferroni_pval, color = "grey", linetype = "dashed") +
   scale_x_continuous(expand = c(0,0),
                      breaks = (set_axis$center + set_axis$min), 
@@ -259,15 +263,15 @@ We might be interested to know the marker that has the most significant associat
 
 ```{r}
 biggest_pval <- chlorogenic_acid_sig %>% 
-  filter(X353.09194_2.23795 == max(X353.09194_2.23795))
+  filter(chlorogenic_acid == max(chlorogenic_acid))
 
 gwas %>%
-  ggplot(aes(x = Index, y = X353.09194_2.23795, color = Linkage_Group)) +
+  ggplot(aes(x = Index, y = chlorogenic_acid, color = Linkage_Group)) +
   geom_point() +
   geom_point(data = chlorogenic_acid_sig, 
-             aes(x = Index, y = X353.09194_2.23795), color = "red") +
+             aes(x = Index, y = chlorogenic_acid), color = "red") +
   geom_label_repel(data = biggest_pval,
-                   aes(x = Index, y = X353.09194_2.23795, label = glue("Index: {Index}"))) +
+                   aes(x = Index, y = chlorogenic_acid, label = glue("Index: {Index}"))) +
   geom_hline(yintercept = bonferroni_pval, color = "grey", linetype = "dashed") +
   scale_x_continuous(expand = c(0,0),
                      breaks = (set_axis$center + set_axis$min), 
