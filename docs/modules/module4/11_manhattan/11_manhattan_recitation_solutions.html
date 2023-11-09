@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Daniel Quiroz">
+<meta name="author" content="Jessica Cooperstone">
 
-<title>💻🧰📊🥳 - Interactive plots with plotly and ggplotly recitation</title>
+<title>💻🧰📊🥳 - Manhattan Plots Recitation Solutions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -67,7 +101,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed fullcontent">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -323,7 +357,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../modules/module4/10_pca/10_pca_recitation.html">Module 4 - Putting it together</a></li><li class="breadcrumb-item"><a href="../../../modules/module4/12_interactive-plots/12_interactive-plots_recitation.html">Week 12 - Interactive plots</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="https://github.com/jcooperstone/rdataviz/raw/main/rmds/03_Rmd_recitation_solutions.Rmd">Recitation solutions</a></li><li class="breadcrumb-item"><a href="../../../modules/module4/11_manhattan/11_manhattan_recitation_solutions.html">Week 11 - Manhattan plots solutions</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -338,7 +372,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Module 2 - Coding fundamentals</span></a>
+ <span class="menu-text">Module assignment solutions</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -346,26 +380,14 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../modules/module2/03_rmarkdown/03_Rmd_recitation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 3 - R Markdown</span></a>
+  <a href="../../../assignments/modules/module2/module_2_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 2 solutions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../modules/module2/04_wrangling/04_wrangling_recitation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 4 - Wrangling</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../modules/module2/05_ggplot101/05_ggplot101_recitation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 5 - ggplot101</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../modules/module2/06_ggplot102/06_ggplot102_recitation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 6 - ggplot102</span></a>
+  <a href="../../../assignments/modules/module3/module_3_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 3 solutions</span></a>
   </div>
 </li>
       </ul>
@@ -373,7 +395,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Module 3 - Data exploration</span></a>
+ <span class="menu-text">Recitation solutions</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -381,55 +403,56 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../modules/module3/07_distributions/07_distributions_recitation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 7 - Data distributions</span></a>
+  <a href="https://github.com/jcooperstone/rdataviz/raw/main/rmds/03_Rmd_recitation_solutions.Rmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 3 - R Markdown solutions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../modules/module3/08_correlations/08_correlations_recitation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 8 - Correlations</span></a>
+  <a href="../../../modules/module2/04_wrangling/04_wrangling_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 4 - Wrangling solutions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../modules/module3/09_add-stats/09_add-stats_recitation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 9 - Adding statistics</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Module 4 - Putting it together</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../modules/module4/10_pca/10_pca_recitation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 10 - Principal components analysis</span></a>
+  <a href="../../../modules/module2/05_ggplot101/05_ggplot101_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 5 - ggplot101 solutions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../modules/module4/11_manhattan/11_manhattan_recitation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 11 - Manhattan plots</span></a>
+  <a href="../../../modules/module2/06_ggplot102/06_ggplot102_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 6 - ggplot102 solutions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../modules/module4/12_interactive-plots/12_interactive-plots_recitation.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Week 12 - Interactive plots</span></a>
+  <a href="../../../modules/module3/07_distributions/07_distributions_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 7 - Data distributions solutions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../modules/module4/13_leftovers/13_leftovers_recitation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 13 - Leftovers</span></a>
+  <a href="../../../modules/module3/08_correlations/08_correlations_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 8 - Correlations solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module3/09_add-stats/09_add-stats_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 9 - Adding statistics solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module4/10_pca/10_pca_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 10 - Principal components analysis solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module4/11_manhattan/11_manhattan_recitation_solutions.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Week 11 - Manhattan plots solutions</span></a>
   </div>
 </li>
       </ul>
@@ -439,14 +462,29 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#investigate-your-data." id="toc-investigate-your-data." class="nav-link" data-scroll-target="#investigate-your-data.">Investigate your data.</a>
+  <ul>
+  <li><a href="#what-are-your-columns" id="toc-what-are-your-columns" class="nav-link" data-scroll-target="#what-are-your-columns">What are your columns?</a></li>
+  <li><a href="#how-many-markers-are-there" id="toc-how-many-markers-are-there" class="nav-link" data-scroll-target="#how-many-markers-are-there">How many markers are there?</a></li>
+  <li><a href="#how-are-the-markers-distributed-across-the-chromosomes" id="toc-how-are-the-markers-distributed-across-the-chromosomes" class="nav-link" data-scroll-target="#how-are-the-markers-distributed-across-the-chromosomes">How are the markers distributed across the chromosomes?</a></li>
+  </ul></li>
+  <li><a href="#make-a-manhattan-plot." id="toc-make-a-manhattan-plot." class="nav-link" data-scroll-target="#make-a-manhattan-plot.">Make a Manhattan plot.</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Interactive plots with plotly and ggplotly recitation</h1>
-<p class="subtitle lead">Week 12</p>
+<h1 class="title">Manhattan Plots Recitation Solutions</h1>
+<p class="subtitle lead">Week 11</p>
 </div>
 
 
@@ -456,7 +494,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Daniel Quiroz </p>
+             <p>Jessica Cooperstone </p>
           </div>
   </div>
     
@@ -467,58 +505,153 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="intoduction" class="level1">
-<h1>Intoduction</h1>
-<p>Today we are going to work with microbiome data. In this recitation we are going to provide microbiome data as the result of the shotgun sequencing of the pig gut microbiome.</p>
-<ul>
-<li>Pig microbiome study: <a href="https://journals.asm.org/doi/10.1128/spectrum.02506-22">paper</a>, <a href="https://buckeyemailosu-my.sharepoint.com/:x:/g/personal/cooperstone_1_osu_edu/EY4vRHdMuKpOiuy-itag7ocB63AB3ukhjc0Y5jGRovfkvg?e=RnMz8e">data</a>.</li>
-</ul>
-</section>
-<section id="pig-gut-microbiome-data" class="level1">
-<h1>Pig gut microbiome data</h1>
-<p>The goal of this recitation is to replicate the following plot, which expresses the relationship between the Bacteroidetes and Firmicutes while the rest of the Phyla levels were assigned to <em>others</em>.</p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>We are going to practice making Manhattan plots today.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># for everything</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel) <span class="co"># for repelling labels</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qqman) <span class="co"># for gwas data</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>gwasResults <span class="ot">&lt;-</span> qqman<span class="sc">::</span>gwasResults</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="investigate-your-data." class="level2">
+<h2 class="anchored" data-anchor-id="investigate-your-data.">Investigate your data.</h2>
+<section id="what-are-your-columns" class="level3">
+<h3 class="anchored" data-anchor-id="what-are-your-columns">What are your columns?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(gwasResults)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 16,470
+Columns: 4
+$ SNP &lt;chr&gt; "rs1", "rs2", "rs3", "rs4", "rs5", "rs6", "rs7", "rs8", "rs9", "rs…
+$ CHR &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+$ BP  &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,…
+$ P   &lt;dbl&gt; 0.91480604, 0.93707541, 0.28613953, 0.83044763, 0.64174552, 0.5190…</code></pre>
+</div>
+</div>
+</section>
+<section id="how-many-markers-are-there" class="level3">
+<h3 class="anchored" data-anchor-id="how-many-markers-are-there">How many markers are there?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dimensions of dataframe</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(gwasResults)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 16470     4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># how many unique SNP</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(gwasResults<span class="sc">$</span>SNP))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 16470</code></pre>
+</div>
+</div>
+</section>
+<section id="how-are-the-markers-distributed-across-the-chromosomes" class="level3">
+<h3 class="anchored" data-anchor-id="how-are-the-markers-distributed-across-the-chromosomes">How are the markers distributed across the chromosomes?</h3>
+<p>The function <code>summarize()</code> from <code>dplyr</code> is sometimes masked by another function. If you have find you are getting an error when you call <code>summarize()</code> that says something like “argument”by” is missing, with no default” then specify explicitly that you want to use <code>dplyr::summarize()</code>. You could also use the British spelling <code>summarise()</code> and that also works. Here’s a <a href="https://stackoverflow.com/questions/33807624/understanding-ddply-error-message-argument-by-is-missing-with-no-default">stack overflow post</a> where you can learn more.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gwasResults <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(CHR) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">min_bp =</span> <span class="fu">min</span>(BP),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">max_bp =</span> <span class="fu">max</span>(BP),</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">number_of_markers =</span> <span class="fu">length</span>(SNP))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 22 × 4
+     CHR min_bp max_bp number_of_markers
+   &lt;int&gt;  &lt;int&gt;  &lt;int&gt;             &lt;int&gt;
+ 1     1      1   1500              1500
+ 2     2      1   1191              1191
+ 3     3      1   1040              1040
+ 4     4      1    945               945
+ 5     5      1    877               877
+ 6     6      1    825               825
+ 7     7      1    784               784
+ 8     8      1    750               750
+ 9     9      1    721               721
+10    10      1    696               696
+# ℹ 12 more rows</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="make-a-manhattan-plot." class="level2">
+<h2 class="anchored" data-anchor-id="make-a-manhattan-plot.">Make a Manhattan plot.</h2>
+<p>Color by chromosome, make sure the x-axis breaks are appropriate, be sure your y-axis is -log10 pvalue. Label the top 3 most significant points with their SNP number.</p>
+<p>Create new column called NegLog10P which is the negative log10 pvalue.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gwasResults_neglog10 <span class="ot">&lt;-</span> gwasResults <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">NegLog10P =</span> <span class="sc">-</span><span class="fu">log10</span>(P))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Create a new variable called SNP_number so we can plot this on the x-axis.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>gwasResults_neglog10 <span class="ot">&lt;-</span> gwasResults_neglog10 <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">SNP_number =</span> <span class="fu">parse_number</span>(SNP))</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(gwasResults_neglog10<span class="sc">$</span>SNP_number)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]     1 16470</code></pre>
+</div>
+</div>
+<p>Set axis for plotting.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(set_axis <span class="ot">&lt;-</span> gwasResults_neglog10 <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(CHR) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">min =</span> <span class="fu">min</span>(SNP_number),</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">max =</span> <span class="fu">max</span>(SNP_number),</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">center =</span> (max <span class="sc">-</span> min)<span class="sc">/</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 22 × 4
+     CHR   min   max center
+   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+ 1     1     1  1500   750.
+ 2     2  1501  2691   595 
+ 3     3  2692  3731   520.
+ 4     4  3732  4676   472 
+ 5     5  4677  5553   438 
+ 6     6  5554  6378   412 
+ 7     7  6379  7162   392.
+ 8     8  7163  7912   374.
+ 9     9  7913  8633   360 
+10    10  8634  9329   348.
+# ℹ 12 more rows</code></pre>
+</div>
+</div>
+<p>Set what the Bonferroni -log10 pvalue needs to be for significance.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>bonferroni_pval <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log10</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="fu">nrow</span>(gwasResults_neglog10))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Indicate which are the significant points in the plot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>significant <span class="ot">&lt;-</span> gwasResults_neglog10 <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(NegLog10P <span class="sc">&gt;</span> bonferroni_pval) <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>NegLog10P) <span class="sc">%&gt;%</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) <span class="co"># take the first 3 which works bc we arranged descending</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Plot</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>gwasResults_neglog10 <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SNP_number, <span class="at">y =</span> NegLog10P, <span class="at">color =</span> <span class="fu">as.factor</span>(CHR))) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">data =</span> significant,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">aes</span>(<span class="at">x =</span> SNP_number, <span class="at">y =</span> NegLog10P, <span class="at">label =</span> SNP)) <span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> (set_axis<span class="sc">$</span>center <span class="sc">+</span> set_axis<span class="sc">$</span>min), </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> set_axis<span class="sc">$</span>CHR) <span class="sc">+</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"darkgray"</span>), <span class="dv">17</span>)) <span class="sc">+</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> bonferroni_pval, <span class="at">color =</span> <span class="st">"grey"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span> <span class="co"># legend not really necessary</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Chromosome"</span>,</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(<span class="st">"-log"</span>[<span class="dv">10</span>]<span class="sc">*</span><span class="st">"P-Value"</span>),</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"I actually don't know what trait this GWAS is for"</span>,</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Points above the dotted line are significant after a Bonferroni multiple testing correction"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="img/updated_stacked_barplot.jpeg" class="img-fluid" alt="Bacteroidetes and Firmicutes abundance in pigs" width="1050"></p>
+<p><img src="11_manhattan_recitation_solutions_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<section id="how-many-rows-and-columns-do-the-data-have" class="level2">
-<h2 class="anchored" data-anchor-id="how-many-rows-and-columns-do-the-data-have">How many rows and columns do the data have?</h2>
-</section>
-<section id="how-many-phyla-do-the-data-contains-and-how-many-columns-represents-metadata-of-the-experiment" class="level2">
-<h2 class="anchored" data-anchor-id="how-many-phyla-do-the-data-contains-and-how-many-columns-represents-metadata-of-the-experiment">How many phyla do the data contains and how many columns represents metadata of the experiment?</h2>
-<section id="create-a-new-column-with-a-new-phyla-assignation" class="level3">
-<h3 class="anchored" data-anchor-id="create-a-new-column-with-a-new-phyla-assignation">Create a new column with a new phyla assignation</h3>
-<p>Keep the phyla when they are Firmicutes or Bacteroidetes, otherwise assign Phyla to “Other phyla”.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Need a hint? (Click to expand)
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Hint: You may need to pivot the data to evaluate the column names as observations</p>
-</div>
-</div>
-</div>
-</section>
-<section id="compute-the-cumulative-abundance-by-the-new-phyla-levels-that-you-created" class="level3">
-<h3 class="anchored" data-anchor-id="compute-the-cumulative-abundance-by-the-new-phyla-levels-that-you-created">Compute the cumulative abundance by the new Phyla levels that you created</h3>
-</section>
-<section id="create-the-bar-plot-in-ggplot" class="level3">
-<h3 class="anchored" data-anchor-id="create-the-bar-plot-in-ggplot">Create the bar plot in ggplot</h3>
-</section>
-<section id="create-the-plot-interactive" class="level3">
-<h3 class="anchored" data-anchor-id="create-the-plot-interactive">Create the plot interactive</h3>
 
 
-</section>
-</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->

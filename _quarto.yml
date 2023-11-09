@@ -201,8 +201,8 @@ website:
               text: Week 9 - Adding statistics solutions
             - href: modules/module4/10_pca/10_pca_recitation_solutions.qmd
               text: Week 10 - Principal components analysis solutions
-            # - href: modules/module4/11_manhattan/11_manhattan_recitation_solutions.qmd
-            #   text: Week 11 - Manhattan plots solutions 
+            - href: modules/module4/11_manhattan/11_manhattan_recitation_solutions.qmd
+              text: Week 11 - Manhattan plots solutions
             # - href: modules/module4/12_interactive-plots/12_interactive-plots_recitation_solutions.qmd
             #   text: Week 12 - Interactive plots solutions 
             # - href: modules/module4/13_leftovers/13_leftovers_recitation_solutions.qmd

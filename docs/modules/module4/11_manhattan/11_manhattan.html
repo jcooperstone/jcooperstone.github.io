@@ -338,6 +338,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../../../modules/module4/10_pca/10_pca_recitation_solutions.html" rel="" target="">
  <span class="dropdown-text">Week 10 - Principal components analysis solutions</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/11_manhattan/11_manhattan_recitation_solutions.html" rel="" target="">
+ <span class="dropdown-text">Week 11 - Manhattan plots solutions</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -827,7 +831,7 @@ dbl (4704): Index, Linkage_Group, Genetic_Distance, X885.2037_2.98177, X525....
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>gwas <span class="sc">%&gt;%</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Index, <span class="at">y =</span> chlorogenic_acid, <span class="at">color =</span> Linkage_Group)) <span class="sc">+</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="co"># remove gap between y-axis and chr1</span></span>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> (set_axis<span class="sc">$</span>center <span class="sc">+</span> set_axis<span class="sc">$</span>min), </span>
 <span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> set_axis<span class="sc">$</span>Linkage_Group) <span class="sc">+</span></span>
 <span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"grey52"</span>), <span class="dv">17</span>)) <span class="sc">+</span></span>

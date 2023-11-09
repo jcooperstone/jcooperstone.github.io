@@ -197,7 +197,7 @@ The gap between chromosome 1 and the y-axis of the plot sort of bothers me. Let'
 gwas %>%
   ggplot(aes(x = Index, y = chlorogenic_acid, color = Linkage_Group)) +
   geom_point() +
-  scale_x_continuous(expand = c(0,0),
+  scale_x_continuous(expand = c(0,0), # remove gap between y-axis and chr1
                      breaks = (set_axis$center + set_axis$min), 
                      labels = set_axis$Linkage_Group) +
   scale_color_manual(values = rep(c("black", "grey52"), 17)) +
