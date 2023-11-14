@@ -753,7 +753,7 @@
     "href": "modules/module4/12_interactive-plots/12_interactive-plots.html#installing-plotly",
     "title": "Interactive plots with plotly and ggplotly",
     "section": "Installing plotly",
-    "text": "Installing plotly\n\n# From CRAN\ninstall.packages(\"plotly\")\n\n# From github\ndevtools::install_github(\"ropensci/plotly\")"
+    "text": "Installing plotly\n\n# From CRAN\ninstall.packages(\"plotly\")"
   },
   {
     "objectID": "modules/module4/12_interactive-plots/12_interactive-plots.html#ggplotly",
@@ -781,35 +781,35 @@
     "href": "modules/module4/12_interactive-plots/12_interactive-plots.html#pca",
     "title": "Interactive plots with plotly and ggplotly",
     "section": "PCA",
-    "text": "PCA\n\n# Library here just to make emphasis \nlibrary(ggfortify)\n\nIn this case we are going to explore a new library ggfortify that accepts prcomp results and creates an automatic scores PCA plot.\nAfter you perform PCA analysis, you can use autorplot() to create a ggplot2 object for using in the ggplotly() function.\n\ndf &lt;- iris[1:4] # Extract numeric variables\n\npca_res &lt;- prcomp(df, scale. = TRUE) # Making PCA\n\np &lt;- autoplot(pca_res, data = iris, colour = 'Species') + # PCA autoplot\n  scale_color_d3() +\n  labs(title = \"Scores plot of iris data\")\n\nggplotly(p)"
+    "text": "PCA\n\n# Library here just to make emphasis \nlibrary(ggfortify)\n\nIn this case we are going to explore a new library ggfortify that accepts prcomp results and creates an automatic scores PCA plot.\nAfter you perform PCA analysis, you can use autorplot() to create a ggplot2 object for using in the ggplotly() function.\n\ndf &lt;- iris[1:4] # Extract numeric variables\n\npca_res &lt;- prcomp(df, scale = TRUE) # Run PCA\n\np &lt;- autoplot(pca_res, data = iris, colour = 'Species') + # PCA autoplot\n  scale_color_d3() +\n  labs(title = \"Scores plot of iris data\")\n\nggplotly(p)"
   },
   {
     "objectID": "modules/module4/12_interactive-plots/12_interactive-plots.html#boxplots",
     "href": "modules/module4/12_interactive-plots/12_interactive-plots.html#boxplots",
     "title": "Interactive plots with plotly and ggplotly",
     "section": "Boxplots",
-    "text": "Boxplots\nData used here is midwest from ggplot2 which contains demographic information from census data collected in the 2000 US census. The variable percollege includes what percentage of the respondents are college educated.\n\nboxplot &lt;- ggplot(midwest, aes(state, percollege, color = state) ) + \n  geom_boxplot() +\n  scale_color_d3() +\n  theme_bw() + \n  coord_flip() +\n  labs(title = \"Percentage of college educated respondents\")\n\nggplotly(boxplot)"
+    "text": "Boxplots\nData used here is midwest from ggplot2 which contains demographic information from census data collected in the 2000 US census. The variable percollege includes what percentage of the respondents are college educated.\n\nboxplot &lt;- ggplot(midwest, aes(x = state, y = percollege, color = state) ) + \n  geom_boxplot() +\n  scale_color_d3() +\n  theme_bw() + \n  coord_flip() +\n  labs(title = \"Percentage of college educated respondents\")\n\nggplotly(boxplot)"
   },
   {
     "objectID": "modules/module4/12_interactive-plots/12_interactive-plots.html#barplots",
     "href": "modules/module4/12_interactive-plots/12_interactive-plots.html#barplots",
     "title": "Interactive plots with plotly and ggplotly",
     "section": "Barplots",
-    "text": "Barplots\n\nstack_barplot &lt;- ggplot(mpg, aes(class))   + \n  geom_bar(aes(fill = drv)) + \n  scale_fill_d3() + \n  theme_bw() +\n  labs(title = \"Class of cars in the mpg datase\")\n\nggplotly(stack_barplot)"
+    "text": "Barplots\n\nstack_barplot &lt;- ggplot(mpg, aes(x = class))   + \n  geom_bar(aes(fill = drv)) + \n  scale_fill_d3() + \n  theme_bw() +\n  labs(title = \"Class of cars in the mpg datase\")\n\nggplotly(stack_barplot)"
   },
   {
     "objectID": "modules/module4/12_interactive-plots/12_interactive-plots.html#tooltip",
     "href": "modules/module4/12_interactive-plots/12_interactive-plots.html#tooltip",
     "title": "Interactive plots with plotly and ggplotly",
     "section": "Tooltip",
-    "text": "Tooltip\nTooltip is an argument that controls the text that is shown when you hover the mouse over data. By default, all aes mapping variables are shown. You can modify the order and the variables that are shown in the tooltip.\nIn the penguins data we have more variables that may want to include in the text shown in our plotly plot such as sex and island.\n\n# dt[seq(10),] subset the ten first row and then use glimpse to shorten the output\nglimpse(palmerpenguins::penguins[seq(10), ]) \n\nRows: 10\nColumns: 8\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…\n$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…\n\n\n\nggplotly(ggpenguins)\n\n\n\n\n\n\n“colour” is requiered and “color” is not supported in ggplotly()\n\n\nggplotly(ggpenguins,\n         tooltip = c(\"colour\") )"
+    "text": "Tooltip\nTooltip is an argument that controls the text that is shown when you hover the mouse over data. By default, all aes mapping variables are shown. You can modify the order and the variables that are shown in the tooltip.\nIn the penguins data we have more variables that may want to include in the text shown in our plotly plot such as sex and island.\n\n# dt[seq(10),] subset the ten first row and then use glimpse to shorten the output\nglimpse(palmerpenguins::penguins[seq(10), ]) \n\nRows: 10\nColumns: 8\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…\n$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…\n\n\n\nggplotly(ggpenguins)\n\n\n\n\n\n\n“colour” is required and “color” is not supported in ggplotly()\n\n\nggplotly(ggpenguins,\n         tooltip = \"colour\")"
   },
   {
     "objectID": "modules/module4/12_interactive-plots/12_interactive-plots.html#changing-hover-details",
     "href": "modules/module4/12_interactive-plots/12_interactive-plots.html#changing-hover-details",
     "title": "Interactive plots with plotly and ggplotly",
     "section": "Changing hover details",
-    "text": "Changing hover details\nYou might not like the default hover text aesthetics, and can change them! You can do this using style and layout and adding these functions using the pipe %&gt;%.\nCode taken from BioDash\n\n# setting fonts for the plot\nfont &lt;- list(\n  family = \"Arial\",\n  size = 15,\n  color = \"white\")\n\n# setting hover label specs\nlabel &lt;- list(\n  bgcolor = \"#3d1b40\",\n  bordercolor = \"transparent\",\n  font = font) # we can do this bc we already set font\n\n# amending our ggplotly call to include new fonts and hover label specs\nggplotly(ggpenguins, tooltip = \"colour\") %&gt;%\n  style(hoverlabel = label) %&gt;%\n  layout(font = font)"
+    "text": "Changing hover details\nYou might not like the default hover text aesthetics, and can change them! You can do this using style and layout and adding these functions using the pipe (|&gt; or %&gt;%).\nCode taken from BioDash\n\n# setting fonts for the plot\nfont &lt;- list(\n  family = \"Arial\",\n  size = 15,\n  color = \"white\")\n\n# setting hover label specs\nlabel &lt;- list(\n  bgcolor = \"#3d1b40\",\n  bordercolor = \"transparent\",\n  font = font) # we can do this bc we already set font\n\n# amending our ggplotly call to include new fonts and hover label specs\nggplotly(ggpenguins, tooltip = \"colour\") %&gt;%\n  style(hoverlabel = label) %&gt;%\n  layout(font = font)"
   },
   {
     "objectID": "modules/module4/12_interactive-plots/12_interactive-plots.html#helpful-resources",
@@ -1271,7 +1271,7 @@
     "href": "modules/module4/12_interactive-plots/12_interactive-plots_recitation.html",
     "title": "Interactive plots with plotly and ggplotly recitation",
     "section": "",
-    "text": "Today we are going to work with microbiome data. In this recitation we are going to provide microbiome data as the result of the shotgun sequencing of the pig gut microbiome.\n\nPig microbiome study: paper, data."
+    "text": "Today we are going to work with whole genome sequencing of the pig gut microbiome.\n\nPig microbiome study: paper, data."
   },
   {
     "objectID": "modules/module4/12_interactive-plots/12_interactive-plots_recitation.html#how-many-rows-and-columns-do-the-data-have",
@@ -1285,7 +1285,7 @@
     "href": "modules/module4/12_interactive-plots/12_interactive-plots_recitation.html#how-many-phyla-do-the-data-contains-and-how-many-columns-represents-metadata-of-the-experiment",
     "title": "Interactive plots with plotly and ggplotly recitation",
     "section": "How many phyla do the data contains and how many columns represents metadata of the experiment?",
-    "text": "How many phyla do the data contains and how many columns represents metadata of the experiment?\n\nCreate a new column with a new phyla assignation\nKeep the phyla when they are Firmicutes or Bacteroidetes, otherwise assign Phyla to “Other phyla”.\n\n\n\n\n\n\nNeed a hint? (Click to expand)\n\n\n\n\n\nHint: You may need to pivot the data to evaluate the column names as observations\n\n\n\n\n\nCompute the cumulative abundance by the new Phyla levels that you created\n\n\nCreate the bar plot in ggplot\n\n\nCreate the plot interactive"
+    "text": "How many phyla do the data contains and how many columns represents metadata of the experiment?\n\nCreate a new column with a new phyla assignation\nKeep the phyla when they are Firmicutes or Bacteroidetes, otherwise assign Phyla to “Other phyla”.\n\n\n\n\n\n\nNeed a hint? (Click to expand)\n\n\n\n\n\nHint: You may need to pivot the data to evaluate the column names as observations\n\n\n\n\n\nCompute the cumulative abundance by the new Phyla levels that you created\n\n\nCreate the bar plot in ggplot\n\n\nMake your plot interactive\n\nggplotly(your_awesome_plot)"
   },
   {
     "objectID": "modules/module4/11_manhattan/11_manhattan.html",

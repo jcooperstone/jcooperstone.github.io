@@ -7,9 +7,7 @@ subtitle: "Week 12"
 
 # Intoduction
 
-Today we are going to work with microbiome data. In this recitation we
-are going to provide microbiome data as the result of the shotgun sequencing
-of the pig gut microbiome.
+Today we are going to work with whole genome sequencing of the pig gut microbiome.
 
 -   Pig microbiome study: [paper](https://journals.asm.org/doi/10.1128/spectrum.02506-22),
     [data](https://buckeyemailosu-my.sharepoint.com/:x:/g/personal/cooperstone_1_osu_edu/EY4vRHdMuKpOiuy-itag7ocB63AB3ukhjc0Y5jGRovfkvg?e=RnMz8e).
@@ -17,8 +15,8 @@ of the pig gut microbiome.
 # Pig gut microbiome data
 
 The goal of this recitation is to replicate the following plot, which
-expresses the relationship between the Bacteroidetes and Firmicutes
-while the rest of the Phyla levels were assigned to *others*.
+shows the relative abundance of the phyla Bacteroidetes and Firmicutes
+to all the *others*.
 
 ```{r echo = FALSE, fig.alt='Bacteroidetes and Firmicutes abundance in pigs'}
 knitr::include_graphics("img/updated_stacked_barplot.jpeg")
@@ -44,8 +42,8 @@ Hint: You may need to pivot the data to evaluate the column names as observation
 
 ### Create the bar plot in ggplot
 
-### Create the plot interactive
+### Make your plot interactive
 
-```{r eval=FALSE, include=FALSE}
+```{r eval=FALSE}
 ggplotly(your_awesome_plot)
 ```

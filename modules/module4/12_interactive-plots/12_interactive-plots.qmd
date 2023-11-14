@@ -18,7 +18,7 @@ format:
 # What is plotly?
 
 [Plotly website:](https://plotly.com/r/getting-started/)
-"plotly is an R package for creating interactive web-based graphs via the
+"`plotly` is an R package for creating interactive web-based graphs via the
 open source JavaScript graphing library plotly.js."
 
 We are going to explore `plotly` as a `ggplot2` extension that will allow as
@@ -32,7 +32,7 @@ Logo retrieved from [Plotly website:](https://plotly.com/r/getting-started/)
 
 # Why use plotly?
 
-Plotly is one the most popular platforms to create interactive plots because it is 
+Plotly is one the most popular platforms to create interactive plots. It is 
 well maintained, clearly documented, very beautiful, and easily integrated into ggplot2.
 
 ## Installing `plotly`
@@ -40,9 +40,6 @@ well maintained, clearly documented, very beautiful, and easily integrated into 
 ```{r eval=FALSE, include=TRUE}
 # From CRAN
 install.packages("plotly")
-
-# From github
-devtools::install_github("ropensci/plotly")
 ```
 
 ## `ggplotly()`
@@ -82,7 +79,7 @@ Now, we are going to explore using plotly on ggplot objects using
 library(tidyverse)
 library(plotly)
 library(ggsci) # for color palettes
-
+library(htmlwidgets) # for saving interactive plots
 ```
 
 
@@ -132,7 +129,7 @@ object for using in the `ggplotly()` function.
 ```{r pca, fig.alt="Scores plot of iris data"}
 df <- iris[1:4] # Extract numeric variables
 
-pca_res <- prcomp(df, scale. = TRUE) # Making PCA
+pca_res <- prcomp(df, scale = TRUE) # Run PCA
 
 p <- autoplot(pca_res, data = iris, colour = 'Species') + # PCA autoplot
   scale_color_d3() +
@@ -149,7 +146,7 @@ ggplotly(p)
 Data used here is `midwest` from `ggplot2` which contains demographic information from census data collected in the 2000 US census. The variable `percollege` includes what percentage of the respondents are college educated.
 
 ```{r boxplot, fig.alt= "Percentage of college educated respondents"}
-boxplot <- ggplot(midwest, aes(state, percollege, color = state) ) + 
+boxplot <- ggplot(midwest, aes(x = state, y = percollege, color = state) ) + 
   geom_boxplot() +
   scale_color_d3() +
   theme_bw() + 
@@ -164,7 +161,7 @@ ggplotly(boxplot)
 
 
 ```{r barplot, fig.alt="Class of cars in the mpg dataset"}
-stack_barplot <- ggplot(mpg, aes(class))   + 
+stack_barplot <- ggplot(mpg, aes(x = class))   + 
   geom_bar(aes(fill = drv)) + 
   scale_fill_d3() + 
   theme_bw() +
@@ -195,11 +192,11 @@ ggplotly(ggpenguins)
 ```
 
 
-> "colour" is requiered and "color" is not supported in ggplotly()
+> "colour" is required and "color" is not supported in ggplotly()
 
 ```{r}
 ggplotly(ggpenguins,
-         tooltip = c("colour") )
+         tooltip = "colour")
 ```
 
 
@@ -207,7 +204,7 @@ ggplotly(ggpenguins,
 
 You might not like the default hover text aesthetics, and can change them!
 You can do this using style and layout and adding these
-functions using the pipe `%>%`.
+functions using the pipe (`|>` or `%>%`).
 
 Code taken from [BioDash](https://biodash.github.io/codeclub/s02e12_plotly/)
 
@@ -250,8 +247,6 @@ install.packages("htmlwidgets")
 
 
 ```{r eval=FALSE, include=TRUE}
-library(htmlwidgets)
-
 # assign ggplotly plot to an object
 ggplotly_to_save <- ggplotly(ggpenguins, tooltip = "colour") %>%
   style(hoverlabel = label) %>%

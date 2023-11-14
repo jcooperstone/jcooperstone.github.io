@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -469,14 +503,14 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="intoduction" class="level1">
 <h1>Intoduction</h1>
-<p>Today we are going to work with microbiome data. In this recitation we are going to provide microbiome data as the result of the shotgun sequencing of the pig gut microbiome.</p>
+<p>Today we are going to work with whole genome sequencing of the pig gut microbiome.</p>
 <ul>
 <li>Pig microbiome study: <a href="https://journals.asm.org/doi/10.1128/spectrum.02506-22">paper</a>, <a href="https://buckeyemailosu-my.sharepoint.com/:x:/g/personal/cooperstone_1_osu_edu/EY4vRHdMuKpOiuy-itag7ocB63AB3ukhjc0Y5jGRovfkvg?e=RnMz8e">data</a>.</li>
 </ul>
 </section>
 <section id="pig-gut-microbiome-data" class="level1">
 <h1>Pig gut microbiome data</h1>
-<p>The goal of this recitation is to replicate the following plot, which expresses the relationship between the Bacteroidetes and Firmicutes while the rest of the Phyla levels were assigned to <em>others</em>.</p>
+<p>The goal of this recitation is to replicate the following plot, which shows the relative abundance of the phyla Bacteroidetes and Firmicutes to all the <em>others</em>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="img/updated_stacked_barplot.jpeg" class="img-fluid" alt="Bacteroidetes and Firmicutes abundance in pigs" width="1050"></p>
@@ -513,8 +547,11 @@ Need a hint? (Click to expand)
 <section id="create-the-bar-plot-in-ggplot" class="level3">
 <h3 class="anchored" data-anchor-id="create-the-bar-plot-in-ggplot">Create the bar plot in ggplot</h3>
 </section>
-<section id="create-the-plot-interactive" class="level3">
-<h3 class="anchored" data-anchor-id="create-the-plot-interactive">Create the plot interactive</h3>
+<section id="make-your-plot-interactive" class="level3">
+<h3 class="anchored" data-anchor-id="make-your-plot-interactive">Make your plot interactive</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(your_awesome_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
 </section>
