@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Daniel Quiroz">
+
+<title>💻🧰📊🥳 - Interactive plots with plotly recitation solutions</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../img/code-slash.png" rel="icon" type="image/png">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../../../site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<script src="../../../site_libs/plotly-binding-4.10.2/plotly.js"></script>
+<script src="../../../site_libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="../../../site_libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="../../../site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="../../../site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="../../../site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="../../../site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../favicon.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">💻🧰📊🥳</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-syllabus" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Syllabus</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-syllabus">    
+        <li>
+    <a class="dropdown-item" href="../../../syllabus/syllabus.html" rel="" target="">
+ <span class="dropdown-text">Syllabus</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-course-content" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Course content</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-course-content">    
+        <li class="dropdown-header">Module 1 - Principles</li>
+        <li>
+    <a class="dropdown-item" href="../../../modules/module1/01_principles/01_principles.html" rel="" target="">
+ <span class="dropdown-text">Week 1 - Principles</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module1/02_good-and-bad/02_goodbad.html" rel="" target="">
+ <span class="dropdown-text">Week 2 - Good and bad visualizations</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Module 2 - Coding fundamentals</li>
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/03_rmarkdown/03_Rmd.html" rel="" target="">
+ <span class="dropdown-text">Week 3 - R Markdown</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/04_wrangling/04_wrangling.html" rel="" target="">
+ <span class="dropdown-text">Week 4 - Wrangling</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/05_ggplot101/05_ggplot101.html" rel="" target="">
+ <span class="dropdown-text">Week 5 - ggplot101</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/06_ggplot102/06_ggplot102.html" rel="" target="">
+ <span class="dropdown-text">Week 6 - ggplot102</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Module 3 - Data exploration</li>
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/07_distributions/07_distributions.html" rel="" target="">
+ <span class="dropdown-text">Week 7 - Data distributions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/08_correlations/08_correlations.html" rel="" target="">
+ <span class="dropdown-text">Week 8 - Correlations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/09_add-stats/09_add-stats.html" rel="" target="">
+ <span class="dropdown-text">Week 9 - Adding statistics</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Module 4 - Putting it together</li>
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/10_pca/10_pca.html" rel="" target="">
+ <span class="dropdown-text">Week 10 - Principal components analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/11_manhattan/11_manhattan.html" rel="" target="">
+ <span class="dropdown-text">Week 11 - Manhattan plots</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/12_interactive-plots/12_interactive-plots.html" rel="" target="">
+ <span class="dropdown-text">Week 12 - Interactive plots</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/13_leftovers/13_leftovers.html" rel="" target="">
+ <span class="dropdown-text">Week 13 - Leftovers</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-recitations" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Recitations</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-recitations">    
+        <li class="dropdown-header">Module 2 - Coding fundamentals</li>
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/03_rmarkdown/03_Rmd_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 3 - R Markdown</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/04_wrangling/04_wrangling_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 4 - Wrangling</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/05_ggplot101/05_ggplot101_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 5 - ggplot101</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/06_ggplot102/06_ggplot102_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 6 - ggplot102</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Module 3 - Data exploration</li>
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/07_distributions/07_distributions_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 7 - Data distributions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/08_correlations/08_correlations_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 8 - Correlations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/09_add-stats/09_add-stats_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 9 - Adding statistics</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Module 4 - Putting it together</li>
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/10_pca/10_pca_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 10 - Principal components analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/11_manhattan/11_manhattan_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 11 - Manhattan plots</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/12_interactive-plots/12_interactive-plots_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 12 - Interactive plots</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/13_leftovers/13_leftovers_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 13 - Leftovers</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-assignments" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Assignments</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-assignments">    
+        <li class="dropdown-header">Module assignments</li>
+        <li>
+    <a class="dropdown-item" href="../../../assignments/modules/module1/module_1_assignment.html" rel="" target="">
+ <span class="dropdown-text">Module 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../assignments/modules/module2/module_2_assignment.html" rel="" target="">
+ <span class="dropdown-text">Module 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../assignments/modules/module3/module_3_assignment.html" rel="" target="">
+ <span class="dropdown-text">Module 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../assignments/modules/module4/module_4_assignment.html" rel="" target="">
+ <span class="dropdown-text">Module 4</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Reflections</li>
+        <li>
+    <a class="dropdown-item" href="../../../assignments/reflections.html" rel="" target="">
+ <span class="dropdown-text">Reflection instructions</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Capstone assignment</li>
+        <li>
+    <a class="dropdown-item" href="../../../assignments/capstone.html" rel="" target="">
+ <span class="dropdown-text">Capstone instructions</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-solutions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Solutions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-solutions">    
+        <li class="dropdown-header">Module assignment solutions</li>
+        <li>
+    <a class="dropdown-item" href="../../../assignments/modules/module2/module_2_solutions.html" rel="" target="">
+ <span class="dropdown-text">Module 2 solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../assignments/modules/module3/module_3_solutions.html" rel="" target="">
+ <span class="dropdown-text">Module 3 solutions</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Recitation solutions</li>
+        <li>
+    <a class="dropdown-item" href="https://github.com/jcooperstone/rdataviz/raw/main/rmds/03_Rmd_recitation_solutions.Rmd" rel="" target="">
+ <span class="dropdown-text">Week 3 - R Markdown solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/04_wrangling/04_wrangling_recitation_solutions.html" rel="" target="">
+ <span class="dropdown-text">Week 4 - Wrangling solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/05_ggplot101/05_ggplot101_recitation_solutions.html" rel="" target="">
+ <span class="dropdown-text">Week 5 - ggplot101 solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/06_ggplot102/06_ggplot102_recitation_solutions.html" rel="" target="">
+ <span class="dropdown-text">Week 6 - ggplot102 solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/07_distributions/07_distributions_recitation_solutions.html" rel="" target="">
+ <span class="dropdown-text">Week 7 - Data distributions solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/08_correlations/08_correlations_recitation_solutions.html" rel="" target="">
+ <span class="dropdown-text">Week 8 - Correlations solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/09_add-stats/09_add-stats_recitation_solutions.html" rel="" target="">
+ <span class="dropdown-text">Week 9 - Adding statistics solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/10_pca/10_pca_recitation_solutions.html" rel="" target="">
+ <span class="dropdown-text">Week 10 - Principal components analysis solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/11_manhattan/11_manhattan_recitation_solutions.html" rel="" target="">
+ <span class="dropdown-text">Week 11 - Manhattan plots solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/12_interactive-plots/12_interactive-plots_recitation_solutions.html" rel="" target="">
+ <span class="dropdown-text">Week 12 - Interactive plots solutions</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+    <a href="https://github.com/jcooperstone/rdataviz" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="https://github.com/jcooperstone/rdataviz/raw/main/rmds/03_Rmd_recitation_solutions.Rmd">Recitation solutions</a></li><li class="breadcrumb-item"><a href="../../../modules/module4/12_interactive-plots/12_interactive-plots_recitation_solutions.html">Week 12 - Interactive plots solutions</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Module assignment solutions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../assignments/modules/module2/module_2_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 2 solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../assignments/modules/module3/module_3_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 3 solutions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Recitation solutions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://github.com/jcooperstone/rdataviz/raw/main/rmds/03_Rmd_recitation_solutions.Rmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 3 - R Markdown solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module2/04_wrangling/04_wrangling_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 4 - Wrangling solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module2/05_ggplot101/05_ggplot101_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 5 - ggplot101 solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module2/06_ggplot102/06_ggplot102_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 6 - ggplot102 solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module3/07_distributions/07_distributions_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 7 - Data distributions solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module3/08_correlations/08_correlations_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 8 - Correlations solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module3/09_add-stats/09_add-stats_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 9 - Adding statistics solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module4/10_pca/10_pca_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 10 - Principal components analysis solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module4/11_manhattan/11_manhattan_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 11 - Manhattan plots solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module4/12_interactive-plots/12_interactive-plots_recitation_solutions.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Week 12 - Interactive plots solutions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#pig-gut-microbiome-data" id="toc-pig-gut-microbiome-data" class="nav-link" data-scroll-target="#pig-gut-microbiome-data">Pig gut microbiome data</a>
+  <ul>
+  <li><a href="#how-many-rows-and-columns-does-the-data-have" id="toc-how-many-rows-and-columns-does-the-data-have" class="nav-link" data-scroll-target="#how-many-rows-and-columns-does-the-data-have">How many rows and columns does the data have?</a></li>
+  <li><a href="#how-many-phyla-does-the-data-contains-and-how-many-columns-represents-metadata-of-the-experiment" id="toc-how-many-phyla-does-the-data-contains-and-how-many-columns-represents-metadata-of-the-experiment" class="nav-link" data-scroll-target="#how-many-phyla-does-the-data-contains-and-how-many-columns-represents-metadata-of-the-experiment">How many phyla does the data contains and how many columns represents metadata of the experiment?</a></li>
+  <li><a href="#computing-the-cumulative-abundance-for-other-phylum" id="toc-computing-the-cumulative-abundance-for-other-phylum" class="nav-link" data-scroll-target="#computing-the-cumulative-abundance-for-other-phylum">Computing the cumulative abundance for other phylum</a>
+  <ul class="collapse">
+  <li><a href="#create-a-new-column-with-a-new-phyla-assignation" id="toc-create-a-new-column-with-a-new-phyla-assignation" class="nav-link" data-scroll-target="#create-a-new-column-with-a-new-phyla-assignation">Create a new column with a new phyla assignation</a></li>
+  <li><a href="#compute-the-cumulative-abundance-by-the-new-phyla-levels-that-you-created" id="toc-compute-the-cumulative-abundance-by-the-new-phyla-levels-that-you-created" class="nav-link" data-scroll-target="#compute-the-cumulative-abundance-by-the-new-phyla-levels-that-you-created">Compute the cumulative abundance by the new Phyla levels that you created</a></li>
+  <li><a href="#create-the-barplot-in-ggplot" id="toc-create-the-barplot-in-ggplot" class="nav-link" data-scroll-target="#create-the-barplot-in-ggplot">Create the barplot in ggplot</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#make-the-plot-interactive" id="toc-make-the-plot-interactive" class="nav-link" data-scroll-target="#make-the-plot-interactive">Make the plot interactive</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Interactive plots with plotly recitation solutions</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Daniel Quiroz </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Today we are going to work with microbiome data. In this recitation we are going to provide microbiome data as the result of the shotgun sequencing of the pig gut microbiome.</p>
+<ul>
+<li>Pig microbiome study: <a href="https://journals.asm.org/doi/10.1128/spectrum.02506-22">paper</a>, <a href="https://buckeyemailosu-my.sharepoint.com/:x:/g/personal/cooperstone_1_osu_edu/EY4vRHdMuKpOiuy-itag7ocB63AB3ukhjc0Y5jGRovfkvg?e=RnMz8e">data</a>.</li>
+</ul>
+</section>
+<section id="pig-gut-microbiome-data" class="level1">
+<h1>Pig gut microbiome data</h1>
+<p>The goal of this recitation is to replicate the following plot, which expresses the relationship between the Bacteroidetes and Firmicutes while the rest of the Phyla levels were assigned to <em>others</em>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/updated_stacked_barplot.jpeg" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="how-many-rows-and-columns-does-the-data-have" class="level2">
+<h2 class="anchored" data-anchor-id="how-many-rows-and-columns-does-the-data-have">How many rows and columns does the data have?</h2>
+<div class="cell" data-paged.print="false">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>pig_micro <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/Phyla_RelAbund_Final_Filtered_WithMetadata.csv"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(pig_micro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 60 50</code></pre>
+</div>
+</div>
+<p>The data contains 60 rows and columns</p>
+</section>
+<section id="how-many-phyla-does-the-data-contains-and-how-many-columns-represents-metadata-of-the-experiment" class="level2">
+<h2 class="anchored" data-anchor-id="how-many-phyla-does-the-data-contains-and-how-many-columns-represents-metadata-of-the-experiment">How many phyla does the data contains and how many columns represents metadata of the experiment?</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(pig_micro[<span class="fu">seq</span>(<span class="dv">3</span>), <span class="fu">seq</span>(<span class="dv">8</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 3
+Columns: 8
+$ Sample_Name        &lt;chr&gt; "ShotgunWGS-ControlPig6GutMicrobiome-Day14", "Shotg…
+$ Pig                &lt;dbl&gt; 6, 8, 3
+$ Diet               &lt;chr&gt; "Control", "Control", "Control"
+$ Time_Point         &lt;chr&gt; "Day 14", "Day 0", "Day 14"
+$ Diet_By_Time_Point &lt;chr&gt; "Control Day 14", "Control Day 0", "Control Day 14"
+$ Acidobacteria      &lt;dbl&gt; 0.000741, 0.000885, 0.000690
+$ Actinobacteria     &lt;dbl&gt; 0.04813358, 0.06598073, 0.03267269
+$ Apicomplexa        &lt;dbl&gt; 5.95e-05, 9.14e-05, 4.92e-05</code></pre>
+</div>
+</div>
+<p>The first 5 rows represents metadata from <em>Sample_Name</em> to <em>Diet_By_Time_Point</em> while the columns from <em>Acidbacteria</em> to the last columns <em>Unclassified derived from sequence</em>.</p>
+</section>
+<section id="computing-the-cumulative-abundance-for-other-phylum" class="level2">
+<h2 class="anchored" data-anchor-id="computing-the-cumulative-abundance-for-other-phylum">Computing the cumulative abundance for other phylum</h2>
+<section id="create-a-new-column-with-a-new-phyla-assignation" class="level3">
+<h3 class="anchored" data-anchor-id="create-a-new-column-with-a-new-phyla-assignation">Create a new column with a new phyla assignation</h3>
+<p>Keep the phyla level when they are Firmicutes or Bacteroidetes, otherwise assign Phyla to “Other level”.</p>
+<blockquote class="blockquote">
+<p>Hint: You may need to pivot the data to evaluate the column names as observations</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pig_micro <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> Acidobacteria<span class="sc">:</span><span class="st">`</span><span class="at">unclassified (derived from other sequences)</span><span class="st">`</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_to =</span> <span class="st">"Abundance"</span>, <span class="at">names_to =</span> <span class="st">"Phyla"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Phyla =</span> <span class="fu">case_when</span>(Phyla <span class="sc">==</span> <span class="st">"Bacteroidetes"</span> <span class="sc">~</span> Phyla,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                           Phyla <span class="sc">==</span> <span class="st">"Firmicutes"</span> <span class="sc">~</span> Phyla,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                           <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Other phyla"</span>) ) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 7
+  Sample_Name            Pig Diet  Time_Point Diet_By_Time_Point Phyla Abundance
+  &lt;chr&gt;                &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;              &lt;chr&gt;     &lt;dbl&gt;
+1 ShotgunWGS-ControlP…     6 Cont… Day 14     Control Day 14     Othe… 0.000741 
+2 ShotgunWGS-ControlP…     6 Cont… Day 14     Control Day 14     Othe… 0.0481   
+3 ShotgunWGS-ControlP…     6 Cont… Day 14     Control Day 14     Othe… 0.0000595
+4 ShotgunWGS-ControlP…     6 Cont… Day 14     Control Day 14     Othe… 0.000503 
+5 ShotgunWGS-ControlP…     6 Cont… Day 14     Control Day 14     Othe… 0.000384 
+6 ShotgunWGS-ControlP…     6 Cont… Day 14     Control Day 14     Othe… 0.0000271</code></pre>
+</div>
+</div>
+</section>
+<section id="compute-the-cumulative-abundance-by-the-new-phyla-levels-that-you-created" class="level3">
+<h3 class="anchored" data-anchor-id="compute-the-cumulative-abundance-by-the-new-phyla-levels-that-you-created">Compute the cumulative abundance by the new Phyla levels that you created</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pig_clean <span class="ot">&lt;-</span> pig_micro <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> Acidobacteria<span class="sc">:</span><span class="st">`</span><span class="at">unclassified (derived from other sequences)</span><span class="st">`</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_to =</span> <span class="st">"Abundance"</span>, <span class="at">names_to =</span> <span class="st">"Phyla"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Phyla =</span> <span class="fu">case_when</span>(Phyla <span class="sc">==</span> <span class="st">"Bacteroidetes"</span> <span class="sc">~</span> Phyla,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                           Phyla <span class="sc">==</span> <span class="st">"Firmicutes"</span> <span class="sc">~</span> Phyla,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                           <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Other phyla"</span>) ) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Sample_Name, Phyla, Time_Point, Pig) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Abundance =</span> <span class="fu">sum</span>(Abundance)) </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pig_clean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+# Groups:   Sample_Name, Phyla, Time_Point [6]
+  Sample_Name                                Phyla    Time_Point   Pig Abundance
+  &lt;chr&gt;                                      &lt;chr&gt;    &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt;
+1 ShotgunWGS-ControlPig10GutMicrobiome-Day0  Bactero… Day 0         10    0.481 
+2 ShotgunWGS-ControlPig10GutMicrobiome-Day0  Firmicu… Day 0         10    0.435 
+3 ShotgunWGS-ControlPig10GutMicrobiome-Day0  Other p… Day 0         10    0.0839
+4 ShotgunWGS-ControlPig10GutMicrobiome-Day14 Bactero… Day 14        10    0.383 
+5 ShotgunWGS-ControlPig10GutMicrobiome-Day14 Firmicu… Day 14        10    0.513 
+6 ShotgunWGS-ControlPig10GutMicrobiome-Day14 Other p… Day 14        10    0.104 </code></pre>
+</div>
+</div>
+<p>Here is another way to do this.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pig_clean_alt <span class="ot">&lt;-</span> pig_micro <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Other_phyla =</span> <span class="fu">rowSums</span>(<span class="fu">select</span>(.[<span class="dv">6</span><span class="sc">:</span><span class="fu">ncol</span>(.)], <span class="sc">!</span><span class="fu">contains</span>(<span class="fu">c</span>(<span class="st">"Bacteroidetes"</span>, <span class="st">"Firmicutes"</span>)))))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>pig_clean_alt <span class="ot">&lt;-</span> pig_clean_alt <span class="sc">%&gt;%</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Sample_Name, Pig, Diet, Time_Point, Diet_By_Time_Point, Bacteroidetes, Firmicutes, Other_phyla)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>pig_clean_alt_tidy <span class="ot">&lt;-</span> pig_clean_alt <span class="sc">%&gt;%</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> Bacteroidetes<span class="sc">:</span>Other_phyla,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"Phyla"</span>,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"Abundance"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="create-the-barplot-in-ggplot" class="level3">
+<h3 class="anchored" data-anchor-id="create-the-barplot-in-ggplot">Create the barplot in ggplot</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># what are the time points called again?</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(pig_clean<span class="sc">$</span>Time_Point)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Day 0"  "Day 14" "Day 7" </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make Time_Point a factor so the faceting goes Day 0, Day 7, Day 14</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># instead of putting Day 14 in the middle</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>pig_clean<span class="sc">$</span>Time_Point <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(pig_clean<span class="sc">$</span>Time_Point)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># set levels to be the order we want</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>pig_clean<span class="sc">$</span>Time_Point <span class="ot">&lt;-</span> <span class="fu">factor</span>(pig_clean<span class="sc">$</span>Time_Point,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>                               <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Day 0"</span>, <span class="st">"Day 7"</span>, <span class="st">"Day 14"</span>))</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>stack_barplot <span class="ot">&lt;-</span> pig_clean <span class="sc">%&gt;%</span> </span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">as.numeric</span>(Pig), Abundance, <span class="at">fill =</span> Phyla, </span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">text =</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"{Phyla}: {round(Abundance, 3)*100}%"</span>))) <span class="sc">+</span> </span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"GnBu"</span>) <span class="sc">+</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(Time_Point)) <span class="sc">+</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Relative Abundance"</span>, </span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Phyla"</span>,</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Pig Number"</span>,</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Bacteriodetes, Firmicutes, and Other Phyla from </span><span class="sc">\n</span><span class="st">Pig Microbiome Sequencing using Shotgun Metagenomics"</span>) <span class="sc">+</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">11</span>),</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">10</span>), </span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">strip.background =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>stack_barplot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="12_interactive-plots_recitation_solutions_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="make-the-plot-interactive" class="level1">
+<h1>Make the plot interactive</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(stack_barplot,</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">tooltip =</span> <span class="st">"text"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layout</span>(<span class="at">margin =</span> <span class="fu">list</span>(<span class="at">t =</span> <span class="dv">100</span>)) <span class="co"># for increasing the padding around the title</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-ce68710338e9624a0233" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-ce68710338e9624a0233">{"x":{"data":[{"orientation":"v","width":[0.89999999999999858,0.89999999999999991,0.90000000000000013,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.89999999999999947,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858],"base":[0.51862511300000003,0.66339262799999998,0.59386243700000008,0.663815131,0.63226408099999998,0.60417604000000003,0.53904971700000004,0.58502016499999998,0.66872358700000001,0.65716430699999995,0.68014989100000001,0.64138978400000002,0.624067547,0.68713201800000001,0.67310475000000003,0.57342081900000008,0.51171573800000003,0.62207180200000001,0.64968728499999995,0.64113146899999995],"x":[10,1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19,20],"y":[0.48137446499999992,0.33660387700000005,0.40613691299999988,0.33618213899999994,0.36773553600000009,0.39582142099999995,0.46094526299999994,0.41497876899999997,0.33127666900000008,0.34283327200000002,0.31984590700000004,0.35860753499999998,0.37593244100000001,0.31286634099999999,0.32689197299999995,0.42657622599999989,0.48828219299999998,0.37792737900000006,0.35031129300000008,0.35886374300000001],"text":["Bacteroidetes: 48.1%","Bacteroidetes: 33.7%","Bacteroidetes: 40.6%","Bacteroidetes: 33.6%","Bacteroidetes: 36.8%","Bacteroidetes: 39.6%","Bacteroidetes: 46.1%","Bacteroidetes: 41.5%","Bacteroidetes: 33.1%","Bacteroidetes: 34.3%","Bacteroidetes: 32%","Bacteroidetes: 35.9%","Bacteroidetes: 37.6%","Bacteroidetes: 31.3%","Bacteroidetes: 32.7%","Bacteroidetes: 42.7%","Bacteroidetes: 48.8%","Bacteroidetes: 37.8%","Bacteroidetes: 35%","Bacteroidetes: 35.9%"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(224,243,219,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Bacteroidetes","legendgroup":"Bacteroidetes","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.89999999999999858,0.89999999999999991,0.90000000000000013,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.89999999999999947,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858],"base":[0.62236895599999997,0.704125259,0.72748419899999994,0.74859069200000006,0.67989862000000001,0.74000220400000005,0.53140051099999996,0.54582693800000004,0.62476538100000001,0.68397012899999998,0.57791135100000002,0.70134637799999999,0.78415268500000002,0.65384218500000002,0.66280784199999998,0.62213046700000008,0.60107953300000005,0.61274127500000009,0.66909709299999998,0.56294526900000008],"x":[10,1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19,20],"y":[0.37762691999999998,0.29587332899999996,0.27250998999999998,0.25140517200000001,0.32009867199999997,0.25999663399999995,0.46860062200000008,0.45417284099999999,0.375232181,0.31602655000000002,0.42208622499999993,0.29865201600000002,0.21584144299999997,0.34614981300000003,0.33718472799999999,0.37786856800000002,0.39891877199999992,0.38725930100000006,0.33090152099999992,0.43705230799999994],"text":["Bacteroidetes: 37.8%","Bacteroidetes: 29.6%","Bacteroidetes: 27.3%","Bacteroidetes: 25.1%","Bacteroidetes: 32%","Bacteroidetes: 26%","Bacteroidetes: 46.9%","Bacteroidetes: 45.4%","Bacteroidetes: 37.5%","Bacteroidetes: 31.6%","Bacteroidetes: 42.2%","Bacteroidetes: 29.9%","Bacteroidetes: 21.6%","Bacteroidetes: 34.6%","Bacteroidetes: 33.7%","Bacteroidetes: 37.8%","Bacteroidetes: 39.9%","Bacteroidetes: 38.7%","Bacteroidetes: 33.1%","Bacteroidetes: 43.7%"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(224,243,219,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Bacteroidetes","legendgroup":"Bacteroidetes","showlegend":false,"xaxis":"x2","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.89999999999999858,0.89999999999999991,0.90000000000000013,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.89999999999999947,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858],"base":[0.61695065999999998,0.670261459,0.75364989999999998,0.67361807799999995,0.65601305300000001,0.69734247999999999,0.63290193000000006,0.64186327599999993,0.64239048199999993,0.67322394600000002,0.59216037999999993,0.74071858800000001,0.75871733499999994,0.60052291899999999,0.63350730200000005,0.64491891499999998,0.63060183600000008,0.61809541400000001,0.66806081799999995,0.69819949699999995],"x":[10,1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19,20],"y":[0.38304909700000001,0.32973587100000001,0.24635068199999999,0.32638165200000002,0.34398800399999996,0.30265556000000005,0.36709556499999996,0.35813417199999997,0.35760743600000011,0.32677939300000003,0.40783164700000007,0.25927840899999999,0.24128311199999997,0.39947151299999994,0.36649004200000002,0.35507917600000005,0.36939739100000002,0.38190152300000002,0.33193899800000004,0.30179758800000001],"text":["Bacteroidetes: 38.3%","Bacteroidetes: 33%","Bacteroidetes: 24.6%","Bacteroidetes: 32.6%","Bacteroidetes: 34.4%","Bacteroidetes: 30.3%","Bacteroidetes: 36.7%","Bacteroidetes: 35.8%","Bacteroidetes: 35.8%","Bacteroidetes: 32.7%","Bacteroidetes: 40.8%","Bacteroidetes: 25.9%","Bacteroidetes: 24.1%","Bacteroidetes: 39.9%","Bacteroidetes: 36.6%","Bacteroidetes: 35.5%","Bacteroidetes: 36.9%","Bacteroidetes: 38.2%","Bacteroidetes: 33.2%","Bacteroidetes: 30.2%"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(224,243,219,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Bacteroidetes","legendgroup":"Bacteroidetes","showlegend":false,"xaxis":"x3","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.89999999999999858,0.89999999999999991,0.90000000000000013,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.89999999999999947,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858],"base":[0.083876840999999994,0.067320867000000006,0.127412619,0.155896852,0.14139839900000001,0.121653947,0.110205778,0.074595892999999996,0.13937998500000001,0.11482081800000001,0.157841711,0.10246332900000001,0.119876568,0.17952077699999999,0.14882535499999999,0.099573193000000004,0.091109730999999999,0.10312766,0.139229674,0.14139623900000001],"x":[10,1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19,20],"y":[0.43474827200000005,0.59607176099999992,0.46644981800000007,0.50791827899999997,0.49086568199999997,0.48252209300000004,0.42884393900000006,0.51042427199999996,0.52934360199999997,0.54234348899999996,0.52230818000000001,0.53892645500000003,0.50419097899999998,0.50761124099999999,0.52427939499999998,0.47384762600000008,0.42060600700000006,0.51894414200000005,0.51045761099999998,0.49973522999999997],"text":["Firmicutes: 43.5%","Firmicutes: 59.6%","Firmicutes: 46.6%","Firmicutes: 50.8%","Firmicutes: 49.1%","Firmicutes: 48.3%","Firmicutes: 42.9%","Firmicutes: 51%","Firmicutes: 52.9%","Firmicutes: 54.2%","Firmicutes: 52.2%","Firmicutes: 53.9%","Firmicutes: 50.4%","Firmicutes: 50.8%","Firmicutes: 52.4%","Firmicutes: 47.4%","Firmicutes: 42.1%","Firmicutes: 51.9%","Firmicutes: 51%","Firmicutes: 50%"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(168,221,181,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Firmicutes","legendgroup":"Firmicutes","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.89999999999999858,0.89999999999999991,0.90000000000000013,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.89999999999999947,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858],"base":[0.123026029,0.083827779000000005,0.14291795700000001,0.14169115600000001,0.13596834799999999,0.11497383799999999,0.10150363599999999,0.099002682999999994,0.100516205,0.135851054,0.112908282,0.13605840599999999,0.15038653900000001,0.130724752,0.18131855299999999,0.089640224000000004,0.128344862,0.16738842300000001,0.11516826399999999,0.103914744],"x":[10,1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19,20],"y":[0.49934292699999999,0.62029747999999996,0.58456624199999996,0.60689953600000002,0.54393027199999999,0.625028366,0.42989687499999996,0.44682425500000006,0.52424917599999998,0.54811907500000001,0.46500306899999999,0.56528797200000003,0.63376614600000003,0.52311743300000002,0.48148928899999999,0.53249024300000003,0.47273467100000005,0.44535285200000008,0.55392882899999996,0.45903052500000008],"text":["Firmicutes: 49.9%","Firmicutes: 62%","Firmicutes: 58.5%","Firmicutes: 60.7%","Firmicutes: 54.4%","Firmicutes: 62.5%","Firmicutes: 43%","Firmicutes: 44.7%","Firmicutes: 52.4%","Firmicutes: 54.8%","Firmicutes: 46.5%","Firmicutes: 56.5%","Firmicutes: 63.4%","Firmicutes: 52.3%","Firmicutes: 48.1%","Firmicutes: 53.2%","Firmicutes: 47.3%","Firmicutes: 44.5%","Firmicutes: 55.4%","Firmicutes: 45.9%"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(168,221,181,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Firmicutes","legendgroup":"Firmicutes","showlegend":false,"xaxis":"x2","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.89999999999999858,0.89999999999999991,0.90000000000000013,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.89999999999999947,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858],"base":[0.10396704999999999,0.093447936999999995,0.095402376999999997,0.086592260000000004,0.094090990999999999,0.134954355,0.102074783,0.100882454,0.077076737000000006,0.093881526000000007,0.11763059499999999,0.144186443,0.14022267099999999,0.097828232000000001,0.111445816,0.146908819,0.084616043000000002,0.135693859,0.114077,0.099254325000000004],"x":[10,1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19,20],"y":[0.51298361000000003,0.57681352200000002,0.658247523,0.58702581799999998,0.56192206200000006,0.56238812500000002,0.53082714700000011,0.54098082199999997,0.56531374499999987,0.57934242000000002,0.47452978499999993,0.59653214500000007,0.61849466399999997,0.50269468699999997,0.52206148600000002,0.49801009600000001,0.54598579300000005,0.48240155500000004,0.55398381799999996,0.59894517199999997],"text":["Firmicutes: 51.3%","Firmicutes: 57.7%","Firmicutes: 65.8%","Firmicutes: 58.7%","Firmicutes: 56.2%","Firmicutes: 56.2%","Firmicutes: 53.1%","Firmicutes: 54.1%","Firmicutes: 56.5%","Firmicutes: 57.9%","Firmicutes: 47.5%","Firmicutes: 59.7%","Firmicutes: 61.8%","Firmicutes: 50.3%","Firmicutes: 52.2%","Firmicutes: 49.8%","Firmicutes: 54.6%","Firmicutes: 48.2%","Firmicutes: 55.4%","Firmicutes: 59.9%"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(168,221,181,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Firmicutes","legendgroup":"Firmicutes","showlegend":false,"xaxis":"x3","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.89999999999999858,0.89999999999999991,0.90000000000000013,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.89999999999999947,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858],"base":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"x":[10,1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19,20],"y":[0.083876840999999994,0.067320867000000006,0.127412619,0.155896852,0.14139839900000001,0.121653947,0.110205778,0.074595892999999996,0.13937998500000001,0.11482081800000001,0.157841711,0.10246332900000001,0.119876568,0.17952077699999999,0.14882535499999999,0.099573193000000004,0.091109730999999999,0.10312766,0.139229674,0.14139623900000001],"text":["Other phyla: 8.4%","Other phyla: 6.7%","Other phyla: 12.7%","Other phyla: 15.6%","Other phyla: 14.1%","Other phyla: 12.2%","Other phyla: 11%","Other phyla: 7.5%","Other phyla: 13.9%","Other phyla: 11.5%","Other phyla: 15.8%","Other phyla: 10.2%","Other phyla: 12%","Other phyla: 18%","Other phyla: 14.9%","Other phyla: 10%","Other phyla: 9.1%","Other phyla: 10.3%","Other phyla: 13.9%","Other phyla: 14.1%"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(67,162,202,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Other phyla","legendgroup":"Other phyla","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.89999999999999858,0.89999999999999991,0.90000000000000013,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.89999999999999947,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858],"base":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"x":[10,1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19,20],"y":[0.123026029,0.083827779000000005,0.14291795700000001,0.14169115600000001,0.13596834799999999,0.11497383799999999,0.10150363599999999,0.099002682999999994,0.100516205,0.135851054,0.112908282,0.13605840599999999,0.15038653900000001,0.130724752,0.18131855299999999,0.089640224000000004,0.128344862,0.16738842300000001,0.11516826399999999,0.103914744],"text":["Other phyla: 12.3%","Other phyla: 8.4%","Other phyla: 14.3%","Other phyla: 14.2%","Other phyla: 13.6%","Other phyla: 11.5%","Other phyla: 10.2%","Other phyla: 9.9%","Other phyla: 10.1%","Other phyla: 13.6%","Other phyla: 11.3%","Other phyla: 13.6%","Other phyla: 15%","Other phyla: 13.1%","Other phyla: 18.1%","Other phyla: 9%","Other phyla: 12.8%","Other phyla: 16.7%","Other phyla: 11.5%","Other phyla: 10.4%"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(67,162,202,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Other phyla","legendgroup":"Other phyla","showlegend":false,"xaxis":"x2","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.89999999999999858,0.89999999999999991,0.90000000000000013,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.90000000000000036,0.89999999999999947,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858,0.89999999999999858],"base":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"x":[10,1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19,20],"y":[0.10396704999999999,0.093447936999999995,0.095402376999999997,0.086592260000000004,0.094090990999999999,0.134954355,0.102074783,0.100882454,0.077076737000000006,0.093881526000000007,0.11763059499999999,0.144186443,0.14022267099999999,0.097828232000000001,0.111445816,0.146908819,0.084616043000000002,0.135693859,0.114077,0.099254325000000004],"text":["Other phyla: 10.4%","Other phyla: 9.3%","Other phyla: 9.5%","Other phyla: 8.7%","Other phyla: 9.4%","Other phyla: 13.5%","Other phyla: 10.2%","Other phyla: 10.1%","Other phyla: 7.7%","Other phyla: 9.4%","Other phyla: 11.8%","Other phyla: 14.4%","Other phyla: 14%","Other phyla: 9.8%","Other phyla: 11.1%","Other phyla: 14.7%","Other phyla: 8.5%","Other phyla: 13.6%","Other phyla: 11.4%","Other phyla: 9.9%"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(67,162,202,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Other phyla","legendgroup":"Other phyla","showlegend":false,"xaxis":"x3","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":100,"r":20.589456205894567,"b":43.105022831050235,"l":54.794520547945211},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"Bacteriodetes, Firmicutes, and Other Phyla from <br />Pig Microbiome Sequencing using Shotgun Metagenomics","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,0.32246140465318546],"automargin":true,"type":"linear","autorange":false,"range":[-0.44499999999999995,21.445],"tickmode":"array","ticktext":["0","5","10","15","20"],"tickvals":[0,5,10,15,20],"categoryorder":"array","categoryarray":["0","5","10","15","20"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":"","hoverformat":".2f"},"annotations":[{"text":"Pig Number","x":0.5,"y":0,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"top","annotationType":"axis","yshift":-24.840182648401832},{"text":"Relative Abundance","x":0,"y":0.5,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xref":"paper","yref":"paper","textangle":-90,"xanchor":"right","yanchor":"center","annotationType":"axis","xshift":-39.452054794520549},{"text":"Day 0","x":0.16123070232659273,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":13.283520132835205},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"Day 7","x":0.5,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":13.283520132835205},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"Day 14","x":0.83876929767340724,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":13.283520132835205},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"}],"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.050000166950000008,1.0500035059500001],"tickmode":"array","ticktext":["0.00","0.25","0.50","0.75","1.00"],"tickvals":[-6.9388939039072284e-18,0.24999999999999997,0.5,0.75,1],"categoryorder":"array","categoryarray":["0.00","0.25","0.50","0.75","1.00"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"x","title":"","hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.32246140465318546,"y0":0,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.32246140465318546,"y0":0,"y1":24.973017849730184,"yanchor":1,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.34420526201348117,"x1":0.65579473798651877,"y0":0,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.34420526201348117,"x1":0.65579473798651877,"y0":0,"y1":24.973017849730184,"yanchor":1,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.67753859534681449,"x1":1,"y0":0,"y1":1},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.67753859534681449,"x1":1,"y0":0,"y1":24.973017849730184,"yanchor":1,"ysizemode":"pixel"}],"xaxis2":{"type":"linear","autorange":false,"range":[-0.44499999999999995,21.445],"tickmode":"array","ticktext":["0","5","10","15","20"],"tickvals":[0,5,10,15,20],"categoryorder":"array","categoryarray":["0","5","10","15","20"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":false,"domain":[0.34420526201348117,0.65579473798651877],"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":"","hoverformat":".2f"},"xaxis3":{"type":"linear","autorange":false,"range":[-0.44499999999999995,21.445],"tickmode":"array","ticktext":["0","5","10","15","20"],"tickvals":[0,5,10,15,20],"categoryorder":"array","categoryarray":["0","5","10","15","20"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":false,"domain":[0.67753859534681449,1],"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":"","hoverformat":".2f"},"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Phyla","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"95803a8deba5":{"x":{},"y":{},"fill":{},"text":{},"type":"bar"}},"cur_data":"95803a8deba5","visdat":{"95803a8deba5":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Created with RStudio and <a href="https://quarto.org/">Quarto</a> <br> © Jessica Cooperstone, 2023, License: <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a> <br> <a href="https://osu-codeclub.github.io/#category=website">Want to make a website like this one?</a></div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jcooperstone/rdataviz">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>
