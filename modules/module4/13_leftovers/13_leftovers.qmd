@@ -103,7 +103,7 @@ gapminder_americas %>%
   theme(legend.position = "none",
         strip.text.x = element_text(size = 8),
         axis.text.x = element_text(angle = 90)) +
-  facet_wrap(~country) +
+  facet_wrap(vars(country)) +
   labs(x = "Year",
        y = "Life Expectancy (years)",
        title = "Life Expectancy in Countries in the Americas",
@@ -145,11 +145,15 @@ plot3 <- penguins %>%
 
 ### Combine plots
 
-```{r patchwork regular combine}
+The simplest ways to combine plots is with the plus sign operator `+`. The forward slash `/` stacks plots. The pipe `|` puts plots next to each other. You can learn more about using patchwork [here](https://patchwork.data-imaginist.com/articles/patchwork.html). 
+
+```{r patchwork regular combine, message = FALSE, warning = FALSE}
 (plot1 + plot2) / plot3 
 ```
 
-```{r patchwork add panel labels and title}
+
+You can also add annotation and style to your plots. Learn more [here](https://patchwork.data-imaginist.com/articles/guides/annotation.html).
+```{r patchwork add panel labels and title, message = FALSE, warning = FALSE}
 (plot1 + plot2) / plot3 + plot_annotation(tag_levels = "A",
                                           title = "Here is some information about penguins")
 ```
@@ -177,27 +181,36 @@ library(magick) # for gif rendering
 ```
 
 ### Plot
-```{r gganimate make plot and set params}
-plot_to_animate <- gapminder_americas %>%
-  ggplot(aes(x = lifeExp, y = pop, fill = country, label = country)) +
-  geom_point(shape = 21, color = "black") +
-  geom_text_repel() +
-  scale_y_log10() +
+First let's make a base plot. Note that this measure of population isn't actually correct as its summing all of the populations across all the years.
+```{r base plot to animate}
+(base_plot <- gapminder %>%
+  filter(continent == "Africa") %>%
+  ggplot(aes(x = pop, y = reorder(country, pop))) +
+  geom_col() +
+  scale_x_continuous(labels = scales::unit_format(unit = "M", scale = 1e-6)) +
   theme_classic() +
-  theme(legend.position = 'none') +
-  labs(title = "Population and Life Expectancy in the Americas",
-       subtitle = 'Year: {closest_state}', 
-       x = "Life Expectancy", 
-       y = "Log10 Population") +
-  transition_states(year) # what to gif over
+  labs(title = "Population from 1952 to 2007 in Africa", 
+       x = "Population", 
+       y = "Country"))
+```
 
+```{r animate plot}
+(plot_to_animate <- base_plot +
+  labs(subtitle = "Year: {frame_time}") + # label subtitle with year
+  transition_time(year) + # gif over year
+  ease_aes()) # makes the transitions smoother
+```
+
+```{r animate plot with params}
 # set parameters for your animation
 animated_plot <- animate(plot = plot_to_animate, 
-                        duration = 10, 
-                        fps = 10, 
-                        width = 700, 
-                        height = 700,
-                        renderer = magick_renderer())
+                         duration = 10, # number of seconds for whole animation
+                         fps = 10, # framerate, frames/sec
+                         start_pause = 20, # show first time for 20 frames
+                         end_pause = 20, # show end for 20 frames
+                         width = 700, # width in pixels
+                         height = 700, # height in pixels
+                         renderer = magick_renderer()) # program for rendering
 ```
 
 ### Print
@@ -242,13 +255,24 @@ coffee <- tuesdata$coffee_ratings
 colnames(coffee)
 ```
 
+We are going to wrangle the data to facilitate plotting. We are using `rescale` as we need the data for each attribute to be between 0 and 1.
 ```{r ggradar wrangling}
-coffee_radar <- coffee %>%
+# tidy data to summarize easily
+(coffee_summary_long <- coffee %>%
   select(species, aroma:cupper_points) %>% # first column is the groups
-  mutate_at(vars(-species), rescale) %>% # columns need to be between 0 and 1
-  group_by(species) %>%
-  summarize_if(is.numeric, mean) 
+  pivot_longer(cols = aroma:cupper_points, # our favorite - tidy data to faciliate summarizing
+               names_to = "attribute",
+               values_to = "score") %>% 
+  group_by(species, attribute) %>% # perform operations by species and attribute pairs
+  mutate(across(where(is.numeric), rescale)) %>% # rescale data that is numeric
+  summarize(mean_score = mean(score)))
 
+# go back to wide
+coffee_summary_wide <- coffee_summary_long %>%
+  pivot_wider(names_from = "attribute",
+              values_from = "mean_score")
+
+# set our pretty coffee labels
 coffee_labels <- c("Aroma",
                    "Flavor",
                    "Aftertaste",
@@ -262,11 +286,11 @@ coffee_labels <- c("Aroma",
 ```
 
 ```{r ggradar coffee radar plot}
-ggradar(coffee_radar)
+ggradar(coffee_summary_wide)
 ```
 
 ```{r ggradar coffee radar plotclean}
-ggradar(coffee_radar,
+ggradar(coffee_summary_wide,
         axis.labels = coffee_labels,
         legend.position = "bottom",
         axis.label.size = 3,
