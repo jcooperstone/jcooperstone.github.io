@@ -27,11 +27,11 @@ The [data](https://github.com/rfordatascience/tidytuesday/blob/master/data/2022/
 
 Download the data using the code below. Don't use the code from week 5 recitation.
 ```{r, message = FALSE, warning = FALSE, eval = FALSE}
-breed_traits <- readr::read_csv('https://raw.githubusercontent.com/jcooperstone/dataviz-site/master/assignments/data/breed_traits_fixed.csv')
+breed_traits <- readr::read_csv('https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/main/assignments/modules/module4/data/breed_traits_fixed.csv')
 
-trait_description <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-02-01/trait_description.csv')
+trait_description <- readr::read_csv('https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/main/assignments/modules/module4/data/trait_description.csv')
 
-breed_rank_all <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-02-01/breed_rank.csv')
+breed_rank_all <- readr::read_csv('https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/main/assignments/modules/module4/data/breed_rank_all.csv')
 ```
 
 For a little hint, here are the packages I used to complete this task. Yours might not be exactly the same.
@@ -62,3 +62,6 @@ Make your PCA scores plot interactive, and so that when you hover each point, yo
 ## 3. See how your PCA related to breed popularity (2 pts)
 
 Using `breed_traits` and `breed_rank_all`, label the points that show data for the top 10 dog breeds in 2020 and color them different from the rest of the points. Your plot does not need to be interactive.
+
+
+
