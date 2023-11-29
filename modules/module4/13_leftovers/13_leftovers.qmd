@@ -154,8 +154,8 @@ The simplest ways to combine plots is with the plus sign operator `+`. The forwa
 
 You can also add annotation and style to your plots. Learn more [here](https://patchwork.data-imaginist.com/articles/guides/annotation.html).
 ```{r patchwork add panel labels and title, message = FALSE, warning = FALSE}
-(plot1 + plot2) / plot3 + plot_annotation(tag_levels = "A",
-                                          title = "Here is some information about penguins")
+(plot1 + plot2) / plot3 + plot_annotation(tag_levels = c("1"),
+                  title = "Here is some information about penguins")
 ```
 
 ## gganimate 💃
@@ -266,28 +266,36 @@ We are going to wrangle the data to facilitate plotting. We are using `rescale` 
   group_by(species, attribute) %>% # perform operations by species and attribute pairs
   mutate(across(where(is.numeric), rescale)) %>% # rescale data that is numeric
   summarize(mean_score = mean(score)))
+```
 
+`ggradar` takes wide data though, so we are going to pivot back to wide data.
+```{r ggradar wrangling 2}
 # go back to wide
 coffee_summary_wide <- coffee_summary_long %>%
   pivot_wider(names_from = "attribute",
               values_from = "mean_score")
-
-# set our pretty coffee labels
-coffee_labels <- c("Aroma",
-                   "Flavor",
-                   "Aftertaste",
-                   "Acidity",
-                   "Body",
-                   "Balance",
-                   "Uniformity",
-                   "Clean cup",
-                   "Sweetness",
-                   "Cupper points")
 ```
 
 ```{r ggradar coffee radar plot}
 ggradar(coffee_summary_wide)
 ```
+
+We are going to fix our labels and chanage some parameters on the plot to make it look nicer.
+```{r}
+# set our pretty coffee labels
+# ggradar plots in alphabetical order so that is how we will label here
+coffee_labels <- c("Acidity",
+                   "Aftertaste",
+                   "Aroma",
+                   "Balance",
+                   "Body",
+                   "Clean cup",
+                   "Cupper points",
+                   "Flavor",
+                   "Sweetness",
+                   "Uniformity")
+```
+
 
 ```{r ggradar coffee radar plotclean}
 ggradar(coffee_summary_wide,
