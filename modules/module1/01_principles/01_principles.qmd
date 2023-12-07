@@ -6,7 +6,7 @@ format:
   revealjs:
     incremental: true
     theme: jc_style.scss
-    footer: "[01 Principles](https://datavisualizing.netlify.app/module1.html), © Jessica Cooperstone, 2023"
+    footer: "[01 Principles](https://www.rdataviz.com/), © Jessica Cooperstone, 2023"
 ---
 
 ## Introductions 👋 {.center_title}
@@ -39,7 +39,7 @@ format:
 If you have found these slides, you've made it to the website! (Good job.)\
 \
 
-### **All course materials will be posted to, or linked to from [datavisualizing.netlify.app](https://datavisualizing.netlify.app/)**
+### **All course materials will be posted to, or linked to from [www.rdataviz.com](https://www.rdataviz.com/)**
 
 \
 
@@ -47,7 +47,7 @@ If you have found these slides, you've made it to the website! (Good job.)\
 
 -   A full version of the syllabus can be found on Carmen
 
--   A trimmed version of the syllabus can be found on our [course site](https://datavisualizing.netlify.app/syllabus.html)
+-   A trimmed version of the syllabus can be found on our [course site](https://www.rdataviz.com/)
 
 ## Attendance {.center_title .smaller}
 

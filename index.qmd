@@ -1,13 +1,19 @@
 ---
-title: "HCS 7100: Data Visualization in R"
+title: "HCS 7100: Data Visualization in R, Autumn 2023"
 ---
 
-The Ohio State University, Autumn 2023
-
-Instructor: [Jessica Cooperstone](https://www.cooperstonelab.com/) <br>
-Teaching assistant: [Daniel Quiroz Moreno](https://github.com/DanielQuiroz97)
-
-```{r echo = FALSE, fig.alt="A gif of 13 different datasets (include one who's points make the shape of a dinosaur) that all have the same mean and standard deviation, but have very different distributions"}
-knitr::include_graphics("modules/module1/01_principles/img/dinosaurus.gif")
+::: grid
+::: g-col-5
+```{r echo = FALSE, fig.alt="A hex sticker for HCS 7100. A white hexagon with a scarlet outline, which on the inside says HCS 7100 and has a computer emoji, toolbox emoji, graph emoji, and celebrating person emoji. It also has www.rdataviz.com, the course website in the bottom right corner"}
+knitr::include_graphics("img/hex.svg")
 ```
-Datasaurus Dozen by [Alberto Cairo](https://www.autodesk.com/research/publications/same-stats-different-graphs)
+:::
+
+::: g-col-5
+Instructor: [Jessica Cooperstone](https://www.cooperstonelab.com/) <br> Teaching assistant: [Daniel Quiroz Moreno](https://github.com/DanielQuiroz97)
+
+:::{style="font-size: 90%;"}
+This course aims to introduce students to the principles and practice of data visualization. Students will learn fundamental principles of data visualization and create figures that appropriately and ethically represent their data. Data visualizations will be created in the R programming environment, using tools including the grammar of graphics implemented in ggplot2. In the process of creating visualizations, students will also become familiar with data handling and wrangling in R.
+:::
+:::
+:::

@@ -898,9 +898,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "HCS 7100: Data Visualization in R",
+    "title": "HCS 7100: Data Visualization in R, Autumn 2023",
     "section": "",
-    "text": "The Ohio State University, Autumn 2023\nInstructor: Jessica Cooperstone  Teaching assistant: Daniel Quiroz Moreno\n\n\n\n\n\nDatasaurus Dozen by Alberto Cairo\n\n\n\n Back to top"
+    "text": "Instructor: Jessica Cooperstone  Teaching assistant: Daniel Quiroz Moreno\n\nThis course aims to introduce students to the principles and practice of data visualization. Students will learn fundamental principles of data visualization and create figures that appropriately and ethically represent their data. Data visualizations will be created in the R programming environment, using tools including the grammar of graphics implemented in ggplot2. In the process of creating visualizations, students will also become familiar with data handling and wrangling in R.\n\n\n\n\n\n\n Back to top"
   },
   {
     "objectID": "assignments/modules/module2/module_2_solutions.html",
@@ -1866,7 +1866,7 @@
     "href": "modules/module1/01_principles/01_principles.html#website",
     "title": "1 - Principles of Data Visualization",
     "section": "Website",
-    "text": "Website\nIf you have found these slides, you’ve made it to the website! (Good job.)\n\n\nAll course materials will be posted to, or linked to from datavisualizing.netlify.app"
+    "text": "Website\nIf you have found these slides, you’ve made it to the website! (Good job.)\n\n\nAll course materials will be posted to, or linked to from www.rdataviz.com"
   },
   {
     "objectID": "modules/module1/01_principles/01_principles.html#syllabus",
