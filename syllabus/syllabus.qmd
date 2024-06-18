@@ -1,5 +1,5 @@
 ---
-title: "Syllabus"
+title: "Syllabus, Autumn 2024"
 format:
   html:
     toc: true
@@ -16,10 +16,14 @@ knitr::opts_chunk$set(echo = FALSE)
 **Email address:** cooperstone dot 1 at osu dot edu (preferred contact method)    
 **Phone number:** 614-292-2843 (non-preferred contact method)   
 **TA**: [Daniel Quiroz Moreno](https://danielquiroz97.gitlab.io/), quirozmoreno dot 1 at osu dot edu   
-**Office hours:**
+**Office hours:** TBD
 
-- Daniel: Fridays 1-2 pm Howlett 340 (email him if you plan to go) or via Zoom
-- Jess: Tuesdays 11:30 am - 12:30 pm in Howlett 348 or via Zoom
+## Course meeting time and place
+Tuesdays synchronously from 4:10-5:55 pm in:
+
+- Howlett Hall 116 (Columbus)
+- Williams Hall 123 (Wooster)
+- Virtually via Zoom [https://go.osu.edu/dataviz-zoom](https://go.osu.edu/dataviz-zoom)
 
 ## Course description
 This course aims to introduce students to the principles and practice of data visualization. Students will learn fundamental principles of data visualization and create figures that appropriately and ethically represent their data. Data visualizations will be created in the R programming environment, using tools including the grammar of graphics implemented in ggplot2. In the process of creating visualizations, students will also become familiar with data handling and wrangling in R.
@@ -44,7 +48,7 @@ By the end of this course, students should successfully be able to:
 library(readxl)
 library(knitr)
 schedule <- read_excel("../files/schedule_modules.xlsx",
-                       sheet = "Schedule_date")
+                       sheet = "Schedule_date_2024")
 ```
 
 ```{r, echo = FALSE, fig.width = 6}
@@ -115,6 +119,20 @@ There will be 10 class reflections (you can select which classes you want to ref
 *Grading*: Guidance will be provided for the grading of the capstone assignment. Assignments completed outside R Markdown, or not knitted to a .html are not acceptable.
 
 *Academic Integrity*: Students may use class notes and class resource materials. Students are not permitted to collaborate on assignments. Students must complete work on their own.
+
+#### Due dates
+
+```{r, echo = FALSE}
+library(readxl)
+library(knitr)
+due_dates <- read_excel("../files/schedule_modules.xlsx",
+                       sheet = "module_due_dates_2024")
+```
+
+```{r, echo = FALSE, fig.width = 6}
+kable(due_dates)
+```
+
 
 ### Late assignments
 I expect you will turn assignments in on time. Late assignments are not accepted. If there are extenuating circumstances that prevent you from turning in an assignment on time, please connect with me as soon as possible after such a situation arises for discussion about a possible deadline extension. 

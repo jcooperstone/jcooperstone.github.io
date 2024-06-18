@@ -1,5 +1,5 @@
 ---
-title: "HCS 7100: Data Visualization in R, Autumn 2023"
+title: "HCS 7100: Data Visualization in R, Autumn 2024"
 ---
 
 ::: grid
