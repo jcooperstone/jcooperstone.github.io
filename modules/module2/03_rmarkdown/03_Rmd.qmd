@@ -263,6 +263,24 @@ knitr::include_graphics("img/visual_editor_screenshot.png")
 
 When you're first getting started, this is a useful resource to see how your R Markdown doc will look when knitted.
 
+# An aside on Quarto vs. R Markdown
+
+You may have heard of a new tool (well, new in 2022) called [Quarto](https://quarto.org/) which is similar but not totally the same as R Markdown. When I created this lesson, Quarto didn't exist, and I personally use both Quarto and R Markdown. The two are so similar that if you learn RMarkdown you can very very easily pivot to using Quarto when it makes sense.
+
+Some good use cases for Quarto:
+
+-   This website is created using Quarto
+-   It is compatible with more programming languages 
+
+Here are some resources about this:
+
+-   [Quarto FAQs for R Markdown users](https://quarto.org/docs/faq/rmarkdown.html)
+-   [With Quarto Coming, is R Markdown Going Away? No.](https://yihui.org/en/2022/04/quarto-r-markdown/) by Yihui Xie
+
+For this class, I am not going to explicitly teach Quarto but if you want to use it you can. When you knit a Quarto document (which has the file extension `.qmd`), it can be come a `.html` file just like with a `.rmd`. I am happy to answer questions about it.
+
+If you go to the course website and download material from the source repo, you will see many `.qmd` files because that is what I used to make this site.
+
 # Useful resources
 
 -   [R Markdown cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf)

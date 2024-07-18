@@ -1,6 +1,6 @@
 ---
 title: "1 - Principles of Data Visualization"
-subtitle: "Week 1<br>8/22/2023 💻 🧰 📊 🥳"
+subtitle: "Week 1<br>8/20/2024 💻 🧰 📊 🥳"
 author: "Jessica Cooperstone, Ph.D."
 format: 
   revealjs:
