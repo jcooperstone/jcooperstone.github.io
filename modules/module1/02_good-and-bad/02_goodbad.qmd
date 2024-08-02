@@ -1,12 +1,12 @@
 ---
-title: "Good and Bad Visualizations"
-subtitle: "Week 2<br>8/29/2023"
-author: ""
+title: "2 - Good and Bad Data Visualizations"
+subtitle: "Week 1<br>8/27/2024 <br>💻 🧰 📊 🥳"
+author: "Jessica Cooperstone, Ph.D."
 format: 
   revealjs:
     incremental: true
     theme: jc_style.scss
-    footer: "[01 Principles](https://www.rdataviz.com/), © Jessica Cooperstone, 2023"
+    footer: "[01 Principles](https://www.rdataviz.com/), © Jessica Cooperstone, 2024"
 css: xaringan-themer.css
 ---
 
@@ -19,8 +19,8 @@ css: xaringan-themer.css
 
 # Office hours
 
-- Daniel: Fridays 1-2 pm Howlett 340 (email him if you plan to go) or via Zoom
-- Jess: Tuesday 11:30 am - 12:30 pm in Howlett 348 or via Zoom
+- Daniel: 
+- Jess: 
 - Those who want to attend office hours virtually, use the same [Zoom link](https://go.osu.edu/dataviz-zoom) for class
 
 

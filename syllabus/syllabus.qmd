@@ -44,16 +44,24 @@ By the end of this course, students should successfully be able to:
 **Class recordings:** To help you master material, and to better accommodate students, classes will be recorded, and recordings uploaded directly after class to Carmen. You can find a link to a OneDrive folder with the recorded lectures on the Syllabus page on Carmen.
 
 ## Course schedule
-```{r, echo = FALSE}
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
 library(readxl)
 library(knitr)
+library(tidyverse)
 schedule <- read_excel("../files/schedule_modules.xlsx",
-                       sheet = "Schedule_date_2024")
+                       sheet = "Schedule_date_2024") 
 ```
 
 ```{r, echo = FALSE, fig.width = 6}
 kable(schedule)
 ```
+
+
+::: {.callout-note title="Asynchronous day of learning on November 5"}
+Note, in 2024 OSU will have an [asynchronous day of learning on November 5th](https://oaa.osu.edu/election-day-asynchronous-learning). On this day, I will provide to you the lecture material asynchronously and you can go through the recitation material on your own. Daniel and I will be available to answer questions during office hours, or at the beginning of the next class period.
+:::
+
+
 
 ## Course resources
 There are no required textbooks for this course, though you will find many of the recommend texts and resources belowvery useful.
