@@ -107,10 +107,10 @@ The YAML (Yet Another Markdown Language, or YAML ain't markup language, if you w
 
 The YAML is where you can set the content that will show up on the top of your knitted document.
 
--   title: "Your title but put it in quotes"
--   author: "The author and still in quotes"
--   date: the date you want at the top of your doc in quotes. If you want this to be today's date (whatever that is) you can use "`Sys.Date()`"
--   output: will indicate the format of your compiled document. I would recommend for this class you use html_document as it is the richest format. Your output will be a .html file, which you can save or share.
+-   **title**: "Your title but put it in quotes"
+-   **author**: "The author and still in quotes"
+-   **date**: the date you want at the top of your doc in quotes. If you want this to be today's date (whatever that is) you can use "`Sys.Date()`"
+-   **output**: will indicate the format of your compiled document. I would recommend for this class you use html_document as it is the richest format. Your output will be a .html file, which you can save or share.
 
 Here's a simple example.
 
@@ -123,7 +123,7 @@ output: html_document
 ---
 ```
 
-In the YAML, you can also set options that govern how your document will be compiled within output. For example, you can add a table of contents, make that toc float, add a theme, number your sections, and add a button that allows someone to click and access your `.Rmd` from your knitted `.html` file. This last one is especially nice because it allows you to send one viewable document, and if someone wants to edit it, they can download and do so easily.
+In the YAML, you can also set options that govern how your document will be compiled within output. For example, you can add a table of contents, make that toc float, add a theme, number your sections, and add a button that allows someone to click and access your `.Rmd` from your knitted `.html` file. This last one is especially nice because it allows you to send one viewable document, and if someone wants to edit it, they can download and do so easily. *This is how I will ask you to submit your class assignments.*
 
 Here's an example of what a more customized YAML could look like.
 
@@ -131,24 +131,28 @@ Here's an example of what a more customized YAML could look like.
 ---
 title: "This is my descriptive title"
 author: "Jess"
-date: "May 10, 2022"
+date: "August 9, 2024"
 output: 
-  html_document:
-    toc: true
-    toc_float: true
-    number_sections: true
-    theme: flatly
-    code_download: true
+  html_document: # knit to a .html doc
+    toc: true # creates a table of contents
+    toc_float: true # has that TOC float so you can see it even when you scroll
+    number_sections: true # number your sections
+    theme: flatly # set a global theme
+    code_download: true # insert the code download button
 ---
 ```
 
-Be sure you pay attention to the indents (which are 2 or 4 spaces, and not tabs), as the YAML is picky here. If your indents are not correct, you will get an error when you knit. (Pro tip: you can set in RStudio to insert spaces when you click tab by going to `Preferences` \> `Code` \> Use spaces for tab (and indicate 2).)
+Be sure you pay attention to the indents (which are 2 or 4 spaces, and not tabs), as the YAML is picky here. If your indents are not correct, you will get an error when you knit. Also, if you are missing a colon, your document will knit weirdly or not at all.
+
+::: {.callout-tip title="Pro tip to avoid a tab/space debacle"}
+You can set in RStudio to insert spaces when you click tab by going to `Preferences` \> `Code` \> Use spaces for tab (and indicate 2).
+:::
 
 Above are just some of the options that I like to put in my YAML, but there are tons more. Additional output options that are explained on the second page of the [RStudio R Markdown cheatsheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf).
 
 ## Text
 
-Unlike an R script (`.R`), where R by default interprets anything as code (and material that isn't code needed to be commented out by using \#), in an R Markdown, the default is text (and code exists only within code chunks or backticks).
+Unlike an R script (`.R`), where R by default interprets anything as code (and material that isn't code needed to be commented out by using `#`), in an R Markdown, the *default is text* (and code exists only within code chunks or backticks).
 
 The text portion of the document is written in a language called [Markdown](https://pandoc.org/MANUAL.html#pandocs-markdown) (which is why this format is called R Markdown). The philosophy of Markdown is that it is easy to both write and read. If you want to learn more about markup languages I'd recommend the this [brief explanation by Michael Broe from a past Code Club Session](https://biodash.github.io/codeclub/s02e03_rmarkdown/#i-markdown) and the [Markup language wikipedia page](https://en.m.wikipedia.org/wiki/Markup_language).
 
@@ -177,6 +181,8 @@ You can use Markdown to insert tables, images, mathematical formulas, block quot
 
 So how is this useful for this course and making your own data analyses more reproducible? You can embed text along with your code, where you provide introductory information, your rationale for data analysis decision making, links and more information about interpreting your code and its output, provide context as to your results, and anything else that would aid your data's interpretation.
 
+And, when you want to make a small change, you can do so, knit, and everything else automatically updates.
+
 ## Code 
 
 Code chunks are the parts of your R Markdown document where code lives. You can insert a new code chunk by:
@@ -191,7 +197,7 @@ Code chunks look like this:
 knitr::include_graphics("img/chunk_screenshot.png")
 ```
 
-The code goes in the empty line, and there can be more than 1 bit of code per chunk.
+The code goes in the empty line, and there can be more than 1 bit of code per chunk though I would say if you start having to scroll in your chunk its probably too long.
 
 -   the gear allows you to modify the chunk options (we are going to talk more about this)
 -   the triangle with the line below it runs all code chunks that come previous to this chunk
@@ -237,7 +243,7 @@ When you have a long document with code, its useful to have a table of contents 
 
 You can turn on the table of contents by clicking the button highlighted below.
 
-```{r table of contents, fig.alt = "A screenshot of the button to access the table of contents, allowing you to navigate between different parts of your R Markdown document.", fig.align = "center", echo = FALSE}
+```{r table of contents, fig.alt = "A screenshot of the button to access the table of contents, allowing you to navigate between different parts of your R Markdown document.", fig.align = "center", out.width = "100%", echo = FALSE}
 knitr::include_graphics("img/toc_screenshot.png")
 ```
 
@@ -255,10 +261,14 @@ Then, you can see and navigate between your chunks at the bottom left of the R M
 
 ### The visual editor
 
-In RStudio version 1.4 or higher, you can also use a visual editor, which allows you to toggle between your R Markdown document, and what that document would look like compiled.
+In RStudio, you can also use a visual editor, which allows you to toggle between your R Markdown document, and what that document would look like compiled.
+
+```{r source editor, fig.alt = "A screenshot of the button to access the visual editor, allowing you to toggle between the R Markdown and compiled version of your document.", fig.align = "center", echo = FALSE}
+knitr::include_graphics("img/rmarkdown_sourceview.png")
+```
 
 ```{r visual editor, fig.alt = "A screenshot of the button to access the visual editor, allowing you to toggle between the R Markdown and compiled version of your document.", fig.align = "center", echo = FALSE}
-knitr::include_graphics("img/visual_editor_screenshot.png")
+knitr::include_graphics("img/rmarkdown_visualview.png")
 ```
 
 When you're first getting started, this is a useful resource to see how your R Markdown doc will look when knitted.
