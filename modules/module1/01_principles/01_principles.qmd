@@ -198,6 +198,13 @@ knitr::include_graphics("img/explore_explain.png")
 
 <p>Figure adapted from one by [Rick Scavetta](https://twitter.com/rick_scavetta?lang=en)</p>
 
+## 
+
+```{r echo = FALSE, fig.alt="Chart suggestions, a thought starter. Shows how different plot types can be used if you want to compare across groups, show a relationship, understand a distribution, or undrestand compositional differences."}
+#| fig-align: center
+knitr::include_graphics("img/choosing-a-good-chart.jpg")
+```
+
 # Small changes can make a big difference (and some examples)
 
 ## Simple changes improve interpretability {.center_title background-color="#fff"}
