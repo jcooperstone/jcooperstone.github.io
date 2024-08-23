@@ -16,7 +16,11 @@ knitr::opts_chunk$set(echo = FALSE)
 **Email address:** cooperstone dot 1 at osu dot edu (preferred contact method)    
 **Phone number:** 614-292-2843 (non-preferred contact method)   
 **TA**: [Daniel Quiroz Moreno](https://danielquiroz97.gitlab.io/), quirozmoreno dot 1 at osu dot edu   
-**Office hours:** TBD
+**Office hours:**
+
+- Jess: Tuesdays 1-2pm Howlett 348 or via [Zoom](https://go.osu.edu/dataviz-zoom)
+- Daniel: Thursdays 2-3pm Howlett 340 or via [Zoom](https://go.osu.edu/dataviz-zoom) (tell Daniel by the start of office hours if you're planning to attend)
+
 
 ## Course meeting time and place
 Tuesdays synchronously from 4:10-5:55 pm in:

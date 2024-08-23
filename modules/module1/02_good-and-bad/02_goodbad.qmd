@@ -19,8 +19,8 @@ css: xaringan-themer.css
 
 # Office hours
 
-- Daniel: 
-- Jess: 
+- Jess: Tuesdays 1-2pm Howlett 348 or via [Zoom](https://go.osu.edu/dataviz-zoom)
+- Daniel: Thursdays 2-3pm Howlett 340 or via [Zoom](https://go.osu.edu/dataviz-zoom) (tell Daniel by the start of office hours if you're planning to attend)
 - Those who want to attend office hours virtually, use the same [Zoom link](https://go.osu.edu/dataviz-zoom) for class
 
 
