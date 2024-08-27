@@ -5,38 +5,103 @@ author: "Jessica Cooperstone, Ph.D."
 format: 
   revealjs:
     incremental: true
-    theme: jc_style.scss
+    theme: simple
     footer: "[01 Principles](https://www.rdataviz.com/), © Jessica Cooperstone, 2024"
-css: xaringan-themer.css
 ---
 
 # Housekeeping
 
-- Questions from the previous class?
-- Take [edX R basics class](https://pll.harvard.edu/course/data-science-r-basics) if you don't have R experience
-- Start think about identifying a dataset for your capstone assignment
-- Don't forget about your reflections 🪞
+-   Questions from the previous class?
+-   Take [edX R basics class](https://pll.harvard.edu/course/data-science-r-basics) if you don't have R experience
+-   Start think about identifying a dataset for your capstone assignment
+-   Don't forget about your reflections 🪞
 
 # Office hours
 
-- Jess: Tuesdays 1-2pm Howlett 348 or via [Zoom](https://go.osu.edu/dataviz-zoom)
-- Daniel: Thursdays 2-3pm Howlett 340 or via [Zoom](https://go.osu.edu/dataviz-zoom) (tell Daniel by the start of office hours if you're planning to attend)
-- Those who want to attend office hours virtually, use the same [Zoom link](https://go.osu.edu/dataviz-zoom) for class
-
-
+-   Jess: Tuesdays 1-2pm Howlett 348 or via [Zoom](https://go.osu.edu/dataviz-zoom)
+-   Daniel: Thursdays 2-3pm Howlett 340 or via [Zoom](https://go.osu.edu/dataviz-zoom) (tell Daniel by the start of office hours if you're planning to attend)
+-   Those who want to attend office hours virtually, use the same [Zoom link](https://go.osu.edu/dataviz-zoom) for class
 
 ## What was easier to find?
 
-- good 👏  visualizations 
-- bad 😡 visualizations
+-   Good 👏 visualizations
+-   Bad 😡 visualizations
 
+# What are we doing today?
+
+- Bad: why are they bad (specifically), how can they be made better?
+- Good: why are they good (specifically), can we still improve them?
 
 # Bad visualizations 😡 {.center_title}
 
+# Maps 🗺
 
+Caleb
+
+![](bad/caleb.png){fig-align="center"}
+
+# Fertility after bombing 👶 
+
+Sujin
+
+![](bad/sujin.png){fig-align="center"}
+
+# Ozone in LA 🏭 
+
+Addie
+
+![](bad/addie.png){fig-align="center"}
+
+# Scary spider plots 🕸️
+
+Lexie
+
+![](bad/lexie.png){fig-align="center"}
+
+# The worst! 
+
+Berenice 🏅
+
+![](bad/winner_berenice.png){fig-align="center"}
 
 # Good visualizations 👏 {.center_title}
 
+# Pie charts can be good 🥧 
 
+Avonti 
+
+![](good/avonti.png){fig-align="center"}
+
+# Soil & small multiples 🚜 
+
+Mithlesh 
+
+![](good/mithlesh.jpg){fig-align="center"}
+
+# Boxplots gone viral 🦠
+
+Courtney
+
+![](good/courtney.png)
+
+# Science competency 🔬 
+Prabath 
+
+![](good/prabath.png){fig-align="center"}
+
+# Voting by region 🗳️
+John
+
+![](good/tengatenga.png){fig-align="center"}
+
+# Growing petunias 🌸 
+Alexandra 
+
+![](good/alexandra.png){fig-align="center"}
+
+# Where do people live? 🗺
+Swetha 🏅
+
+![](good/winner_swetha.png){fig-align="center"}
 
 # Closing thoughts
