@@ -18,19 +18,17 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This will be your template RMarkdown document for playing around with RMarkdown. This was opened using the default Rmd settings. You are going to be playing around with the 3 components of an Rmd:
 
-1. text
-2. code
-3. the YAML (aka the header)
+1.  text
+2.  code
+3.  the YAML (aka the header)
 
 To see if each of your changes has worked, you will need to knit.
 
 # Text
 
-Write text that generates in italics.
-*This text is in italics*
+Write text that generates in italics. *This text is in italics*
 
-Write text that generates in bold
-**This text is in bold**
+Write text that generates in bold **This text is in bold**
 
 Try playing around with header levels
 
@@ -41,11 +39,12 @@ Try playing around with header levels
 ### Third biggest header
 
 ### Four biggest header
+
 You get the idea.
 
 Add a hyperlink to [our class website](https://datavisualizing.netlify.app/)
 
-Add an image. Note you will do this differently if you are adding an image from internet vs one you have on your local machine. Also remember your working directory is the location of your Rmd and you may want to have a directory called `img` where images are stored. 
+Add an image. Note you will do this differently if you are adding an image from internet vs one you have on your local machine. Also remember your working directory is the location of your Rmd and you may want to have a directory called `img` where images are stored.
 
 ![This is my dog Nacho](https://www.cooperstonelab.com/people/current-team/nacho/featured.jpeg)
 
@@ -55,38 +54,44 @@ Add a block quote
 
 Make a bulleted list
 
-* Thing 1
-* Thing 2
-* Thing 3
+-   Thing 1
 
+-   Thing 2
 
-- This also works
-- To make
-- A bulleted list
+-   Thing 3
 
+-   This also works
 
-1. You can also
-2. Make 
-3. Numbered lists
+-   To make
+
+-   A bulleted list
+
+1.  You can also
+2.  Make
+3.  Numbered lists
 
 # Code
 
 Create a code chunk by typing
+
 ```{r}
 
 ```
 
 Create a code chunk using the toolbar
+
 ```{r}
 
 ```
 
 Create a code chunk using the keyboard shortcut
+
 ```{r}
 
 ```
 
 Write some code within a chunk and execute it
+
 ```{r}
 getwd()
 ```
@@ -98,21 +103,25 @@ Is it `r weekdays(as.POSIXlt("2022-09-09"))` yet?
 Try using the different options for your code chunks. Remember you can use multiple at once.
 
 Get code to run but not display
+
 ```{r include = FALSE}
 my_vector <- c(1:10)
 ```
 
 (See it did actually run as it shows up here.)
+
 ```{r}
 my_vector
 ```
 
 Get code to display but not run
+
 ```{r eval = FALSE}
 install.packages("tidyverse")
 ```
 
 Get code to hide messages
+
 ```{r message = FALSE}
 library(tidyverse) 
 ```
@@ -124,36 +133,87 @@ library(tidyverse)
 ```
 
 Add a figure caption
+
 ```{r cars, fig.cap = "Here is my plot about cars"}
 plot(cars)
 ```
 
 Add alt text
+
 ```{r cars2, fig.alt= "A scatterplot showing the relationship between speed and distance of cars. The two are strongly positively correlated, meaning cars moving at a faster speed go a further distance (I think)."}
 plot(cars)
 ```
 
-
 Give your chunk a name
+
 ```{r how-many-cars}
 dim(cars)
 ```
 
-
 # The YAML
+
 Edit the default components of the YAML to be personalized to you
 
 Play around with adding a:
-Table of contents
-Code download button
-Code folding
 
-Play around with the default themes https://www.datadreaming.org/post/r-markdown-theme-gallery/ 
+-   Table of contents
+-   Code download button
+-   Code folding
 
-Play around themes from `prettydoc`, `rmdformats` and/or `tufte` 
+You can learn more about setting other arguments in your YAML [here](https://bookdown.org/yihui/rmarkdown/html-document.html).
+
+Play around with the default themes: you can find a gallery of the themes [here](https://www.datadreaming.org/posts/2018-04-11-r-markdown-theme-gallery/2018-04-11-r-markdown-theme-gallery). This site shows you some examples of themes from the packages `prettydoc`, `rmdformats` and/or `tufte`. Before you can use those themes, you need to download them, which you can do using the code below:
+
+```{r, eval = FALSE}
+install.packages("prettydoc")
+install.packages("rmdformats")
+install.packages("tufte")
+```
+
+You can see some other examples of using themes [here](https://rpubs.com/ranydc/rmarkdown_themes).
+
+Here are some example YAMLs. I put it in a code chunk so it renders if you knit this file, but you want to copy just the part between the `---` and `---`.
+
+```{r lumen-yaml, eval = FALSE}
+---
+title: "R Markdown Recitation Solutions"
+author: "Jessica Cooperstone"
+output: 
+  html_document:
+    toc: true # have a TOC
+    toc_float: true # make TOC float
+    number_sections: true # number the sections
+    theme: lumen # use the theme "lumen"
+    code_download: true # add a code download button
+    code_folding: hide # code folded by default
+---
+```
+
+You can learn more about `prettydoc` [here](https://prettydoc.statr.me/themes.html).
+```{r prettydoc-architect, eval = FALSE}
+---
+title: "Your Document Title"
+author: "Document Author"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    theme: architect
+    highlight: github
+---
+```
+
+
+```{r rmdformats-readthedown, eval = FALSE}
+---
+title: "This is a readthedown Themes YAML from `rmdformats` Package"
+author: "Type your name here"
+date: "`r Sys.Date()`"
+output: 
+  rmdformats::readthedown
+---
+```
 
 # Other stuff
-Play around with the visual editor
 
-Make the table of contents viewable in your document
+Play around with the visual editor.
 

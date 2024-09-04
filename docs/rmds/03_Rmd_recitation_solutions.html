@@ -298,6 +298,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="dropdown-header">Module assignment solutions</li>
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Recitation solutions</li>
+        <li>
+    <a class="dropdown-item" href="https://github.com/jcooperstone/rdataviz/raw/main/rmds/03_Rmd_recitation_solutions.Rmd" rel="" target="">
+ <span class="dropdown-text">Week 3 - R Markdown solutions</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -460,14 +464,60 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="the-yaml" class="level1">
 <h1>The YAML</h1>
 <p>Edit the default components of the YAML to be personalized to you</p>
-<p>Play around with adding a: Table of contents Code download button Code folding</p>
-<p>Play around with the default themes https://www.datadreaming.org/post/r-markdown-theme-gallery/</p>
-<p>Play around themes from <code>prettydoc</code>, <code>rmdformats</code> and/or <code>tufte</code></p>
+<p>Play around with adding a:</p>
+<ul>
+<li>Table of contents</li>
+<li>Code download button</li>
+<li>Code folding</li>
+</ul>
+<p>You can learn more about setting other arguments in your YAML <a href="https://bookdown.org/yihui/rmarkdown/html-document.html">here</a>.</p>
+<p>Play around with the default themes: you can find a gallery of the themes <a href="https://www.datadreaming.org/posts/2018-04-11-r-markdown-theme-gallery/2018-04-11-r-markdown-theme-gallery">here</a>. This site shows you some examples of themes from the packages <code>prettydoc</code>, <code>rmdformats</code> and/or <code>tufte</code>. Before you can use those themes, you need to download them, which you can do using the code below:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"prettydoc"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"rmdformats"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tufte"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can see some other examples of using themes <a href="https://rpubs.com/ranydc/rmarkdown_themes">here</a>.</p>
+<p>Here are some example YAMLs. I put it in a code chunk so it renders if you knit this file, but you want to copy just the part between the <code>---</code> and <code>---</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">"R Markdown Recitation Solutions"</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>author<span class="sc">:</span> <span class="st">"Jessica Cooperstone"</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>output<span class="sc">:</span> </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  html_document<span class="sc">:</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    toc<span class="sc">:</span> true <span class="co"># have a TOC</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    toc_float<span class="sc">:</span> true <span class="co"># make TOC float</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    number_sections<span class="sc">:</span> true <span class="co"># number the sections</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    theme<span class="sc">:</span> lumen <span class="co"># use the theme "lumen"</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    code_download<span class="sc">:</span> true <span class="co"># add a code download button</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    code_folding<span class="sc">:</span> hide <span class="co"># code folded by default</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can learn more about <code>prettydoc</code> <a href="https://prettydoc.statr.me/themes.html">here</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">"Your Document Title"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>author<span class="sc">:</span> <span class="st">"Document Author"</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">"`r Sys.Date()`"</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>output<span class="sc">:</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  prettydoc<span class="sc">::</span>html_pretty<span class="sc">:</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    theme<span class="sc">:</span> architect</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    highlight<span class="sc">:</span> github</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">"This is a readthedown Themes YAML from `rmdformats` Package"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>author<span class="sc">:</span> <span class="st">"Type your name here"</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">"`r Sys.Date()`"</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>output<span class="sc">:</span> </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  rmdformats<span class="sc">::</span>readthedown</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="other-stuff" class="level1">
 <h1>Other stuff</h1>
-<p>Play around with the visual editor</p>
-<p>Make the table of contents viewable in your document</p>
+<p>Play around with the visual editor.</p>
 
 
 </section>
