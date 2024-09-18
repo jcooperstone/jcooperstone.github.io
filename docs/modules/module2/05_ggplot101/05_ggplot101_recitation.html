@@ -101,7 +101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-sidebar floating nav-fixed fullcontent">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -306,6 +306,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../../../modules/module2/04_wrangling/04_wrangling_recitation_solutions.html" rel="" target="">
  <span class="dropdown-text">Week 4 - Wrangling solutions</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/05_ggplot101/05_ggplot101_recitation_solutions.html" rel="" target="">
+ <span class="dropdown-text">Week 5 - ggplot101 solutions</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -437,7 +441,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul>
+  <li><a href="#goals-of-this-recitation" id="toc-goals-of-this-recitation" class="nav-link" data-scroll-target="#goals-of-this-recitation">Goals of this recitation</a>
+  <ul class="collapse">
+  <li><a href="#download-data-from-github" id="toc-download-data-from-github" class="nav-link" data-scroll-target="#download-data-from-github">Download data from Github</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#wrangling" id="toc-wrangling" class="nav-link" data-scroll-target="#wrangling">Wrangling</a>
+  <ul>
+  <li><a href="#turn-one-character-column-into-two" id="toc-turn-one-character-column-into-two" class="nav-link" data-scroll-target="#turn-one-character-column-into-two">Turn one character column into two ✂️</a></li>
+  <li><a href="#select-observations-by-their-values" id="toc-select-observations-by-their-values" class="nav-link" data-scroll-target="#select-observations-by-their-values">Select observations by their values 🎃</a></li>
+  <li><a href="#remove-pesky-strings" id="toc-remove-pesky-strings" class="nav-link" data-scroll-target="#remove-pesky-strings">Remove pesky strings 😑</a></li>
+  <li><a href="#convert-character-to-numeric" id="toc-convert-character-to-numeric" class="nav-link" data-scroll-target="#convert-character-to-numeric">Convert character to numeric 🔢</a></li>
+  </ul></li>
+  <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot">Plot</a>
+  <ul>
+  <li><a href="#where-are-the-lines" id="toc-where-are-the-lines" class="nav-link" data-scroll-target="#where-are-the-lines">Where are the lines?</a></li>
+  <li><a href="#playing-around" id="toc-playing-around" class="nav-link" data-scroll-target="#playing-around">Playing around</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -465,25 +495,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="intro" class="level1">
-<h1>Intro</h1>
-<p>We are going to practice using ggplot today, focusing on the data, aesthetic, and geom layers. We are going to use data from the <a href="https://www.tidytuesday.com/">TidyTuesday</a> project. For this recitation, we are going to use the <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-10-19">Giant Pumpkins</a> data which is collected from the <a href="https://gpc1.org/">Great Pumpkin Commonwealth</a>.</p>
-<p>At the end of of this module you will create of of this descriptive plots</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>We are going to practice using <code>ggplot2</code> today, focusing wrangling data, mapping variables to aesthetics, and adding geoms.</p>
+<p>We are going to use data from the <a href="https://www.tidytuesday.com/">TidyTuesday</a> project. For this recitation, we are going to use the <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-10-19">Giant Pumpkins</a> data which is collected from the <a href="https://gpc1.org/">Great Pumpkin Commonwealth</a>. You can learn more about how the data is structured <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-10-19">here</a>.</p>
+<p>Today, you are going to make this plot:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="05_ggplot101_recitation_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p><img src="img/pumpkins_plot.jpg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Our plot for today</figcaption>
 </figure>
-</div>
-</div>
 </div>
 <blockquote class="blockquote">
 <p>Question: How can we replicate this plot?</p>
 </blockquote>
 <section id="goals-of-this-recitation" class="level2">
 <h2 class="anchored" data-anchor-id="goals-of-this-recitation">Goals of this recitation</h2>
-<p><strong>Work with real world data</strong></p>
+<p><strong>Work with real messy data</strong></p>
 <ul>
 <li>Import data from github</li>
 <li>Modify variables types</li>
@@ -545,14 +573,20 @@ $ variety           &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 
 <h1>Wrangling</h1>
 <section id="turn-one-character-column-into-two" class="level2">
 <h2 class="anchored" data-anchor-id="turn-one-character-column-into-two">Turn one character column into two ✂️</h2>
-<p>From both looking at the data, and reading about the variable <code>id</code> on the documentation page, you see that it contains two type of observations. To use them separately, we need to separate this column into two columns such like <code>year</code> and <code>type</code>.</p>
-<p>Try doing this with the function <a href="https://tidyr.tidyverse.org/reference/separate.html"><code>separate()</code></a> from the tidyr package to do this. And you will obtain the following data</p>
+<p>From both looking at the data, and reading about the variable <code>id</code> on the documentation page, you can see that it contains two pieces of information. To be able to interact with them separately, we need to separate this column into two columns (i.e.&nbsp;<code>year</code> and <code>type</code>).</p>
+<p>Try doing this with the function <a href="https://tidyr.tidyverse.org/reference/separate.html"><code>separate()</code></a> from the tidyr package. Or you can use <a href="https://tidyr.tidyverse.org/reference/separate_wider_delim.html"><code>separate_wider_delim()</code></a>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pumpkins_raw <span class="sc">%&gt;%</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">separate</span>(WHAT<span class="sc">-</span>GOES<span class="sc">-</span>HERE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="select-observations-by-their-values" class="level2">
 <h2 class="anchored" data-anchor-id="select-observations-by-their-values">Select observations by their values 🎃</h2>
-<p>Now that you separated the year and crop type, keep only the data for Giant Pumpkins. Hint, you can use the <a href="https://dplyr.tidyverse.org/reference/filter.html"><code>filter()</code></a> function from the <code>dplyr</code> package.</p>
+<p>Now that you separated the year and crop type, keep only the data for Giant Pumpkins.</p>
+<details>
+<summary>
+Need a hint?
+</summary>
+Hint, you can use the <a href="https://dplyr.tidyverse.org/reference/filter.html"><code>filter()</code></a> function from the <code>dplyr</code> package.
+</details>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -565,7 +599,7 @@ $ variety           &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 
 </div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pumpkins_raw <span class="sc">%&gt;%</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">filter</span>(...predicate<span class="sc">/</span>condition...) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Now that you are familiar with the <a href="https://dplyr.tidyverse.org/reference/filter.html"><code>filter()</code></a>, retain only the observations that were the winners or those in the first place.</p>
+<p>Now that you hae kept only the Giant Pumpkins, retain only the observations that were the winners (i.e.&nbsp;those in first place).</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pumpkins_raw <span class="sc">%&gt;%</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">filter</span>(...predicate<span class="sc">/</span>condition...) <span class="sc">%&gt;%</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">filter</span>(...predicate<span class="sc">/</span>condition...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -580,11 +614,11 @@ $ variety           &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 
 <p>What is weird about this y-axis?</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="05_ggplot101_recitation_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<p><img src="05_ggplot101_recitation_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>If you take a look at the variables of the <code>weight_lbs</code> column, it contains commas as thousand separator. However, R does not recognize this as a number (and instead views it as a character) so and it has to be removed prior changing the column type.</p>
-<p>For this purpose, we are going to remove this annoying character. You can use <a href="https://www.rdocumentation.org/packages/stringr/versions/1.4.0/topics/str_remove"><code>str_remove()</code></a> function from the base and stringr package respectively. Here is an example of how both functions work.</p>
+<p>If you take a look at the variables of the <code>weight_lbs</code> column, it contains a commas as the thousand separator. R does not recognize this as a number (and instead views it as a character) so and it has to be removed prior changing the column type. There are a few ways to do this.</p>
+<p>Let’s practice handling strings by removing the comma. You can use <a href="https://www.rdocumentation.org/packages/stringr/versions/1.4.0/topics/str_remove"><code>str_remove()</code></a> function from the <code>tidyvers</code>e package <code>stringr</code>. Here is an example of how <code>str_remove()</code> works.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>wrong_number <span class="ot">&lt;-</span> <span class="st">"700,057.58"</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>wrong_number</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -592,15 +626,15 @@ $ variety           &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 
 <pre><code>[1] "700,057.58"</code></pre>
 </div>
 </div>
-<p>Using <code>str_remove</code></p>
+<p>Using <code>str_remove()</code></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>stringr<span class="sc">::</span><span class="fu">str_remove</span>(<span class="at">string =</span> wrong_number, <span class="at">pattern =</span> <span class="st">","</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "700057.58"</code></pre>
 </div>
 </div>
-<p>Remember, we don’t want to just remove the thousands place comma in one number, we want to edit the dataset to remove the comma.</p>
-<p>In this case, you can embed <code>str_remove()</code> within the <code>mutate()</code> function, which can create new variables or modify existing ones. In our case, we want to modify the <code>weight_lbs</code> variable.</p>
+<p>Remember, we don’t want to just remove the thousands place comma in one number, we want to <strong>edit the dataset to remove the comma.</strong></p>
+<p>In this case, you can embed <code>str_remove()</code> within the <code>mutate()</code> function, which can create new variables or modify existing ones. In our case, we want to modify the <code>weight_lbs</code> variable to remove the comma. Give it a try.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -646,42 +680,30 @@ $ variety           &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="fu">str_remove</span>(arguments<span class="sc">-</span>here)) <span class="sc">%&gt;%</span></span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="fu">as.numeric</span>(arguments<span class="sc">-</span>here)) <span class="sc">%&gt;%</span></span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  code<span class="sc">-</span>to<span class="sc">-</span>plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_line()`: Each group consists of only one observation.
-ℹ Do you need to adjust the group aesthetic?</code></pre>
-</div>
-<div class="cell-output-display">
-<p><img src="05_ggplot101_recitation_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
 <section id="where-are-the-lines" class="level2">
 <h2 class="anchored" data-anchor-id="where-are-the-lines">Where are the lines?</h2>
-<p>Why do you think the lines aren’t showing up? Hint - look at what variable type <code>year</code> is.</p>
-<p>How can you fix this? Hint, you can change <code>year</code> to either numeric or a date. Here are some packages that allow you to deal with dates specifically.</p>
-<ul>
-<li><a href="https://cran.r-project.org/web/packages/datefixR/vignettes/datefixR.html">dateFixR</a></li>
-<li><a href="https://cran.r-project.org/web/packages/lubridate/vignettes/lubridate.html">lubridate</a></li>
-</ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>pumpkins_raw <span class="sc">%&gt;%</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  code<span class="sc">-</span>to<span class="sc">-</span>separate <span class="sc">%&gt;%</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  code<span class="sc">-</span>to<span class="sc">-</span>filter <span class="sc">%&gt;%</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="fu">str_remove</span>(arguments<span class="sc">-</span>here)) <span class="sc">%&gt;%</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="fu">as.numeric</span>(arguments<span class="sc">-</span>here)) <span class="sc">%&gt;%</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(do<span class="sc">-</span>something<span class="sc">-</span>with<span class="sc">-</span>your<span class="sc">-</span>date) <span class="sc">%&gt;%</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  code<span class="sc">-</span>to<span class="sc">-</span>plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="05_ggplot101_recitation_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
+<p>Why do you think the lines aren’t showing up?</p>
+<details>
+<summary>
+Need a hint?
+<summary>
+Hint - look at what variable type <code>year</code> is.
+</summary></summary></details>
+<p>How can you fix this? Hint, you can change <code>year</code> to either numeric or a date. Try using some functions from the package <a href="https://cran.r-project.org/web/packages/lubridate/vignettes/lubridate.html"><code>lubridate</code></a> or the function <a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/as.Date"><code>as.Date()</code></a>.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pumpkins_raw <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  code<span class="sc">-</span>to<span class="sc">-</span>separate <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  code<span class="sc">-</span>to<span class="sc">-</span>filter <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="fu">str_remove</span>(arguments<span class="sc">-</span>here)) <span class="sc">%&gt;%</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">variable =</span> <span class="fu">as.numeric</span>(arguments<span class="sc">-</span>here)) <span class="sc">%&gt;%</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(do<span class="sc">-</span>something<span class="sc">-</span>with<span class="sc">-</span>your<span class="sc">-</span>date) <span class="sc">%&gt;%</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  code<span class="sc">-</span>to<span class="sc">-</span>plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="playing-around" class="level2">
 <h2 class="anchored" data-anchor-id="playing-around">Playing around</h2>
 <p>Try using different geoms besides <code>geom_point()</code> and <code>geom_line()</code>. Which might make sense in this situation?</p>
 <p>Can you color all the lines blue?</p>
 <p>Can you color the data based on year?</p>
-<p>Can you color and change shape based on country?</p>
+<p>Can you change color and change shape based on country?</p>
 <p>Can you make a plot showing the distribution of weights of all giant pumpkins entered in 2021?</p>
 <p>Can you make a boxplot showing the distribution of weights of all giant pumpkins across all years? Also can you add all the datapoints on top of the boxplot? Is this a good idea? Might there be a better geom to use than a boxplot?</p>
 

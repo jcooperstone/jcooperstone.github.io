@@ -2,57 +2,34 @@
 title: "ggplot 101 recitation 🎃"
 author: "Daniel Quiroz, Jessica Cooperstone"
 subtitle: "Week 5"
+format:
+  html:
+    toc: true
+    toc-depth: 4
 ---
 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-```
-
-# Intro
-
-We are going to practice using ggplot today, focusing on the data,
-aesthetic, and geom layers. We are going to use data from the [TidyTuesday](https://www.tidytuesday.com/) project. For this recitation, we are going to use the [Giant Pumpkins](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-10-19)
-data which is collected from the [Great Pumpkin Commonwealth](https://gpc1.org/). 
-
-At the end of of this module you will create of of this descriptive plots
-
-```{r echo=FALSE, fig.align="center", message=FALSE, warning=FALSE, out.width="70%"}
 library(tidyverse)
-library(lubridate)
-library(ggsci)
-
-pumpkins_raw <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-10-19/pumpkins.csv')
-
-crop_names <- c(`F` = "Field pumpkin", P = "Giant pumpkin",
-                S = "Giant squash", W = "Giant watermelon")
-
-pump_plot <- pumpkins_raw %>%
-  filter(place == 1) %>% 
-  separate(col = id, into = c("Year", "Category")) %>% 
-  filter(Category %in% c("F", "P", "S", "W")) %>% 
-  mutate(Year = ymd(Year, truncated = 2L),
-         weight_lbs = as.numeric(gsub(",", "", weight_lbs))) %>% 
-  ggplot(aes(Year, weight_lbs, color = Category)) +
-  #geom_smooth() +
-  geom_point(aes(shape = Category), size = 2.5) + geom_line() +
-  facet_wrap("Category", scales = "free_y",
-             labeller = labeller(Category = crop_names)) +
-  scale_color_aaas() +
-  theme_classic() +
-  labs(x = "Year", y = "Weight (lbs)", color = "Crop", shape = "Crop",
-       title = "Weight of the first place  giant crop from 2013 to 2021",
-       subtitle = "Data from the tidytuesday initiative and BigPumpkins.com") +
-  guides(color="none", shape = "none")
-
-pump_plot
+pumpkins_raw <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-10-19/pumpkins.csv')
 ```
+
+# Introduction
+
+We are going to practice using `ggplot2` today, focusing wrangling data, mapping variables to aesthetics, and adding geoms.
+
+We are going to use data from the [TidyTuesday](https://www.tidytuesday.com/) project. For this recitation, we are going to use the [Giant Pumpkins](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-10-19) data which is collected from the [Great Pumpkin Commonwealth](https://gpc1.org/). You can learn more about how the data is structured [here](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-10-19).
+
+Today, you are going to make this plot:
+
+![Our plot for today](img/pumpkins_plot.jpg)
 
 > Question: How can we replicate this plot?
 
 ## Goals of this recitation
 
-**Work with real world data**
+**Work with real messy data**
 
 - Import data from github
 - Modify variables types
@@ -63,7 +40,6 @@ pump_plot
 ```{r echo=FALSE, out.width="70%", fig.align="center", fig.cap="Illustration taken from https://www.allisonhorst.com"}
 knitr::include_graphics("img/dplyr_wrangling.png")
 ```
-
 
 ### Download data from Github
 
@@ -96,26 +72,24 @@ Do some of these variables contain more than one piece of information?
 
 ## Turn one character column into two ✂️
 
-From both looking at the data, and reading about the variable `id` on the documentation page, you see that it contains two type of observations. To use them separately, we need to separate this column into two columns such like `year` and `type`.
+From both looking at the data, and reading about the variable `id` on the documentation page, you can see that it contains two pieces of information. To be able to interact with them separately, we need to separate this column into two columns (i.e. `year` and `type`).
 
-Try doing this with the function [`separate()`](https://tidyr.tidyverse.org/reference/separate.html) from the tidyr package to do this. And you will obtain the following data
+Try doing this with the function [`separate()`](https://tidyr.tidyverse.org/reference/separate.html) from the tidyr package. Or you can use [`separate_wider_delim()`](https://tidyr.tidyverse.org/reference/separate_wider_delim.html).
 
 ```r
 pumpkins_raw %>%
    separate(WHAT-GOES-HERE)
 ```
 
-```{r include=FALSE}
-pumpkins_raw %>% 
-  separate(col = "id", into = c("year", "type")) %>% 
-  glimpse()
-```
-
 ## Select observations by their values 🎃
 
-Now that you separated the year and crop type, keep only the data for Giant Pumpkins. Hint, you can use the [`filter()`](https://dplyr.tidyverse.org/reference/filter.html) function from
-the `dplyr` package.
+Now that you separated the year and crop type, keep only the data for Giant Pumpkins. 
 
+<details>
+    <summary>Need a hint?</summary>
+Hint, you can use the [`filter()`](https://dplyr.tidyverse.org/reference/filter.html) function from
+the `dplyr` package.
+</details>
 
 ```{r echo=FALSE, out.width="70%", fig.align="center", fig.cap="Illustration taken from https://www.allisonhorst.com"}
 knitr::include_graphics("img/dplyr_filter.jpeg")
@@ -126,27 +100,12 @@ pumpkins_raw %>%
    filter(...predicate/condition...) 
 ```
 
-```{r include=FALSE}
-pumpkins_raw %>% 
-  separate(col = "id", into = c("year", "type")) %>%
-  filter(type == "P") %>% 
-  glimpse()
-```
-
-Now that you are familiar with the [`filter()`](https://dplyr.tidyverse.org/reference/filter.html), retain only the observations that were the winners or those in the first place.
-
+Now that you hae kept only the Giant Pumpkins, retain only the observations that were the winners (i.e. those in  first place).
 
 ```r
 pumpkins_raw %>%
    filter(...predicate/condition...) %>%
    filter(...predicate/condition...)
-```
-
-```{r include=FALSE}
-pumpkins_raw %>% 
-  separate(col = "id", into = c("year", "type")) %>%
-  filter(type == "P" & place == "1") %>% 
-  glimpse()
 ```
 
 ## Remove pesky strings 😑
@@ -171,24 +130,24 @@ pumpkins_filt %>%
     geom_point()
 ```
 
-If you take a look at the variables of the `weight_lbs` column, it contains commas
-as thousand separator. However, R does not recognize this as a number (and instead views it as a character) so and it has to be removed prior changing the column type.
+If you take a look at the variables of the `weight_lbs` column, it contains a commas
+as the thousand separator. R does not recognize this as a number (and instead views it as a character) so and it has to be removed prior changing the column type. There are a few ways to do this.
 
-For this purpose, we are going to remove this annoying character. You can use  [`str_remove()`](https://www.rdocumentation.org/packages/stringr/versions/1.4.0/topics/str_remove) function from the base and stringr package respectively. Here is an example of how both functions work.
+Let's practice handling strings by removing the comma. You can use  [`str_remove()`](https://www.rdocumentation.org/packages/stringr/versions/1.4.0/topics/str_remove) function from the `tidyvers`e package `stringr`. Here is an example of how `str_remove()` works.
 
 ```{r}
 wrong_number <- "700,057.58"
 wrong_number
 ```
 
-Using `str_remove` 
+Using `str_remove()` 
 ```{r}
 stringr::str_remove(string = wrong_number, pattern = ",")
 ```
 
-Remember, we don't want to just remove the thousands place comma in one number, we want to edit the dataset to remove the comma.
+Remember, we don't want to just remove the thousands place comma in one number, we want to **edit the dataset to remove the comma.**
 
-In this case, you can embed `str_remove()` within the  `mutate()` function, which can create new variables or modify existing ones. In our case, we want to modify the `weight_lbs`  variable.
+In this case, you can embed `str_remove()` within the  `mutate()` function, which can create new variables or modify existing ones. In our case, we want to modify the `weight_lbs` variable to remove the comma. Give it a try.
 
 ```{r echo=FALSE, out.width="70%", fig.align="center", fig.cap="Illustration taken from https://www.allisonhorst.com"}
 knitr::include_graphics("img/dplyr_mutate.png")
@@ -200,15 +159,6 @@ pumpkins_raw %>%
   code-to-filter %>%
   mutate(variable = str_remove(arguments-here)) 
 ```
-
-```{r include=FALSE}
-pumpkins_raw %>% 
-  separate(col = "id", into = c("year", "type")) %>%
-  filter(type == "P" & place == "1") %>% 
-  mutate(weight_lbs = str_remove(weight_lbs, ",") ) %>% 
-  glimpse()
-```
-
 Commas, gone! 👏👏👏
 
 ## Convert character to numeric 🔢
@@ -231,15 +181,6 @@ pumpkins_raw %>%
   mutate(variable = as.numeric(arguments-here))
 ```
 
-```{r include=FALSE}
-pumpkins_raw %>% 
-  separate(col = "id", into = c("year", "type")) %>%
-  filter(type == "P" & place == "1") %>% 
-  mutate(weight_lbs = str_remove(weight_lbs, ",") ) %>% 
-  mutate(weight_lbs = as.numeric(weight_lbs)) %>% 
-  glimpse()
-```
-
 # Plot 
 With the `weight_lbs` variable corrected, we can re-plot.
 
@@ -252,25 +193,16 @@ pumpkins_raw %>%
   code-to-plot
 ```
 
-```{r echo=FALSE}
-pumpkins_raw %>% 
-  separate(col = "id", into = c("year", "type")) %>%
-  filter(type == "P" & place == "1") %>% 
-  mutate(weight_lbs = str_remove(weight_lbs, ",") ) %>% 
-  mutate(weight_lbs = as.numeric(weight_lbs)) %>% 
-    ggplot(aes(year, weight_lbs)) + 
-    geom_point() + 
-    geom_line()
-```
 
 ## Where are the lines? 
 
-Why do you think the lines aren't showing up? Hint - look at what variable type `year` is.
+Why do you think the lines aren't showing up? 
 
-How can you fix this? Hint, you can change `year` to either numeric or a date. Here are some packages that allow you to deal with dates specifically.
+<details><summary>Need a hint?<summary>
+Hint - look at what variable type `year` is.
+</details>
 
-- [dateFixR](https://cran.r-project.org/web/packages/datefixR/vignettes/datefixR.html)
-- [lubridate](https://cran.r-project.org/web/packages/lubridate/vignettes/lubridate.html)
+How can you fix this? Hint, you can change `year` to either numeric or a date. Try using some functions from the package [`lubridate`](https://cran.r-project.org/web/packages/lubridate/vignettes/lubridate.html) or the function [`as.Date()`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/as.Date).
 
 ```r
 pumpkins_raw %>%
@@ -282,56 +214,16 @@ pumpkins_raw %>%
   code-to-plot
 ```
 
-```{r echo=FALSE}
-pumpkins_raw %>% 
-  separate(col = "id", into = c("year", "type")) %>%
-  filter(type == "P" & place == "1") %>% 
-  mutate(weight_lbs = str_remove(weight_lbs, ",") ) %>% 
-  mutate(weight_lbs = as.numeric(weight_lbs)) %>% 
-  mutate(year = ymd(year, truncated = 2L)) %>% 
-    ggplot(aes(year, weight_lbs)) + 
-    geom_point() + 
-    geom_line()
-```
-
 ## Playing around
+
 Try using different geoms besides `geom_point()` and `geom_line()`. Which might make sense in this situation?
 
 Can you color all the lines blue?
 
 Can you color the data based on year?
 
-Can you color and change shape based on country?
+Can you change color and change shape based on country?
 
 Can you make a plot showing the distribution of weights of all giant pumpkins entered in 2021?
-```{r include=FALSE}
-pumpkins_raw %>% 
-  separate(col = "id", into = c("year", "type")) %>% 
-  filter(type == "P") %>%
-  filter(year == 2021) %>%
-  mutate(weight_lbs = str_remove(weight_lbs, ",") ) %>% 
-  mutate(weight_lbs = as.numeric(weight_lbs)) %>%
-  ggplot(aes(x = weight_lbs)) +
-  geom_density()
-```
 
 Can you make a boxplot showing the distribution of weights of all giant pumpkins across all years? Also can you add all the datapoints on top of the boxplot? Is this a good idea? Might there be a better geom to use than a boxplot?
-```{r include=FALSE}
-pumpkins_raw %>% 
-  separate(col = "id", into = c("year", "type")) %>% 
-  filter(type == "P") %>%
-  mutate(weight_lbs = str_remove(weight_lbs, ",") ) %>% 
-  mutate(weight_lbs = as.numeric(weight_lbs)) %>%
-  ggplot(aes(x = year, y = weight_lbs)) +
-  geom_boxplot(outlier.shape = NA) +
-  geom_jitter(alpha = 0.1)
-```
-```{r include=FALSE}
-pumpkins_raw %>% 
-  separate(col = "id", into = c("year", "type")) %>% 
-  filter(type == "P") %>%
-  mutate(weight_lbs = str_remove(weight_lbs, ",") ) %>% 
-  mutate(weight_lbs = as.numeric(weight_lbs)) %>%
-  ggplot(aes(x = year, y = weight_lbs)) +
-  geom_violin(draw_quantiles = 0.5) 
-```

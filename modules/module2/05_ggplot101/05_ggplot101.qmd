@@ -88,6 +88,13 @@ library(tidyverse)
 library(gardenR)
 ```
 
+If you are having trouble getting the `gardenR` package to work, you can download the data directly and read it in.
+
+```{r manually-read, eval = FALSE}
+download.file(url = "https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/main/modules/module2/05_ggplot101/garden_harvest.csv",
+              destfile = "garden_harvest.csv")
+```
+
 What is in this `garden_harvest` dataset?
 ```{r investigating garden harvest}
 glimpse(garden_harvest)
