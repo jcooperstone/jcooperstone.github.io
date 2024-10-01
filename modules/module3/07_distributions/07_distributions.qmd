@@ -29,7 +29,7 @@ knitr::include_graphics("img/ggplot2_exploratory.png")
 ```
 
 ### Load libraries and data
-Before we get started, let's load our libraries.
+Before we get started, let's load the packages we need.
 
 ```{r libraries, warning = FALSE, message = FALSE}
 library(tidyverse)
@@ -137,6 +137,8 @@ alkaloids %>%
 ```
 
 My tendency would be to re-level the data if I always want to use the same order, and just re-level the plot if I only want to do this once or twice.
+
+You can also re-order factors based on characteristics of your data using different functions that are part of the [`forcats`](https://forcats.tidyverse.org/reference/index.html) package.
 
 ### [`geom_boxplot()`](https://ggplot2.tidyverse.org/reference/geom_boxplot.html)
 
