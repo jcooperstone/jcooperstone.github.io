@@ -25,9 +25,8 @@ coffee_ratings <- tuesdata$coffee_ratings
 library(???)
 ```
 
-## Total cupping score in arabica and robusta
-Make 3 different visualizations that shows the distribution of total cupping score across arabica and robusta beans. Make the plots so you think they look good.
+## Total cupping score in Arabica and Robusta
+Make 3 different visualizations that shows the distribution of total cupping score (i.e. `total_cup_points`) across Arabica and Robusta beans. Make the plots so you think they look good.
 
-
-## Individual characteristic cupping scores in arabica and robusta
-Make 3 different visualizations that show the distribution of all the individual contributors to total cupping score across arabica and robusta in one plot.
+## Individual characteristic cupping scores in Arabica and Robusta
+Make 3 different visualizations that show the distribution of all the individual contributors (i.e., `aroma`, `flavor`, `aftertaste`, `acidity`, `body`, `balance`, `uniformity`, `clean_cup`, `sweetness`, `cupper_points`) to total cupping score across Arabica and Robusta in one plot.
