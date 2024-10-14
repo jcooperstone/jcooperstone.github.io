@@ -30,8 +30,7 @@ knitr::kable(head(NHANES))
 
 ## 1. How correlated are different measures of blood pressure?
 
-In the NHANES dataset, there are 3 measurements for each systolic (the first/top number) and diastolic blood (the second/bottom number) pressure. How reproducible is each type of blood pressure measurement over the 3 samplings? Make visualizations to convey your findings.
-
+In the NHANES dataset, there are 3 measurements for each systolic (the first/top number) and diastolic blood (the second/bottom number) pressure, and an average for each. How reproducible is each type of blood pressure measurement over the 3 samplings? Make visualizations to convey your findings.
 
 ## 2. How correlated are different physical measurements, health, and lifestyle variables?
 
