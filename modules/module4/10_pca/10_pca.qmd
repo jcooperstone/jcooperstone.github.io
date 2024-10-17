@@ -64,7 +64,7 @@ alkaloid_total_names <- c("Dehydrotomatidine",
                           "TotalEsculeosideB",
                           "Total")
 
-alkaloid_blups_trim <- alkaloid_blups %>%
+alkaloid_blups_trim <- alkaloid_blups |>
   select(Genotype, Species, Class, all_of(alkaloid_total_names))
 
 # did it work?
@@ -80,7 +80,7 @@ Note, PCA will allow zeroes, but will throw an error if you feed it NAs.
 :::
 
 ```{r run PCA}
-alkaloids_pca <- prcomp(alkaloid_blups_trim[,-c(1:3)],
+alkaloids_pca <- prcomp(alkaloid_blups_trim |> select(all_of(alkaloid_total_names)),
                         scale = TRUE, # default is false
                         center = TRUE) # default is true, just being explicit
 ```
@@ -118,7 +118,7 @@ summary(alkaloids_pca)
 We can convert this summary into something later usable by extraction the element `importance` from `summary(alkaloids_pca)` and converting it to a dataframe.
 
 ```{r extract importance}
-importance <- summary(alkaloids_pca)$importance %>%
+importance <- summary(alkaloids_pca)$importance |>
   as.data.frame()
 
 knitr::kable(head(importance))
@@ -151,14 +151,14 @@ plot(alkaloids_pca)
 If you wanted to make a scree plot manually, you could by plotting using a wrangled version of the `importance` dataframe we made earlier.
 
 ```{r importance wrangling manual plot 1}
-importance_tidy <- importance %>%
-  rownames_to_column(var = "measure") %>%
+importance_tidy <- importance |>
+  rownames_to_column(var = "measure") |>
   pivot_longer(cols = PC1:PC10,
                names_to = "PC",
                values_to = "value")
 
-importance_tidy %>%
-  filter(measure == "Proportion of Variance") %>%
+importance_tidy |>
+  filter(measure == "Proportion of Variance") |>
   ggplot(aes(x = PC, y  = value)) +
   geom_col()
 ```
@@ -179,8 +179,8 @@ levels(importance_tidy$PC)
 Let's plot again.
 
 ```{r scree plot}
-importance_tidy %>%
-  filter(measure == "Proportion of Variance") %>%
+importance_tidy |>
+  filter(measure == "Proportion of Variance") |>
   ggplot(aes(x = PC, y  = value)) +
   geom_col()
 ```
@@ -190,8 +190,8 @@ Success!
 If we want to tighten up this plot we can.
 
 ```{r scree plot prettier}
-importance_tidy %>%
-  filter(measure == "Proportion of Variance") %>%
+importance_tidy |>
+  filter(measure == "Proportion of Variance") |>
   ggplot(aes(x = PC, y  = value)) +
   geom_col(alpha = 0.1, color = "black") +
   scale_y_continuous(labels = scales::percent) +
@@ -229,33 +229,51 @@ We can convert the list into a dataframe of scores values by using `as.data.fram
 scores_raw <- as.data.frame(alkaloids_pca$x)
 
 # bind meta-data
-scores <- bind_cols(alkaloid_blups[,1:3], # first 3 columns
+scores <- bind_cols(alkaloid_blups |> select(Genotype, Plot_Source, Species), # metadata
                     scores_raw)
+
+# how does our new df look?
+scores[1:6, 1:6]
 ```
 
 Now we can plot.
 
 ```{r scores plotting 1}
-scores %>%
+scores |>
   ggplot(aes(x = PC1, y = PC2, color = Species)) +
   geom_point() 
 ```
 
 Our shapes are looking the same, this is good. Let's pretty up our plot.
 
+First let's wrangle.
 ```{r scores plotting 2}
 # create objects indicating percent variance explained by PC1 and PC2
 PC1_percent <- round((importance[2,1])*100, # index 2nd row, 1st column, times 100
                      1) # round to 1 decimal
 PC2_percent <- round((importance[2,2])*100, 1) 
 
+# make Species a factor and set levels
+# from least wild to most wild
+# we did this back in data distributions.
+scores$Species <- factor(scores$Species,
+                         levels = c("Processing",
+                                    "Cultivated Cherry",
+                                    "Hybrid",
+                                    "Wild Cherry",
+                                    "Wild"))
+```
+
+Then we can plot
+```{r}
 # plot
-(scores_plot <- scores %>%
+(scores_plot <- scores |>
   ggplot(aes(x = PC1, y = PC2, fill = Species)) +
   geom_hline(yintercept = 0, linetype = "dashed") +
   geom_vline(xintercept = 0, linetype = "dashed") +
   geom_point(shape = 21, color = "black", size = 2.5, alpha = 0.7) +
-  scale_fill_brewer(palette = "Set2") +
+   # sequential color selecting hex codes from YlOrRd color by wildness
+  scale_fill_manual(values = c("#ffffcc", "#fed976", "#fd8d3c", "#e31a1c", "#800026")) + 
   theme_minimal() +
   labs(x = glue("PC1: {PC1_percent}%"), 
        y = glue("PC2: {PC2_percent}%"), 
@@ -282,14 +300,14 @@ We can also make a more customized loadings plot manually using ggplot and using
 # grab raw loadings, without any metadata
 loadings_raw <- as.data.frame(alkaloids_pca$rotation)
 
-loadings <- loadings_raw %>%
+loadings <- loadings_raw |>
   rownames_to_column(var = "alkaloid")
 ```
 
 We can then plot with ggplot like normal.
 
 ```{r loadings plot 1}
-loadings %>%
+loadings |>
   ggplot(aes(x = PC1, y = PC2, label = alkaloid)) +
   geom_hline(yintercept = 0, linetype = "dashed") +
   geom_vline(xintercept = 0, linetype = "dashed") +
@@ -327,9 +345,11 @@ alkaloid_labels <- c("Dehydrotomatidine",
 Then we can re-plot with these labels.
 
 ```{r loadings plot 2}
-loadings %>%
+loadings |>
   ggplot(aes(x = PC1, y = PC2, label = alkaloid_labels)) +
   geom_point() +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_vline(xintercept = 0, linetype = "dashed") +  
   geom_text() +
   scale_fill_brewer() +
   theme_minimal() +
@@ -349,7 +369,7 @@ With `geom_text_repel()`
 ```{r geom_text_repel}
 library(ggrepel)
 
-(loadings_plot <- loadings %>%
+(loadings_plot <- loadings |>
   ggplot(aes(x = PC1, y = PC2, label = alkaloid_labels)) +
   geom_hline(yintercept = 0, linetype = "dashed") +
   geom_vline(xintercept = 0, linetype = "dashed") +  
@@ -365,7 +385,7 @@ library(ggrepel)
 With `geom_label_repel()`
 
 ```{r geom_label_repel}
-loadings %>%
+loadings |>
   ggplot(aes(x = PC1, y = PC2, label = alkaloid_labels)) +
   geom_hline(yintercept = 0, linetype = "dashed") +
   geom_vline(xintercept = 0, linetype = "dashed") +
@@ -392,31 +412,7 @@ library(patchwork)
 scores_plot + loadings_plot
 ```
 
-Adding the plots was easy, but now we see that they scaling of the plots is not exactly the same and doesn't promote easy comparison. Let's fix that.
 
-```{r patchwork re-ranging and plot}
-# setting the range of the plot
-(scores_plot_ranged <- scores_plot +
-  coord_cartesian(xlim = c(-2, 6.5), ylim = c(-5, 6.5)))
-
-# what is the ratio of the space on each side of the axis for the scores plot?
-(x_ratio <- 2/(2 + 6.5))
-(y_ratio <- 5/(5 + 6.5))
-
-# check the ending range for the loadings plot
-# 0.6 units looks good for both x and y
-# what should the low range value be so that both plots are equally scaled?
-
-# making the loadings plot match this range
-(loadings_plot_ranged <- loadings_plot +
-  coord_cartesian(xlim = c(-0.1846, 0.6), ylim = c(-0.4602, 0.6)))
-```
-
-Plot
-
-```{r patchwork reranged, fig.width = 10}
-scores_plot_ranged + loadings_plot_ranged
-```
 
 ## Biplot
 
@@ -468,13 +464,85 @@ fviz_pca(alkaloids_pca_labelled, # pca object
        fill = "Species")
 ```
 
+
+### Manually
+
+We can't add the loadings right on top of the scores because they are on different scales.
+
+```{r}
+# plot
+scores |>
+  ggplot() +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  geom_point(aes(x = PC1, y = PC2, fill = Species), # from piped data
+             shape = 21, color = "black", size = 2.5, alpha = 0.7) +
+  geom_point(data = loadings,
+             aes(x = PC1, y = PC2)) + # set locally
+   # sequential color selecting hex codes from YlOrRd color by wildness
+  scale_fill_manual(values = c("#ffffcc", "#fed976", "#fd8d3c", "#e31a1c", "#800026")) + 
+  theme_minimal() +
+  labs(x = glue("PC1: {PC1_percent}%"), 
+       y = glue("PC2: {PC2_percent}%"), 
+       title = "PCA Scores Plot of 10 Alkaloids Present in 107 Tomato Accessions")
+```
+
+The issue here is that the scores and loadings are on different scales - let's make them on the same scale.
+
+I can write a quick function to allow normalization.
+```{r}
+normalize <- function(x) return((x - min(x))/(max(x) - min(x)))
+```
+
+Then I can nornalize the scores using the scale function, since the loadings are already normalized.
+```{r}
+scores_normalized <- scores |>
+  mutate(PC1_norm = scale(normalize(PC1), center = TRUE, scale = FALSE)) |>
+  mutate(PC2_norm = scale(normalize(PC2), center = TRUE, scale = FALSE)) |>
+  select(Genotype, Plot_Source, Species, 
+         PC1_norm, PC2_norm, everything()) # pick metadata and reorder
+```
+
+How did it go? PC1_norm and PC2_norm should all now be between -1 and 1
+```{r}
+# look at first six rows
+head(scores_normalized)
+
+# range of PC1
+range(scores_normalized$PC1_norm)
+
+# range of PC2
+range(scores_normalized$PC2_norm)
+```
+
+We can set the `scores_normalized` data for the overall plot and add the `loadings` within another `geom_point()`.
+
+```{r}
+scores_normalized |>
+  ggplot() +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  geom_point(aes(x = PC1_norm, y = PC2_norm, fill = Species), # scores
+             shape = 21, color = "black", size = 2.5, alpha = 0.7) + 
+  geom_point(data = loadings, # loadings points
+             aes(x = PC1, y = PC2), color = "gray") +
+  geom_label_repel(data = loadings, # loadings labels
+                   aes(x = PC1, y = PC2, label = alkaloid_labels),
+                   size = 2.5, # make labels smaller 
+                   fill = alpha(c("white"),0.5)) + # make label background transparent
+  scale_fill_manual(values = c("#ffffcc", "#fed976", "#fd8d3c", "#e31a1c", "#800026")) +
+  theme_minimal() +
+  labs(x = glue("PC1: {PC1_percent}%"), 
+       y = glue("PC2: {PC2_percent}%"), 
+       title = "PCA Biplot of 10 Alkaloids Present in 107 Tomato Accessions",
+       subtitle = "Samples are colored points and loadings are grey with labels")
+```
+
 Voila.
 
 ## Useful resources
 
 -   [Code club about PCA by Jelmer Poelstra](https://biodash.github.io/codeclub/s03e03_pca/)
 -   [factoextra](https://www.rdocumentation.org/packages/factoextra/versions/1.0.7)
-```{r}
-ggpattern::geom_density_pattern()
-```
+-   [PCA from DataCamp](https://www.datacamp.com/tutorial/pca-analysis-r)
 
