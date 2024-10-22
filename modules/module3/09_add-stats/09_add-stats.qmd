@@ -59,11 +59,11 @@ unique(penguins$sex)
 
 # plot
 (penguins_by_sex <- penguins %>%
-  drop_na(body_mass_g, sex) %>%
+  drop_na(body_mass_g, sex) %>% # remove NAs for body_mass_g and sex
   ggplot(aes(x = sex, y = body_mass_g, color = sex)) + 
-  geom_boxplot(outlier.shape = NA) +
-  geom_jitter(height = 0, width = 0.3) +
-  scale_x_discrete(labels = c("Female", "Male")) +
+  geom_boxplot(outlier.shape = NA) + # remove outliers
+  geom_jitter(height = 0, width = 0.3) + # jitter only in the x direction
+  scale_x_discrete(labels = c("Female", "Male")) + # change x-axis labels
   theme_minimal() +
   theme(legend.position = "none") +
   labs(x = "Sex",
@@ -113,7 +113,7 @@ Can we visualize normality another way?
 penguins %>%
   drop_na(body_mass_g, sex) %>%
   ggplot(aes(x = body_mass_g, y = sex, fill = sex)) +
-  ggridges::geom_density_ridges(alpha = 0.7) +
+  ggridges::geom_density_ridges(alpha = 0.7) + # density ridgeline plot
   scale_y_discrete(labels = c("Female", "Male")) +
   theme_classic() +  
   theme(legend.position = "none") +
@@ -129,7 +129,7 @@ penguins %>%
   drop_na(body_mass_g, sex) %>%
   ggplot(aes(x = body_mass_g, fill = sex)) +
   geom_histogram() +
-  facet_grid(cols = vars(species), rows = vars(sex)) +
+  facet_grid(cols = vars(species), rows = vars(sex)) + # 2 way facet
   theme_classic() +
   theme(legend.position = "none") +
   labs(x = "Body Mass (g)",
@@ -225,7 +225,7 @@ Are there significant differences in body mass
   ggplot(aes(x = species, y = body_mass_g, fill = species)) +
   geom_violin(outlier.shape = NA,
               draw_quantiles = 0.5) + # add the median by drawing 50% quantile
-  ggdist::geom_dots(side = "both", color = "black", alpha = 0.5) +
+  ggdist::geom_dots(side = "both", color = "black", alpha = 0.8) +
   theme_minimal() +
   theme(legend.position = "none") +
   labs(x = "Penguin Species",
