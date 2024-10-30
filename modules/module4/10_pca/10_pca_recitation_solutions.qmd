@@ -177,9 +177,6 @@ analysis_type_labels <- c("Moisture",
 We can then plot with ggplot like normal.
 
 ```{r loadings}
-library(emojifont)
-pizza_emoji <- emoji(search_emoji('pizza'))
-
 (loadings_plot <- loadings %>%
   ggplot(aes(x = PC1, y = PC2, label = analysis_type_labels)) +
   geom_hline(yintercept = 0, linetype = "dashed") +
@@ -195,31 +192,12 @@ pizza_emoji <- emoji(search_emoji('pizza'))
 
 ## 5. Create either a biplot, or a visualization that shows both your scores and loadings plot together.
 
-```{r patchwork re-ranging and plot}
-# setting the range of the plot
-(scores_plot_ranged <- scores_plot +
-  coord_cartesian(xlim = c(-3, 5.5), ylim = c(-3, 3.5)))
+## With `patchwork`
 
-# what is the ratio of the space on each side of the axis for the scores plot?
-(x_ratio <- 3/(3+5.5))
-(y_ratio <- 3/(3+3.5))
-
-# check the ending range for the loadings plot
-# 0.7 units looks good for x
-x_scalar <- 0.7
-# 0.6 units looks good for y
-y_scalar <- 0.6
-
-# what should the low range value be so that both plots are equally scaled?
-
-# making the loadings plot match this range
-(loadings_plot_ranged <- loadings_plot +
-  coord_cartesian(xlim = c(-0.3818, x_scalar), ylim = c(-0.5140, y_scalar)))
+```{r}
+scores_plot + loadings_plot
 ```
-Plot
-```{r patchwork reranged, fig.width = 10}
-scores_plot_ranged + loadings_plot_ranged
-```
+
 
 ## Biplot
 
