@@ -26,16 +26,16 @@ The plot visualizes the relationship between a trait and genetic markers. The x-
 If you work in genetics/genomics, it is likely you will create Manhattan plots. Even if you think you'll never make one of these types of plots, its a useful activity to see additional ways of customizing your plots.
 
 ```{r libraries, message = FALSE, warning = FALSE}
-library(tidyverse) # everything
 library(glue) # easy pasting
 library(ggrepel) # repelling labels
+library(tidyverse) # everything
 ```
 
 #### Read in data
 
-Today we are going to continue to use some different real research data collected by Emma Bilbrey from my team where we conducted many GWAS in apple. This work was published in 2021 in New Phytologist and can be found [here](https://nph.onlinelibrary.wiley.com/doi/abs/10.1111/nph.17693). This data is more complex than a typical GWAS so we are only going to use a small portion of it.
+Today we are going to continue to use some different real research data collected by Emma Bilbrey from my team where we conducted many GWAS in apple. This work was published in 2021 in New Phytologist and can be found [here](https://nph.onlinelibrary.wiley.com/doi/abs/10.1111/nph.17693). Click on Sections and go to Supporting Information and you'll find Table S16. This data is more complex than a typical GWAS so we are only going to use a small portion of it.
 
-We will be reading in [Table S16](https://nph-onlinelibrary-wiley-com.proxy.lib.ohio-state.edu/action/downloadSupplement?doi=10.1111%2Fnph.17693&file=nph17693-sup-0007-TableS16.csv) which includes the -log10 p-values for the GWAS conducted across all apples for all features found in the LC-MS negative ionization mode metabolomics dataset.
+We will be reading in [Table S16](https://nph.onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1111%2Fnph.17693&file=nph17693-sup-0007-TableS16.csv) which includes the -log10 p-values for the GWAS conducted across all apples for all features found in the LC-MS negative ionization mode metabolomics dataset.
 
 The data is present in a .csv file, so we will use the function `read_csv()` from the tidyverse. We want to import Supplemental Table 16. 
 
@@ -61,7 +61,7 @@ Because this dataframe is so big, if we use `head(gwas)` we will get a print out
 
 Emma came up with a simple way to approach this when she was writing her code, she wrote herself a little function that she could use regularly to extract out the first 5 rows, and the first 5 columns, without having to index each time.
 
-If we wanted to just see the first 5 rows, the first 5 columsn we could do this:
+If we wanted to just see the first 5 rows, the first 5 columns we could do this:
 
 ```{r head short by indexing}
 gwas[1:5,1:5]
@@ -69,17 +69,26 @@ gwas[1:5,1:5]
 
 ```{r write head_short}
 head_short <- function(x){
-  x[1:5,1:5] # this function shows the first 5 rows and columns of an object
+  x[1:5,1:5] # print first 5 rows and columns of an object
   } 
 ```
 
-Now instead of indexing all the time, we can just run `head_short()` which I think is easier. We will talk a little bit more about writing functions in the class on making many plots at once.
+Now instead of indexing all the time, we can just run `head_short()` which I think is easier. We will talk a little bit more about writing functions later today.
 
 ```{r run head_short}
 head_short(gwas)
 ```
 
 ### Data investigating
+
+Let me provide you a little bit of info about this data:
+
+-   `Index` provides a unique number identifier for each SNP
+-   `Linkage_Group` indicates the chromosome
+-   `Genetic_Distance` gives you the physical genetic distance on each chromosome
+-   The rest of the columns represent a metabolomic feature, and the data in each cell represents the -log10 p-values for the relationship between that SNP and that feature in the GWAS.
+
+We will write a little code to see this better.
 
 How many markers are included here?
 
@@ -93,21 +102,14 @@ How many linkage groups do we have? (Each linkage group is a chromosome.)
 unique(gwas$Linkage_Group)
 ```
 
-What is the range of `Genetic_Distance` for each chromosome?
+What is the range of `Genetic_Distance` and `Index` for each chromosome?
 
 ```{r genetic distance range}
 gwas %>%
   group_by(Linkage_Group) %>%
-  summarize(min_genetic_distance = min(Genetic_Distance),
-            max_genetic_distance = max(Genetic_Distance))
-```
-
-How are the `Index` distributed across `Linkage_Group`?
-
-```{r index across chr}
-gwas %>%
-  group_by(Linkage_Group) %>%
-  summarize(min_index = min(Index),
+  dplyr::summarize(min_genetic_distance = min(Genetic_Distance),
+            max_genetic_distance = max(Genetic_Distance),
+            min_index = min(Index),
             max_index = max(Index))
 ```
 
@@ -134,8 +136,10 @@ See how color is plotted on a continuous scale? This is because `Linkage_Group` 
 ### `Linkage_Group` as a factor
 
 ```{r linkage group as factor}
+# make Linkage_Group a factor
 gwas$Linkage_Group <- as.factor(gwas$Linkage_Group)
 
+# first pass manhattan plot
 gwas %>%
   ggplot(aes(x = Index, y = chlorogenic_acid, color = Linkage_Group)) +
   geom_point()
@@ -150,7 +154,7 @@ If we want to label the x-axis with breaks for each chromosome, we have to do so
 ```{r set axis}
 (set_axis <- gwas %>%
   group_by(Linkage_Group) %>%
-  summarize(min = min(Index),
+  dplyr::summarize(min = min(Index),
             max = max(Index),
             center = (max - min)/2))
 ```
@@ -159,6 +163,7 @@ If we want to label the x-axis with breaks for each chromosome, we have to do so
 gwas %>%
   ggplot(aes(x = Index, y = chlorogenic_acid, color = Linkage_Group)) +
   geom_point() +
+# set breaks and labels using set_axis  
   scale_x_continuous(breaks = (set_axis$center + set_axis$min), 
                      labels = set_axis$Linkage_Group) +
   theme_classic() +
@@ -170,7 +175,7 @@ gwas %>%
 
 ### Alternate colors
 
-Having a rainbow of colors is not really necessary here,a nd in fact telling exactly where chromosome 15 ends and 16 begins is difficult because the colors are so similar.
+Having a rainbow of colors is not really necessary here, and in fact telling exactly where chromosome 15 ends and 16 begins is difficult because the colors are so similar.
 
 What you will see in a lot of papers is people simply alternate the colors of their points by chromosome so you can easily tell which points belong to which chromosome.
 
@@ -180,6 +185,7 @@ gwas %>%
   geom_point() +
   scale_x_continuous(breaks = (set_axis$center + set_axis$min), 
                      labels = set_axis$Linkage_Group) +
+# alternating colors by chromosome, black and darkgray
   scale_color_manual(values = rep(c("black", "darkgray"), 17)) +
   theme_classic() +
   theme(legend.position = "none",
@@ -211,6 +217,8 @@ gwas %>%
 
 ### Add p-value hline
 
+Because we have so many SNPs, we are making a lot of comparisons that require a multiple-testing correction or we run the risk of an enormous number of false-positives. We can use the conservative Bonferroni correction, which takes our p-value, and the total number of comparisons we are making, creating a new adjusted value that our p-values need to be less than to be considered significant. In this case, the number of comparisons are our number of rows, in this case `r `nrow(gwas)`
+
 ```{r add line for sig pvalue}
 # what would the pvalue cut off with a bonferroni correction be?
 bonferroni_pval <- -log10(0.05/nrow(gwas))
@@ -233,6 +241,8 @@ gwas %>%
 
 ### Color sig points
 
+We might want to better see the points (i.e., SNPs) that are significantly related to chlorogenic acid content by coloring them differently from the other points. Think about how you could also use this in volcano plots, or any other time you want to highlight some points on a plot.
+
 ```{r}
 # select all SNPs with -log10 pvalue > bonferroni cutoff for chlorogenic acid
 chlorogenic_acid_sig <- gwas %>%
@@ -242,6 +252,7 @@ chlorogenic_acid_sig <- gwas %>%
 gwas %>%
   ggplot(aes(x = Index, y = chlorogenic_acid, color = Linkage_Group)) +
   geom_point() +
+# another geom_point layer with only the sig points and make them red
   geom_point(data = chlorogenic_acid_sig, 
              aes(x = Index, y = chlorogenic_acid), color = "red") +
   geom_hline(yintercept = bonferroni_pval, color = "grey", linetype = "dashed") +
@@ -262,7 +273,8 @@ gwas %>%
 We might be interested to know the marker that has the most significant association with chlorogenic acid content, and label it on our plot.
 
 ```{r}
-biggest_pval <- chlorogenic_acid_sig %>% 
+# select which SNP has the smallest pvalue.
+smallest_pval <- chlorogenic_acid_sig %>% 
   filter(chlorogenic_acid == max(chlorogenic_acid))
 
 gwas %>%
@@ -270,7 +282,7 @@ gwas %>%
   geom_point() +
   geom_point(data = chlorogenic_acid_sig, 
              aes(x = Index, y = chlorogenic_acid), color = "red") +
-  geom_label_repel(data = biggest_pval,
+  geom_label_repel(data = smallest_pval,
                    aes(x = Index, y = chlorogenic_acid, label = glue("Index: {Index}"))) +
   geom_hline(yintercept = bonferroni_pval, color = "grey", linetype = "dashed") +
   scale_x_continuous(expand = c(0,0),
@@ -294,10 +306,14 @@ To make this wrangling easier, we will convert our data, as we have many times b
 ### Wide to long (again)
 
 ```{r gwas tidy}
+# pivoting, our favorite
 gwas_tidy <- gwas %>%
-  pivot_longer(cols = starts_with("X"),
-               names_to = "Feature",
-               values_to = "NegLog10P")
+  pivot_longer(cols = starts_with("X"), # all the metabolomic features
+               names_to = "feature",
+               values_to = "neg_log10_p")
+
+# how did it go?
+head(gwas_tidy)
 ```
 
 ### Set p-value cutoff
@@ -307,16 +323,16 @@ We can make another df that includes only the features that have at least one ma
 ```{r}
 # make df of associations that pass bonferroni correction
 gwas_tidy_bonferroni <- gwas_tidy %>%
-  filter(NegLog10P > bonferroni_pval)
+  filter(neg_log10_p > bonferroni_pval)
 
 # how many unique features are there?
-length(unique(gwas_tidy_bonferroni$Feature))
+length(unique(gwas_tidy_bonferroni$feature))
 
 # how many unique markers are there?
 length(unique(gwas_tidy_bonferroni$Index))
 ```
 
-There are `r length(unique(gwas_tidy_bonferroni$Feature))` unique features/metabolite that have a Bonferroni adjusted significant p-value with at least one marker. There are `r length(unique(gwas_tidy_bonferroni$Index))` unique markers that have a Bonferroni adjusted significant p-value with at least one feature/metabolite.
+There are `r length(unique(gwas_tidy_bonferroni$feature))` unique features/metabolite that have a Bonferroni adjusted significant p-value with at least one marker. There are `r length(unique(gwas_tidy_bonferroni$Index))` unique markers that have a Bonferroni adjusted significant p-value with at least one feature/metabolite.
 
 ### Data investigating
 
@@ -324,7 +340,7 @@ What features are associated with the largest number of markers?
 
 ```{r}
 gwas_tidy_bonferroni %>%
-  group_by(Feature) %>%
+  group_by(feature) %>%
   count() %>%
   arrange(desc(n))
 ```
@@ -333,8 +349,8 @@ Wow, the marker `X417.13237_1.82968` has significant associations with 46 marker
 
 ```{r}
 gwas_tidy %>%
-  filter(Feature == "X417.13237_1.82968") %>%
-  ggplot(aes(x = Index, y = NegLog10P, color = Linkage_Group)) +
+  filter(feature == "X417.13237_1.82968") %>%
+  ggplot(aes(x = Index, y = neg_log10_p, color = Linkage_Group)) +
   geom_point() +
   geom_hline(yintercept = bonferroni_pval, color = "grey", linetype = "dashed") +
   scale_x_continuous(expand = c(0,0),
@@ -351,18 +367,18 @@ gwas_tidy %>%
 
 ## Making many plots at once
 
-What if we want to make Manhattan plots for the 50 features/metabolites that are associated with the most markers? This is probably too many plots to facet, so we can do some calculations, and then write a function to make plots, and apply it over our dataframe.
+What if we want to make Manhattan plots for the 50 features/metabolites that are associated with the most markers? This is probably too many plots to facet, so we can do some calculations, write a function to make plots, and apply it over our dataframe.
 
 First, how many significant associations with a Bonferroni multiple testing correction are there?
 
 ```{r}
 # make df of associations that pass bonferroni correction
 gwas_tidy_bonferroni <- gwas_tidy %>%
-  filter(NegLog10P > bonferroni_pval)
+  filter(neg_log10_p > bonferroni_pval)
 
 # how many unique features are this?
 gwas_tidy_bonferroni %>%
-  count(Feature) 
+  count(feature) 
 
 # how many unique markers are there?
 gwas_tidy_bonferroni %>%
@@ -373,7 +389,7 @@ Which features are associated with the largest number of markers?
 
 ```{r}
 gwas_tidy_bonferroni %>%
-  count(Feature) %>%
+  count(feature) %>%
   arrange(desc(n))
 ```
 
@@ -390,33 +406,22 @@ We will make a new df that includes only the 50 features with the most makers as
 ```{r}
 # create a df with only the top 50 features with the most marker associations
 top50 <- gwas_tidy_bonferroni %>%
-  count(Feature) %>%
+  count(feature) %>%
   arrange(desc(n)) %>%
   slice_head(n = 50)
 
-# filter the whole dataset to include only these features
-gwas_top50 <- gwas_tidy %>%
-  filter(Feature %in% top50$Feature)
+# what does that look like?
+head(top50)
+```
 
-# go from long to wide
-gwas_top50_wide <- gwas_top50 %>%
-  pivot_wider(names_from = Feature, values_from = NegLog10P)
-
-# what are our new dimensions?
-dim(gwas_top50_wide)
-
-head_short(gwas_top50_wide)
+Now we can filter our dataset to only include our top 50 features
+```{r}
+# filter the whole dataset to include only top 50 features
+gwas_top50_long <- gwas_tidy %>%
+  filter(feature %in% top50$feature)
 ```
 
 ### Writing a function to plot
-
-Here, we are just modifying our plotting code slightly to allow it to be run across different features. The first thing we will do is to use our favorite function `pivot_longer()` to create tidy data.
-```{r}
-gwas_top50_long <- gwas_top50_wide %>%
-  pivot_longer(cols = starts_with("X"),
-               names_to = "feature",
-               values_to = "pvalue")
-```
 
 Then we can write a function to plot, where we will iterate across `feature_of_interest`. Here, `feature_of_interest` is just the name I've assigned here, but you could easily call it `x` or `i` or whatever.
 
@@ -425,7 +430,7 @@ Then we can write a function to plot, where we will iterate across `feature_of_i
 manhattan_plot <- function(feature_of_interest){
   gwas_top50_long %>% # our df with only the top 50, but long
   filter(feature == feature_of_interest) %>% # pick the feature_of_interest only
-  ggplot(aes(x = Index, y = pvalue, color = Linkage_Group)) +
+  ggplot(aes(x = Index, y = neg_log10_p, color = Linkage_Group)) +
   geom_point() + 
   geom_hline(yintercept = bonferroni_pval, color = "grey", linetype = "dashed") +
   scale_x_continuous(expand = c(0,0),
@@ -441,43 +446,45 @@ manhattan_plot <- function(feature_of_interest){
   }
 ```
 
-Before trying to use our function on 50 features, let's try it out on one. We can provide our feature of interest as a string.
+Before trying to use our new function `manhattan_plot` on 50 features, let's try it out on one. We can provide our feature of interest as a string.
 ```{r}
 manhattan_plot("X599.12186_2.10421")
 ```
 
-
-We are going to iterate over the names `features_to_plot`. I'm creating a vector of the names of the features we want to iterate over.
+Now that our function is working for one feature, let's create a vector of features to iterate over, and plot. I am calling that vector `features_to_plot`. It contains the unique feature names from `gwas_top50_long`.
 ```{r}
 features_to_plot <- unique(gwas_top50_long$feature)
 ```
 
-### Applying the function with lapply()
+### Applying the function with `map()`.
 
-Once we have our function written, we can use a function in the `apply()` family of functions (here, [`lapply()`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/lapply) which applies and creates a list). Here I'm just printing the first 6 plots in the list.
-
+Once we have our function written, we can apply that function over a vector using `[purrr:map()](https://purrr.tidyverse.org/reference/map.html)`. What `map()` does is take a function and apply it to a vector. In this case, the function is `manhattan_plot` (the function that makes a Manhattan plot), and it is applied over `features_to_plot`, the vector of features we want a plot for.
 ```{r}
-# use lapply to run your function over the features of interest
-# if you don't want your plots to print, you should assign them to something
-my_plots <- lapply(X = features_to_plot, # what to iterate over
-                   FUN = manhattan_plot) # what function to use
+# create an object called my_plots which is a list 
+# the list contains our 50 plots
+my_plots <- map(features_to_plot, # vector to apply over
+            manhattan_plot) # what function to use
 
 # print the first 6
 my_plots[1:6]
 ```
 
 ### Saving out plots
-But you can print them all, save particular ones using`ggsave()`, or do what we are going to do here, which is save each of them to a new folder, each as their own `.svg` because why use raster when you can vectorize.
+But you can print them all, save particular ones using `ggsave()`, or do what we are going to do here, which is save each of them to a new folder, each as their own `.svg` because why use raster when you can vectorize.
 
-First we will create a vector of what we want our file names to look like. Then we will save.
-```{r save to pdf, eval = FALSE}
+First we will create a vector of what we want our file names to look like, and apply them to be the names of our plots.
+```{r file names for saving}
 # use str_c to combine two character vectors
 # here, features_to_plot and adding .svg so the file name 
 # includes the extension type
 # then set that as the names for my_plots
 names(my_plots) <- str_c(features_to_plot, ".svg")
+```
 
+Then, we will save.
+```{r save to svg, eval = FALSE}
 # use pwalk to "walk" across the different plots and save them
+# to use the path subfolder "img" you need to create that in your working dir
 pwalk(list(names(my_plots), my_plots), # what to iterate over and output
       ggsave, # what the function is
       path = "img/") # where they should go
@@ -487,4 +494,4 @@ Now all of your plots are in your working directory. Remember, you need to add t
 
 ## Useful resources
 
--   [the `apply()` family of functions](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/lapply)
+-   [`purrr:map()`](https://purrr.tidyverse.org/reference/map.html)

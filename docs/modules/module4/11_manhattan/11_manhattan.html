@@ -521,7 +521,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#making-many-plots-at-once" id="toc-making-many-plots-at-once" class="nav-link" data-scroll-target="#making-many-plots-at-once">Making many plots at once</a>
   <ul>
   <li><a href="#writing-a-function-to-plot" id="toc-writing-a-function-to-plot" class="nav-link" data-scroll-target="#writing-a-function-to-plot">Writing a function to plot</a></li>
-  <li><a href="#applying-the-function-with-lapply" id="toc-applying-the-function-with-lapply" class="nav-link" data-scroll-target="#applying-the-function-with-lapply">Applying the function with lapply()</a></li>
+  <li><a href="#applying-the-function-with-map." id="toc-applying-the-function-with-map." class="nav-link" data-scroll-target="#applying-the-function-with-map.">Applying the function with <code>map()</code>.</a></li>
   <li><a href="#saving-out-plots" id="toc-saving-out-plots" class="nav-link" data-scroll-target="#saving-out-plots">Saving out plots</a></li>
   </ul></li>
   <li><a href="#useful-resources" id="toc-useful-resources" class="nav-link" data-scroll-target="#useful-resources">Useful resources</a></li>
@@ -571,14 +571,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The plot visualizes the relationship between a trait and genetic markers. The x-axis shows the position on each chromosome, and the y-axis shows the negative log (usually log10) p-value of the quantitative response of a trait to that specific marker. Negative log10 p-value is used because a significant p-value is always small, and this transformation converts low p-value to a number that can be seen easily among the background of non-significant associations.</p>
 <p>If you work in genetics/genomics, it is likely you will create Manhattan plots. Even if you think you’ll never make one of these types of plots, its a useful activity to see additional ways of customizing your plots.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># everything</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue) <span class="co"># easy pasting</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel) <span class="co"># repelling labels</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue) <span class="co"># easy pasting</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel) <span class="co"># repelling labels</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># everything</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="read-in-data" class="level4">
 <h4 class="anchored" data-anchor-id="read-in-data">Read in data</h4>
-<p>Today we are going to continue to use some different real research data collected by Emma Bilbrey from my team where we conducted many GWAS in apple. This work was published in 2021 in New Phytologist and can be found <a href="https://nph.onlinelibrary.wiley.com/doi/abs/10.1111/nph.17693">here</a>. This data is more complex than a typical GWAS so we are only going to use a small portion of it.</p>
-<p>We will be reading in <a href="https://nph-onlinelibrary-wiley-com.proxy.lib.ohio-state.edu/action/downloadSupplement?doi=10.1111%2Fnph.17693&amp;file=nph17693-sup-0007-TableS16.csv">Table S16</a> which includes the -log10 p-values for the GWAS conducted across all apples for all features found in the LC-MS negative ionization mode metabolomics dataset.</p>
+<p>Today we are going to continue to use some different real research data collected by Emma Bilbrey from my team where we conducted many GWAS in apple. This work was published in 2021 in New Phytologist and can be found <a href="https://nph.onlinelibrary.wiley.com/doi/abs/10.1111/nph.17693">here</a>. Click on Sections and go to Supporting Information and you’ll find Table S16. This data is more complex than a typical GWAS so we are only going to use a small portion of it.</p>
+<p>We will be reading in <a href="https://nph.onlinelibrary.wiley.com/action/downloadSupplement?doi=10.1111%2Fnph.17693&amp;file=nph17693-sup-0007-TableS16.csv">Table S16</a> which includes the -log10 p-values for the GWAS conducted across all apples for all features found in the LC-MS negative ionization mode metabolomics dataset.</p>
 <p>The data is present in a .csv file, so we will use the function <code>read_csv()</code> from the tidyverse. We want to import Supplemental Table 16.</p>
 <p>This will take a second, its a big file.</p>
 <div class="cell">
@@ -608,7 +608,7 @@ dbl (4704): Index, Linkage_Group, Genetic_Distance, X885.2037_2.98177, X525....
 </div>
 <p>Because this dataframe is so big, if we use <code>head(gwas)</code> we will get a print out of the first 6 rows, and all the columns. In thi case there are 4704 columns so that will be unwieldy.</p>
 <p>Emma came up with a simple way to approach this when she was writing her code, she wrote herself a little function that she could use regularly to extract out the first 5 rows, and the first 5 columns, without having to index each time.</p>
-<p>If we wanted to just see the first 5 rows, the first 5 columsn we could do this:</p>
+<p>If we wanted to just see the first 5 rows, the first 5 columns we could do this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gwas[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -624,10 +624,10 @@ dbl (4704): Index, Linkage_Group, Genetic_Distance, X885.2037_2.98177, X525....
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>head_short <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  x[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>] <span class="co"># this function shows the first 5 rows and columns of an object</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  x[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>] <span class="co"># print first 5 rows and columns of an object</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  } </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now instead of indexing all the time, we can just run <code>head_short()</code> which I think is easier. We will talk a little bit more about writing functions in the class on making many plots at once.</p>
+<p>Now instead of indexing all the time, we can just run <code>head_short()</code> which I think is easier. We will talk a little bit more about writing functions later today.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head_short</span>(gwas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -644,6 +644,14 @@ dbl (4704): Index, Linkage_Group, Genetic_Distance, X885.2037_2.98177, X525....
 </section>
 <section id="data-investigating" class="level3">
 <h3 class="anchored" data-anchor-id="data-investigating">Data investigating</h3>
+<p>Let me provide you a little bit of info about this data:</p>
+<ul>
+<li><code>Index</code> provides a unique number identifier for each SNP</li>
+<li><code>Linkage_Group</code> indicates the chromosome</li>
+<li><code>Genetic_Distance</code> gives you the physical genetic distance on each chromosome</li>
+<li>The rest of the columns represent a metabolomic feature, and the data in each cell represents the -log10 p-values for the relationship between that SNP and that feature in the GWAS.</li>
+</ul>
+<p>We will write a little code to see this better.</p>
 <p>How many markers are included here?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(gwas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -658,62 +666,35 @@ dbl (4704): Index, Linkage_Group, Genetic_Distance, X885.2037_2.98177, X525....
 <pre><code> [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17</code></pre>
 </div>
 </div>
-<p>What is the range of <code>Genetic_Distance</code> for each chromosome?</p>
+<p>What is the range of <code>Genetic_Distance</code> and <code>Index</code> for each chromosome?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>gwas <span class="sc">%&gt;%</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Linkage_Group) <span class="sc">%&gt;%</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">min_genetic_distance =</span> <span class="fu">min</span>(Genetic_Distance),</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">max_genetic_distance =</span> <span class="fu">max</span>(Genetic_Distance))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">min_genetic_distance =</span> <span class="fu">min</span>(Genetic_Distance),</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">max_genetic_distance =</span> <span class="fu">max</span>(Genetic_Distance),</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">min_index =</span> <span class="fu">min</span>(Index),</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">max_index =</span> <span class="fu">max</span>(Index))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 17 × 3
-   Linkage_Group min_genetic_distance max_genetic_distance
-           &lt;dbl&gt;                &lt;dbl&gt;                &lt;dbl&gt;
- 1             1                0                     63.1
- 2             2                0                     78.4
- 3             3                0                     74.0
- 4             4                0.004                 65.5
- 5             5                0                     77.8
- 6             6                0                     75.3
- 7             7                0.001                 82.4
- 8             8                0                     68.5
- 9             9                0.292                 67.0
-10            10                0                     81.3
-11            11                0                     80.9
-12            12                0.382                 65.4
-13            13                0                     71.4
-14            14                0                     64.4
-15            15                0                    112. 
-16            16                0.001                 67.5
-17            17                0                     71.8</code></pre>
-</div>
-</div>
-<p>How are the <code>Index</code> distributed across <code>Linkage_Group</code>?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>gwas <span class="sc">%&gt;%</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Linkage_Group) <span class="sc">%&gt;%</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">min_index =</span> <span class="fu">min</span>(Index),</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">max_index =</span> <span class="fu">max</span>(Index))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 17 × 3
-   Linkage_Group min_index max_index
-           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
- 1             1         1       663
- 2             2       664      1687
- 3             3      1688      2630
- 4             4      2635      3432
- 5             5      3433      4530
- 6             6      4533      5266
- 7             7      5270      5934
- 8             8      5936      6792
- 9             9      6793      7623
-10            10      7624      8648
-11            11      8652      9728
-12            12      9731     10719
-13            13     10721     11558
-14            14     11560     12365
-15            15     12366     13605
-16            16     13610     14428
-17            17     14431     15260</code></pre>
+<pre><code># A tibble: 17 × 5
+   Linkage_Group min_genetic_distance max_genetic_distance min_index max_index
+           &lt;dbl&gt;                &lt;dbl&gt;                &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+ 1             1                0                     63.1         1       663
+ 2             2                0                     78.4       664      1687
+ 3             3                0                     74.0      1688      2630
+ 4             4                0.004                 65.5      2635      3432
+ 5             5                0                     77.8      3433      4530
+ 6             6                0                     75.3      4533      5266
+ 7             7                0.001                 82.4      5270      5934
+ 8             8                0                     68.5      5936      6792
+ 9             9                0.292                 67.0      6793      7623
+10            10                0                     81.3      7624      8648
+11            11                0                     80.9      8652      9728
+12            12                0.382                 65.4      9731     10719
+13            13                0                     71.4     10721     11558
+14            14                0                     64.4     11560     12365
+15            15                0                    112.      12366     13605
+16            16                0.001                 67.5     13610     14428
+17            17                0                     71.8     14431     15260</code></pre>
 </div>
 </div>
 <p>Ok here we can see <code>Index</code> does not repeat, but <code>Genetic_Distance</code> restarts with each chromosome.</p>
@@ -724,13 +705,13 @@ dbl (4704): Index, Linkage_Group, Genetic_Distance, X885.2037_2.98177, X525....
 <p>At its core, a Manhattan plot is a scatter plot. The data we are working with has 4701 traits, which here are relative metabolite abundance. We are going to pick one metabolite to start working with.</p>
 <p>We will start with the feature that represents chlorogenic acid, a caffeoyl-quinic acid you find in apples. The column we want is <code>X353.09194_2.23795</code>. The data is already present as the -log10 p-value for the relationship between allelic variation at that marker, and relative abundance of chlorogenic acid.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rename X353.09194_2.23795 to chlorogenic_acid</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>gwas <span class="ot">&lt;-</span> gwas <span class="sc">%&gt;%</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">chlorogenic_acid =</span> <span class="st">`</span><span class="at">X353.09194_2.23795</span><span class="st">`</span>)</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>gwas <span class="sc">%&gt;%</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Index, <span class="at">y =</span> chlorogenic_acid, <span class="at">color =</span> Linkage_Group)) <span class="sc">+</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># rename X353.09194_2.23795 to chlorogenic_acid</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>gwas <span class="ot">&lt;-</span> gwas <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">chlorogenic_acid =</span> <span class="st">`</span><span class="at">X353.09194_2.23795</span><span class="st">`</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>gwas <span class="sc">%&gt;%</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Index, <span class="at">y =</span> chlorogenic_acid, <span class="at">color =</span> Linkage_Group)) <span class="sc">+</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="11_manhattan_files/figure-html/manhattan plot-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -739,11 +720,13 @@ dbl (4704): Index, Linkage_Group, Genetic_Distance, X885.2037_2.98177, X525....
 <section id="linkage_group-as-a-factor" class="level3">
 <h3 class="anchored" data-anchor-id="linkage_group-as-a-factor"><code>Linkage_Group</code> as a factor</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>gwas<span class="sc">$</span>Linkage_Group <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(gwas<span class="sc">$</span>Linkage_Group)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>gwas <span class="sc">%&gt;%</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Index, <span class="at">y =</span> chlorogenic_acid, <span class="at">color =</span> Linkage_Group)) <span class="sc">+</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make Linkage_Group a factor</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>gwas<span class="sc">$</span>Linkage_Group <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(gwas<span class="sc">$</span>Linkage_Group)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># first pass manhattan plot</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>gwas <span class="sc">%&gt;%</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Index, <span class="at">y =</span> chlorogenic_acid, <span class="at">color =</span> Linkage_Group)) <span class="sc">+</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="11_manhattan_files/figure-html/linkage group as factor-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -754,11 +737,11 @@ dbl (4704): Index, Linkage_Group, Genetic_Distance, X885.2037_2.98177, X525....
 <h3 class="anchored" data-anchor-id="set-axis">Set axis</h3>
 <p>If we want to label the x-axis with breaks for each chromosome, we have to do some wrangling first. Just like we did some calculations in the lesson on adding statistics, we will calculate some min, center, and max for each chromosome so we know where to put the labels.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>(set_axis <span class="ot">&lt;-</span> gwas <span class="sc">%&gt;%</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Linkage_Group) <span class="sc">%&gt;%</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">min =</span> <span class="fu">min</span>(Index),</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">max =</span> <span class="fu">max</span>(Index),</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">center =</span> (max <span class="sc">-</span> min)<span class="sc">/</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>(set_axis <span class="ot">&lt;-</span> gwas <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Linkage_Group) <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">min =</span> <span class="fu">min</span>(Index),</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">max =</span> <span class="fu">max</span>(Index),</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">center =</span> (max <span class="sc">-</span> min)<span class="sc">/</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 17 × 4
    Linkage_Group   min   max center
@@ -783,16 +766,17 @@ dbl (4704): Index, Linkage_Group, Genetic_Distance, X885.2037_2.98177, X525....
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>gwas <span class="sc">%&gt;%</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Index, <span class="at">y =</span> chlorogenic_acid, <span class="at">color =</span> Linkage_Group)) <span class="sc">+</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> (set_axis<span class="sc">$</span>center <span class="sc">+</span> set_axis<span class="sc">$</span>min), </span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> set_axis<span class="sc">$</span>Linkage_Group) <span class="sc">+</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span> <span class="co"># legend not really necessary</span></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Chromosome"</span>,</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(<span class="st">"-log"</span>[<span class="dv">10</span>]<span class="sc">*</span><span class="st">"P-Value"</span>),</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"GWAS of chlorogenic acid in apple"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>gwas <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Index, <span class="at">y =</span> chlorogenic_acid, <span class="at">color =</span> Linkage_Group)) <span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># set breaks and labels using set_axis  </span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> (set_axis<span class="sc">$</span>center <span class="sc">+</span> set_axis<span class="sc">$</span>min), </span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> set_axis<span class="sc">$</span>Linkage_Group) <span class="sc">+</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span> <span class="co"># legend not really necessary</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Chromosome"</span>,</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(<span class="st">"-log"</span>[<span class="dv">10</span>]<span class="sc">*</span><span class="st">"P-Value"</span>),</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"GWAS of chlorogenic acid in apple"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="11_manhattan_files/figure-html/axis breaks by chr-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -800,21 +784,22 @@ dbl (4704): Index, Linkage_Group, Genetic_Distance, X885.2037_2.98177, X525....
 </section>
 <section id="alternate-colors" class="level3">
 <h3 class="anchored" data-anchor-id="alternate-colors">Alternate colors</h3>
-<p>Having a rainbow of colors is not really necessary here,a nd in fact telling exactly where chromosome 15 ends and 16 begins is difficult because the colors are so similar.</p>
+<p>Having a rainbow of colors is not really necessary here, and in fact telling exactly where chromosome 15 ends and 16 begins is difficult because the colors are so similar.</p>
 <p>What you will see in a lot of papers is people simply alternate the colors of their points by chromosome so you can easily tell which points belong to which chromosome.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>gwas <span class="sc">%&gt;%</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Index, <span class="at">y =</span> chlorogenic_acid, <span class="at">color =</span> Linkage_Group)) <span class="sc">+</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> (set_axis<span class="sc">$</span>center <span class="sc">+</span> set_axis<span class="sc">$</span>min), </span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> set_axis<span class="sc">$</span>Linkage_Group) <span class="sc">+</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"darkgray"</span>), <span class="dv">17</span>)) <span class="sc">+</span></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span> </span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Chromosome"</span>,</span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(<span class="st">"-log"</span>[<span class="dv">10</span>]<span class="sc">*</span><span class="st">"P-Value"</span>),</span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Manhattan Plot after GWAS for Chlorogenic Acid in Apple"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>gwas <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Index, <span class="at">y =</span> chlorogenic_acid, <span class="at">color =</span> Linkage_Group)) <span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> (set_axis<span class="sc">$</span>center <span class="sc">+</span> set_axis<span class="sc">$</span>min), </span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> set_axis<span class="sc">$</span>Linkage_Group) <span class="sc">+</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co"># alternating colors by chromosome, black and darkgray</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"darkgray"</span>), <span class="dv">17</span>)) <span class="sc">+</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span> </span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Chromosome"</span>,</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(<span class="st">"-log"</span>[<span class="dv">10</span>]<span class="sc">*</span><span class="st">"P-Value"</span>),</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Manhattan Plot after GWAS for Chlorogenic Acid in Apple"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="11_manhattan_files/figure-html/alternate colors-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -824,19 +809,19 @@ dbl (4704): Index, Linkage_Group, Genetic_Distance, X885.2037_2.98177, X525....
 <h3 class="anchored" data-anchor-id="removing-that-annoying-front-gap">Removing that annoying front gap</h3>
 <p>The gap between chromosome 1 and the y-axis of the plot sort of bothers me. Let’s remove it.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>gwas <span class="sc">%&gt;%</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Index, <span class="at">y =</span> chlorogenic_acid, <span class="at">color =</span> Linkage_Group)) <span class="sc">+</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="co"># remove gap between y-axis and chr1</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> (set_axis<span class="sc">$</span>center <span class="sc">+</span> set_axis<span class="sc">$</span>min), </span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> set_axis<span class="sc">$</span>Linkage_Group) <span class="sc">+</span></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"grey52"</span>), <span class="dv">17</span>)) <span class="sc">+</span></span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span> </span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Chromosome"</span>,</span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(<span class="st">"-log"</span>[<span class="dv">10</span>]<span class="sc">*</span><span class="st">"P-Value"</span>),</span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Manhattan Plot after GWAS for Chlorogenic Acid in Apple"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>gwas <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Index, <span class="at">y =</span> chlorogenic_acid, <span class="at">color =</span> Linkage_Group)) <span class="sc">+</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="co"># remove gap between y-axis and chr1</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> (set_axis<span class="sc">$</span>center <span class="sc">+</span> set_axis<span class="sc">$</span>min), </span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> set_axis<span class="sc">$</span>Linkage_Group) <span class="sc">+</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"grey52"</span>), <span class="dv">17</span>)) <span class="sc">+</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span> </span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Chromosome"</span>,</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(<span class="st">"-log"</span>[<span class="dv">10</span>]<span class="sc">*</span><span class="st">"P-Value"</span>),</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Manhattan Plot after GWAS for Chlorogenic Acid in Apple"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="11_manhattan_files/figure-html/remove front gap-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -844,24 +829,25 @@ dbl (4704): Index, Linkage_Group, Genetic_Distance, X885.2037_2.98177, X525....
 </section>
 <section id="add-p-value-hline" class="level3">
 <h3 class="anchored" data-anchor-id="add-p-value-hline">Add p-value hline</h3>
+<p>Because we have so many SNPs, we are making a lot of comparisons that require a multiple-testing correction or we run the risk of an enormous number of false-positives. We can use the conservative Bonferroni correction, which takes our p-value, and the total number of comparisons we are making, creating a new adjusted value that our p-values need to be less than to be considered significant. In this case, the number of comparisons are our number of rows, in this case <code>r</code>nrow(gwas)`</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># what would the pvalue cut off with a bonferroni correction be?</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>bonferroni_pval <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log10</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="fu">nrow</span>(gwas))</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>gwas <span class="sc">%&gt;%</span></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Index, <span class="at">y =</span> chlorogenic_acid, <span class="at">color =</span> Linkage_Group)) <span class="sc">+</span></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> bonferroni_pval, <span class="at">color =</span> <span class="st">"grey"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),</span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> (set_axis<span class="sc">$</span>center <span class="sc">+</span> set_axis<span class="sc">$</span>min), </span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> set_axis<span class="sc">$</span>Linkage_Group) <span class="sc">+</span></span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"darkgray"</span>), <span class="dv">17</span>)) <span class="sc">+</span></span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span> </span>
-<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Chromosome"</span>,</span>
-<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(<span class="st">"-log"</span>[<span class="dv">10</span>]<span class="sc">*</span><span class="st">"P-Value"</span>),</span>
-<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Manhattan Plot after GWAS for Chlorogenic Acid in Apple"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># what would the pvalue cut off with a bonferroni correction be?</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>bonferroni_pval <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log10</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="fu">nrow</span>(gwas))</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>gwas <span class="sc">%&gt;%</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Index, <span class="at">y =</span> chlorogenic_acid, <span class="at">color =</span> Linkage_Group)) <span class="sc">+</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> bonferroni_pval, <span class="at">color =</span> <span class="st">"grey"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> (set_axis<span class="sc">$</span>center <span class="sc">+</span> set_axis<span class="sc">$</span>min), </span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> set_axis<span class="sc">$</span>Linkage_Group) <span class="sc">+</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"darkgray"</span>), <span class="dv">17</span>)) <span class="sc">+</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span> </span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Chromosome"</span>,</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(<span class="st">"-log"</span>[<span class="dv">10</span>]<span class="sc">*</span><span class="st">"P-Value"</span>),</span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Manhattan Plot after GWAS for Chlorogenic Acid in Apple"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="11_manhattan_files/figure-html/add line for sig pvalue-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -869,28 +855,30 @@ dbl (4704): Index, Linkage_Group, Genetic_Distance, X885.2037_2.98177, X525....
 </section>
 <section id="color-sig-points" class="level3">
 <h3 class="anchored" data-anchor-id="color-sig-points">Color sig points</h3>
+<p>We might want to better see the points (i.e., SNPs) that are significantly related to chlorogenic acid content by coloring them differently from the other points. Think about how you could also use this in volcano plots, or any other time you want to highlight some points on a plot.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select all SNPs with -log10 pvalue &gt; bonferroni cutoff for chlorogenic acid</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>chlorogenic_acid_sig <span class="ot">&lt;-</span> gwas <span class="sc">%&gt;%</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(chlorogenic_acid <span class="sc">&gt;</span> bonferroni_pval) <span class="sc">%&gt;%</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Index, Linkage_Group, Genetic_Distance, chlorogenic_acid)</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>gwas <span class="sc">%&gt;%</span></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Index, <span class="at">y =</span> chlorogenic_acid, <span class="at">color =</span> Linkage_Group)) <span class="sc">+</span></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> chlorogenic_acid_sig, </span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> Index, <span class="at">y =</span> chlorogenic_acid), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> bonferroni_pval, <span class="at">color =</span> <span class="st">"grey"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),</span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> (set_axis<span class="sc">$</span>center <span class="sc">+</span> set_axis<span class="sc">$</span>min), </span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> set_axis<span class="sc">$</span>Linkage_Group) <span class="sc">+</span></span>
-<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"darkgray"</span>), <span class="dv">17</span>)) <span class="sc">+</span></span>
-<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
-<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span> </span>
-<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Chromosome"</span>,</span>
-<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(<span class="st">"-log"</span>[<span class="dv">10</span>]<span class="sc">*</span><span class="st">"P-Value"</span>),</span>
-<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Manhattan Plot after GWAS for Chlorogenic Acid in Apple"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select all SNPs with -log10 pvalue &gt; bonferroni cutoff for chlorogenic acid</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>chlorogenic_acid_sig <span class="ot">&lt;-</span> gwas <span class="sc">%&gt;%</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(chlorogenic_acid <span class="sc">&gt;</span> bonferroni_pval) <span class="sc">%&gt;%</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Index, Linkage_Group, Genetic_Distance, chlorogenic_acid)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>gwas <span class="sc">%&gt;%</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Index, <span class="at">y =</span> chlorogenic_acid, <span class="at">color =</span> Linkage_Group)) <span class="sc">+</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co"># another geom_point layer with only the sig points and make them red</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> chlorogenic_acid_sig, </span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> Index, <span class="at">y =</span> chlorogenic_acid), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> bonferroni_pval, <span class="at">color =</span> <span class="st">"grey"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> (set_axis<span class="sc">$</span>center <span class="sc">+</span> set_axis<span class="sc">$</span>min), </span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> set_axis<span class="sc">$</span>Linkage_Group) <span class="sc">+</span></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"darkgray"</span>), <span class="dv">17</span>)) <span class="sc">+</span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span> </span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Chromosome"</span>,</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(<span class="st">"-log"</span>[<span class="dv">10</span>]<span class="sc">*</span><span class="st">"P-Value"</span>),</span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Manhattan Plot after GWAS for Chlorogenic Acid in Apple"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="11_manhattan_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -900,27 +888,28 @@ dbl (4704): Index, Linkage_Group, Genetic_Distance, X885.2037_2.98177, X525....
 <h3 class="anchored" data-anchor-id="label-most-sig-marker">Label most sig marker</h3>
 <p>We might be interested to know the marker that has the most significant association with chlorogenic acid content, and label it on our plot.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>biggest_pval <span class="ot">&lt;-</span> chlorogenic_acid_sig <span class="sc">%&gt;%</span> </span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(chlorogenic_acid <span class="sc">==</span> <span class="fu">max</span>(chlorogenic_acid))</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>gwas <span class="sc">%&gt;%</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Index, <span class="at">y =</span> chlorogenic_acid, <span class="at">color =</span> Linkage_Group)) <span class="sc">+</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> chlorogenic_acid_sig, </span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> Index, <span class="at">y =</span> chlorogenic_acid), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">data =</span> biggest_pval,</span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">aes</span>(<span class="at">x =</span> Index, <span class="at">y =</span> chlorogenic_acid, <span class="at">label =</span> <span class="fu">glue</span>(<span class="st">"Index: {Index}"</span>))) <span class="sc">+</span></span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> bonferroni_pval, <span class="at">color =</span> <span class="st">"grey"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),</span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> (set_axis<span class="sc">$</span>center <span class="sc">+</span> set_axis<span class="sc">$</span>min), </span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> set_axis<span class="sc">$</span>Linkage_Group) <span class="sc">+</span></span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"darkgray"</span>), <span class="dv">17</span>)) <span class="sc">+</span></span>
-<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
-<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span> </span>
-<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Chromosome"</span>,</span>
-<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(<span class="st">"-log"</span>[<span class="dv">10</span>]<span class="sc">*</span><span class="st">"P-Value"</span>),</span>
-<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Manhattan Plot after GWAS for Chlorogenic Acid in Apple"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select which SNP has the smallest pvalue.</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>smallest_pval <span class="ot">&lt;-</span> chlorogenic_acid_sig <span class="sc">%&gt;%</span> </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(chlorogenic_acid <span class="sc">==</span> <span class="fu">max</span>(chlorogenic_acid))</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>gwas <span class="sc">%&gt;%</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Index, <span class="at">y =</span> chlorogenic_acid, <span class="at">color =</span> Linkage_Group)) <span class="sc">+</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> chlorogenic_acid_sig, </span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> Index, <span class="at">y =</span> chlorogenic_acid), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">data =</span> smallest_pval,</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">aes</span>(<span class="at">x =</span> Index, <span class="at">y =</span> chlorogenic_acid, <span class="at">label =</span> <span class="fu">glue</span>(<span class="st">"Index: {Index}"</span>))) <span class="sc">+</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> bonferroni_pval, <span class="at">color =</span> <span class="st">"grey"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> (set_axis<span class="sc">$</span>center <span class="sc">+</span> set_axis<span class="sc">$</span>min), </span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> set_axis<span class="sc">$</span>Linkage_Group) <span class="sc">+</span></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"darkgray"</span>), <span class="dv">17</span>)) <span class="sc">+</span></span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span> </span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Chromosome"</span>,</span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(<span class="st">"-log"</span>[<span class="dv">10</span>]<span class="sc">*</span><span class="st">"P-Value"</span>),</span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Manhattan Plot after GWAS for Chlorogenic Acid in Apple"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="11_manhattan_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -934,27 +923,42 @@ dbl (4704): Index, Linkage_Group, Genetic_Distance, X885.2037_2.98177, X525....
 <section id="wide-to-long-again" class="level3">
 <h3 class="anchored" data-anchor-id="wide-to-long-again">Wide to long (again)</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>gwas_tidy <span class="ot">&lt;-</span> gwas <span class="sc">%&gt;%</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"X"</span>),</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"Feature"</span>,</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"NegLog10P"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pivoting, our favorite</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>gwas_tidy <span class="ot">&lt;-</span> gwas <span class="sc">%&gt;%</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"X"</span>), <span class="co"># all the metabolomic features</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"feature"</span>,</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"neg_log10_p"</span>)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co"># how did it go?</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gwas_tidy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  Index Linkage_Group Genetic_Distance chlorogenic_acid feature      neg_log10_p
+  &lt;dbl&gt; &lt;fct&gt;                    &lt;dbl&gt;            &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt;
+1     1 1                            0            0.361 X885.2037_2…       0.176
+2     1 1                            0            0.361 X525.1583_3…       0.117
+3     1 1                            0            0.361 X569.17408_…       0.252
+4     1 1                            0            0.361 X739.17477_…       0.250
+5     1 1                            0            0.361 X600.12641_…       0.323
+6     1 1                            0            0.361 X349.0664_1…       0.283</code></pre>
+</div>
 </div>
 </section>
 <section id="set-p-value-cutoff" class="level3">
 <h3 class="anchored" data-anchor-id="set-p-value-cutoff">Set p-value cutoff</h3>
 <p>We can make another df that includes only the features that have at least one marker where there is a significant p-value.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make df of associations that pass bonferroni correction</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>gwas_tidy_bonferroni <span class="ot">&lt;-</span> gwas_tidy <span class="sc">%&gt;%</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(NegLog10P <span class="sc">&gt;</span> bonferroni_pval)</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co"># how many unique features are there?</span></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(gwas_tidy_bonferroni<span class="sc">$</span>Feature))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make df of associations that pass bonferroni correction</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>gwas_tidy_bonferroni <span class="ot">&lt;-</span> gwas_tidy <span class="sc">%&gt;%</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(neg_log10_p <span class="sc">&gt;</span> bonferroni_pval)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co"># how many unique features are there?</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(gwas_tidy_bonferroni<span class="sc">$</span>feature))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 962</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># how many unique markers are there?</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(gwas_tidy_bonferroni<span class="sc">$</span>Index))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># how many unique markers are there?</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(gwas_tidy_bonferroni<span class="sc">$</span>Index))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 544</code></pre>
 </div>
@@ -965,14 +969,14 @@ dbl (4704): Index, Linkage_Group, Genetic_Distance, X885.2037_2.98177, X525....
 <h3 class="anchored" data-anchor-id="data-investigating-1">Data investigating</h3>
 <p>What features are associated with the largest number of markers?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>gwas_tidy_bonferroni <span class="sc">%&gt;%</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Feature) <span class="sc">%&gt;%</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>gwas_tidy_bonferroni <span class="sc">%&gt;%</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(feature) <span class="sc">%&gt;%</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 962 × 2
-# Groups:   Feature [962]
-   Feature                n
+# Groups:   feature [962]
+   feature                n
    &lt;chr&gt;              &lt;int&gt;
  1 X417.13237_1.82968    46
  2 X349.15073_1.79191    44
@@ -989,21 +993,21 @@ dbl (4704): Index, Linkage_Group, Genetic_Distance, X885.2037_2.98177, X525....
 </div>
 <p>Wow, the marker <code>X417.13237_1.82968</code> has significant associations with 46 markers. What would that Manhattan plot look like?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>gwas_tidy <span class="sc">%&gt;%</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Feature <span class="sc">==</span> <span class="st">"X417.13237_1.82968"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Index, <span class="at">y =</span> NegLog10P, <span class="at">color =</span> Linkage_Group)) <span class="sc">+</span></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> bonferroni_pval, <span class="at">color =</span> <span class="st">"grey"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),</span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> (set_axis<span class="sc">$</span>center <span class="sc">+</span> set_axis<span class="sc">$</span>min), </span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> set_axis<span class="sc">$</span>Linkage_Group) <span class="sc">+</span></span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"darkgray"</span>), <span class="dv">17</span>)) <span class="sc">+</span></span>
-<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
-<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span> </span>
-<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Chromosome"</span>,</span>
-<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(<span class="st">"-log"</span>[<span class="dv">10</span>]<span class="sc">*</span><span class="st">"P-Value"</span>),</span>
-<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Manhattan Plot after GWAS for 417.13237 m/z at retention time 1.82968 in Apple"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>gwas_tidy <span class="sc">%&gt;%</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(feature <span class="sc">==</span> <span class="st">"X417.13237_1.82968"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Index, <span class="at">y =</span> neg_log10_p, <span class="at">color =</span> Linkage_Group)) <span class="sc">+</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> bonferroni_pval, <span class="at">color =</span> <span class="st">"grey"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> (set_axis<span class="sc">$</span>center <span class="sc">+</span> set_axis<span class="sc">$</span>min), </span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> set_axis<span class="sc">$</span>Linkage_Group) <span class="sc">+</span></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"darkgray"</span>), <span class="dv">17</span>)) <span class="sc">+</span></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span> </span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Chromosome"</span>,</span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(<span class="st">"-log"</span>[<span class="dv">10</span>]<span class="sc">*</span><span class="st">"P-Value"</span>),</span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Manhattan Plot after GWAS for 417.13237 m/z at retention time 1.82968 in Apple"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="11_manhattan_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1012,19 +1016,19 @@ dbl (4704): Index, Linkage_Group, Genetic_Distance, X885.2037_2.98177, X525....
 </section>
 <section id="making-many-plots-at-once" class="level2">
 <h2 class="anchored" data-anchor-id="making-many-plots-at-once">Making many plots at once</h2>
-<p>What if we want to make Manhattan plots for the 50 features/metabolites that are associated with the most markers? This is probably too many plots to facet, so we can do some calculations, and then write a function to make plots, and apply it over our dataframe.</p>
+<p>What if we want to make Manhattan plots for the 50 features/metabolites that are associated with the most markers? This is probably too many plots to facet, so we can do some calculations, write a function to make plots, and apply it over our dataframe.</p>
 <p>First, how many significant associations with a Bonferroni multiple testing correction are there?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make df of associations that pass bonferroni correction</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>gwas_tidy_bonferroni <span class="ot">&lt;-</span> gwas_tidy <span class="sc">%&gt;%</span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(NegLog10P <span class="sc">&gt;</span> bonferroni_pval)</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="co"># how many unique features are this?</span></span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>gwas_tidy_bonferroni <span class="sc">%&gt;%</span></span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Feature) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make df of associations that pass bonferroni correction</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>gwas_tidy_bonferroni <span class="ot">&lt;-</span> gwas_tidy <span class="sc">%&gt;%</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(neg_log10_p <span class="sc">&gt;</span> bonferroni_pval)</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="co"># how many unique features are this?</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>gwas_tidy_bonferroni <span class="sc">%&gt;%</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(feature) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 962 × 2
-   Feature                 n
+   feature                 n
    &lt;chr&gt;               &lt;int&gt;
  1 X1000.22158_2.71331    12
  2 X1000.72569_2.72017     2
@@ -1038,9 +1042,9 @@ dbl (4704): Index, Linkage_Group, Genetic_Distance, X885.2037_2.98177, X525....
 10 X1014.70219_2.12784     2
 # ℹ 952 more rows</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># how many unique markers are there?</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>gwas_tidy_bonferroni <span class="sc">%&gt;%</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Index) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># how many unique markers are there?</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>gwas_tidy_bonferroni <span class="sc">%&gt;%</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Index) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 544 × 2
    Index     n
@@ -1060,12 +1064,12 @@ dbl (4704): Index, Linkage_Group, Genetic_Distance, X885.2037_2.98177, X525....
 </div>
 <p>Which features are associated with the largest number of markers?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>gwas_tidy_bonferroni <span class="sc">%&gt;%</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Feature) <span class="sc">%&gt;%</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>gwas_tidy_bonferroni <span class="sc">%&gt;%</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(feature) <span class="sc">%&gt;%</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 962 × 2
-   Feature                n
+   feature                n
    &lt;chr&gt;              &lt;int&gt;
  1 X417.13237_1.82968    46
  2 X349.15073_1.79191    44
@@ -1082,9 +1086,9 @@ dbl (4704): Index, Linkage_Group, Genetic_Distance, X885.2037_2.98177, X525....
 </div>
 <p>Which markers are associated with the largest number of features?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>gwas_tidy_bonferroni <span class="sc">%&gt;%</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Index) <span class="sc">%&gt;%</span></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>gwas_tidy_bonferroni <span class="sc">%&gt;%</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Index) <span class="sc">%&gt;%</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 544 × 2
    Index     n
@@ -1104,90 +1108,78 @@ dbl (4704): Index, Linkage_Group, Genetic_Distance, X885.2037_2.98177, X525....
 </div>
 <p>We will make a new df that includes only the 50 features with the most makers associated with them.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a df with only the top 50 features with the most marker associations</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>top50 <span class="ot">&lt;-</span> gwas_tidy_bonferroni <span class="sc">%&gt;%</span></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Feature) <span class="sc">%&gt;%</span></span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">%&gt;%</span></span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">50</span>)</span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="co"># filter the whole dataset to include only these features</span></span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>gwas_top50 <span class="ot">&lt;-</span> gwas_tidy <span class="sc">%&gt;%</span></span>
-<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Feature <span class="sc">%in%</span> top50<span class="sc">$</span>Feature)</span>
-<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a><span class="co"># go from long to wide</span></span>
-<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>gwas_top50_wide <span class="ot">&lt;-</span> gwas_top50 <span class="sc">%&gt;%</span></span>
-<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Feature, <span class="at">values_from =</span> NegLog10P)</span>
-<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a><span class="co"># what are our new dimensions?</span></span>
-<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(gwas_top50_wide)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a df with only the top 50 features with the most marker associations</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>top50 <span class="ot">&lt;-</span> gwas_tidy_bonferroni <span class="sc">%&gt;%</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(feature) <span class="sc">%&gt;%</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">%&gt;%</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">50</span>)</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="co"># what does that look like?</span></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(top50)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 11165    54</code></pre>
+<pre><code># A tibble: 6 × 2
+  feature                n
+  &lt;chr&gt;              &lt;int&gt;
+1 X417.13237_1.82968    46
+2 X349.15073_1.79191    44
+3 X601.13217_2.40546    34
+4 X593.12835_2.53465    31
+5 X291.0768_2.44657     30
+6 X591.1485_2.86273     30</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head_short</span>(gwas_top50_wide)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 5
-  Index Linkage_Group Genetic_Distance chlorogenic_acid X599.12186_2.10421
-  &lt;dbl&gt; &lt;fct&gt;                    &lt;dbl&gt;            &lt;dbl&gt;              &lt;dbl&gt;
-1     1 1                        0                0.361            0.266  
-2     3 1                        0.002            0.239            0.0346 
-3     4 1                        0.003            1.03             0.120  
-4     5 1                        0.004            0.188            0.497  
-5     6 1                        0.005            1.23             0.00356</code></pre>
 </div>
+<p>Now we can filter our dataset to only include our top 50 features</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filter the whole dataset to include only top 50 features</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>gwas_top50_long <span class="ot">&lt;-</span> gwas_tidy <span class="sc">%&gt;%</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(feature <span class="sc">%in%</span> top50<span class="sc">$</span>feature)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="writing-a-function-to-plot" class="level3">
 <h3 class="anchored" data-anchor-id="writing-a-function-to-plot">Writing a function to plot</h3>
-<p>Here, we are just modifying our plotting code slightly to allow it to be run across different features. The first thing we will do is to use our favorite function <code>pivot_longer()</code> to create tidy data.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>gwas_top50_long <span class="ot">&lt;-</span> gwas_top50_wide <span class="sc">%&gt;%</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"X"</span>),</span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"feature"</span>,</span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"pvalue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>Then we can write a function to plot, where we will iterate across <code>feature_of_interest</code>. Here, <code>feature_of_interest</code> is just the name I’ve assigned here, but you could easily call it <code>x</code> or <code>i</code> or whatever.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># write a function to make your plots across the features of interest</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>manhattan_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(feature_of_interest){</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  gwas_top50_long <span class="sc">%&gt;%</span> <span class="co"># our df with only the top 50, but long</span></span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(feature <span class="sc">==</span> feature_of_interest) <span class="sc">%&gt;%</span> <span class="co"># pick the feature_of_interest only</span></span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Index, <span class="at">y =</span> pvalue, <span class="at">color =</span> Linkage_Group)) <span class="sc">+</span></span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> bonferroni_pval, <span class="at">color =</span> <span class="st">"grey"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
-<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),</span>
-<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> (set_axis<span class="sc">$</span>center <span class="sc">+</span> set_axis<span class="sc">$</span>min), </span>
-<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> set_axis<span class="sc">$</span>Linkage_Group) <span class="sc">+</span></span>
-<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"gray"</span>),<span class="dv">17</span>)) <span class="sc">+</span></span>
-<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Chromosome"</span>,</span>
-<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(<span class="st">"-log"</span>[<span class="dv">10</span>]<span class="sc">*</span><span class="st">"P-Value"</span>),</span>
-<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="fu">glue</span>(<span class="st">"{feature_of_interest}"</span>)) <span class="sc">+</span> <span class="co"># here we glue the feature name in the title</span></span>
-<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb52-16"><a href="#cb52-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
-<span id="cb52-17"><a href="#cb52-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
-<span id="cb52-18"><a href="#cb52-18" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># write a function to make your plots across the features of interest</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>manhattan_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(feature_of_interest){</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  gwas_top50_long <span class="sc">%&gt;%</span> <span class="co"># our df with only the top 50, but long</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(feature <span class="sc">==</span> feature_of_interest) <span class="sc">%&gt;%</span> <span class="co"># pick the feature_of_interest only</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Index, <span class="at">y =</span> neg_log10_p, <span class="at">color =</span> Linkage_Group)) <span class="sc">+</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> bonferroni_pval, <span class="at">color =</span> <span class="st">"grey"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> (set_axis<span class="sc">$</span>center <span class="sc">+</span> set_axis<span class="sc">$</span>min), </span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> set_axis<span class="sc">$</span>Linkage_Group) <span class="sc">+</span></span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"gray"</span>),<span class="dv">17</span>)) <span class="sc">+</span></span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Chromosome"</span>,</span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">expression</span>(<span class="st">"-log"</span>[<span class="dv">10</span>]<span class="sc">*</span><span class="st">"P-Value"</span>),</span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="fu">glue</span>(<span class="st">"{feature_of_interest}"</span>)) <span class="sc">+</span> <span class="co"># here we glue the feature name in the title</span></span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Before trying to use our function on 50 features, let’s try it out on one. We can provide our feature of interest as a string.</p>
+<p>Before trying to use our new function <code>manhattan_plot</code> on 50 features, let’s try it out on one. We can provide our feature of interest as a string.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">manhattan_plot</span>(<span class="st">"X599.12186_2.10421"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">manhattan_plot</span>(<span class="st">"X599.12186_2.10421"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="11_manhattan_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>We are going to iterate over the names <code>features_to_plot</code>. I’m creating a vector of the names of the features we want to iterate over.</p>
+<p>Now that our function is working for one feature, let’s create a vector of features to iterate over, and plot. I am calling that vector <code>features_to_plot</code>. It contains the unique feature names from <code>gwas_top50_long</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>features_to_plot <span class="ot">&lt;-</span> <span class="fu">unique</span>(gwas_top50_long<span class="sc">$</span>feature)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>features_to_plot <span class="ot">&lt;-</span> <span class="fu">unique</span>(gwas_top50_long<span class="sc">$</span>feature)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="applying-the-function-with-lapply" class="level3">
-<h3 class="anchored" data-anchor-id="applying-the-function-with-lapply">Applying the function with lapply()</h3>
-<p>Once we have our function written, we can use a function in the <code>apply()</code> family of functions (here, <a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/lapply"><code>lapply()</code></a> which applies and creates a list). Here I’m just printing the first 6 plots in the list.</p>
+<section id="applying-the-function-with-map." class="level3">
+<h3 class="anchored" data-anchor-id="applying-the-function-with-map.">Applying the function with <code>map()</code>.</h3>
+<p>Once we have our function written, we can apply that function over a vector using <code>[purrr:map()](https://purrr.tidyverse.org/reference/map.html)</code>. What <code>map()</code> does is take a function and apply it to a vector. In this case, the function is <code>manhattan_plot</code> (the function that makes a Manhattan plot), and it is applied over <code>features_to_plot</code>, the vector of features we want a plot for.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use lapply to run your function over the features of interest</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="co"># if you don't want your plots to print, you should assign them to something</span></span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>my_plots <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="at">X =</span> features_to_plot, <span class="co"># what to iterate over</span></span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">FUN =</span> manhattan_plot) <span class="co"># what function to use</span></span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a><span class="co"># print the first 6</span></span>
-<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>my_plots[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create an object called my_plots which is a list </span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the list contains our 50 plots</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>my_plots <span class="ot">&lt;-</span> <span class="fu">map</span>(features_to_plot, <span class="co"># vector to apply over</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>            manhattan_plot) <span class="co"># what function to use</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="co"># print the first 6</span></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>my_plots[<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]</code></pre>
 </div>
@@ -1233,19 +1225,22 @@ dbl (4704): Index, Linkage_Group, Genetic_Distance, X885.2037_2.98177, X525....
 </section>
 <section id="saving-out-plots" class="level3">
 <h3 class="anchored" data-anchor-id="saving-out-plots">Saving out plots</h3>
-<p>But you can print them all, save particular ones using<code>ggsave()</code>, or do what we are going to do here, which is save each of them to a new folder, each as their own <code>.svg</code> because why use raster when you can vectorize.</p>
-<p>First we will create a vector of what we want our file names to look like. Then we will save.</p>
+<p>But you can print them all, save particular ones using <code>ggsave()</code>, or do what we are going to do here, which is save each of them to a new folder, each as their own <code>.svg</code> because why use raster when you can vectorize.</p>
+<p>First we will create a vector of what we want our file names to look like, and apply them to be the names of our plots.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use str_c to combine two character vectors</span></span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="co"># here, features_to_plot and adding .svg so the file name </span></span>
-<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="co"># includes the extension type</span></span>
-<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="co"># then set that as the names for my_plots</span></span>
-<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(my_plots) <span class="ot">&lt;-</span> <span class="fu">str_c</span>(features_to_plot, <span class="st">".svg"</span>)</span>
-<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a><span class="co"># use pwalk to "walk" across the different plots and save them</span></span>
-<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a><span class="fu">pwalk</span>(<span class="fu">list</span>(<span class="fu">names</span>(my_plots), my_plots), <span class="co"># what to iterate over and output</span></span>
-<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a>      ggsave, <span class="co"># what the function is</span></span>
-<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">path =</span> <span class="st">"img/"</span>) <span class="co"># where they should go</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use str_c to combine two character vectors</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="co"># here, features_to_plot and adding .svg so the file name </span></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="co"># includes the extension type</span></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="co"># then set that as the names for my_plots</span></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(my_plots) <span class="ot">&lt;-</span> <span class="fu">str_c</span>(features_to_plot, <span class="st">".svg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then, we will save.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use pwalk to "walk" across the different plots and save them</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="co"># to use the path subfolder "img" you need to create that in your working dir</span></span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pwalk</span>(<span class="fu">list</span>(<span class="fu">names</span>(my_plots), my_plots), <span class="co"># what to iterate over and output</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>      ggsave, <span class="co"># what the function is</span></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">path =</span> <span class="st">"img/"</span>) <span class="co"># where they should go</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now all of your plots are in your working directory. Remember, you need to add the directory <code>img</code> if you want to save with the code I’m using here.</p>
 </section>
@@ -1253,7 +1248,7 @@ dbl (4704): Index, Linkage_Group, Genetic_Distance, X885.2037_2.98177, X525....
 <section id="useful-resources" class="level2">
 <h2 class="anchored" data-anchor-id="useful-resources">Useful resources</h2>
 <ul>
-<li><a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/lapply">the <code>apply()</code> family of functions</a></li>
+<li><a href="https://purrr.tidyverse.org/reference/map.html"><code>purrr:map()</code></a></li>
 </ul>
 
 

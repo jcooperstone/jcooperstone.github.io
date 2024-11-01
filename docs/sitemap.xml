@@ -2,178 +2,178 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.rdataviz.com/modules/module1/02_good-and-bad/02_goodbad.html</loc>
-    <lastmod>2024-11-01T12:05:10.196Z</lastmod>
+    <lastmod>2024-11-01T17:05:51.769Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module2/03_rmarkdown/03_Rmd_recitation.html</loc>
-    <lastmod>2024-11-01T12:04:57.892Z</lastmod>
+    <lastmod>2024-11-01T17:05:39.463Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module2/05_ggplot101/05_ggplot101_recitation.html</loc>
-    <lastmod>2024-11-01T12:04:54.346Z</lastmod>
+    <lastmod>2024-11-01T17:05:35.922Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module2/05_ggplot101/05_ggplot101.html</loc>
-    <lastmod>2024-11-01T12:04:36.008Z</lastmod>
+    <lastmod>2024-11-01T17:05:18.147Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module2/06_ggplot102/06_ggplot102.html</loc>
-    <lastmod>2024-11-01T12:04:21.219Z</lastmod>
+    <lastmod>2024-11-01T17:05:03.840Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module2/04_wrangling/04_wrangling.html</loc>
-    <lastmod>2024-11-01T12:03:57.326Z</lastmod>
+    <lastmod>2024-11-01T17:04:40.529Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module2/04_wrangling/04_wrangling_recitation.html</loc>
-    <lastmod>2024-11-01T12:03:48.289Z</lastmod>
+    <lastmod>2024-11-01T17:04:31.430Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module3/08_correlations/08_correlations.html</loc>
-    <lastmod>2024-11-01T12:03:27.210Z</lastmod>
+    <lastmod>2024-11-01T17:04:10.394Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module3/07_distributions/07_distributions_recitation.html</loc>
-    <lastmod>2024-11-01T12:03:12.776Z</lastmod>
+    <lastmod>2024-11-01T17:03:56.251Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module3/07_distributions/07_distributions.html</loc>
-    <lastmod>2024-11-01T12:02:59.592Z</lastmod>
+    <lastmod>2024-11-01T17:03:43.513Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module3/09_add-stats/09_add-stats_recitation.html</loc>
-    <lastmod>2024-11-01T12:02:39.823Z</lastmod>
+    <lastmod>2024-11-01T17:03:23.806Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module4/10_pca/10_pca.html</loc>
-    <lastmod>2024-11-01T12:02:28.846Z</lastmod>
+    <lastmod>2024-11-01T17:03:12.883Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module4/10_pca/10_pca_recitation.html</loc>
-    <lastmod>2024-11-01T12:02:10.919Z</lastmod>
+    <lastmod>2024-11-01T17:02:55.793Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module4/11_manhattan/11_manhattan.html</loc>
-    <lastmod>2024-11-01T12:02:06.730Z</lastmod>
+    <lastmod>2024-11-01T17:02:51.722Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module4/12_interactive-plots/12_interactive-plots_recitation.html</loc>
-    <lastmod>2024-11-01T12:01:27.490Z</lastmod>
+    <lastmod>2024-11-01T17:02:12.774Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module4/13_leftovers/13_leftovers_recitation.html</loc>
-    <lastmod>2024-11-01T12:00:20.757Z</lastmod>
+    <lastmod>2024-11-01T17:01:04.787Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/rmds/03_Rmd_recitation_solutions.html</loc>
-    <lastmod>2024-11-01T12:00:14.763Z</lastmod>
+    <lastmod>2024-11-01T17:00:58.733Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/syllabus/syllabus.html</loc>
-    <lastmod>2024-11-01T12:00:11.163Z</lastmod>
+    <lastmod>2024-11-01T17:00:54.773Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/assignments/modules/module1/module_1_assignment.html</loc>
-    <lastmod>2024-11-01T12:00:07.633Z</lastmod>
+    <lastmod>2024-11-01T17:00:50.536Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/assignments/modules/module2/module_2_assignment.html</loc>
-    <lastmod>2024-11-01T12:00:00.734Z</lastmod>
+    <lastmod>2024-11-01T17:00:42.442Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/assignments/modules/module3/module_3_assignment.html</loc>
-    <lastmod>2024-11-01T11:59:43.632Z</lastmod>
+    <lastmod>2024-11-01T17:00:25.156Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/assignments/reflections.html</loc>
-    <lastmod>2024-11-01T11:59:38.291Z</lastmod>
+    <lastmod>2024-11-01T17:00:20.253Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/assignments/capstone.html</loc>
-    <lastmod>2024-11-01T11:59:37.859Z</lastmod>
+    <lastmod>2024-11-01T17:00:19.825Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/assignments/modules/module4/module_4_assignment.html</loc>
-    <lastmod>2024-11-01T11:59:39.877Z</lastmod>
+    <lastmod>2024-11-01T17:00:21.778Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/assignments/modules/module3/module_3_solutions.html</loc>
-    <lastmod>2024-11-01T11:59:58.242Z</lastmod>
+    <lastmod>2024-11-01T17:00:40.088Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/assignments/modules/module2/module_2_solutions.html</loc>
-    <lastmod>2024-11-01T12:00:07.239Z</lastmod>
+    <lastmod>2024-11-01T17:00:50.166Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/index.html</loc>
-    <lastmod>2024-11-01T12:00:08.647Z</lastmod>
+    <lastmod>2024-11-01T17:07:28.724Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/about.html</loc>
-    <lastmod>2024-11-01T12:00:12.369Z</lastmod>
+    <lastmod>2024-11-01T17:00:56.142Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/rmds/03_Rmd_recitation.html</loc>
-    <lastmod>2024-11-01T12:00:15.985Z</lastmod>
+    <lastmod>2024-11-01T17:00:59.902Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module4/13_leftovers/13_leftovers.html</loc>
-    <lastmod>2024-11-01T12:01:25.933Z</lastmod>
+    <lastmod>2024-11-01T17:02:11.276Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module4/12_interactive-plots/12_interactive-plots.html</loc>
-    <lastmod>2024-11-01T12:01:31.185Z</lastmod>
+    <lastmod>2024-11-01T17:02:16.300Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module4/11_manhattan/11_manhattan_recitation.html</loc>
-    <lastmod>2024-11-01T12:02:08.228Z</lastmod>
+    <lastmod>2024-11-01T17:02:53.165Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module4/10_pca/10_pca_recitation_solutions.html</loc>
-    <lastmod>2024-11-01T12:02:18.521Z</lastmod>
+    <lastmod>2024-11-01T17:03:02.974Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module3/09_add-stats/09_add-stats_recitation_solutions.html</loc>
-    <lastmod>2024-11-01T12:02:36.581Z</lastmod>
+    <lastmod>2024-11-01T17:03:20.477Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module3/09_add-stats/09_add-stats.html</loc>
-    <lastmod>2024-11-01T12:02:47.795Z</lastmod>
+    <lastmod>2024-11-01T17:03:32.063Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module3/07_distributions/07_distributions_recitation_solutions.html</loc>
-    <lastmod>2024-11-01T12:03:11.376Z</lastmod>
+    <lastmod>2024-11-01T17:03:54.872Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module3/08_correlations/08_correlations_recitation.html</loc>
-    <lastmod>2024-11-01T12:03:15.920Z</lastmod>
+    <lastmod>2024-11-01T17:03:59.433Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module3/08_correlations/08_correlations_recitation_solutions.html</loc>
-    <lastmod>2024-11-01T12:03:46.714Z</lastmod>
+    <lastmod>2024-11-01T17:04:29.881Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module2/04_wrangling/04_wrangling_recitation_solutions.html</loc>
-    <lastmod>2024-11-01T12:03:53.107Z</lastmod>
+    <lastmod>2024-11-01T17:04:36.473Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module2/06_ggplot102/06_ggplot102_recitation.html</loc>
-    <lastmod>2024-11-01T12:03:59.798Z</lastmod>
+    <lastmod>2024-11-01T17:04:42.980Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module2/06_ggplot102/06_ggplot102_recitation_solutions.html</loc>
-    <lastmod>2024-11-01T12:04:28.412Z</lastmod>
+    <lastmod>2024-11-01T17:05:10.823Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module2/05_ggplot101/05_ggplot101_recitation_solutions.html</loc>
-    <lastmod>2024-11-01T12:04:50.868Z</lastmod>
+    <lastmod>2024-11-01T17:05:32.414Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module2/03_rmarkdown/03_Rmd.html</loc>
-    <lastmod>2024-11-01T12:04:56.821Z</lastmod>
+    <lastmod>2024-11-01T17:05:38.402Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module1/01_principles/01_principles.html</loc>
-    <lastmod>2024-11-01T12:05:09.713Z</lastmod>
+    <lastmod>2024-11-01T17:05:51.285Z</lastmod>
   </url>
 </urlset>
