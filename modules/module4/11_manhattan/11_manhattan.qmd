@@ -458,7 +458,7 @@ features_to_plot <- unique(gwas_top50_long$feature)
 
 ### Applying the function with `map()`.
 
-Once we have our function written, we can apply that function over a vector using `[purrr:map()](https://purrr.tidyverse.org/reference/map.html)`. What `map()` does is take a function and apply it to a vector. In this case, the function is `manhattan_plot` (the function that makes a Manhattan plot), and it is applied over `features_to_plot`, the vector of features we want a plot for.
+Once we have our function written, we can apply that function over a vector using [`purrr:map()`](https://purrr.tidyverse.org/reference/map.html). What `map()` does is take a function and apply it to a vector. In this case, the function is `manhattan_plot` (the function that makes a Manhattan plot), and it is applied over `features_to_plot`, the vector of features we want a plot for.
 ```{r}
 # create an object called my_plots which is a list 
 # the list contains our 50 plots
