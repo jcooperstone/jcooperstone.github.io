@@ -217,7 +217,7 @@ gwas %>%
 
 ### Add p-value hline
 
-Because we have so many SNPs, we are making a lot of comparisons that require a multiple-testing correction or we run the risk of an enormous number of false-positives. We can use the conservative Bonferroni correction, which takes our p-value, and the total number of comparisons we are making, creating a new adjusted value that our p-values need to be less than to be considered significant. In this case, the number of comparisons are our number of rows, in this case `r `nrow(gwas)`
+Because we have so many SNPs, we are making a lot of comparisons that require a multiple-testing correction or we run the risk of an enormous number of false-positives. We can use the conservative Bonferroni correction, which takes our p-value, and the total number of comparisons we are making, creating a new adjusted value that our p-values need to be less than to be considered significant. In this case, the number of comparisons are our number of rows, in this case `r nrow(gwas)`
 
 ```{r add line for sig pvalue}
 # what would the pvalue cut off with a bonferroni correction be?

@@ -338,6 +338,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../../../modules/module4/10_pca/10_pca_recitation_solutions.html" rel="" target="">
  <span class="dropdown-text">Week 10 - Principal components analysis solutions</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/11_manhattan/11_manhattan_recitation_solutions.html" rel="" target="">
+ <span class="dropdown-text">Week 11 - Manhattan plots solutions</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -829,7 +833,7 @@ dbl (4704): Index, Linkage_Group, Genetic_Distance, X885.2037_2.98177, X525....
 </section>
 <section id="add-p-value-hline" class="level3">
 <h3 class="anchored" data-anchor-id="add-p-value-hline">Add p-value hline</h3>
-<p>Because we have so many SNPs, we are making a lot of comparisons that require a multiple-testing correction or we run the risk of an enormous number of false-positives. We can use the conservative Bonferroni correction, which takes our p-value, and the total number of comparisons we are making, creating a new adjusted value that our p-values need to be less than to be considered significant. In this case, the number of comparisons are our number of rows, in this case <code>r</code>nrow(gwas)`</p>
+<p>Because we have so many SNPs, we are making a lot of comparisons that require a multiple-testing correction or we run the risk of an enormous number of false-positives. We can use the conservative Bonferroni correction, which takes our p-value, and the total number of comparisons we are making, creating a new adjusted value that our p-values need to be less than to be considered significant. In this case, the number of comparisons are our number of rows, in this case 11165</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># what would the pvalue cut off with a bonferroni correction be?</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>bonferroni_pval <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">log10</span>(<span class="fl">0.05</span><span class="sc">/</span><span class="fu">nrow</span>(gwas))</span>
