@@ -1,5 +1,5 @@
 ---
-title: "Interactive plots with plotly and ggplotly"
+title: "Interactive plots with `plotly` and `ggplotly`"
 author: "Daniel Quiroz"
 subtitle: "Week 12"
 format:
@@ -15,7 +15,7 @@ format:
 * Discuss options for interactive plots
 
 
-# What is plotly?
+# What is `plotly`?
 
 [Plotly website:](https://plotly.com/r/getting-started/)
 "`plotly` is an R package for creating interactive web-based graphs via the
@@ -33,7 +33,7 @@ Logo retrieved from [Plotly website:](https://plotly.com/r/getting-started/)
 # Why use plotly?
 
 Plotly is one the most popular platforms to create interactive plots. It is 
-well maintained, clearly documented, very beautiful, and easily integrated into ggplot2.
+well maintained, clearly documented, very beautiful, and easily integrated into `ggplot2`.
 
 ## Installing `plotly`
 
@@ -86,14 +86,16 @@ library(htmlwidgets) # for saving interactive plots
 ## Basic scatter plot
 
 ```{r scaterplot, warning=FALSE, paged.print=FALSE, message=FALSE,fig.alt="Palmer pengui body mass by bill lenght"}
-ggpenguins <- palmerpenguins::penguins %>% 
-  ggplot(aes( bill_length_mm , body_mass_g, color = species )) + 
+ggpenguins <- palmerpenguins::penguins |> 
+# note that x is the default first argument and y is the second
+# and this works even though we haven't said this explicitly
+  ggplot(aes(bill_length_mm, body_mass_g, color = species )) + 
   geom_point() + 
   scale_color_d3() + # from ggsci
   theme_bw() +
   labs(x = "Bill length, in mm",
        y = "Body mass, in g",
-       fill = "Species",
+       color = "Species",
        title = "Palmer penguin body mass by bill length")
 
 ggpenguins
@@ -105,7 +107,7 @@ Things you can do with an interactive plot:
 
 * Zoom in and out
 * Turn off groups (click on the legend)
-* Download plot as .png
+* Download plot as a `.png` (click the camera)
 
 ```{r ggplotly scatter}
 ggplotly(ggpenguins)
@@ -123,7 +125,7 @@ library(ggfortify)
 In this case we are going to explore a new library `ggfortify` that accepts
 `prcomp` results and creates an automatic scores PCA plot.
 
-After you perform PCA analysis, you can use `autorplot()` to create a ggplot2 
+After you perform PCA analysis, you can use `autoplot()` to create a ggplot2 
 object for using in the `ggplotly()` function.
 
 ```{r pca, fig.alt="Scores plot of iris data"}
@@ -204,9 +206,9 @@ ggplotly(ggpenguins,
 
 You might not like the default hover text aesthetics, and can change them!
 You can do this using style and layout and adding these
-functions using the pipe (`|>` or `%>%`).
+functions using the pipe (`|>` or `|>`).
 
-Code taken from [BioDash](https://biodash.github.io/codeclub/s02e12_plotly/)
+Code taken from [OSU's Code Club](https://biodash.github.io/codeclub/s02e12_plotly/)
 
 ```{r}
 # setting fonts for the plot
@@ -222,34 +224,34 @@ label <- list(
   font = font) # we can do this bc we already set font
 
 # amending our ggplotly call to include new fonts and hover label specs
-ggplotly(ggpenguins, tooltip = "colour") %>%
-  style(hoverlabel = label) %>%
+ggplotly(ggpenguins, tooltip = "colour") |>
+  style(hoverlabel = label) |>
   layout(font = font)
 ```
 
-# Saving ggplotly() objects
+# Saving `ggplotly()` objects
 
 After you have done an amazing job creating a beautiful ggplot and made it 
 interactive, you might want to save in a file. Here, you have two options, 
-create a markdown and knit your interactive plot in a *html* file,
+create a markdown and knit your interactive plot in a `.html` file,
 if you knit in a static file such as pdf or word file, you will lose
 the interactive part of your plot.
 
 You will need to assign the interactive plot to an object, and then, export
-or save your plot to an *html* file.
+or save your plot to an `.html` file.
 
-You can export your interactive plots by using the `saveWidget` function from
-the `htmlwidgets`. If you do not have this package, you can install it by:
+You can export your interactive plots by using the [`saveWidget()`](https://www.rdocumentation.org/packages/htmlwidgets/versions/1.6.4/topics/saveWidget) function from
+the package `htmlwidgets`. If you do not have this package, you can install it by:
 
 ```{r include=TRUE, eval=FALSE}
 install.packages("htmlwidgets")
 ```
 
-
+Now we can create an ggplotly object to save, and then save it as a standalone `.html`. Remember this will save only your plot, not your whole RMarkdown.
 ```{r eval=FALSE, include=TRUE}
 # assign ggplotly plot to an object
-ggplotly_to_save <- ggplotly(ggpenguins, tooltip = "colour") %>%
-  style(hoverlabel = label) %>%
+ggplotly_to_save <- ggplotly(ggpenguins, tooltip = "colour") |>
+  style(hoverlabel = label) |>
   layout(font = font)
 
 # save
