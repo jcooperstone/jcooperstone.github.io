@@ -263,8 +263,10 @@ We are going to wrangle the data to facilitate plotting. We are using `rescale` 
   pivot_longer(cols = aroma:cupper_points, # our favorite - tidy data to faciliate summarizing
                names_to = "attribute",
                values_to = "score") %>% 
-  group_by(species, attribute) %>% # perform operations by species and attribute pairs
+  group_by(attribute) %>% # perform operations by species and attribute pairs
   mutate(across(where(is.numeric), rescale)) %>% # rescale data that is numeric
+  ungroup() |> # get rid of grouping by attribute
+  group_by(species, attribute) |> # group now by species and attribute
   summarize(mean_score = mean(score)))
 ```
 
@@ -280,7 +282,27 @@ coffee_summary_wide <- coffee_summary_long %>%
 ggradar(coffee_summary_wide)
 ```
 
-We are going to fix our labels and chanage some parameters on the plot to make it look nicer.
+We are going to fix our labels and chanage some parameters on the plot to make it look nicer. You can also do this with coding (instead of manually) using the function [`to_any_case()`](https://www.rdocumentation.org/packages/snakecase/versions/0.11.1/topics/to_any_case) in the package `snakecase`.
+```{r}
+# write code to get nicer looking label names
+# create a vector of our variable names
+
+# create a vector of the column names
+variables <- colnames(coffee_summary_wide)
+
+# remove the first observation (species) since we don't want that one
+variables <- variables[-1]
+
+# use the function to_any_case() from the package snakecase
+# to convert to "sentence" case
+# install.packages("snakecase")
+coffee_labels <- snakecase::to_any_case(variables, case = "sentence")
+
+# how do they look?
+coffee_labels
+```
+
+Or to do this manually
 ```{r}
 # set our pretty coffee labels
 # ggradar plots in alphabetical order so that is how we will label here

@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jessica Cooperstone">
+
+<title>💻🧰📊🥳 - Leftover tidbits recitation solutions</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../img/code-slash.png" rel="icon" type="image/png">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="../../../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="../../../site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<script src="../../../site_libs/plotly-binding-4.10.2/plotly.js"></script>
+<script src="../../../site_libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="../../../site_libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="../../../site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="../../../site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="../../../site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="../../../site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../favicon.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">💻🧰📊🥳</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-syllabus" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Syllabus</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-syllabus">    
+        <li>
+    <a class="dropdown-item" href="../../../syllabus/syllabus.html" rel="" target="">
+ <span class="dropdown-text">Syllabus</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-course-content" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Course content</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-course-content">    
+        <li class="dropdown-header">Module 1 - Principles</li>
+        <li>
+    <a class="dropdown-item" href="../../../modules/module1/01_principles/01_principles.html" rel="" target="">
+ <span class="dropdown-text">Week 1 - Principles</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module1/02_good-and-bad/02_goodbad.html" rel="" target="">
+ <span class="dropdown-text">Week 2 - Good and bad visualizations</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Module 2 - Coding fundamentals</li>
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/03_rmarkdown/03_Rmd.html" rel="" target="">
+ <span class="dropdown-text">Week 3 - R Markdown</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/04_wrangling/04_wrangling.html" rel="" target="">
+ <span class="dropdown-text">Week 4 - Wrangling</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/05_ggplot101/05_ggplot101.html" rel="" target="">
+ <span class="dropdown-text">Week 5 - ggplot101</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/06_ggplot102/06_ggplot102.html" rel="" target="">
+ <span class="dropdown-text">Week 6 - ggplot102</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Module 3 - Data exploration</li>
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/07_distributions/07_distributions.html" rel="" target="">
+ <span class="dropdown-text">Week 7 - Data distributions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/08_correlations/08_correlations.html" rel="" target="">
+ <span class="dropdown-text">Week 8 - Correlations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/09_add-stats/09_add-stats.html" rel="" target="">
+ <span class="dropdown-text">Week 9 - Adding statistics</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Module 4 - Putting it together</li>
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/10_pca/10_pca.html" rel="" target="">
+ <span class="dropdown-text">Week 10 - Principal components analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/11_manhattan/11_manhattan.html" rel="" target="">
+ <span class="dropdown-text">Week 11 - Manhattan plots</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/12_interactive-plots/12_interactive-plots.html" rel="" target="">
+ <span class="dropdown-text">Week 12 - Interactive plots</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/13_leftovers/13_leftovers.html" rel="" target="">
+ <span class="dropdown-text">Week 13 - Leftovers</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-recitations" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Recitations</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-recitations">    
+        <li class="dropdown-header">Module 2 - Coding fundamentals</li>
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/03_rmarkdown/03_Rmd_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 3 - R Markdown</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/04_wrangling/04_wrangling_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 4 - Wrangling</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/05_ggplot101/05_ggplot101_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 5 - ggplot101</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/06_ggplot102/06_ggplot102_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 6 - ggplot102</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Module 3 - Data exploration</li>
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/07_distributions/07_distributions_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 7 - Data distributions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/08_correlations/08_correlations_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 8 - Correlations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/09_add-stats/09_add-stats_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 9 - Adding statistics</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Module 4 - Putting it together</li>
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/10_pca/10_pca_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 10 - Principal components analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/11_manhattan/11_manhattan_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 11 - Manhattan plots</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/12_interactive-plots/12_interactive-plots_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 12 - Interactive plots</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/13_leftovers/13_leftovers_recitation.html" rel="" target="">
+ <span class="dropdown-text">Week 13 - Leftovers</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-assignments" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Assignments</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-assignments">    
+        <li class="dropdown-header">Module assignments</li>
+        <li>
+    <a class="dropdown-item" href="../../../assignments/modules/module1/module_1_assignment.html" rel="" target="">
+ <span class="dropdown-text">Module 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../assignments/modules/module2/module_2_assignment.html" rel="" target="">
+ <span class="dropdown-text">Module 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../assignments/modules/module3/module_3_assignment.html" rel="" target="">
+ <span class="dropdown-text">Module 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../assignments/modules/module4/module_4_assignment.html" rel="" target="">
+ <span class="dropdown-text">Module 4</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Reflections</li>
+        <li>
+    <a class="dropdown-item" href="../../../assignments/reflections.html" rel="" target="">
+ <span class="dropdown-text">Reflection instructions</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Capstone assignment</li>
+        <li>
+    <a class="dropdown-item" href="../../../assignments/capstone.html" rel="" target="">
+ <span class="dropdown-text">Capstone instructions</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-solutions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Solutions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-solutions">    
+        <li class="dropdown-header">Module assignment solutions</li>
+        <li>
+    <a class="dropdown-item" href="../../../assignments/modules/module2/module_2_solutions.html" rel="" target="">
+ <span class="dropdown-text">Module 2 solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../assignments/modules/module3/module_3_solutions.html" rel="" target="">
+ <span class="dropdown-text">Module 3 solutions</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Recitation solutions</li>
+        <li>
+    <a class="dropdown-item" href="https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/main/rmds/03_Rmd_recitation_solutions.Rmd" rel="" target="">
+ <span class="dropdown-text">Week 3 - R Markdown solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/04_wrangling/04_wrangling_recitation_solutions.html" rel="" target="">
+ <span class="dropdown-text">Week 4 - Wrangling solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/05_ggplot101/05_ggplot101_recitation_solutions.html" rel="" target="">
+ <span class="dropdown-text">Week 5 - ggplot101 solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/06_ggplot102/06_ggplot102_recitation_solutions.html" rel="" target="">
+ <span class="dropdown-text">Week 6 - ggplot102 solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/07_distributions/07_distributions_recitation_solutions.html" rel="" target="">
+ <span class="dropdown-text">Week 7 - Data distributions solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/08_correlations/08_correlations_recitation_solutions.html" rel="" target="">
+ <span class="dropdown-text">Week 8 - Correlations solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/09_add-stats/09_add-stats_recitation_solutions.html" rel="" target="">
+ <span class="dropdown-text">Week 9 - Adding statistics solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/10_pca/10_pca_recitation_solutions.html" rel="" target="">
+ <span class="dropdown-text">Week 10 - Principal components analysis solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/11_manhattan/11_manhattan_recitation_solutions.html" rel="" target="">
+ <span class="dropdown-text">Week 11 - Manhattan plots solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/12_interactive-plots/12_interactive-plots_recitation_solutions.html" rel="" target="">
+ <span class="dropdown-text">Week 12 - Interactive plots solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/13_leftovers/13_leftovers_recitation_solutions.html" rel="" target="">
+ <span class="dropdown-text">Week 13 - Leftovers solutions</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+    <a href="https://github.com/jcooperstone/rdataviz" rel="" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/main/rmds/03_Rmd_recitation_solutions.Rmd">Recitation solutions</a></li><li class="breadcrumb-item"><a href="../../../modules/module4/13_leftovers/13_leftovers_recitation_solutions.html">Week 13 - Leftovers solutions</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Module assignment solutions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../assignments/modules/module2/module_2_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 2 solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../assignments/modules/module3/module_3_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 3 solutions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Recitation solutions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/main/rmds/03_Rmd_recitation_solutions.Rmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 3 - R Markdown solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module2/04_wrangling/04_wrangling_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 4 - Wrangling solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module2/05_ggplot101/05_ggplot101_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 5 - ggplot101 solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module2/06_ggplot102/06_ggplot102_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 6 - ggplot102 solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module3/07_distributions/07_distributions_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 7 - Data distributions solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module3/08_correlations/08_correlations_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 8 - Correlations solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module3/09_add-stats/09_add-stats_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 9 - Adding statistics solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module4/10_pca/10_pca_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 10 - Principal components analysis solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module4/11_manhattan/11_manhattan_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 11 - Manhattan plots solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module4/12_interactive-plots/12_interactive-plots_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 12 - Interactive plots solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module4/13_leftovers/13_leftovers_recitation_solutions.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Week 13 - Leftovers solutions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul>
+  <li><a href="#load-libraries" id="toc-load-libraries" class="nav-link" data-scroll-target="#load-libraries">Load libraries</a></li>
+  </ul></li>
+  <li><a href="#really-start-using-an-rproject" id="toc-really-start-using-an-rproject" class="nav-link" data-scroll-target="#really-start-using-an-rproject">Really start using an Rproject 📽️</a></li>
+  <li><a href="#visualization-1" id="toc-visualization-1" class="nav-link" data-scroll-target="#visualization-1">Visualization 1</a></li>
+  <li><a href="#visualization-2" id="toc-visualization-2" class="nav-link" data-scroll-target="#visualization-2">Visualization 2</a>
+  <ul>
+  <li><a href="#interactive" id="toc-interactive" class="nav-link" data-scroll-target="#interactive">Interactive</a></li>
+  <li><a href="#animated" id="toc-animated" class="nav-link" data-scroll-target="#animated">Animated</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Leftover tidbits recitation solutions</h1>
+<p class="subtitle lead">Week 13</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jessica Cooperstone </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Today’s recitation materials are on a bunch of stuff I thought was interesting but didn’t fit specifically into any of the other lessons. This includes some cool ggplot extension packages we haven’t gone over yet, and heatmaps that utilize base R plotting.</p>
+<section id="load-libraries" class="level3">
+<h3 class="anchored" data-anchor-id="load-libraries">Load libraries</h3>
+<p>Loading the libraries that are for each section. Individual libraries are before each section so you can see which go with what plot types.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># for everything</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gghighlight) <span class="co"># for highlighting</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gganimate) <span class="co"># animating plots</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel) <span class="co"># for text/label repelling</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magick) <span class="co"># for gif rendering</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales) <span class="co"># for easy scaling</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly) <span class="co"># for ggplotly</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue) <span class="co"># for easy pasting</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder) <span class="co"># for data for viz2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="really-start-using-an-rproject" class="level2">
+<h2 class="anchored" data-anchor-id="really-start-using-an-rproject">Really start using an Rproject 📽️</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/rproj.png" class="img-fluid figure-img" style="width:70.0%" alt="A cartoon of a cracked glass cube looking frustrated with casts on its arm and leg, with bandaids on it, containing “setwd”, looks on at a metal riveted cube labeled “R Proj” holding a skateboard looking sympathetic, and a smaller cube with a helmet on labeled “here” doing a trick on a skateboard."></p>
+<figcaption class="figure-caption">Artwork by <a href="https://twitter.com/allison_horst"><span class="citation" data-cites="allison_horst">@allison_horst</span></a></figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>If you don’t have a Rproject for class, set one up.</p>
+</section>
+<section id="visualization-1" class="level2">
+<h2 class="anchored" data-anchor-id="visualization-1">Visualization 1</h2>
+<p>We are going to interrogate a dataset from <a href="https://www.gapminder.org/">Gapminder</a> that includes information about <a href="http://gapm.io/dhapiscore_whr">Happiness Scores</a> collected across different countries and years.</p>
+<p>Create a visualization that shows the happiness scores for all countries from 2008 to 2010. Highlight in some way the top 3 countries with the highest happiness scores per continent.</p>
+<p>I’ve put the data on Github so you can easily download it with the code below. Note, the question asks you to make a plot considering continent so I’ve also provided you a key that has each country, and the continent to which it belows for you to join together.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>happiness <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://github.com/jcooperstone/dataviz-site/raw/master/4_12_leftovers/data/hapiscore_whr.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 163 Columns: 18
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (1): country
+dbl (17): 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, ...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>country_continent <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://github.com/jcooperstone/dataviz-site/raw/master/4_12_leftovers/data/country_continent.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 234 Columns: 2
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (2): country, continent
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<p>Wrangle</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># join happiness and country_continent </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># so we can see which continent goes which each country </span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>happiness_country <span class="ot">&lt;-</span> <span class="fu">left_join</span>(happiness, country_continent, <span class="at">by =</span> <span class="st">"country"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># make tidy data and convert year from character to numeric</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>happiness_tidy <span class="ot">&lt;-</span> happiness_country <span class="sc">%&gt;%</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(country, continent),</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"year"</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"rating"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">as.numeric</span>(year))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a df that has the maximum happiness rating across the time </span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># period per country by continent</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>max_happiness <span class="ot">&lt;-</span> happiness_tidy <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2008</span><span class="sc">:</span><span class="dv">2020</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(rating) <span class="sc">%&gt;%</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent, country) <span class="sc">%&gt;%</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">max_rating =</span> <span class="fu">max</span>(rating)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'continent'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(max_happiness)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+# Groups:   continent [1]
+  continent country      max_rating
+  &lt;chr&gt;     &lt;chr&gt;             &lt;dbl&gt;
+1 Africa    Algeria            63.5
+2 Africa    Angola             55.9
+3 Africa    Benin              58.2
+4 Africa    Botswana           48.4
+5 Africa    Burkina Faso       49.3
+6 Africa    Burundi            37.9</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pull the top 3 happiness countries for each continent</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>top3_happiest <span class="ot">&lt;-</span> max_happiness <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> <span class="co"># to get rid of grouping from previous chunk</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent) <span class="sc">%&gt;%</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(max_rating, <span class="at">n =</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="co"># then ungroup again</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>top3_happiest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 17 × 3
+   continent     country              max_rating
+   &lt;chr&gt;         &lt;chr&gt;                     &lt;dbl&gt;
+ 1 Africa        Algeria                    63.5
+ 2 Africa        Mauritius                  62.4
+ 3 Africa        Benin                      58.2
+ 4 Asia          Israel                     74.3
+ 5 Asia          United Arab Emirates       72.2
+ 6 Asia          Bahrain                    71  
+ 7 Europe        Finland                    78.9
+ 8 Europe        Denmark                    77.9
+ 9 Europe        Switzerland                77.8
+10 North America Canada                     76.5
+11 North America Costa Rica                 76.2
+12 North America Mexico                     74.4
+13 Oceania       Australia                  74.5
+14 Oceania       New Zealand                74.2
+15 South America Venezuela                  74.8
+16 South America Brazil                     71.4
+17 South America Chile                      68.4</code></pre>
+</div>
+</div>
+<p>Plot</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>happiness_tidy <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2008</span><span class="sc">:</span><span class="dv">2020</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> rating, <span class="at">group =</span> country, <span class="at">color =</span> continent)) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2004</span>, <span class="dv">2020</span>, <span class="dv">4</span>)) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gghighlight</span>(country <span class="sc">%in%</span> top3_happiest<span class="sc">$</span>country,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">label_params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">3</span>)) <span class="sc">+</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(continent)) <span class="sc">+</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="co"># text on 45degree angle </span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">8</span>))) <span class="sc">+</span> <span class="co"># padding on axis text</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Happiness Rating (out of 100)"</span>,</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Happiness ratings for each country by continent over 2008 to 2020"</span>,</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Data from Gapminder.org"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="13_leftovers_recitation_solutions_files/figure-html/viz1 plot-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="visualization-2" class="level2">
+<h2 class="anchored" data-anchor-id="visualization-2">Visualization 2</h2>
+<p>Recreate a plot in the vein of the one <a href="https://www.gapminder.org/tools/#$chart-type=bubbles&amp;url=v1">here</a>. You can make the same interactive plot (use the data from 2007, which is slightly older and different from what you see in the online plot), or choose to animate it over <code>year</code>. Or do both.</p>
+<p>Use the data <code>gapminder::gapminder</code> which you can access from R.</p>
+<section id="interactive" class="level3">
+<h3 class="anchored" data-anchor-id="interactive">Interactive</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(gapminder)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1,704
+Columns: 6
+$ country   &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", …
+$ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, …
+$ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, …
+$ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8…
+$ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12…
+$ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, …</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>income_by_lifeexp <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(gdpPercap, <span class="at">y =</span> lifeExp, <span class="at">fill =</span> continent, <span class="at">size =</span> pop,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set hover text           </span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">text =</span> <span class="fu">glue</span>(<span class="st">"Country: {country}</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="st">                         Continent: {continent}</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="st">                         GDP per capita: ${round(gdpPercap, 0)}</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="st">                         Life expectancy: {round(lifeExp, 0)}"</span>))) <span class="sc">+</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">trans =</span> <span class="st">"log2"</span>, <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">dollar_format</span>()) <span class="sc">+</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_area</span>(<span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">90</span>)) <span class="sc">+</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>) <span class="sc">+</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"GDP per capita"</span>,</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Life expectancy"</span>,</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Continent"</span>,</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Relationship between GDP per capita and life expectancy </span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="st">from 1952 to 2007"</span>,</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Data from Gapminder.org"</span>)</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(income_by_lifeexp, <span class="at">tooltip =</span> <span class="st">"text"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-ecbca616a6d35206ec11" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-ecbca616a6d35206ec11">{"x":{"data":[{"x":[12.60347971878414,12.227986275944572,10.493139800081543,13.617680016424272,10.249152564985664,8.7484300078183779,10.995834437396672,9.4635581658610928,10.734763571270326,9.9456601939757778,8.1166135442984455,11.826770037571709,10.593157762703642,11.024088010353566,12.446354718486795,13.569154229943271,9.3250119916432155,9.4321359175327224,13.688958861233516,9.5560264685437861,10.374614501602567,9.8805848414613191,9.1779968567915287,10.514959855416091,10.615934365605183,8.6952538438524378,13.55764310350035,10.028969835043611,9.5686210256638979,10.0259445290296,10.816304897930475,13.419564056294695,11.899423100319426,9.6859499928513433,12.232139205069773,9.2753723613414891,10.975831710733482,12.905033914855249,9.7533646285404227,10.642444443432238,10.741864798526981,9.7524488172591894,9.8550881489581243,13.178300367006587,11.345624237524342,12.14002470477017,10.113067772474412,9.7862205193033951,12.792164575684478,10.044913342846788,10.311988471389528,8.8756243424293721],"y":[72.301000000000002,42.731000000000002,56.728000000000002,50.728000000000002,52.295000000000002,49.579999999999998,50.43,44.741,50.651000000000003,65.152000000000001,46.462000000000003,55.322000000000003,48.328000000000003,54.790999999999997,71.337999999999994,51.579000000000001,58.039999999999999,52.947000000000003,56.734999999999999,59.448,60.021999999999998,56.006999999999998,46.387999999999998,54.109999999999999,42.591999999999999,45.677999999999997,73.951999999999998,59.442999999999998,48.302999999999997,54.466999999999999,64.164000000000001,72.801000000000002,71.164000000000001,42.082000000000001,52.905999999999999,56.866999999999997,46.859000000000002,76.441999999999993,46.241999999999997,65.528000000000006,63.061999999999998,42.567999999999998,48.158999999999999,49.338999999999999,58.555999999999997,39.613,52.517000000000003,58.420000000000002,73.923000000000002,51.542000000000002,42.384,43.487000000000002],"text":["Country: Algeria<br />Continent: Africa<br />GDP per capita: $6223<br />Life expectancy: 72","Country: Angola<br />Continent: Africa<br />GDP per capita: $4797<br />Life expectancy: 43","Country: Benin<br />Continent: Africa<br />GDP per capita: $1441<br />Life expectancy: 57","Country: Botswana<br />Continent: Africa<br />GDP per capita: $12570<br />Life expectancy: 51","Country: Burkina Faso<br />Continent: Africa<br />GDP per capita: $1217<br />Life expectancy: 52","Country: Burundi<br />Continent: Africa<br />GDP per capita: $430<br />Life expectancy: 50","Country: Cameroon<br />Continent: Africa<br />GDP per capita: $2042<br />Life expectancy: 50","Country: Central African Republic<br />Continent: Africa<br />GDP per capita: $706<br />Life expectancy: 45","Country: Chad<br />Continent: Africa<br />GDP per capita: $1704<br />Life expectancy: 51","Country: Comoros<br />Continent: Africa<br />GDP per capita: $986<br />Life expectancy: 65","Country: Congo, Dem. Rep.<br />Continent: Africa<br />GDP per capita: $278<br />Life expectancy: 46","Country: Congo, Rep.<br />Continent: Africa<br />GDP per capita: $3633<br />Life expectancy: 55","Country: Cote d'Ivoire<br />Continent: Africa<br />GDP per capita: $1545<br />Life expectancy: 48","Country: Djibouti<br />Continent: Africa<br />GDP per capita: $2082<br />Life expectancy: 55","Country: Egypt<br />Continent: Africa<br />GDP per capita: $5581<br />Life expectancy: 71","Country: Equatorial Guinea<br />Continent: Africa<br />GDP per capita: $12154<br />Life expectancy: 52","Country: Eritrea<br />Continent: Africa<br />GDP per capita: $641<br />Life expectancy: 58","Country: Ethiopia<br />Continent: Africa<br />GDP per capita: $691<br />Life expectancy: 53","Country: Gabon<br />Continent: Africa<br />GDP per capita: $13206<br />Life expectancy: 57","Country: Gambia<br />Continent: Africa<br />GDP per capita: $753<br />Life expectancy: 59","Country: Ghana<br />Continent: Africa<br />GDP per capita: $1328<br />Life expectancy: 60","Country: Guinea<br />Continent: Africa<br />GDP per capita: $943<br />Life expectancy: 56","Country: Guinea-Bissau<br />Continent: Africa<br />GDP per capita: $579<br />Life expectancy: 46","Country: Kenya<br />Continent: Africa<br />GDP per capita: $1463<br />Life expectancy: 54","Country: Lesotho<br />Continent: Africa<br />GDP per capita: $1569<br />Life expectancy: 43","Country: Liberia<br />Continent: Africa<br />GDP per capita: $415<br />Life expectancy: 46","Country: Libya<br />Continent: Africa<br />GDP per capita: $12057<br />Life expectancy: 74","Country: Madagascar<br />Continent: Africa<br />GDP per capita: $1045<br />Life expectancy: 59","Country: Malawi<br />Continent: Africa<br />GDP per capita: $759<br />Life expectancy: 48","Country: Mali<br />Continent: Africa<br />GDP per capita: $1043<br />Life expectancy: 54","Country: Mauritania<br />Continent: Africa<br />GDP per capita: $1803<br />Life expectancy: 64","Country: Mauritius<br />Continent: Africa<br />GDP per capita: $10957<br />Life expectancy: 73","Country: Morocco<br />Continent: Africa<br />GDP per capita: $3820<br />Life expectancy: 71","Country: Mozambique<br />Continent: Africa<br />GDP per capita: $824<br />Life expectancy: 42","Country: Namibia<br />Continent: Africa<br />GDP per capita: $4811<br />Life expectancy: 53","Country: Niger<br />Continent: Africa<br />GDP per capita: $620<br />Life expectancy: 57","Country: Nigeria<br />Continent: Africa<br />GDP per capita: $2014<br />Life expectancy: 47","Country: Reunion<br />Continent: Africa<br />GDP per capita: $7670<br />Life expectancy: 76","Country: Rwanda<br />Continent: Africa<br />GDP per capita: $863<br />Life expectancy: 46","Country: Sao Tome and Principe<br />Continent: Africa<br />GDP per capita: $1598<br />Life expectancy: 66","Country: Senegal<br />Continent: Africa<br />GDP per capita: $1712<br />Life expectancy: 63","Country: Sierra Leone<br />Continent: Africa<br />GDP per capita: $863<br />Life expectancy: 43","Country: Somalia<br />Continent: Africa<br />GDP per capita: $926<br />Life expectancy: 48","Country: South Africa<br />Continent: Africa<br />GDP per capita: $9270<br />Life expectancy: 49","Country: Sudan<br />Continent: Africa<br />GDP per capita: $2602<br />Life expectancy: 59","Country: Swaziland<br />Continent: Africa<br />GDP per capita: $4513<br />Life expectancy: 40","Country: Tanzania<br />Continent: Africa<br />GDP per capita: $1107<br />Life expectancy: 53","Country: Togo<br />Continent: Africa<br />GDP per capita: $883<br />Life expectancy: 58","Country: Tunisia<br />Continent: Africa<br />GDP per capita: $7093<br />Life expectancy: 74","Country: Uganda<br />Continent: Africa<br />GDP per capita: $1056<br />Life expectancy: 52","Country: Zambia<br />Continent: Africa<br />GDP per capita: $1271<br />Life expectancy: 42","Country: Zimbabwe<br />Continent: Africa<br />GDP per capita: $470<br />Life expectancy: 43"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":[3.6054307261403227,2.2008359284552315,1.7749205277827735,0.79951272297045695,2.3636550576896123,1.8088918312217828,2.6269977296248048,1.3053033670551386,1.998219650975722,0.52655183530784078,5.0194660928796271,1.2174333671428244,2.6504309983273915,0.43996999528852149,5.5947465341806515,0.46363215183712381,1.3832739893432704,5.4623937658831068,0.75323448311586716,0.81142978623017581,2.9866430518485996,1.9696196822530996,0.75766722395776986,3.7265385087476464,0.88593644590569842,1.116045909254755,1.5343556673969059,2.734028439960638,2.2797437478270646,2.1661262189906876,1.1292672672558699,0.69843616468384795,3.6282866833825405,2.7893821755415753,0.8952264673803414,2.2424715770523056,7.2566395753385429,0.5578861376332388,1.8588734258554307,0.27898186190085777,2.1872400859359118,1.5479752499825161,1.885761433671141,4.1422295837809333,4.0611817781773807,0.66473133434491838,3.8566199365679914,1.491132103049396,2.0018610692964036,3.3727932854165048,2.1402484567188584,2.19112793216713],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"}},"hoveron":"points","name":"Africa","legendgroup":"Africa","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[13.64153018359505,11.90016380731559,13.146218750326614,15.148446195093964,13.685147240229044,12.774494789349106,13.235574710084965,13.127366135342504,12.556835258127258,12.74677930720015,12.483904813080796,12.340420401137203,10.230785610701867,11.792924817308574,12.837801413126282,13.548048221955828,11.424859626428729,13.259917652740395,12.026813357744381,12.855044728902742,14.238457660809461,14.136391138190884,15.390426037312498,13.373335952193726,13.478745063373875],"y":[75.319999999999993,65.554000000000002,72.390000000000001,80.653000000000006,78.552999999999997,72.888999999999996,78.781999999999996,78.272999999999996,72.234999999999999,74.994,71.878,70.259,60.915999999999997,70.197999999999993,72.566999999999993,76.194999999999993,72.899000000000001,75.537000000000006,71.751999999999995,71.421000000000006,78.745999999999995,69.819000000000003,78.242000000000004,76.384,73.747],"text":["Country: Argentina<br />Continent: Americas<br />GDP per capita: $12779<br />Life expectancy: 75","Country: Bolivia<br />Continent: Americas<br />GDP per capita: $3822<br />Life expectancy: 66","Country: Brazil<br />Continent: Americas<br />GDP per capita: $9066<br />Life expectancy: 72","Country: Canada<br />Continent: Americas<br />GDP per capita: $36319<br />Life expectancy: 81","Country: Chile<br />Continent: Americas<br />GDP per capita: $13172<br />Life expectancy: 79","Country: Colombia<br />Continent: Americas<br />GDP per capita: $7007<br />Life expectancy: 73","Country: Costa Rica<br />Continent: Americas<br />GDP per capita: $9645<br />Life expectancy: 79","Country: Cuba<br />Continent: Americas<br />GDP per capita: $8948<br />Life expectancy: 78","Country: Dominican Republic<br />Continent: Americas<br />GDP per capita: $6025<br />Life expectancy: 72","Country: Ecuador<br />Continent: Americas<br />GDP per capita: $6873<br />Life expectancy: 75","Country: El Salvador<br />Continent: Americas<br />GDP per capita: $5728<br />Life expectancy: 72","Country: Guatemala<br />Continent: Americas<br />GDP per capita: $5186<br />Life expectancy: 70","Country: Haiti<br />Continent: Americas<br />GDP per capita: $1202<br />Life expectancy: 61","Country: Honduras<br />Continent: Americas<br />GDP per capita: $3548<br />Life expectancy: 70","Country: Jamaica<br />Continent: Americas<br />GDP per capita: $7321<br />Life expectancy: 73","Country: Mexico<br />Continent: Americas<br />GDP per capita: $11978<br />Life expectancy: 76","Country: Nicaragua<br />Continent: Americas<br />GDP per capita: $2749<br />Life expectancy: 73","Country: Panama<br />Continent: Americas<br />GDP per capita: $9809<br />Life expectancy: 76","Country: Paraguay<br />Continent: Americas<br />GDP per capita: $4173<br />Life expectancy: 72","Country: Peru<br />Continent: Americas<br />GDP per capita: $7409<br />Life expectancy: 71","Country: Puerto Rico<br />Continent: Americas<br />GDP per capita: $19329<br />Life expectancy: 79","Country: Trinidad and Tobago<br />Continent: Americas<br />GDP per capita: $18009<br />Life expectancy: 70","Country: United States<br />Continent: Americas<br />GDP per capita: $42952<br />Life expectancy: 78","Country: Uruguay<br />Continent: Americas<br />GDP per capita: $10611<br />Life expectancy: 76","Country: Venezuela<br />Continent: Americas<br />GDP per capita: $11416<br />Life expectancy: 74"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(163,165,0,1)","opacity":1,"size":[3.9644363842055292,1.8858006218468573,8.6081042043017302,3.6085080108858301,2.5200489409480751,4.1530292353072866,1.269689973843837,2.110057550360771,1.906416096400501,2.3161121209663555,1.6450856726773095,2.2143015371788386,1.8209578227936134,1.7083567188142497,1.0412409879620672,6.5108111601446899,1.4876991048599044,1.1244409144040104,1.6124585618714788,3.344016567137075,1.2399492280611271,0.64191200004759474,10.836841766388481,1.15949914503897,3.1894158934334755],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"}},"hoveron":"points","name":"Americas","legendgroup":"Americas","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[9.9286373070525986,14.862833387474641,10.442169904442899,10.742965099348472,12.27586692347937,15.277758824480236,11.259867056558731,11.789799159561998,13.50254772252047,12.126401806132197,14.639525957570154,14.950194451745475,12.141935063438668,10.637589852046208,14.51101998690549,15.529765742309118,13.35274124213791,13.604049981731274,11.596083633540175,9.8826430493618407,10.091911064024741,14.445803304742739,11.347592348293896,11.639558234383399,14.402401355452071,15.524761446074727,11.954957962446409,12.030856111747825,14.809681566420451,12.864649746268881,11.253597209451804,11.562886244458998,11.155305193295158],"y":[43.828000000000003,75.635000000000005,64.061999999999998,59.722999999999999,72.960999999999999,82.207999999999998,64.697999999999993,70.650000000000006,70.963999999999999,59.545000000000002,80.745000000000005,82.602999999999994,72.534999999999997,67.296999999999997,78.623000000000005,77.587999999999994,71.992999999999995,74.241,66.802999999999997,62.069000000000003,63.784999999999997,75.640000000000001,65.483000000000004,71.688000000000002,72.777000000000001,79.971999999999994,72.396000000000001,74.143000000000001,78.400000000000006,70.616,74.248999999999995,73.421999999999997,62.698],"text":["Country: Afghanistan<br />Continent: Asia<br />GDP per capita: $975<br />Life expectancy: 44","Country: Bahrain<br />Continent: Asia<br />GDP per capita: $29796<br />Life expectancy: 76","Country: Bangladesh<br />Continent: Asia<br />GDP per capita: $1391<br />Life expectancy: 64","Country: Cambodia<br />Continent: Asia<br />GDP per capita: $1714<br />Life expectancy: 60","Country: China<br />Continent: Asia<br />GDP per capita: $4959<br />Life expectancy: 73","Country: Hong Kong, China<br />Continent: Asia<br />GDP per capita: $39725<br />Life expectancy: 82","Country: India<br />Continent: Asia<br />GDP per capita: $2452<br />Life expectancy: 65","Country: Indonesia<br />Continent: Asia<br />GDP per capita: $3541<br />Life expectancy: 71","Country: Iran<br />Continent: Asia<br />GDP per capita: $11606<br />Life expectancy: 71","Country: Iraq<br />Continent: Asia<br />GDP per capita: $4471<br />Life expectancy: 60","Country: Israel<br />Continent: Asia<br />GDP per capita: $25523<br />Life expectancy: 81","Country: Japan<br />Continent: Asia<br />GDP per capita: $31656<br />Life expectancy: 83","Country: Jordan<br />Continent: Asia<br />GDP per capita: $4519<br />Life expectancy: 73","Country: Korea, Dem. Rep.<br />Continent: Asia<br />GDP per capita: $1593<br />Life expectancy: 67","Country: Korea, Rep.<br />Continent: Asia<br />GDP per capita: $23348<br />Life expectancy: 79","Country: Kuwait<br />Continent: Asia<br />GDP per capita: $47307<br />Life expectancy: 78","Country: Lebanon<br />Continent: Asia<br />GDP per capita: $10461<br />Life expectancy: 72","Country: Malaysia<br />Continent: Asia<br />GDP per capita: $12452<br />Life expectancy: 74","Country: Mongolia<br />Continent: Asia<br />GDP per capita: $3096<br />Life expectancy: 67","Country: Myanmar<br />Continent: Asia<br />GDP per capita: $944<br />Life expectancy: 62","Country: Nepal<br />Continent: Asia<br />GDP per capita: $1091<br />Life expectancy: 64","Country: Oman<br />Continent: Asia<br />GDP per capita: $22316<br />Life expectancy: 76","Country: Pakistan<br />Continent: Asia<br />GDP per capita: $2606<br />Life expectancy: 65","Country: Philippines<br />Continent: Asia<br />GDP per capita: $3190<br />Life expectancy: 72","Country: Saudi Arabia<br />Continent: Asia<br />GDP per capita: $21655<br />Life expectancy: 73","Country: Singapore<br />Continent: Asia<br />GDP per capita: $47143<br />Life expectancy: 80","Country: Sri Lanka<br />Continent: Asia<br />GDP per capita: $3970<br />Life expectancy: 72","Country: Syria<br />Continent: Asia<br />GDP per capita: $4185<br />Life expectancy: 74","Country: Taiwan<br />Continent: Asia<br />GDP per capita: $28718<br />Life expectancy: 78","Country: Thailand<br />Continent: Asia<br />GDP per capita: $7458<br />Life expectancy: 71","Country: Vietnam<br />Continent: Asia<br />GDP per capita: $2442<br />Life expectancy: 74","Country: West Bank and Gaza<br />Continent: Asia<br />GDP per capita: $3025<br />Life expectancy: 73","Country: Yemen, Rep.<br />Continent: Asia<br />GDP per capita: $2281<br />Life expectancy: 63"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,191,125,1)","opacity":1,"size":[3.5265113226102986,0.52566716108052502,7.6597085639684206,2.347567993299152,22.677165354330711,1.64990551982075,20.809304073395722,9.3369056504005012,5.2043420721468587,3.2747792938416858,1.5831127675161303,7.0504865009442739,1.5364230282996976,3.0144812266081877,4.3733575678461953,0.98848677710862565,1.2366088881495587,3.1112197469513871,1.0586966150904544,4.3157840781139098,3.357228628242019,1.117958250970849,8.1247374534926227,5.9596889017616741,3.2808113201189459,1.3325017917140101,2.8190441203031469,2.7444988880457544,3.0062272242529819,5.0373574975998237,5.7662997127683528,1.2518187586338718,2.9431328570580524],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"}},"hoveron":"points","name":"Asia","legendgroup":"Asia","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[12.535525572588924,15.140769578689321,15.040144360122444,12.862307794077006,13.382731119742523,13.835578987159105,14.478852298469953,15.106498276978737,15.019203438544407,14.895102670286043,14.973445106672639,14.749157742257177,14.136426002447941,15.142936256499258,15.311890064392529,14.802199261486889,13.175845187219238,15.167337122116711,15.590972645933238,13.909698550523149,14.324015094924611,13.399875444252727,13.256582395162566,14.189076642486398,14.653307367222233,14.814835961640735,15.047283630527948,15.194849907636376,13.046147987534299,15.019037332007411],"y":[76.423000000000002,79.828999999999994,79.441000000000003,74.852000000000004,73.004999999999995,75.748000000000005,76.486000000000004,78.331999999999994,79.313000000000002,80.656999999999996,79.406000000000006,79.483000000000004,73.337999999999994,81.757000000000005,78.885000000000005,80.546000000000006,74.543000000000006,79.762,80.195999999999998,75.563000000000002,78.097999999999999,72.475999999999999,74.001999999999995,74.662999999999997,77.926000000000002,80.941000000000003,80.884,81.700999999999993,71.777000000000001,79.424999999999997],"text":["Country: Albania<br />Continent: Europe<br />GDP per capita: $5937<br />Life expectancy: 76","Country: Austria<br />Continent: Europe<br />GDP per capita: $36126<br />Life expectancy: 80","Country: Belgium<br />Continent: Europe<br />GDP per capita: $33693<br />Life expectancy: 79","Country: Bosnia and Herzegovina<br />Continent: Europe<br />GDP per capita: $7446<br />Life expectancy: 75","Country: Bulgaria<br />Continent: Europe<br />GDP per capita: $10681<br />Life expectancy: 73","Country: Croatia<br />Continent: Europe<br />GDP per capita: $14619<br />Life expectancy: 76","Country: Czech Republic<br />Continent: Europe<br />GDP per capita: $22833<br />Life expectancy: 76","Country: Denmark<br />Continent: Europe<br />GDP per capita: $35278<br />Life expectancy: 78","Country: Finland<br />Continent: Europe<br />GDP per capita: $33207<br />Life expectancy: 79","Country: France<br />Continent: Europe<br />GDP per capita: $30470<br />Life expectancy: 81","Country: Germany<br />Continent: Europe<br />GDP per capita: $32170<br />Life expectancy: 79","Country: Greece<br />Continent: Europe<br />GDP per capita: $27538<br />Life expectancy: 79","Country: Hungary<br />Continent: Europe<br />GDP per capita: $18009<br />Life expectancy: 73","Country: Iceland<br />Continent: Europe<br />GDP per capita: $36181<br />Life expectancy: 82","Country: Ireland<br />Continent: Europe<br />GDP per capita: $40676<br />Life expectancy: 79","Country: Italy<br />Continent: Europe<br />GDP per capita: $28570<br />Life expectancy: 81","Country: Montenegro<br />Continent: Europe<br />GDP per capita: $9254<br />Life expectancy: 75","Country: Netherlands<br />Continent: Europe<br />GDP per capita: $36798<br />Life expectancy: 80","Country: Norway<br />Continent: Europe<br />GDP per capita: $49357<br />Life expectancy: 80","Country: Poland<br />Continent: Europe<br />GDP per capita: $15390<br />Life expectancy: 76","Country: Portugal<br />Continent: Europe<br />GDP per capita: $20510<br />Life expectancy: 78","Country: Romania<br />Continent: Europe<br />GDP per capita: $10808<br />Life expectancy: 72","Country: Serbia<br />Continent: Europe<br />GDP per capita: $9787<br />Life expectancy: 74","Country: Slovak Republic<br />Continent: Europe<br />GDP per capita: $18678<br />Life expectancy: 75","Country: Slovenia<br />Continent: Europe<br />GDP per capita: $25768<br />Life expectancy: 78","Country: Spain<br />Continent: Europe<br />GDP per capita: $28821<br />Life expectancy: 81","Country: Sweden<br />Continent: Europe<br />GDP per capita: $33860<br />Life expectancy: 81","Country: Switzerland<br />Continent: Europe<br />GDP per capita: $37506<br />Life expectancy: 82","Country: Turkey<br />Continent: Europe<br />GDP per capita: $8458<br />Life expectancy: 72","Country: United Kingdom<br />Continent: Europe<br />GDP per capita: $33203<br />Life expectancy: 79"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,176,246,1)","opacity":1,"size":[1.184953592641298,1.788214972807582,2.0131347181021781,1.3323831111798645,1.6898916249220068,1.3237373870124907,1.9972374551260954,1.4602848032156286,1.4292900266928712,4.8806985280510116,5.6687170214477343,2.0433278234465599,1.9704405973817332,0.34314083201545348,1.2658759901074224,4.7619512063910934,0.51674957488826834,2.5420719270150318,1.3434198167539948,3.8757144336944158,2.0372636308891439,2.9473906248408568,1.9895609015644191,1.457529140663659,0.88518693521881398,3.9716237473940539,1.8766729073114943,1.7164297676095335,5.2678377261330134,4.8683910384342042],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"}},"hoveron":"points","name":"Europe","legendgroup":"Europe","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[15.071603450830301,14.620277632401789],"y":[81.234999999999999,80.203999999999994],"text":["Country: Australia<br />Continent: Oceania<br />GDP per capita: $34435<br />Life expectancy: 81","Country: New Zealand<br />Continent: Oceania<br />GDP per capita: $25185<br />Life expectancy: 80"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(231,107,243,1)","opacity":1,"size":[2.8229105193497372,1.2669052873727888],"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"}},"hoveron":"points","name":"Oceania","legendgroup":"Oceania","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.762557077625573,"r":7.3059360730593621,"b":40.182648401826498,"l":37.260273972602747},"font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"Relationship between GDP per capita and life expectancy <br />from 1952 to 2007","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[7.7428955892167055,15.964690601014977],"tickmode":"array","ticktext":["$512","$2,048","$8,192","$32,768"],"tickvals":[9,11,13,15],"categoryorder":"array","categoryarray":["$512","$2,048","$8,192","$32,768"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"GDP per capita","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-4.5,94.5],"tickmode":"array","ticktext":["0","25","50","75"],"tickvals":[0,24.999999999999996,50,75],"categoryorder":"array","categoryarray":["0","25","50","75"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Life expectancy","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Continent","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"18c0233d890b":{"x":{},"y":{},"fill":{},"size":{},"text":{},"type":"scatter"}},"cur_data":"18c0233d890b","visdat":{"18c0233d890b":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="animated" class="level3">
+<h3 class="anchored" data-anchor-id="animated">Animated</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>income_by_lifeexp_anim <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(gdpPercap, <span class="at">y =</span> lifeExp, <span class="at">fill =</span> continent, <span class="at">size =</span> pop,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">text =</span> <span class="fu">glue</span>(<span class="st">"Country: {country}</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="st">                         Continent: {continent}</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="st">                         GDP per capita: ${round(gdpPercap, 0)}</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="st">                         Life expectancy: {round(lifeExp, 0)}"</span>))) <span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">trans =</span> <span class="st">"log2"</span>, <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">dollar_format</span>()) <span class="sc">+</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_area</span>(<span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">90</span>)) <span class="sc">+</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>) <span class="sc">+</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"GDP per capita"</span>,</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Life expectancy"</span>,</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Continent"</span>,</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Relationship between GDP per capita and life expectancy </span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="st">from 1952 to 2007"</span>,</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Year = {closest_state}"</span>,</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Data from Gapminder.org"</span>) <span class="sc">+</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transition_states</span>(year)</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="co"># set parameters for your animation</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>(animated_plot <span class="ot">&lt;-</span> <span class="fu">animate</span>(<span class="at">plot =</span> income_by_lifeexp_anim, </span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>                        <span class="at">duration =</span> <span class="dv">10</span>, </span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>                        <span class="at">fps =</span> <span class="dv">10</span>, </span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>                        <span class="at">width =</span> <span class="dv">700</span>, </span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>                        <span class="at">height =</span> <span class="dv">400</span>,</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>                        <span class="at">renderer =</span> <span class="fu">magick_renderer</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="13_leftovers_recitation_solutions_files/figure-html/viz2 animated-1.gif" class="img-fluid"></p>
+</div>
+</div>
+
+
+</section>
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Created with RStudio and <a href="https://quarto.org/">Quarto</a> <br> © Jessica Cooperstone, 2024, License: <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a> <br> <a href="https://osu-codeclub.github.io/#category=website">Want to make a website like this one?</a></div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jcooperstone/rdataviz">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>
