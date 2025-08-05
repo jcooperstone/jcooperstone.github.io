@@ -1,12 +1,12 @@
 ---
 title: "1 - Principles of Data Visualization"
-subtitle: "Week 1<br>8/20/2024 <br>💻 🧰 📊 🥳"
+subtitle: "Week 1<br>8/26/2025 <br>💻 🧰 📊 🥳"
 author: "Jessica Cooperstone, Ph.D."
 format: 
   revealjs:
     incremental: true
     theme: jc_style.scss
-    footer: "[01 Principles](https://www.rdataviz.com/), © Jessica Cooperstone, 2024"
+    footer: "[01 Principles](https://www.rdataviz.com/), © Jessica Cooperstone, 2025"
 ---
 
 ## Introductions 👋 {.center_title}
@@ -69,11 +69,15 @@ If you have found these slides, you've made it to the website! (Good job.)\
 
 ## Previous programming experience
 
+You do not need to be an R expert for this class, but I will assume working-level knowledge of R programming. If you have no experience with R, but would still like to take this class, you can. I ask then you get yourself up to speed by taking this free online class [https://www.edx.org/course/data-science-r-basics](https://www.edx.org/course/data-science-r-basic) (audit only) before the start of the 3rd week of class. 
+
 ## Assigments {.center_title .smaller}
 
 -   **Module assignments:** After each module, there will be an assignment to provide practice for the techniques learned in class.
 
 -   **Class reflections:** After 10 of the 15 weeks, you will write a 1 paragraph reflection on the material that was presented in class. This can include your thoughts on how you will use these lessons in your own research and data visualizations, ways in which you have investigated this topic (or expect to) on your own, or what else you'd like to learn in this area. The purpose of this assignment is not to be burdensome, but to keep you engaged in the course material, and providing feedback to me on what parts you've found useful, what you've struggled with, and what you'd like to see more of in the future.
+
+-   **Recitation submissions:** I ask you submit 8 of 11 recitations to Carmen to show you have made a good faith effort to engage with the course material. I will mark these at 0 or 1 points, with 1 point given for completion of at least 70% of the assignment.
 
 -   **Capstone assignment:** At the end of the semester, you will complete a capstone assignment where you create a series of visualizations based on your research data, data coming from your lab, or other data that is publicly available. I expect this assignment to be completed in R Markdown, annotated, and knitted into an easy-to-read .html file. I also expect your code to be fully commented such that I can understand what you are doing with each step, and why.
 
@@ -87,6 +91,8 @@ If you have found these slides, you've made it to the website! (Good job.)\
 
 -   All assignments are open book, googling/investigating is required!
 
+-   The use of generative AI (e.g., ChatGPT, Co-Pilot) on your assignments is not allowed.
+
 ## 🗓 Schedule
 
 This is our tentative class schedule - but subject to change depending on our pacing, and your interests!
@@ -98,12 +104,22 @@ library(readxl)
 library(knitr)
 library(tidyverse)
 schedule <- read_excel("../../../files/schedule_modules.xlsx",
-                       sheet = "Schedule_date_2024")
+                       sheet = "Schedule_date_2025")
 
-schedule_1 <- schedule[1:2,]
-schedule_2 <- schedule[3:6,]
-schedule_3 <- schedule[7:10,]
-schedule_4 <- schedule[11:nrow(schedule),]
+schedule_1 <- schedule |> 
+  filter(Module == "1: Principles")
+
+schedule_2 <- schedule |> 
+  filter(Module == "2: Coding fundamentals")
+
+schedule_3 <- schedule |> 
+  filter(Module == "3: Data exploration")
+
+schedule_4 <- schedule |> 
+  filter(Module == "4: Putting it together")
+
+capstone <- schedule |> 
+  filter(Module == "Capstone prep")
 ```
 
 ```{r}
@@ -124,10 +140,17 @@ kable(schedule_3)
 
 ## 🗓️ Schedule (part 4) {.smaller}
 
-*November 5* is the new OSU day of asynchronous learning
+*November 11* is Veterans Day (no class) <br>
+*November 25* will be asynchronous
 
 ```{r schedule4, echo = FALSE}
 kable(schedule_4)
+```
+
+## 🗓️ Capstone prep
+
+```{r capstone, echo = FALSE}
+kable(capstone)
 ```
 
 # Why do we visualize our data? 🗣️ {.center_title}
@@ -555,7 +578,7 @@ knitr::include_graphics("img/bad_life_expectancy.png")
 ## Next class
 
 
-Submit (through Carmen) by Monday 8/26 at 11:59pm:
+Submit (through Carmen) by Monday 9/1/2025 at 11:59pm:
 
 * 1 good visualization (and a paragraph on why its good)
 * 1 bad visualization (and a paragraph on why its bad)

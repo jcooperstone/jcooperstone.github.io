@@ -1,6 +1,6 @@
 ---
 title: "Module 1 Assignment"
-subtitle: "Due 08-26-2024"
+subtitle: "Due 09-01-2025"
 ---
 
 
@@ -12,4 +12,4 @@ Please upload to Carmen:
 - 1 good visualization, along with 1 paragraph about why it is good
 - 1 bad visualization, along with 1 paragraph about why it is bad.
 
-> This assignment will be due on Monday, August 26, 2024, at 11:59pm so we can talk about them in class the next day.
+> This assignment will be due on Monday, September 1, 2025, at 11:59pm so we can talk about them in class the next day.

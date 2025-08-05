@@ -1,0 +1,49 @@
+---
+title: "Interactive plots with plotly and ggplotly recitation"
+author: "Daniel Quiroz"
+subtitle: "Week 11"
+---
+
+
+# Intoduction
+
+Today we are going to work with whole genome sequencing of the pig gut microbiome.
+
+-   Pig microbiome study: [paper](https://journals.asm.org/doi/10.1128/spectrum.02506-22),
+    [data](https://buckeyemailosu-my.sharepoint.com/:x:/g/personal/cooperstone_1_osu_edu/EY4vRHdMuKpOiuy-itag7ocB63AB3ukhjc0Y5jGRovfkvg?e=RnMz8e).
+
+# Pig gut microbiome data
+
+The goal of this recitation is to replicate the following plot, which
+shows the relative abundance of the phyla Bacteroidetes and Firmicutes
+to all the *others*.
+
+```{r echo = FALSE, fig.alt='Bacteroidetes and Firmicutes abundance in pigs'}
+knitr::include_graphics("img/updated_stacked_barplot.jpeg")
+```
+
+## How many rows and columns do the data have?
+
+## How many phyla do the data contains and how many columns represents metadata of the experiment?
+
+### Create a new column with a new phyla assignation
+
+Keep the phyla when they are Firmicutes or Bacteroidetes,
+otherwise assign Phyla to "Other phyla".
+
+::: {.callout-tip collapse="true"}
+#### Need a hint? (Click to expand)
+
+Hint: You may need to pivot the data to evaluate the column names as observations
+
+:::
+
+### Compute the cumulative abundance by the new Phyla levels that you created
+
+### Create the bar plot in ggplot
+
+### Make your plot interactive
+
+```{r eval=FALSE}
+ggplotly(your_awesome_plot)
+```

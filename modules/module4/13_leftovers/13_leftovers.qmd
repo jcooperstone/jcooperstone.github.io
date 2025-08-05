@@ -194,14 +194,14 @@ First let's make a base plot. Note that this measure of population isn't actuall
        y = "Country"))
 ```
 
-```{r animate plot}
+```{r animate plot, eval = FALSE}
 (plot_to_animate <- base_plot +
   labs(subtitle = "Year: {frame_time}") + # label subtitle with year
   transition_time(year) + # gif over year
   ease_aes()) # makes the transitions smoother
 ```
 
-```{r animate plot with params}
+```{r animate plot with params, eval = FALSE}
 # set parameters for your animation
 animated_plot <- animate(plot = plot_to_animate, 
                          duration = 10, # number of seconds for whole animation

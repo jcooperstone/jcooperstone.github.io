@@ -14,7 +14,7 @@ library(readxl)
 library(knitr)
 library(tidyverse)
 due_dates <- read_excel("../files/schedule_modules.xlsx",
-                       sheet = "module_due_dates_2024") 
+                       sheet = "module_due_dates_2025") 
 ```
 
 ```{r, echo = FALSE, fig.width = 6}

@@ -1,6 +1,6 @@
 ---
 title: "Module 2 Assignment"
-subtitle: "Due 10-01-2024"
+subtitle: "Due 10-07-2025"
 ---
 
 
@@ -15,7 +15,7 @@ You will submit this assignment by uploading a knitted .html to Carmen. Make sur
 
 Remember there are often many ways to reach the same end product.
 
-> This assignment will be due on Tuesday, October 1, 2024, at 11:59pm.
+> This assignment will be due on Tuesday, October 7, 2025, at 11:59pm.
 
 ### Data
 The [data](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-02-19) we will be using is collected by the National Science Foundation about the fields and number of Ph.D. degrees awarded each year.
