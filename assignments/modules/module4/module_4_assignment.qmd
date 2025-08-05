@@ -1,6 +1,5 @@
 ---
 title: "Module 4 Assignment"
-subtitle: "Due 12-09-2025"
 ---
 
 
@@ -11,16 +10,32 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Introduction
 This is your assignment for Module 4 Putting It All Together, focused on the material you learned in the lectures and recitation activities on PCA, Manhattan plots, interactive plots, and the leftovers.
 
-Submission info:
+Submission info: you will submit this assignment by uploading a knitted `.html` to Carmen. 
 
-- Please submit this assignment by uploading a **knitted .html** to Carmen
-- Your headers should be logical and your report and code annotated with descriptions of what you're doing. Starting on this assignment, I will be considering for overall format and readability of your assignment as part of your grade. I am doing this because the format of your report will be considered for your final capstone assignment. This means you should have reasonable headers and header levels, understandable flow between plots and code, and use Markdown language when appropriate.
-- Make sure you include the Code Download button so that I can see your code as well
+- Make sure you include the Code Download button
+- Show your code within your knitted `.html`
 - Customize the YAML and the document so you like how it looks
+- Your headers should be logical and your report and code annotated with descriptions of what you're doing. Starting on this assignment, I will be considering for overall format and readability of your assignment as part of your grade. I am doing this because the format of your report will be considered for your final capstone assignment. This means you should have reasonable headers and header levels, understandable flow between plots and code, and use Markdown language when appropriate.
 
 Remember there are often many ways to reach the same end product. I have showed you many ways in class to achieve a similar end product, you only need to show me one of them. As long as your answer is reasonable, you will get full credit even if its different than what I intended.
 
-> This assignment will be due on Tuesday, December 9, 2025, at 11:59pm.
+```{r, echo = FALSE, message = FALSE}
+library(readxl)
+library(knitr)
+library(tidyverse)
+due_dates <- read_excel("../../../files/schedule_modules.xlsx",
+                       sheet = "module_due_dates_2025")
+```
+
+```{r, echo = FALSE}
+module_4_due_date <- due_dates |> 
+  filter(Assignment == "Module 4: Putting it together") |> 
+  pull(`Due Date`)
+```
+
+::: callout-important
+This assignment will be due on **`r module_4_due_date` at 11:59pm**.
+:::
 
 ### Data
 The [data](https://github.com/rfordatascience/tidytuesday/blob/master/data/2022/2022-02-01/readme.md) we will be using is the same we used in the [ggplot102 recitation](2_05_themes_labels_facets/05_ggplot102_recitation.html) that includes information about dog breed trait information from the American Kennel Club.
@@ -46,7 +61,7 @@ library(gghighlight)
 ```
 
 
-## 1. Principal components analysis (PCA) of American Kennel Club dog bred trait data (6 pts)
+## 1. Principal components analysis (PCA) of American Kennel Club dog bred trait data (4 pts)
 
 Run a PCA on `breed_traits` for all of the numeric data present in that dataset. Create the following plots and make them of publication quality:
 

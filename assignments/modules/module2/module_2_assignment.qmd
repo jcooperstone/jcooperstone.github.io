@@ -1,6 +1,5 @@
 ---
 title: "Module 2 Assignment"
-subtitle: "Due 10-07-2025"
 ---
 
 
@@ -9,13 +8,34 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Introduction
-This is your assignment for Module 2, focused on the material you learned in the lectures and recitation activities on RMarkdown, wrangling, ggplot101, and ggplot102. 
+This is your assignment for Module 2, focused on the material you learned in the lectures and recitation activities on R Markdown, wrangling, ggplot101, and ggplot102. 
 
-You will submit this assignment by uploading a knitted .html to Carmen. Make sure you include the Code Download button, and please show your code within your knitted .html as well. Customize the YAML and the document so you like how it looks.
+Submission info: you will submit this assignment by uploading a knitted `.html` to Carmen. 
+
+- Make sure you include the Code Download button
+- Show your code within your knitted `.html`
+- Customize the YAML and the document so you like how it looks
 
 Remember there are often many ways to reach the same end product.
 
-> This assignment will be due on Tuesday, October 7, 2025, at 11:59pm.
+```{r, echo = FALSE, message = FALSE}
+library(readxl)
+library(knitr)
+library(tidyverse)
+due_dates <- read_excel("../../../files/schedule_modules.xlsx",
+                       sheet = "module_due_dates_2025")
+```
+
+```{r, echo = FALSE}
+module_2_due_date <- due_dates |> 
+  filter(Assignment == "Module 2: Coding Fundamentals") |> 
+  pull(`Due Date`)
+```
+
+::: callout-important
+This assignment will be due on **`r module_2_due_date` at 11:59pm**.
+:::
+
 
 ### Data
 The [data](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-02-19) we will be using is collected by the National Science Foundation about the fields and number of Ph.D. degrees awarded each year.
@@ -31,14 +51,14 @@ Using coding in text, write a sentence in markdown that pulls from this data how
 
 ## Visualization 1 (3 pts)
 
-Make a chart to visualize of the total number of PhDs awarded for each `broad_field` across the total time period of this data. You pick the type of chart that you think is appropriate, and make sure your plot is appropriately labelled and you are happy with how it looks. Hint, to do this you'll probably have to do some data wrangling first.
+Make a chart to visualize of the **total** number of PhDs awarded for each `broad_field` across the total time period of this data. You pick the type of chart that you think is appropriate, and make sure your plot is appropriately labelled and you are happy with how it looks. Hint, to do this you'll probably have to do some data wrangling first.
 
 
-## Visualization 2 (3 pts)
+## Visualization 2 (2 pts)
 
 Pick the `field` that most closely matches the area of your degree. Make a line graph (with points for each datapoint) that shows how the number of PhDs awarded in your `field` has changed from 2008 to 2017. Make sure your x-axis indicates each year for which you have data, your graph is appropriately labelled, and you think it is aesthetically pleasing.
 
 
-## Visualization 3 (3 pts)
+## Visualization 3 (2 pts)
 
 Pick at least 3 additional fields (you can use more if you like) that are adjacent to your Ph.D. field. Make a faceted plot to show the number of degrees awarded in each of these disciplines across the same time period. Make sure you label your plot appropriately and you think it is aesthetic (i.e., if you have squished strip text you want to fix that).

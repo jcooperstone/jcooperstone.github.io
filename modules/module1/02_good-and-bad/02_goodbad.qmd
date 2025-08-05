@@ -1,12 +1,12 @@
 ---
 title: "2 - Good and Bad Data Visualizations"
-subtitle: "Week 1<br>8/27/2024 <br>💻 🧰 📊 🥳"
+subtitle: "Week 2<br>💻 🧰 📊 🥳"
 author: "Jessica Cooperstone, Ph.D."
 format: 
   revealjs:
     incremental: true
     theme: simple
-    footer: "[01 Principles](https://www.rdataviz.com/), © Jessica Cooperstone, 2024"
+    footer: "[01 Principles](https://www.rdataviz.com/), © Jessica Cooperstone, 2025"
 ---
 
 # Housekeeping
@@ -15,11 +15,12 @@ format:
 -   Take [edX R basics class](https://pll.harvard.edu/course/data-science-r-basics) if you don't have R experience
 -   Start think about identifying a dataset for your capstone assignment
 -   Don't forget about your reflections 🪞
+-   Recitations start next week!
 
 # Office hours
 
--   Jess: Tuesdays 1-2pm Howlett 348 or via [Zoom](https://go.osu.edu/dataviz-zoom)
--   Daniel: Thursdays 2-3pm Howlett 340 or via [Zoom](https://go.osu.edu/dataviz-zoom) (tell Daniel by the start of office hours if you're planning to attend)
+<!-- -   Jess: Tuesdays 1-2pm Howlett 348 or via [Zoom](https://go.osu.edu/dataviz-zoom) -->
+<!-- -   Daniel: Thursdays 2-3pm Howlett 340 or via [Zoom](https://go.osu.edu/dataviz-zoom) (tell Daniel by the start of office hours if you're planning to attend) -->
 -   Those who want to attend office hours virtually, use the same [Zoom link](https://go.osu.edu/dataviz-zoom) for class
 
 ## What was easier to find?
@@ -34,74 +35,74 @@ format:
 
 # Bad visualizations 😡 {.center_title}
 
-# Maps 🗺
+<!-- # Maps 🗺 -->
 
-Caleb
+<!-- Caleb -->
 
-![](bad/caleb.png){fig-align="center"}
+<!-- ![](bad/caleb.png){fig-align="center"} -->
 
-# Fertility after bombing 👶 
+<!-- # Fertility after bombing 👶  -->
 
-Sujin
+<!-- Sujin -->
 
-![](bad/sujin.png){fig-align="center"}
+<!-- ![](bad/sujin.png){fig-align="center"} -->
 
-# Ozone in LA 🏭 
+<!-- # Ozone in LA 🏭  -->
 
-Addie
+<!-- Addie -->
 
-![](bad/addie.png){fig-align="center"}
+<!-- ![](bad/addie.png){fig-align="center"} -->
 
-# Scary spider plots 🕸️
+<!-- # Scary spider plots 🕸️ -->
 
-Lexie
+<!-- Lexie -->
 
-![](bad/lexie.png){fig-align="center"}
+<!-- ![](bad/lexie.png){fig-align="center"} -->
 
-# The worst! 
+<!-- # The worst!  -->
 
-Berenice 🏅
+<!-- Berenice 🏅 -->
 
-![](bad/winner_berenice.png){fig-align="center"}
+<!-- ![](bad/winner_berenice.png){fig-align="center"} -->
 
 # Good visualizations 👏 {.center_title}
 
-# Pie charts can be good 🥧 
+<!-- # Pie charts can be good 🥧  -->
 
-Avonti 
+<!-- Avonti  -->
 
-![](good/avonti.png){fig-align="center"}
+<!-- ![](good/avonti.png){fig-align="center"} -->
 
-# Soil & small multiples 🚜 
+<!-- # Soil & small multiples 🚜  -->
 
-Mithlesh 
+<!-- Mithlesh  -->
 
-![](good/mithlesh.jpg){fig-align="center"}
+<!-- ![](good/mithlesh.jpg){fig-align="center"} -->
 
-# Boxplots gone viral 🦠
+<!-- # Boxplots gone viral 🦠 -->
 
-Courtney
+<!-- Courtney -->
 
-![](good/courtney.png)
+<!-- ![](good/courtney.png) -->
 
-# Science competency 🔬 
-Prabath 
+<!-- # Science competency 🔬  -->
+<!-- Prabath  -->
 
-![](good/prabath.png){fig-align="center"}
+<!-- ![](good/prabath.png){fig-align="center"} -->
 
-# Voting by region 🗳️
-John
+<!-- # Voting by region 🗳️ -->
+<!-- John -->
 
-![](good/tengatenga.png){fig-align="center"}
+<!-- ![](good/tengatenga.png){fig-align="center"} -->
 
-# Growing petunias 🌸 
-Alexandra 
+<!-- # Growing petunias 🌸  -->
+<!-- Alexandra  -->
 
-![](good/alexandra.png){fig-align="center"}
+<!-- ![](good/alexandra.png){fig-align="center"} -->
 
-# Where do people live? 🗺
-Swetha 🏅
+<!-- # Where do people live? 🗺 -->
+<!-- Swetha 🏅 -->
 
-![](good/winner_swetha.png){fig-align="center"}
+<!-- ![](good/winner_swetha.png){fig-align="center"} -->
 
 # Closing thoughts

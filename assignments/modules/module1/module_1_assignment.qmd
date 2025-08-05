@@ -1,15 +1,30 @@
 ---
 title: "Module 1 Assignment"
-subtitle: "Due 09-01-2025"
 ---
 
-
 ## Introduction
-This is your assignment for Module 1. 
+
+This is your assignment for Module 1.
 
 Please upload to Carmen:
 
-- 1 good visualization, along with 1 paragraph about why it is good
-- 1 bad visualization, along with 1 paragraph about why it is bad.
+-   1 good visualization, along with 1 paragraph about why it is good
+-   1 bad visualization, along with 1 paragraph about why it is bad.
 
-> This assignment will be due on Monday, September 1, 2025, at 11:59pm so we can talk about them in class the next day.
+```{r, echo = FALSE, message = FALSE}
+library(readxl)
+library(knitr)
+library(tidyverse)
+due_dates <- read_excel("../../../files/schedule_modules.xlsx",
+                       sheet = "module_due_dates_2025")
+```
+
+```{r, echo = FALSE}
+module_1_due_date <- due_dates |> 
+  filter(Assignment == "Module 1: Good and bad visualizations") |> 
+  pull(`Due Date`)
+```
+
+::: callout-important
+This assignment will be due on **`r module_1_due_date` at 11:59pm** so we can talk about them in class the next day.
+:::
