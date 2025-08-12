@@ -183,8 +183,13 @@ kable(grading_scale)
 
 ### Instructor feedback and response time
 
--   Grading and feedback: For assignments, you can generally expect feedback within 7 days.
--   Email: I will reply to emails within 48 hours on days when class is in session at the university.
+Your instructional team is here to help you proceed through this course. We will match but not exceed the enthusiasm that you give to learn the course content. 
+
+I am providing the following list to give you an idea of my intended availability throughout the course. (Remember that you can call 614-688-4357(HELP) at any time if you have a technical problem.)
+
+-  Grading and feedback: For assignments, you can generally expect feedback within 7 days.
+-  Email: We will reply to emails within 48 hours on days when class is in session at the university.
+
 
 ## Other course policies
 
@@ -194,33 +199,63 @@ I expect all communication will be respectful and thoughtful.
 
 ### Academic Misconduct/Academic Integrity
 
+See Descriptions of major course assignments, above, for my specific guidelines about collaboration and academic integrity in the context of this online class.
 Academic integrity is essential to maintaining an environment that fosters excellence in teaching, research, and other educational and scholarly activities. Thus, The Ohio State University and the Committee on Academic Misconduct (COAM) expect that all students have read and understand the University's Code of Student Conduct, and that all students will complete all academic and scholarly assignments with fairness and honesty. Students must recognize that failure to follow the rules and guidelines established in the University's Code of Student Conduct and this syllabus may constitute Academic Misconduct.
 
-The Ohio State University's Code of Student Conduct (Section 3335-23-04) defines academic misconduct as: Any activity that tends to compromise the academic integrity of the University, or subvert the educational process. Examples of academic misconduct include (but are not limited to) plagiarism, collusion (unauthorized collaboration), copying the work of another student, and possession of unauthorized materials during an examination. Ignorance of the University's Code of Student Conduct is never considered an excuse for academic misconduct, so I recommend that you review the Code of Student Conduct and, specifically, the sections dealing with academic misconduct.
+The Ohio State University's Code of Student Conduct (Section 3335-23-04) defines academic misconduct as: Any activity that tends to compromise the academic integrity of the University or subvert the educational process. Examples of academic misconduct include (but are not limited to) plagiarism, collusion (unauthorized collaboration), copying the work of another student, and possession of unauthorized materials during an examination. Ignorance of the University's Code of Student Conduct is never considered an excuse for academic misconduct, so I recommend that you review the Code of Student Conduct and, specifically, the sections dealing with academic misconduct.
 
 If I suspect that a student has committed academic misconduct in this course, I am obligated by University Rules to report my suspicions to the Committee on Academic Misconduct. If COAM determines that you have violated the University's Code of Student Conduct (i.e., committed academic misconduct), the sanctions for the misconduct could include a failing grade in this course and suspension or dismissal from the University.
 
 **If you have any questions about the above policy or what constitutes academic misconduct in this course, please contact me.**
 
+### Use of Generative AI (e.g., ChatGPT, Co-Pilot or similar)
+
+Artificial intelligence tools, like ChatGPT, Microsoft Co-Pilot or similar are not to be used on assignments unless instructions explicitly indicate to do so. Suspected unauthorized use of generative AI on assignments of any type will be reported to COAM.
+
 ### Creating an environment free from harassment, discrimination, and sexual misconduct
 
 The Ohio State University is committed to building and maintaining a community to reflect diversity and to improve opportunities for all. All Buckeyes have the right to be free from harassment, discrimination, and sexual misconduct. Ohio State does not discriminate on the basis of age, ancestry, color, disability, ethnicity, gender, gender identity or expression, genetic information, HIV/AIDS status, military status, national origin, pregnancy (childbirth, false pregnancy, termination of pregnancy, or recovery therefrom), race, religion, sex, sexual orientation, or protected veteran status, or any other bases under the law, in its activities, academic programs, admission, and employment. Members of the university community also have the right to be free from all forms of sexual misconduct: sexual harassment, sexual assault, relationship violence, stalking, and sexual exploitation.
 
-To report harassment, discrimination, sexual misconduct, or retaliation and/or seek confidential and non-confidential resources and supportive measures, contact the Office of Institutional Equity by: 1. Online reporting form at equity.osu.edu, 2. Call 614-247-5838 or TTY 614-688-8605, 3. Or Email equity\@osu.edu
+To report harassment, discrimination, sexual misconduct, or retaliation and/or seek confidential and non-confidential resources and supportive measures, contact the Civil Rights Compliance Office:
 
-### Diversity
+Online reporting form at civilrights.osu.edu
+Call 614-247-5838 or TTY 614-688-8605,
+Or Email civilrights@osu.edu
 
-The Ohio State University affirms the importance and value of diversity of people and ideas. We believe in creating equitable research opportunities for all students and to providing programs and curricula that allow our students to understand critical societal challenges from diverse perspectives and aspire to use research to promote sustainable solutions for all. We are committed to maintaining an inclusive community that recognizes and values the inherent worth and dignity of every person; fosters sensitivity, understanding, and mutual respect among all members; and encourages each individual to strive to reach their own potential. The Ohio State University does not discriminate on the basis of age, ancestry, color, disability, gender identity or expression, genetic information, HIV/AIDS status, military status, national origin, race, religion, sex, gender, sexual orientation, pregnancy, protected veteran status, or any other bases under the law, in its activities, academic programs, admission, and employment.
+The university is committed to stopping sexual misconduct, preventing its recurrence, eliminating any hostile environment, and remedying its discriminatory effects. All university employees have reporting responsibilities to the Civil Rights Compliance Office to ensure the university can take appropriate action:
 
-In addition, this course adheres to The Principles of Community adopted by the College of Food, Agricultural, and Environmental Sciences. These principles are located on the Carmen site for this course; and can also be found at https://go.osu.edu/principlesofcommunity. For additional information on Diversity, Equity, and Inclusion in CFAES, contact the CFAES Office for Diversity, Equity, and Inclusion (https://equityandinclusion.cfaes.ohio-state.edu/). If you have been a victim of or a witness to a bias incident, you can report it online and anonymously (if you choose) at https://equity.osu.edu/.
+-  All university employees, except those exempted by legal privilege of confidentiality or expressly identified as a confidential reporter, have an obligation to report incidents of sexual assault immediately.
+-  The following employees have an obligation to report all other forms of sexual misconduct as soon as practicable but at most within five workdays of becoming aware of such information: 1. Any human resource professional (HRP); 2. Anyone who supervises faculty, staff, students, or volunteers; 3. Chair/director; and 4. Faculty member.
+
+In addition, this course adheres to The Principles of Community adopted by the College of Food, Agricultural, and Environmental Sciences. These principles can be found at https://cfaes.osu.edu/about/cfaes-principles-community. If you have been a victim of or a witness to harassment or discrimination or a bias incident, you can report it online and anonymously (if you choose) at https://civilrights.osu.edu/.
+
+
+### Intellectual Diversity
+
+Ohio State is committed to fostering a culture of open inquiry and intellectual diversity within the classroom. This course will cover a range of information and may include discussions or debates about controversial issues, beliefs, or policies. Any such discussions and debates are intended to support understanding of the approved curriculum and relevant course objectives rather than promote any specific point of view. Students will be assessed on principles applicable to the field of study and the content covered in the course. Preparing students for citizenship includes helping them develop critical thinking skills that will allow them to reach their own conclusions regarding complex or controversial matters.
+
+### Religious accommodations
+Ohio State has had a longstanding practice of making reasonable academic accommodations for students' religious beliefs and practices in accordance with applicable law. In 2023, Ohio State updated its practice to align with new state legislation. Under this new provision, students must be in early communication with their instructors regarding any known accommodation requests for religious beliefs and practices, providing notice of specific dates for which they request alternative accommodations within 14 days after the first instructional day of the course. Instructors in turn shall not question the sincerity of a student's religious or spiritual belief system in reviewing such requests and shall keep requests for accommodations confidential.
+
+With sufficient notice, instructors will provide students with reasonable alternative accommodations with regard to examinations and other academic requirements with respect to students' sincerely held religious beliefs and practices by allowing up to three absences each semester for the student to attend or participate in religious activities. Examples of religious accommodations can include, but are not limited to, rescheduling an exam, altering the time of a student's presentation, allowing make-up assignments to substitute for missed class work, or flexibility in due dates or research responsibilities. If concerns arise about a requested accommodation, instructors are to consult their tenure initiating unit head for assistance.
+
+A student's request for time off shall be provided if the student's sincerely held religious belief or practice severely affects the student's ability to take an exam or meet an academic requirement and the student has notified their instructor, in writing during the first 14 days after the course begins, of the date of each absence. Although students are required to provide notice within the first 14 days after a course begins, instructors are strongly encouraged to work with the student to provide a reasonable accommodation if a request is made outside the notice period. A student may not be penalized for an absence approved under this policy.
+
+If students have questions or disputes related to academic accommodations, they should contact their course instructor, and then their department or college office. For questions or to report discrimination or harassment based on religion, individuals should contact the Civil Rights Compliance Office.
+
+### Weather or other short-term closing 
+Although Ohio State strives to remain open to ensure continuity of services to students and the public, extreme conditions can warrant the usage of the university's Weather or Other Short-Term Closing Policy. Please visit this webpage to learn more about preparing for potential closings and planning ahead for winter weather.
+
 
 ### Counseling and Consultation Services/Mental Health
 
 As a student you may experience a range of issues that can cause barriers to learning, such as strained relationships, increased anxiety, alcohol/drug problems, feeling down, difficulty concentrating and/or lack of motivation. These mental health concerns or stressful events may lead to diminished academic performance or reduce a student's ability to participate in daily activities. The Ohio State University offers services to assist you with addressing these and other concerns you may be experiencing. If you or someone you know are suffering from any of the aforementioned conditions, you can learn more about the broad range of confidential mental health services available on campus via the Office of Student Life Counseling and Consultation Services (CCS) by visiting ccs.osu.edu or calling (614) 292- 5766. CCS is located on the 4th Floor of the Younkin Success Center and 10th Floor of Lincoln Tower. You can reach an on-call counselor when CCS is closed at (614) 292-5766 and 24 hour emergency help is also available through the 24/7 National Suicide Prevention Hotline at 1-(800)-273-TALK or at suicidepreventionlifeline.org
 
-David Wirt, wirt.9\@osu.edu, is the CFAES embedded mental health counselor in Columbus. He is available for new consultations and to establish routine care. To schedule with David, please call 614-292-5766. Students should mention their affiliation with CFAES when setting up a phone screening.
+David Wirt, wirt.9@osu.edu, is the CFAES embedded mental health counselor in Columbus. He is available for new consultations and to establish routine care. To schedule with David, please call 614-292-5766. Students should mention their affiliation with CFAES when setting up a phone screening.
 
-Dr. Schaad, schaad.15\@osu.edu, is the CFAES embedded mental health counselor in Wooster. She is available for new consultations and to establish routine care. To schedule with Dr. Schaad, please call 614-292-5766. Students should mention their affiliation with CFAES when setting up a phone screening.
+Dr. Schaad, schaad.15@osu.edu, is the CFAES embedded mental health counselor in Wooster. She is available for new consultations and to establish routine care. To schedule with 
+
+Dr. Schaad, please call 614-292-5766. Students should mention their affiliation with CFAES when setting up a phone screening.
 
 ### Land Acknowledgement
 
@@ -228,6 +263,7 @@ We would like to acknowledge the land that The Ohio State University occupies is
 
 ### Accessibility accomodations
 
-The university strives to make all learning experiences as accessible as possible. In light of the current pandemic, students seeking to request COVID-related accommodations may do so through the university's request process, managed by Student Life Disability Services. If you anticipate or experience academic barriers based on your disability (including mental health, chronic, or temporary medical conditions), please let me know immediately so that we can privately discuss options. To establish reasonable accommodations, I may request that you register with Student Life Disability Services. After registration, make arrangements with me as soon as possible to discuss your accommodations so that they may be implemented in a timely fashion.
+The university strives to maintain a healthy and accessible environment to support student learning in and out of the classroom. If you anticipate or experience academic barriers based on your disability (including mental health, chronic, or temporary medical conditions), please let me know immediately so that we can privately discuss options. To establish reasonable accommodations, I may request that you register with Student Life Disability Services. After registration, make arrangements with me as soon as possible to discuss your accommodations so that they may be implemented in a timely fashion.
 
-SLDS contact information: slds\@osu.edu; 614-292-3307; slds.osu.edu; 098 Baker Hall, 113 W. 12th Avenue.
+If you are ill and need to miss class, including if you are staying home and away from others while experiencing symptoms of a viral infection or fever, please let me know immediately. In cases where illness interacts with an underlying medical condition, please consult with Student Life Disability Services to request reasonable accommodations. You can connect with them at slds@osu.edu; 614-292-3307; or slds.osu.edu.
+

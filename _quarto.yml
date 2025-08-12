@@ -164,6 +164,11 @@ website:
             - href: assignments/reflections.qmd
               text: Reflection instructions
               
+        - section: Recitations
+          contents:
+            - href: assignments/recitations.qmd
+              text: Recitation instructions              
+              
         - section: Capstone assignment
           contents:
             - href: assignments/capstone.qmd
