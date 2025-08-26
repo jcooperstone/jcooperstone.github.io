@@ -61,11 +61,21 @@ If you have found these slides, you've made it to the website! (Good job.)\
 
 -   A combination of lecture, code run-throughs, live coding, and hands-on exercises.
 
--   Bring a laptop (not tablet) to class with R and RStudio downloaded
+-   Bring a laptop (not tablet) to class with R and RStudio downloaded [(instructions)](https://osu-codeclub.github.io/pages/setup.html)
 
 -   Come with your questions!
 
 -   Engage as much as you can!
+
+## How can you get help?
+
+We are here to help you and will match the enthusiasm that you put into this course. We expect that you will run into issues for which you would like help. You can ask questions:
+
+-   During class time (both lecture and recitation)
+-   During office hours 
+-   Before or after class
+-   By email (least preferred) - be sure to provide relevant information so we can help you!
+
 
 ## Previous programming experience
 

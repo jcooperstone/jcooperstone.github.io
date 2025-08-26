@@ -257,9 +257,9 @@ Dr. Schaad, schaad.15@osu.edu, is the CFAES embedded mental health counselor in 
 
 Dr. Schaad, please call 614-292-5766. Students should mention their affiliation with CFAES when setting up a phone screening.
 
-### Land Acknowledgement
+<!-- ### Land Acknowledgement -->
 
-We would like to acknowledge the land that The Ohio State University occupies is the ancestral and contemporary lands of the Shawnee, Potawatomi, Delaware, Miami, Peoria, Seneca, Wyandotte, Ojibwe and Cherokee peoples. The university resides on land ceded in the 1795 Treaty of Greeneville and the forced removal of tribes through the Indian Removal Act of 1830. We honor the resiliency of these tribal nations and recognize the historical contexts that have and continue to affect the Indigenous peoples of this land.
+<!-- We would like to acknowledge the land that The Ohio State University occupies is the ancestral and contemporary lands of the Shawnee, Potawatomi, Delaware, Miami, Peoria, Seneca, Wyandotte, Ojibwe and Cherokee peoples. The university resides on land ceded in the 1795 Treaty of Greeneville and the forced removal of tribes through the Indian Removal Act of 1830. We honor the resiliency of these tribal nations and recognize the historical contexts that have and continue to affect the Indigenous peoples of this land. -->
 
 ### Accessibility accomodations
 
