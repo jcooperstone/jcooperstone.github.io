@@ -212,6 +212,7 @@ website:
             #   text: Week 12 - Manhattan plots solutions
             # - href: modules/module4/13_leftovers/13_leftovers_recitation_solutions.qmd
             #   text: Week 13 - Leftovers solutions
+
       
 format:
   html:

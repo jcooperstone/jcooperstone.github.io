@@ -19,8 +19,9 @@ format:
 
 # Office hours
 
-<!-- -   Jess: Tuesdays 1-2pm Howlett 348 or via [Zoom](https://go.osu.edu/dataviz-zoom) -->
-<!-- -   Daniel: Thursdays 2-3pm Howlett 340 or via [Zoom](https://go.osu.edu/dataviz-zoom) (tell Daniel by the start of office hours if you're planning to attend) -->
+-   Jess: Mondays 12-1pm Pelotonia Research Center 1103 or via [Zoom](https://go.osu.edu/dataviz-zoom)
+-   Daniel: Tuesdays 10-11am Pelotonia Research Center 1170 or via [Zoom](https://go.osu.edu/dataviz-zoom) (tell Daniel by 8am if you want to attend in person)
+-   Those who want to attend office hours in person, send us a message and we will come get you from the lobby
 -   Those who want to attend office hours virtually, use the same [Zoom link](https://go.osu.edu/dataviz-zoom) for class
 
 ## What was easier to find?
@@ -35,23 +36,24 @@ format:
 
 # Bad visualizations 😡 {.center_title}
 
-<!-- # Maps 🗺 -->
 
-<!-- Caleb -->
+# vegan4lyfe
 
-<!-- ![](bad/caleb.png){fig-align="center"} -->
+Ebony
 
-<!-- # Fertility after bombing 👶  -->
+![](bad/ebony.jpg){fig-align="center"}
 
-<!-- Sujin -->
+# Tomato assessment 🍅
 
-<!-- ![](bad/sujin.png){fig-align="center"} -->
+Sarah
 
-<!-- # Ozone in LA 🏭  -->
+![](bad/sarah.png){fig-align="center"}
 
-<!-- Addie -->
+# Not so happy 😿
 
-<!-- ![](bad/addie.png){fig-align="center"} -->
+Marvin
+
+![](bad/marvin.png){fig-align="center"}
 
 <!-- # Scary spider plots 🕸️ -->
 
@@ -59,50 +61,49 @@ format:
 
 <!-- ![](bad/lexie.png){fig-align="center"} -->
 
-<!-- # The worst!  -->
+# Daniel's favorite worst!
 
-<!-- Berenice 🏅 -->
+Mia 🏅
 
-<!-- ![](bad/winner_berenice.png){fig-align="center"} -->
+![](bad/winner_mia.png){fig-align="center"}
 
 # Good visualizations 👏 {.center_title}
 
-<!-- # Pie charts can be good 🥧  -->
+# So corny 🌽
 
-<!-- Avonti  -->
+Bishal
 
-<!-- ![](good/avonti.png){fig-align="center"} -->
+![](good/bishal.png){fig-align="center"}
 
-<!-- # Soil & small multiples 🚜  -->
+# More corn 🌽
 
-<!-- Mithlesh  -->
+Sumita
 
-<!-- ![](good/mithlesh.jpg){fig-align="center"} -->
+![](good/sumita.png){fig-align="center"}
 
-<!-- # Boxplots gone viral 🦠 -->
+# Cow ruminates 🐄
 
-<!-- Courtney -->
+Lucas
 
-<!-- ![](good/courtney.png) -->
+![](good/lucas.png){fig-align="center"}
 
-<!-- # Science competency 🔬  -->
-<!-- Prabath  -->
+# Do not pet the boar! 🐖
 
-<!-- ![](good/prabath.png){fig-align="center"} -->
+Erin
 
-<!-- # Voting by region 🗳️ -->
-<!-- John -->
+![](good/erin.png)
 
-<!-- ![](good/tengatenga.png){fig-align="center"} -->
+# Knee stuff 🦵
 
-<!-- # Growing petunias 🌸  -->
-<!-- Alexandra  -->
+Mary
 
-<!-- ![](good/alexandra.png){fig-align="center"} -->
+![](good/mary.png){fig-align="center"}
 
-<!-- # Where do people live? 🗺 -->
-<!-- Swetha 🏅 -->
 
-<!-- ![](good/winner_swetha.png){fig-align="center"} -->
+# Daniel's favorite best!
+
+Kaden 🏅
+
+![](good/winner_kaden.png){fig-align="center"}
 
 # Closing thoughts
