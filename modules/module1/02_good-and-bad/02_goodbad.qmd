@@ -12,7 +12,7 @@ format:
 # Housekeeping
 
 -   Questions from the previous class?
--   Take [edX R basics class](https://pll.harvard.edu/course/data-science-r-basics) if you don't have R experience
+-   Take [edX R basics class](https://pll.harvard.edu/course/data-science-r-basics) if you don't have R experience. Can also go through content at an [R Basics Code Club workshop](https://osu-codeclub.github.io/carpentries-aug-2025/) from August 2025.
 -   Start think about identifying a dataset for your capstone assignment
 -   Don't forget about your reflections 🪞
 -   Recitations start next week!
