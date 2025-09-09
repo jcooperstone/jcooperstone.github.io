@@ -11,22 +11,11 @@
     ]
   },
   {
-    "objectID": "modules/module2/03_rmarkdown/03_Rmd_recitation.html",
-    "href": "modules/module2/03_rmarkdown/03_Rmd_recitation.html",
+    "objectID": "modules/module2/03_rmarkdown/03_Rmd_recitation.html#r-projects",
+    "href": "modules/module2/03_rmarkdown/03_Rmd_recitation.html#r-projects",
     "title": "R Markdown for Reproducible Research Recitation",
-    "section": "",
-    "text": "Today you will be playing around with modifying the following within R Markdown:\n\ntext\ncode\nthe YAML (aka the header)\n\nTo see if each of your changes has worked, you will need to knit.",
-    "crumbs": [
-      "Module 2 - Coding fundamentals",
-      "Week 3 - R Markdown"
-    ]
-  },
-  {
-    "objectID": "modules/module2/03_rmarkdown/03_Rmd_recitation.html#r-markdown-recitation",
-    "href": "modules/module2/03_rmarkdown/03_Rmd_recitation.html#r-markdown-recitation",
-    "title": "R Markdown for Reproducible Research Recitation",
-    "section": "",
-    "text": "Today you will be playing around with modifying the following within R Markdown:\n\ntext\ncode\nthe YAML (aka the header)\n\nTo see if each of your changes has worked, you will need to knit.",
+    "section": "R Projects",
+    "text": "R Projects\nBefore we start with R Markdown, start by creating yourself an R Project for this course.\nYou can do this by going to File &gt; New Project. You can create the project within a New Directory (you don’t already have a folder for your course materials) or within an Existing Directory. Create your project at the top level of this directory.\nI would recommend that you do not Save workspace to .RData on exit (this can lead to reproducibility problems).\nYou can learn more about R Projects here.",
     "crumbs": [
       "Module 2 - Coding fundamentals",
       "Week 3 - R Markdown"
@@ -2011,7 +2000,7 @@
     "href": "modules/module2/03_rmarkdown/03_Rmd.html#what-is-r-markdown",
     "title": "R Markdown for Reproducible Research",
     "section": "What is R Markdown?",
-    "text": "What is R Markdown?\nRMarkdown provides a framework for saving and executing code, and sharing your results. R Markdown files have the file format .Rmd.\n\n\n\nWhat is R Markdown? from RStudio, Inc. on Vimeo.\n\n\nA minute long introduction to R Markdown\n\nYou can do so many things in R Markdown, from making reports that include text, code, code annotations, figures, tables etc., to creating this course website!\nIf you’ve never used R Markdown before, you can download it using the chunk below. Unlike other R packages, you don’t need to use library(rmarkdown) to load the package each time you want to use R Markdown.\n\ninstall.packages(\"rmarkdown\")",
+    "text": "What is R Markdown?\nRMarkdown provides a framework for saving and executing code, and sharing your results. R Markdown files have the file format .Rmd.\nYou can do so many things in R Markdown, from making reports that include text, code, code annotations, figures, tables etc., to creating this course website!\nIf you’ve never used R Markdown before, you can download it using the chunk below. Unlike other R packages, you don’t need to use library(rmarkdown) to load the package each time you want to use R Markdown.\n\ninstall.packages(\"rmarkdown\")",
     "crumbs": [
       "Module 2 - Coding fundamentals",
       "Week 3 - R Markdown"

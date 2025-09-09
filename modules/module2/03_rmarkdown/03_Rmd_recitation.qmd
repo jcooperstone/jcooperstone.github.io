@@ -13,6 +13,18 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## R Markdown Recitation
 
+## R Projects
+
+Before we start with R Markdown, start by creating yourself an R Project for this course.
+
+You can do this by going to `File` > `New Project`. You can create the project within a New Directory (you don't already have a folder for your course materials) or within an Existing Directory. Create your project at the top level of this directory.
+
+I would recommend that you do not Save workspace to .RData on exit (this can lead to reproducibility problems).
+
+You can learn more about R Projects [here](https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects).
+
+# R Markdown
+
 Today you will be playing around with modifying the following within R Markdown:
 
 1. text
