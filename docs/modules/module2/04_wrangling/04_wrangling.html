@@ -553,7 +553,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="what-is-the-tidyverse" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-the-tidyverse">What is the tidyverse?</h2>
 <p><a href="https://www.tidyverse.org/">“The tidyverse”</a> is a collection of packages called that are designed for data science. You can certainly use R without using the tidyverse, but it has many packages that I think will make your life a lot easier. We will be using mostly tidyverse functions in this class, with some base R syntax scattered throughout.</p>
-<p>The “core tidyverse” contains the 8 packages below:</p>
+<p>The “core tidyverse” contains the 9 packages below:</p>
 <ul>
 <li><a href="https://dplyr.tidyverse.org/"><code>dplyr</code></a>: for data manipulation</li>
 <li><a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code></a>: a “grammar of graphics” for creating beautiful plots</li>
@@ -563,8 +563,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="https://forcats.tidyverse.org/"><code>forcats</code></a>: for handling categorical variables (i.e., factors) (meow!)</li>
 <li><a href="https://tidyr.tidyverse.org/"><code>tidyr</code></a>: to make “tidy data”</li>
 <li><a href="https://purrr.tidyverse.org/"><code>purrr</code></a>: for enhancing functional programming (also meow!)</li>
+<li><a href="https://lubridate.tidyverse.org/"><code>lubridate</code></a>: for working with dates and times</li>
 </ul>
-<p>We will be using many of these other packages in this course, but will talk about them as we go. There are more tidyverse packages outside of these core eight, and we will talk about some of them another time.</p>
+<p>We will be using many of these other packages in this course, but will talk about them as we go. There are more tidyverse packages outside of this core, and we will talk about some of them another time.</p>
 <blockquote class="blockquote">
 <p><strong>tl;dr</strong> Tidyverse has a lot of packages that make data analysis easier. None of them are required, but I think you’ll find many tidyverse approaches easier and more intuitive than using base R.</p>
 </blockquote>
@@ -650,14 +651,15 @@ $ y       &lt;dbl&gt; 3.98, 3.84, 4.07, 4.23, 4.35, 3.96, 3.98, 4.11, 3.78, 4.05
 $ z       &lt;dbl&gt; 2.43, 2.31, 2.31, 2.63, 2.75, 2.48, 2.47, 2.53, 2.49, 2.39, 2.…</code></pre>
 </div>
 </div>
-<p>What if we want to see what is the average price of a diamond where <code>cut = "Premium"</code>. There are a few ways we can do this.</p>
+<p>What if we want to see what is the average price of a diamond of a “Premium” diamong. There are a few ways we can do this.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># one way</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># filter for only the premium diamonds</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>diamonds_premium <span class="ot">&lt;-</span> <span class="fu">filter</span>(diamonds, cut <span class="sc">==</span> <span class="st">"Premium"</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the mean using summarize</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(diamonds_premium, <span class="at">mean_price =</span> <span class="fu">mean</span>(price))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># note the double equals</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>diamonds_premium <span class="ot">&lt;-</span> <span class="fu">filter</span>(diamonds, cut <span class="sc">==</span> <span class="st">"Premium"</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the mean using summarize</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(diamonds_premium, <span class="at">mean_price =</span> <span class="fu">mean</span>(price))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   mean_price
@@ -685,7 +687,7 @@ $ z       &lt;dbl&gt; 2.43, 2.31, 2.31, 2.63, 2.75, 2.48, 2.47, 2.53, 2.49, 2.39
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if we want to use the function mean() we need to supply a vector</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span> </span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(cut <span class="sc">==</span> <span class="st">"Premium"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(price) <span class="sc">|&gt;</span> <span class="co"># pulls out price as a vector</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(price) <span class="sc">|&gt;</span> <span class="co"># pulls out price as a vector since mean() requires a vector</span></span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4584.258</code></pre>
@@ -697,11 +699,34 @@ $ z       &lt;dbl&gt; 2.43, 2.31, 2.31, 2.63, 2.75, 2.48, 2.47, 2.53, 2.49, 2.39
 <li>it doesn’t require you to create lots of interim objects which you won’t use again</li>
 <li>its easy to troubleshoot</li>
 </ul>
-<blockquote class="blockquote">
-<p>The keyboard shortcut for <code>|&gt;</code> is <code>Ctrl/Cmd</code> + <code>Shift</code> + <code>M</code></p>
-</blockquote>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Keyboard shortcuts
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The keyboard shortcut for <code>|&gt;</code> is <code>Ctrl</code> + <code>Shift</code> + <code>M</code> on Windows or <code>Cmd</code> + <code>Shift</code> + <code>M</code> on a Mac</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Are you seeing <code>%&gt;%</code>?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you are seeing the old version of the pipe with your keyboard shortcut, go to <code>Tools</code> &gt; <code>Global options</code> &gt; <code>Code</code> &gt; <code>Editing</code> and check the box for “Use native pipe operator (<code>|&gt;</code>)”</p>
+</div>
+</div>
 <p>Of course you can assign the output of a pipe to something using the assignment operator <code>&lt;-</code> and then use it for other things.</p>
-<p>Ssome functions are not “pipe friendly” meaning they will not work using pipes. This is often because the data is not the first argument passed to the function. All tidyverse functions work with piping.</p>
+<p>Some functions are not “pipe friendly” meaning they will not work using pipes. This is often because the data is not the first argument passed to the function. All tidyverse functions work with piping.</p>
 </section>
 <section id="selecting-columns-with-select" class="level2">
 <h2 class="anchored" data-anchor-id="selecting-columns-with-select">Selecting columns with <code>select()</code></h2>
@@ -1411,27 +1436,54 @@ $ plays &lt;chr&gt; "guitar", "bass", "guitar"</code></pre>
 <span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a>             <span class="fu">rep.int</span>(<span class="st">"Control_Level2"</span>, <span class="dv">3</span>),</span>
 <span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a>             <span class="fu">rep.int</span>(<span class="st">"Control_Level3"</span>, <span class="dv">3</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Let’s look at it quickly.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>strings</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 18 × 1
+   sample          
+   &lt;chr&gt;           
+ 1 Treatment_Level1
+ 2 Treatment_Level1
+ 3 Treatment_Level1
+ 4 Treatment_Level2
+ 5 Treatment_Level2
+ 6 Treatment_Level2
+ 7 Treatment_Level3
+ 8 Treatment_Level3
+ 9 Treatment_Level3
+10 Control_Level1  
+11 Control_Level1  
+12 Control_Level1  
+13 Control_Level2  
+14 Control_Level2  
+15 Control_Level2  
+16 Control_Level3  
+17 Control_Level3  
+18 Control_Level3  </code></pre>
+</div>
+</div>
 <p>Let’s first ask how many times do we have the string “3” in our dataframe? Note that these functions accept a vector, so you need to provide data in that form. The function <a href="https://stringr.tidyverse.org/reference/str_detect.html"><code>str_detect()</code></a> gives a logical vector as the output, the same length as the vector provided, and indicates FALSE when the pattern is not met, and TRUE when it is.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(strings<span class="sc">$</span>sample, <span class="at">pattern =</span> <span class="st">"3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(strings<span class="sc">$</span>sample, <span class="at">pattern =</span> <span class="st">"3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE
 [13] FALSE FALSE FALSE  TRUE  TRUE  TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using sum will count how many times the logical is evaluated to be TRUE</span></span>
-<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">str_detect</span>(strings<span class="sc">$</span>sample, <span class="at">pattern =</span> <span class="st">"3"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using sum will count how many times the logical is evaluated to be TRUE</span></span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">str_detect</span>(strings<span class="sc">$</span>sample, <span class="at">pattern =</span> <span class="st">"3"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 6</code></pre>
 </div>
 </div>
 <p>You might want to re-code your data so that Level1 becomes that actual level used. Let’s say that Level1 is 100mg, Level2 is 300 mg, and Level3 is 500mg. We can do this with <a href="https://stringr.tidyverse.org/reference/str_replace.html"><code>str_replace()</code></a> to replace the first match only or <a href="https://stringr.tidyverse.org/reference/str_replace.html"><code>str_replace_all()</code></a> to replace all matches (which is what we want here).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>(strings<span class="sc">$</span>sample <span class="ot">&lt;-</span> strings <span class="sc">|&gt;</span> </span>
-<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sample) <span class="sc">|&gt;</span> </span>
-<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(sample) <span class="sc">|&gt;</span> <span class="co"># make a vector so can pass to next fxn</span></span>
-<span id="cb82-4"><a href="#cb82-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_replace_all</span>(<span class="at">pattern =</span> <span class="st">"Level1"</span>, <span class="at">replacement =</span> <span class="st">"100mg"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_replace_all</span>(<span class="at">pattern =</span> <span class="st">"Level2"</span>, <span class="at">replacement =</span> <span class="st">"300mg"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb82-6"><a href="#cb82-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_replace_all</span>(<span class="at">pattern =</span> <span class="st">"Level3"</span>, <span class="at">replacement =</span> <span class="st">"500mg"</span>))   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>(strings<span class="sc">$</span>sample <span class="ot">&lt;-</span> strings <span class="sc">|&gt;</span> </span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sample) <span class="sc">|&gt;</span> </span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(sample) <span class="sc">|&gt;</span> <span class="co"># make a vector so can pass to next fxn</span></span>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_replace_all</span>(<span class="at">pattern =</span> <span class="st">"Level1"</span>, <span class="at">replacement =</span> <span class="st">"100mg"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_replace_all</span>(<span class="at">pattern =</span> <span class="st">"Level2"</span>, <span class="at">replacement =</span> <span class="st">"300mg"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb84-6"><a href="#cb84-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_replace_all</span>(<span class="at">pattern =</span> <span class="st">"Level3"</span>, <span class="at">replacement =</span> <span class="st">"500mg"</span>))   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "Treatment_100mg" "Treatment_100mg" "Treatment_100mg" "Treatment_300mg"
  [5] "Treatment_300mg" "Treatment_300mg" "Treatment_500mg" "Treatment_500mg"
@@ -1442,10 +1494,10 @@ $ plays &lt;chr&gt; "guitar", "bass", "guitar"</code></pre>
 </div>
 <p>We might not want to have both Treatment/Control and Level nested in the same cell, we can split them apart using <a href="https://tidyr.tidyverse.org/reference/index.html#character-vectors"><code>separate_*()</code></a> functions. Here we are using <a href=""><code>separate_wider_delim()</code></a> to seprate the column “sample” into two new columns called “treatment” and “dose.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>(strings_separated <span class="ot">&lt;-</span> strings <span class="sc">|&gt;</span> </span>
-<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_wider_delim</span>(<span class="at">cols =</span> sample,</span>
-<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">delim =</span> <span class="st">"_"</span>, <span class="co"># what is the delimiter</span></span>
-<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">names =</span> <span class="fu">c</span>(<span class="st">"treatment"</span>, <span class="st">"dose"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>(strings_separated <span class="ot">&lt;-</span> strings <span class="sc">|&gt;</span> </span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_wider_delim</span>(<span class="at">cols =</span> sample,</span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">delim =</span> <span class="st">"_"</span>, <span class="co"># what is the delimiter</span></span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">names =</span> <span class="fu">c</span>(<span class="st">"treatment"</span>, <span class="st">"dose"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 18 × 2
    treatment dose 
@@ -1473,8 +1525,8 @@ $ plays &lt;chr&gt; "guitar", "bass", "guitar"</code></pre>
 <p>The opposite function for <code>separate_()</code> is <a href="https://tidyr.tidyverse.org/reference/unite.html"><code>unite()</code></a>.</p>
 <p>If we wanted to extract just the number part out of “dose” we could use <a href="https://readr.tidyverse.org/reference/parse_number.html"><code>readr::parse_number()</code></a> to do that. Note I’ve embedded <code>parse_number()</code> within a <code>mutate()</code> function to change the values in the dataset.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>strings_separated <span class="sc">|&gt;</span> </span>
-<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dose =</span> <span class="fu">parse_number</span>(dose))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>strings_separated <span class="sc">|&gt;</span> </span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dose =</span> <span class="fu">parse_number</span>(dose))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 18 × 2
    treatment  dose
@@ -1515,23 +1567,23 @@ $ plays &lt;chr&gt; "guitar", "bass", "guitar"</code></pre>
 <p>I really like the package <code>janitor</code> which has some nice functions for cleaning up 🧹 “messy” data. I use <a href="https://www.rdocumentation.org/packages/janitor/versions/2.2.0/topics/clean_names"><code>clean_names()</code></a> a lot which converts untidy column names into only characters (default all in lower case) and connects words or terms with underscores.</p>
 <p>I am making up some messy names so you can see how this works.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make messy data</span></span>
-<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>messy_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Sample Name"</span> <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
-<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"THE NEXT VARIABLE"</span> <span class="ot">=</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">10</span>,</span>
-<span id="cb88-5"><a href="#cb88-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ThisIsChaos"</span> <span class="ot">=</span> <span class="dv">11</span><span class="sc">:</span><span class="dv">15</span></span>
-<span id="cb88-6"><a href="#cb88-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb88-7"><a href="#cb88-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-8"><a href="#cb88-8" aria-hidden="true" tabindex="-1"></a><span class="co"># print column names</span></span>
-<span id="cb88-9"><a href="#cb88-9" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(messy_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make messy data</span></span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>messy_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Sample Name"</span> <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"THE NEXT VARIABLE"</span> <span class="ot">=</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">10</span>,</span>
+<span id="cb90-5"><a href="#cb90-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ThisIsChaos"</span> <span class="ot">=</span> <span class="dv">11</span><span class="sc">:</span><span class="dv">15</span></span>
+<span id="cb90-6"><a href="#cb90-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb90-7"><a href="#cb90-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-8"><a href="#cb90-8" aria-hidden="true" tabindex="-1"></a><span class="co"># print column names</span></span>
+<span id="cb90-9"><a href="#cb90-9" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(messy_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Sample Name"       "THE NEXT VARIABLE" "ThisIsChaos"      </code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install and load janitor</span></span>
-<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("janitor)</span></span>
-<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install and load janitor</span></span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("janitor)</span></span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Attaching package: 'janitor'</code></pre>
@@ -1541,8 +1593,8 @@ Attaching package: 'janitor'</code></pre>
 
     chisq.test, fisher.test</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co"># clean up column names</span></span>
-<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="fu">clean_names</span>(messy_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="co"># clean up column names</span></span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="fu">clean_names</span>(messy_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 3
   sample_name the_next_variable this_is_chaos
