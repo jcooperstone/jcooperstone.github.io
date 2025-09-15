@@ -42,7 +42,7 @@ Try playing around with header levels
 
 You get the idea.
 
-Add a hyperlink to [our class website](https://datavisualizing.netlify.app/)
+Add a hyperlink to [our class website](https://www.rdataviz.com/)
 
 Add an image. Note you will do this differently if you are adding an image from internet vs one you have on your local machine. Also remember your working directory is the location of your Rmd and you may want to have a directory called `img` where images are stored.
 
