@@ -106,7 +106,7 @@ I am going to generate a quick plot to use to make the description of the parts 
 # filter data to include only tomatoes 
 # filter() is a useful function from dplyr (part of tidyverse)
 # it allows us to select observations based on their values
-garden_harvest_tomato <- garden_harvest %>%
+garden_harvest_tomato <- garden_harvest |>
   filter(vegetable == "tomatoes")
 
 # plot
@@ -155,7 +155,7 @@ Why do we not see a plot? Well we haven't told R what to plot! We are getting th
 
 You can also pipe `|>` or `%>%`, the data to the ggplot function. When reading code, you can interpret the pipe as "and then." Here, take the `garden_harvest_tomato` data, and then, run `ggplot()`. Writing code in this way is my preference so I tend to code like this. We talked in more detail about the pipe last week, so you can go back [there](https://datavisualizing.netlify.app/2_04_wrangling/04_wrangling#The_pipe_|) and read more if you like.
 ```{r data and pipe}
-garden_harvest_tomato %>% 
+garden_harvest_tomato |> 
   ggplot()
 ```
 
@@ -164,7 +164,7 @@ Still nothing. Well that's what we would expect.
 ## Aesthetic mappings `aes()`
 Now that we've indicated our data, we can add aesthetics mapping so we can work towards actually see a plot. We want to make a line plot where on the x-axis we have the date (`date`), and on the y-axis we have how much tomato was harvested (`weight`).
 ```{r aes}
-garden_harvest_tomato %>%
+garden_harvest_tomato |>
   ggplot(aes(x = date, y = weight))
 ```
 
@@ -176,7 +176,7 @@ Even though we have indicated to R our data and aesthetic mappings, we have not 
 
 Now let's indicate what type of plot we want. In this example, we are going to make a line plot, and to do that we will use [`geom_line()`](https://ggplot2.tidyverse.org/reference/geom_path.html)
 ```{r geom line}
-garden_harvest_tomato %>%
+garden_harvest_tomato |>
   ggplot(aes(x = date, y = weight)) +
   geom_line()
 ```
@@ -192,14 +192,14 @@ A note about aesthetic mappings now that we have introduced geoms -`aes()` can g
 
 So we can make the same plot we saw above by mapping aesthetics within `geom_line()`. 
 ```{r geom line; local aes}
-garden_harvest_tomato %>%
+garden_harvest_tomato |>
   ggplot() +
   geom_line(aes(x = date, y = weight))
 ```
 
 Let's say we wanted to see how the harvest of different varieties looks over the summer? We can take the variable `variety` and map it to the aesthetic `color`.
 ```{r aes color}
-garden_harvest_tomato %>%
+garden_harvest_tomato |>
   ggplot(aes(x = date, y = weight, color = variety)) +
   geom_line()
 ```
@@ -211,7 +211,7 @@ Another important thing to notice here is that now the data is grouped by variet
 We can also add more than one geom. Let's try adding `geom_point()` so we can better see exactly which times were sampled in this dataset.
 
 ```{r geom_point}
-garden_harvest_tomato %>%
+garden_harvest_tomato |>
   ggplot(aes(x = date, y = weight, color = variety)) +
   geom_line() +
   geom_point()
@@ -219,7 +219,7 @@ garden_harvest_tomato %>%
 
 To more fully make the point about global vs aesthetic mappings, let's look at an example.
 ```{r geom point without aes}
-garden_harvest_tomato %>%
+garden_harvest_tomato |>
   ggplot(aes(x = date, y = weight)) +
   geom_line(aes(color = variety)) +
   geom_point()
@@ -228,7 +228,7 @@ garden_harvest_tomato %>%
 Here, we can see that how the line layer is being grouped by variety, while the points are not. This is because the aesthetic mappings for one geom don't inherit to the next one. If we want to also color points by variety, we need to either 1) set this as the global aesthetic mapping or 2) also set `aes(color = variety)` in `geom_point()` too.
 
 ```{r line and point local aes}
-garden_harvest_tomato %>%
+garden_harvest_tomato |>
   ggplot(aes(x = date, y = weight)) +
   geom_line(aes(color = variety)) +
   geom_point(aes(color = variety))
@@ -239,14 +239,14 @@ garden_harvest_tomato %>%
 
 If you want to map a variable to an aesthetic, it MUST be within the `aes()` statement. If you just want to change the color to "blue" for example, it should be outside the `aes()` statement. Look at the difference.
 ```{r setting color}
-garden_harvest_tomato %>%
+garden_harvest_tomato |>
   ggplot(aes(x = date, y = weight)) +
   geom_line(color = "blue")
 ```
 
 Look what happens if we put `color = "blue"` inside the `aes()` statement.
 ```{r setting color but wrong}
-garden_harvest_tomato %>%
+garden_harvest_tomato |>
   ggplot(aes(x = date, y = weight, color = "blue")) +
   geom_line()
 ```
@@ -264,7 +264,7 @@ In general color controls the outside/line, and fill controls the inside of a sh
 #### `linetype`
 You can change the style of a line based on a variable
 ```{r aes linetype}
-garden_harvest_tomato %>%
+garden_harvest_tomato |>
   ggplot(aes(x = date, y = weight)) +
   geom_line(aes(linetype = variety))
 ```
@@ -281,8 +281,8 @@ knitr::include_graphics("img/linetypes.png")
 You can also map variables to `size`. This could be useful if you wanted to say make your points bigger when a fold change is bigger, or bigger when a value is more significant. Below is an example of mapping weight to `size` in our example dataset.
 
 ```{r aes size}
-garden_harvest_tomato %>%
-  filter(variety %in% c("Mortgage Lifter", "Brandywine")) %>%
+garden_harvest_tomato |>
+  filter(variety %in% c("Mortgage Lifter", "Brandywine")) |>
   ggplot(aes(x = variety, y = date, size = weight)) +
   geom_point()
 ```

@@ -508,7 +508,7 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
   <li><a href="#geom_boxplot" id="toc-geom_boxplot" class="nav-link" data-scroll-target="#geom_boxplot"><code>geom_boxplot()</code></a></li>
   <li><a href="#geom_jitter" id="toc-geom_jitter" class="nav-link" data-scroll-target="#geom_jitter"><code>geom_jitter()</code></a></li>
   <li><a href="#geom_histogram" id="toc-geom_histogram" class="nav-link" data-scroll-target="#geom_histogram"><code>geom_histogram()</code></a></li>
-  <li><a href="#ggridgesgeom_density_ridges" id="toc-ggridgesgeom_density_ridges" class="nav-link" data-scroll-target="#ggridgesgeom_density_ridges"><code>gg:ridges::geom_density_ridges()</code></a>
+  <li><a href="#ggridgesgeom_density_ridges" id="toc-ggridgesgeom_density_ridges" class="nav-link" data-scroll-target="#ggridgesgeom_density_ridges"><code>ggridges::geom_density_ridges()</code></a>
   <ul class="collapse">
   <li><a href="#changing-class-labels" id="toc-changing-class-labels" class="nav-link" data-scroll-target="#changing-class-labels">Changing class labels</a></li>
   </ul></li>
@@ -577,7 +577,21 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Today we are using real research data from my group. We will be reading in the supplementary data from a <a href="https://acsess.onlinelibrary.wiley.com/doi/full/10.1002/tpg2.20192">paper</a> written by Michael Dzakovich, and published in The Plant Genome. The data is present in a Excel worksheet, so we will use the function <code>read_excel()</code> from the tidyverse (but not core tidyverse) package <code>readxl</code>. We want to import Supplemental Table 1. You can indicate which sheet you want to import in the arguments to <code>read_excel()</code>.</p>
+<p>Today we are using real research data from my group. We will be reading in the supplementary data from a <a href="https://acsess.onlinelibrary.wiley.com/doi/full/10.1002/tpg2.20192">paper</a> written by Michael Dzakovich, and published in The Plant Genome.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Download today’s data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can download the Excel file from <a href="https://acsess.onlinelibrary.wiley.com/doi/full/10.1002/tpg2.20192">the supporting information link</a>, or you can access it directly <a href="https://github.com/jcooperstone/jcooperstone.github.io/raw/refs/heads/main/modules/module3/07_distributions/tpg220192-sup-0002-supmat.xlsx">here</a>.</p>
+</div>
+</div>
+<p>The data is present in a Excel worksheet, so we will use the function <code>read_excel()</code> from the tidyverse (but not core tidyverse) package <code>readxl</code>. We want to import Supplemental Table 1. You can indicate which sheet you want to import in the arguments to <code>read_excel()</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">"tpg220192-sup-0002-supmat.xlsx"</span>,</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                                <span class="at">sheet =</span> <span class="st">"S1 Raw Data Diversity Panel"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -942,8 +956,8 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
 <p>I hope after today, you see that there is always a better chart type to make than a bar chart. But I will show you how to make them anyway.</p>
 <p>Before we plot, let’s calculate some summary statistics so we know what we should expect.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">%&gt;%</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Class) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Class) <span class="sc">|&gt;</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_tomatine =</span> <span class="fu">mean</span>(Tomatine))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 2
@@ -959,7 +973,7 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this is wrong but an easy mistake to make</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># this is not what we want</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">|&gt;</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Class, <span class="at">y =</span> Tomatine)) <span class="sc">+</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -973,9 +987,9 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
 <p>Just calling <code>geom_col()</code> does not give us what we want. Look at the y-axis scale and how out of line this is with our summary statistics. The reason for this is that <code>geom_col()</code> defaults to <code>position = "stack"</code> which will just sum the alkaloid content across all the observations. Even changing to <code>position = "identity"</code> does not work. This is because we are plotting a transformation of the data (calculation of the mean) which these geoms are not doing.</p>
 <p>We can calculate manually by generating the summary values and then piping that into our ggplot call.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Class) <span class="sc">%&gt;%</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_tomatine =</span> <span class="fu">mean</span>(Tomatine)) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Class) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_tomatine =</span> <span class="fu">mean</span>(Tomatine)) <span class="sc">|&gt;</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Class, <span class="at">y =</span> mean_tomatine)) <span class="sc">+</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -991,7 +1005,7 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
 <h3 class="anchored" data-anchor-id="stat_summary"><a href="https://ggplot2.tidyverse.org/reference/stat_summary.html"><code>stat_summary()</code></a></h3>
 <p>An easier way to do this would be just with <code>stat_summary()</code>, which does not require the calculation of summary statistic first.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">|&gt;</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Class, <span class="at">y =</span> Tomatine)) <span class="sc">+</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> <span class="st">"mean"</span>, <span class="at">geom =</span> <span class="st">"bar"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -1016,7 +1030,7 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"S. pimpinellifolium"</span>)</span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># plot and re-level within aes()</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">%&gt;%</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">|&gt;</span></span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(Class, <span class="at">levels =</span> alkaloids_order), <span class="at">y =</span> Tomatine)) <span class="sc">+</span></span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> <span class="st">"mean"</span>, <span class="at">geom =</span> <span class="st">"bar"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -1043,7 +1057,7 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">"S. pimpinellifolium"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">|&gt;</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Class, <span class="at">y =</span> Tomatine)) <span class="sc">+</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> <span class="st">"mean"</span>, <span class="at">geom =</span> <span class="st">"bar"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -1060,16 +1074,16 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
 </section>
 <section id="geom_boxplot" class="level3">
 <h3 class="anchored" data-anchor-id="geom_boxplot"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html"><code>geom_boxplot()</code></a></h3>
-<p>A boxplot has the benefit of showing you more than the median and the standard deviation, so you can better see the true distribution of your data. In <code>geom_boxplot()</code>:</p>
+<p>A boxplot has the benefit of showing you more than the median and the standard deviation, so you can better see the true distribution of your data. With <code>geom_boxplot()</code>:</p>
 <ul>
-<li>lower whisker = smallest observation greater than or equal to lower hinge - 1.5 * IQR</li>
-<li>lower hinge/bottom line of box part of boxplot = 25% quantile</li>
-<li>middle = median, 50% quantile</li>
-<li>upper hinge/top line of box part of boxplot = 75% quantile</li>
-<li>upper whisker = largest observation less than or equal to upper hinge + 1.5 * IQR</li>
+<li><strong>Lower whisker</strong>: smallest observation greater than or equal to lower hinge - 1.5 * IQR</li>
+<li><strong>Lower hinge/bottom line of box part of boxplot</strong> 25% quantile</li>
+<li><strong>Middle</strong>: median, 50% quantile</li>
+<li><strong>Upper hinge/top line of box part of boxplot</strong> 75% quantile</li>
+<li><strong>Upper whisker</strong> largest observation less than or equal to upper hinge + 1.5 * IQR</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">|&gt;</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Class, <span class="at">y =</span> Tomatine)) <span class="sc">+</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -1083,7 +1097,7 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
 <p>One reason why this is really importantly different from the bar plot is look at the number of outliers we are seeing for Wild Cherry. You don’t capture this at all with the median/mean bar plots.</p>
 <p>Because of the scale of this data, it might be beneficial to log transform the y-axis.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">|&gt;</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Class, <span class="at">y =</span> Tomatine)) <span class="sc">+</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">"log10"</span>) <span class="co"># or scale_y_log10()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1108,7 +1122,7 @@ introduced infinite values.</code></pre>
 <h3 class="anchored" data-anchor-id="geom_jitter"><a href="https://ggplot2.tidyverse.org/reference/geom_jitter.html"><code>geom_jitter()</code></a></h3>
 <p><code>geom_jitter()</code> is a shortcut for <code>geom_point(position = "jitter")</code>, but is common enough that the shortcut exists. It is often nice to jitter on top of a boxplot. Note, if you don’t want the outliers from <code>geom_boxplot()</code> to be plotted twice, you should indicate <code>outlier.shape = NA</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">|&gt;</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Class, <span class="at">y =</span> Tomatine)) <span class="sc">+</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.shape =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
@@ -1129,9 +1143,14 @@ log-10 transformation introduced infinite values.</code></pre>
 </div>
 </div>
 </div>
-<p>Jittering introduces a small amount of variation into your points so they’re easier to see. A width of <code>0</code> is no horizontal jitter. A height of <code>0</code> is no vertical jitter. Typically you don’t want veritcal jitter so that the points retain their fidelity on the y-axis (which is where their concentration is plotted). I basically always use <code>geom_jitter(height = 0)</code> for plots where I want to retain y-axis fidelity.</p>
+<p>Jittering introduces a small amount of variation into your points so they’re easier to see.</p>
+<ul>
+<li>A width of <code>0</code> is no <em>horizontal</em> jitter</li>
+<li>A height of <code>0</code> is no <em>vertical</em> jitter</li>
+</ul>
+<p>Typically you <strong>don’t want veritcal jitter</strong> so that the points retain their fidelity on the y-axis (which is where their concentration is plotted). I basically always use <code>geom_jitter(height = 0)</code> for plots where I want to retain y-axis fidelity.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">|&gt;</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Class, <span class="at">y =</span> Tomatine)) <span class="sc">+</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.shape =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
@@ -1157,7 +1176,7 @@ log-10 transformation introduced infinite values.</code></pre>
 <h3 class="anchored" data-anchor-id="geom_histogram"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html"><code>geom_histogram()</code></a></h3>
 <p>We could also look at these distribution more like histograms and it provides to us some additional information. When coupled with faceting, this can be very powerful.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">|&gt;</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tomatine)) <span class="sc">+</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">75</span>) <span class="sc">+</span> <span class="co"># default is bins = 30</span></span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">trans =</span> <span class="st">"log10"</span>) <span class="sc">+</span></span>
@@ -1171,7 +1190,7 @@ log-10 transformation introduced infinite values.</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">|&gt;</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tomatine)) <span class="sc">+</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>() <span class="sc">+</span></span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">trans =</span> <span class="st">"log10"</span>) <span class="sc">+</span></span>
@@ -1186,14 +1205,14 @@ log-10 transformation introduced infinite values.</code></pre>
 </div>
 </section>
 <section id="ggridgesgeom_density_ridges" class="level3">
-<h3 class="anchored" data-anchor-id="ggridgesgeom_density_ridges"><a href="https://www.rdocumentation.org/packages/ggridges/versions/0.5.2/topics/geom_density_ridges"><code>gg:ridges::geom_density_ridges()</code></a></h3>
+<h3 class="anchored" data-anchor-id="ggridgesgeom_density_ridges"><a href="https://www.rdocumentation.org/packages/ggridges/versions/0.5.2/topics/geom_density_ridges"><code>ggridges::geom_density_ridges()</code></a></h3>
 <p>I really like the function <code>geom_density_ridges()</code> which is a part of the ggplot add-on package <code>ggridges</code>. It allows you to create ridgeline plots to show distributes in a single non-faceted plot.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggridges) <span class="co"># for ridgeline plots</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales) <span class="co"># for comma format</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">%&gt;%</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tomatine <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">|&gt;</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tomatine <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
 <span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tomatine, <span class="at">y =</span> Class)) <span class="sc">+</span></span>
 <span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density_ridges</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
 <span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">trans =</span> <span class="st">"log10"</span>, <span class="at">labels =</span> comma) <span class="sc">+</span></span>
@@ -1210,8 +1229,8 @@ log-10 transformation introduced infinite values.</code></pre>
 </div>
 <p>You can also use the function <a href="https://www.rdocumentation.org/packages/ggridges/versions/0.5.3/topics/stat_density_ridges"><code>geom_density_ridges()</code></a> which will allow you to easily map quantiles or other functions on top of your ridges.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">%&gt;%</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tomatine <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tomatine <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tomatine, <span class="at">y =</span> Class)) <span class="sc">+</span></span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density_ridges</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>,</span>
 <span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">quantile_lines =</span> <span class="cn">TRUE</span>,</span>
@@ -1251,8 +1270,8 @@ log-10 transformation introduced infinite values.</code></pre>
 </div>
 <p>Then we can use one of the <code>scale_*()</code> functions to change our y-axis scale labels to how we want them to be.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">%&gt;%</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tomatine <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tomatine <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tomatine, <span class="at">y =</span> Class)) <span class="sc">+</span></span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density_ridges</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
 <span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">trans =</span> <span class="st">"log10"</span>, <span class="at">labels =</span> comma) <span class="sc">+</span></span>
@@ -1292,8 +1311,8 @@ Attaching package: 'ggdist'</code></pre>
     scale_point_fill_continuous, scale_point_fill_discrete,
     scale_point_size_continuous</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">%&gt;%</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tomatine <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">|&gt;</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tomatine <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tomatine, <span class="at">y =</span> Class)) <span class="sc">+</span>  </span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_dots</span>() <span class="sc">+</span></span>
 <span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">trans =</span> <span class="st">"log10"</span>, <span class="at">labels =</span> comma) <span class="sc">+</span> </span>
@@ -1313,8 +1332,8 @@ Attaching package: 'ggdist'</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggbeeswarm) <span class="co"># required for layout = "swarm"</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">%&gt;%</span></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tomatine <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">|&gt;</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tomatine <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
 <span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Class, <span class="at">y =</span> Tomatine)) <span class="sc">+</span></span>
 <span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_dots</span>(<span class="at">side =</span> <span class="st">"both"</span>, <span class="at">layout =</span> <span class="st">"swarm"</span>) <span class="sc">+</span> <span class="co"># requires ggbeeswarm</span></span>
 <span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> class_labels) <span class="sc">+</span></span>
@@ -1332,8 +1351,8 @@ Attaching package: 'ggdist'</code></pre>
 </div>
 <p>You can also use <code>stat_dotsinterval()</code> which will by default add the median and the interquartile range (though you can change exactly what you want to be displayed).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">%&gt;%</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tomatine <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">|&gt;</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tomatine <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Class, <span class="at">y =</span> Tomatine)) <span class="sc">+</span></span>
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_dotsinterval</span>(<span class="at">side =</span> <span class="st">"both"</span>) <span class="sc">+</span></span>
 <span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> class_labels) <span class="sc">+</span></span>
@@ -1351,8 +1370,8 @@ Attaching package: 'ggdist'</code></pre>
 </div>
 <p>Don’t forget we can keep layering. We can always map other aethetics to our plot (e.g.&nbsp;<code>shape = as.factor(Year)</code>, and we include <code>as.factor()</code> because <code>Year</code> is a character datatype).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">%&gt;%</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tomatine <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">|&gt;</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tomatine <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Class, <span class="at">y =</span> Tomatine, <span class="at">shape =</span> <span class="fu">as.factor</span>(Year))) <span class="sc">+</span></span>
 <span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">"log10"</span>, <span class="at">labels =</span> comma) <span class="sc">+</span> </span>
 <span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_dots</span>(<span class="at">side =</span> <span class="st">"both"</span>) <span class="sc">+</span></span>

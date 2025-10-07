@@ -35,7 +35,16 @@ Before we get started, let's load the packages we need.
 library(tidyverse)
 ```
 
-Today we are using real research data from my group. We will be reading in the supplementary data from a [paper](https://acsess.onlinelibrary.wiley.com/doi/full/10.1002/tpg2.20192) written by Michael Dzakovich, and published in The Plant Genome. The data is present in a Excel worksheet, so we will use the function `read_excel()` from the tidyverse (but not core tidyverse) package `readxl`. We want to import Supplemental Table 1. You can indicate which sheet you want to import in the arguments to `read_excel()`.
+Today we are using real research data from my group. We will be reading in the supplementary data from a [paper](https://acsess.onlinelibrary.wiley.com/doi/full/10.1002/tpg2.20192) written by Michael Dzakovich, and published in The Plant Genome. 
+
+::: {.callout-tip}
+## Download today's data
+
+You can download the Excel file from [the supporting information link](https://acsess.onlinelibrary.wiley.com/doi/full/10.1002/tpg2.20192), or you can access it directly [here](https://github.com/jcooperstone/jcooperstone.github.io/raw/refs/heads/main/modules/module3/07_distributions/tpg220192-sup-0002-supmat.xlsx). 
+:::
+
+
+The data is present in a Excel worksheet, so we will use the function `read_excel()` from the tidyverse (but not core tidyverse) package `readxl`. We want to import Supplemental Table 1. You can indicate which sheet you want to import in the arguments to `read_excel()`.
 
 ```{r read-data}
 alkaloids <- readxl::read_excel("tpg220192-sup-0002-supmat.xlsx",
@@ -63,15 +72,15 @@ I hope after today, you see that there is always a better chart type to make tha
 Before we plot, let’s calculate some summary statistics so we know what we should expect.
 
 ```{r tomatine-summary}
-alkaloids %>%
-  group_by(Class) %>%
+alkaloids |>
+  group_by(Class) |>
   summarize(mean_tomatine = mean(Tomatine))
 ```
 
 ```{r geom-col-wrong}
 # this is wrong but an easy mistake to make
 # this is not what we want
-alkaloids %>%
+alkaloids |>
   ggplot(aes(x = Class, y = Tomatine)) +
   geom_col()
 ```
@@ -80,9 +89,9 @@ Just calling `geom_col()` does not give us what we want. Look at the y-axis scal
 
 We can calculate manually by generating the summary values and then piping that into our ggplot call.
 ```{r geom-col-manual-summary}
-alkaloids %>%
-  group_by(Class) %>%
-  summarize(mean_tomatine = mean(Tomatine)) %>%
+alkaloids |>
+  group_by(Class) |>
+  summarize(mean_tomatine = mean(Tomatine)) |>
   ggplot(aes(x = Class, y = mean_tomatine)) +
   geom_col()
 ```
@@ -91,7 +100,7 @@ alkaloids %>%
 
 An easier way to do this would be just with `stat_summary()`, which does not require the calculation of summary statistic first.
 ```{r geom-col-stat-summary}
-alkaloids %>%
+alkaloids |>
   ggplot(aes(x = Class, y = Tomatine)) +
   stat_summary(fun = "mean", geom = "bar")
 ```
@@ -111,7 +120,7 @@ alkaloids_order <- c("Cultivated Processing",
                      "S. pimpinellifolium")
 
 # plot and re-level within aes()
-alkaloids %>%
+alkaloids |>
   ggplot(aes(x = factor(Class, levels = alkaloids_order), y = Tomatine)) +
   stat_summary(fun = "mean", geom = "bar")
 ```
@@ -131,7 +140,7 @@ alkaloids$Class <- factor(alkaloids$Class,
 ```
 
 ```{r plot-after-relevelling}
-alkaloids %>%
+alkaloids |>
   ggplot(aes(x = Class, y = Tomatine)) +
   stat_summary(fun = "mean", geom = "bar")
 ```
@@ -142,16 +151,16 @@ You can also re-order factors based on characteristics of your data using differ
 
 ### [`geom_boxplot()`](https://ggplot2.tidyverse.org/reference/geom_boxplot.html)
 
-A boxplot has the benefit of showing you more than the median and the standard deviation, so you can better see the true distribution of your data. In `geom_boxplot()`:
+A boxplot has the benefit of showing you more than the median and the standard deviation, so you can better see the true distribution of your data. With `geom_boxplot()`:
 
-- lower whisker = smallest observation greater than or equal to lower hinge - 1.5 * IQR
-- lower hinge/bottom line of box part of boxplot = 25% quantile
-- middle = median, 50% quantile
-- upper hinge/top line of box part of boxplot = 75% quantile
-- upper whisker = largest observation less than or equal to upper hinge + 1.5 * IQR
+- **Lower whisker**: smallest observation greater than or equal to lower hinge - 1.5 * IQR
+- **Lower hinge/bottom line of box part of boxplot** 25% quantile
+- **Middle**: median, 50% quantile
+- **Upper hinge/top line of box part of boxplot** 75% quantile
+- **Upper whisker** largest observation less than or equal to upper hinge + 1.5 * IQR
 
 ```{r geom-boxplot}
-alkaloids %>%
+alkaloids |>
   ggplot(aes(x = Class, y = Tomatine)) +
   geom_boxplot()
 ```
@@ -160,7 +169,7 @@ One reason why this is really importantly different from the bar plot is look at
 
 Because of the scale of this data, it might be beneficial to log transform the y-axis.
 ```{r geom-boxplot-log}
-alkaloids %>%
+alkaloids |>
   ggplot(aes(x = Class, y = Tomatine)) +
   geom_boxplot() +
   scale_y_continuous(trans = "log10") # or scale_y_log10()
@@ -171,17 +180,22 @@ alkaloids %>%
 `geom_jitter()` is a shortcut for `geom_point(position = "jitter")`, but is common enough that the shortcut exists. It is often nice to jitter on top of a boxplot. Note, if you don't want the outliers from `geom_boxplot()` to be plotted twice, you should indicate `outlier.shape = NA`.
 
 ```{r geom-jitter}
-alkaloids %>%
+alkaloids |>
   ggplot(aes(x = Class, y = Tomatine)) +
   geom_boxplot(outlier.shape = NA) +
   geom_jitter() +
   scale_y_continuous(trans = "log10") # or scale_y_log10()
 ```
 
-Jittering introduces a small amount of variation into your points so they're easier to see. A width of `0` is no horizontal jitter. A height of `0` is no vertical jitter. Typically you don't want veritcal jitter so that the points retain their fidelity on the y-axis (which is where their concentration is plotted). I basically always use `geom_jitter(height = 0)` for plots where I want to retain y-axis fidelity.
+Jittering introduces a small amount of variation into your points so they're easier to see. 
+
+- A width of `0` is no *horizontal* jitter
+- A height of `0` is no *vertical* jitter
+
+Typically you **don't want veritcal jitter** so that the points retain their fidelity on the y-axis (which is where their concentration is plotted). I basically always use `geom_jitter(height = 0)` for plots where I want to retain y-axis fidelity.
 
 ```{r geom-jitter-height-0}
-alkaloids %>%
+alkaloids |>
   ggplot(aes(x = Class, y = Tomatine)) +
   geom_boxplot(outlier.shape = NA) +
   geom_jitter(height = 0) +
@@ -193,7 +207,7 @@ alkaloids %>%
 We could also look at these distribution more like histograms and it provides to us some additional information. When coupled with faceting, this can be very powerful.
 
 ```{r histogram, warning = FALSE, message = FALSE}
-alkaloids %>%
+alkaloids |>
   ggplot(aes(x = Tomatine)) +
   geom_histogram(bins = 75) + # default is bins = 30
   scale_x_continuous(trans = "log10") +
@@ -201,22 +215,22 @@ alkaloids %>%
 ```
 
 ```{r density, warning = FALSE, message = FALSE}
-alkaloids %>%
+alkaloids |>
   ggplot(aes(x = Tomatine)) +
   geom_density() +
   scale_x_continuous(trans = "log10") +
   facet_wrap(vars(Class))
 ```
 
-### [`gg:ridges::geom_density_ridges()`](https://www.rdocumentation.org/packages/ggridges/versions/0.5.2/topics/geom_density_ridges)
+### [`ggridges::geom_density_ridges()`](https://www.rdocumentation.org/packages/ggridges/versions/0.5.2/topics/geom_density_ridges)
 
 I really like the function `geom_density_ridges()` which is a part of the ggplot add-on package `ggridges`. It allows you to create ridgeline plots to show distributes in a single non-faceted plot.
 ```{r geom-density-ridgeline, warning = FALSE, message = FALSE}
 library(ggridges) # for ridgeline plots
 library(scales) # for comma format
 
-alkaloids %>%
-  filter(Tomatine != 0) %>%
+alkaloids |>
+  filter(Tomatine != 0) |>
   ggplot(aes(x = Tomatine, y = Class)) +
   geom_density_ridges(alpha = 0.5) +
   scale_x_continuous(trans = "log10", labels = comma) +
@@ -228,8 +242,8 @@ alkaloids %>%
 You can also use the function [`geom_density_ridges()`](https://www.rdocumentation.org/packages/ggridges/versions/0.5.3/topics/stat_density_ridges) which will allow you to easily map quantiles or other functions on top of your ridges.
 
 ```{r stat-density-ridgeline}
-alkaloids %>%
-  filter(Tomatine != 0) %>%
+alkaloids |>
+  filter(Tomatine != 0) |>
   ggplot(aes(x = Tomatine, y = Class)) +
   stat_density_ridges(alpha = 0.5,
                       quantile_lines = TRUE,
@@ -258,8 +272,8 @@ class_labels
 
 Then we can use one of the `scale_*()` functions to change our y-axis scale labels to how we want them to be.
 ```{r ridgeline-labels}
-alkaloids %>%
-  filter(Tomatine != 0) %>%
+alkaloids |>
+  filter(Tomatine != 0) |>
   ggplot(aes(x = Tomatine, y = Class)) +
   geom_density_ridges(alpha = 0.5) +
   scale_x_continuous(trans = "log10", labels = comma) +
@@ -279,8 +293,8 @@ Sometimes using `geom_jitter()` when you have a lot of data points can look a bi
 ```{r ggdist stat_dots both}
 library(ggdist)
 
-alkaloids %>%
-  filter(Tomatine != 0) %>%
+alkaloids |>
+  filter(Tomatine != 0) |>
   ggplot(aes(x = Tomatine, y = Class)) +  
   geom_dots() +
   scale_x_continuous(trans = "log10", labels = comma) + 
@@ -295,8 +309,8 @@ You can really change the feel of the plot by changing the orientation between h
 ```{r ggdist stat_dots both swarm}
 library(ggbeeswarm) # required for layout = "swarm"
 
-alkaloids %>%
-  filter(Tomatine != 0) %>%
+alkaloids |>
+  filter(Tomatine != 0) |>
   ggplot(aes(x = Class, y = Tomatine)) +
   geom_dots(side = "both", layout = "swarm") + # requires ggbeeswarm
   scale_x_discrete(labels = class_labels) +
@@ -308,8 +322,8 @@ alkaloids %>%
 
 You can also use `stat_dotsinterval()` which will by default add the median and the interquartile range (though you can change exactly what you want to be displayed).
 ```{r ggdist stat_dotsinterval}  
-alkaloids %>%
-  filter(Tomatine != 0) %>%
+alkaloids |>
+  filter(Tomatine != 0) |>
   ggplot(aes(x = Class, y = Tomatine)) +
   stat_dotsinterval(side = "both") +
   scale_x_discrete(labels = class_labels) +
@@ -321,8 +335,8 @@ alkaloids %>%
 
 Don't forget we can keep layering. We can always map other aethetics to our plot (e.g. `shape = as.factor(Year)`, and we include `as.factor()` because `Year` is a character datatype).
 ```{r geom-dots year by shape and legend box}
-alkaloids %>%
-  filter(Tomatine != 0) %>%
+alkaloids |>
+  filter(Tomatine != 0) |>
   ggplot(aes(x = Class, y = Tomatine, shape = as.factor(Year))) +
   scale_y_continuous(trans = "log10", labels = comma) + 
   geom_dots(side = "both") +
