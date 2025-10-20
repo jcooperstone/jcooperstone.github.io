@@ -50,7 +50,7 @@ For those who are chemistry minded, here is a little pathway context for the com
 A very simple first pass way to understand if you have relationships within your data is to make scatterplots of the variables you think might be correlated. Let's start by investigating how the different alkaloid concentrations are correlated to each other. First we will see how alpha-tomatine content (`Tomatine`) is related to total steroidal alkaloid content (`Total`).
 
 ```{r alphatomatine vs total alkaloids}
-alkaloids %>%
+alkaloids |>
   ggplot(aes(x = Total, y = Tomatine)) +
   geom_point() +
   labs(x = "Total Steroidal Alkaloids (µg/100 g)",
@@ -62,10 +62,10 @@ It seems like there are two separate groups here - the points with a steeper slo
 ```{r alphatomatine vs total alkaloids color}
 library(scales)
 
-alkaloids %>%
+alkaloids |>
   ggplot(aes(x = Total, y = Tomatine, color = Class)) +
   geom_point(alpha = 0.8) +
-  scale_x_continuous(labels = comma_format(big.mark = ",")) + # requires the package scales
+  scale_x_continuous(labels =) + # requires the package scales
   scale_y_continuous(labels = comma_format(big.mark = ",")) + # requires the package scales
   scale_color_manual(values = c("#4477AA", "#EE6677", "#228833", "#CCBB44", "#66CCEE")) +
   theme_minimal() +
@@ -77,8 +77,8 @@ alkaloids %>%
 All of the tomatoes in the two extremes of this plot are from the `Class` Wild Cherry. What would this look like if we removed these fruits? Note, I adjusted the color scale to remove the hex code associated with Wild Cherry but keeping the other colors the same.
 
 ```{r alphatomatine vs total no wild cherry}
-alkaloids %>%
-  filter(Class != "Wild Cherry") %>%
+alkaloids |>
+  filter(Class != "Wild Cherry") |>
   ggplot(aes(x = Total, y = Tomatine, color = Class)) +
   geom_point() +
   scale_x_continuous(labels = comma_format(big.mark = ",")) + # requires the package scales
@@ -93,10 +93,10 @@ alkaloids %>%
 ## Adding `geom_smooth()`
 
 ```{r adding geom smooth}
-alkaloids %>%
-  ggplot(aes(x = Total, y = Tomatine, color = Class)) +
-  geom_point(alpha = 0.8) +
-  geom_smooth(method = "lm") +
+alkaloids |>
+  ggplot(aes(x = Total, y = Tomatine,)) +
+  geom_point(aes(color = Class), alpha = 0.8) +
+  geom_smooth() +
   scale_x_continuous(labels = comma_format(big.mark = ",")) + # requires the package scales
   scale_y_continuous(labels = comma_format(big.mark = ",")) + # requires the package scales
   scale_color_manual(values = c("#4477AA", "#EE6677", "#228833", "#CCBB44", "#66CCEE")) +
@@ -111,7 +111,7 @@ alkaloids %>%
 We may be able to see trends by tomato class more easily if we facet our scatterplots. I also am demonstrating here how within the ggplot function you can make alter the aesthetics you plot - here I am turning data that is present as µg/100 g to mg/100 g by dividing by 1000 and changing the axis labels accordingly.
 
 ```{r faceted sc atterplots}
-alkaloids %>%
+alkaloids |>
   ggplot(aes(x = Total/1000, y = Tomatine/1000, color = Class)) +
   geom_point(alpha = 0.8) +
   scale_color_manual(values = c("#4477AA", "#EE6677", "#228833", "#CCBB44", "#66CCEE")) +
@@ -149,7 +149,7 @@ alkaloid_total_names <- c("Dehydrotomatidine",
                           "Total")
 
 # make a new df including some metadata and the alkaloid_total_names
-alkaloids_totals <- alkaloids %>%
+alkaloids_totals <- alkaloids |>
   select(ID, Year, Environment, Block, Genotype, Class, all_of(alkaloid_total_names))
 
 # did it work? look at colnames()
@@ -159,8 +159,8 @@ colnames(alkaloids_totals)
 Now we can create a correlation matrix to see how each of our 10 alkaloids is correlated to the concentration of each other alkaloid (including the compile metric of `Total` which sums all the alkaloids). The default for `cor()` is to use Pearson's correlation coefficient, but you can set to use Spearman `method = "spearman"` or Kendall `method = "kendall"` if you prefer. Check the documentation for [`cor()`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/cor) for more information.
 
 ```{r alkaloids cor}
-alkaloids_cor <- alkaloids_totals %>%
-  select(all_of(alkaloid_total_names)) %>%
+alkaloids_cor <- alkaloids_totals |>
+  select(all_of(alkaloid_total_names)) |>
   cor()
 
 # look at our correlation matrix
@@ -207,8 +207,8 @@ First we will start (as we always do) by wrangling.
 
 ```{r rcorr wrangling}
 # create matrix for correlation
-alkaloids_to_cor <- alkaloids_totals %>%
-  select(all_of(alkaloid_total_names)) %>%
+alkaloids_to_cor <- alkaloids_totals |>
+  select(all_of(alkaloid_total_names)) |>
   as.matrix() # rcorr() needs a matrix
 
 library(Hmisc) # does cor() but also computes significance levels
@@ -264,7 +264,7 @@ Note, `GGally::ggcorr()` does not take a correlation matrix, but instead takes t
 ```{r ggcorr}
 library(GGally)
 
-to_corr <- alkaloids_totals %>%
+to_corr <- alkaloids_totals |>
   select(all_of(alkaloid_total_names)) 
 
 ggcorr(to_corr)
@@ -296,7 +296,7 @@ For this example, we have very long label names which are really difficult to wr
 We can also use the function `GGally::ggpairs()` to make a matrix of correlation related plots.
 
 ```{r ggpairs}
-alkaloids_totals %>%
+alkaloids_totals |>
   ggpairs(columns = c("Tomatine", "TotalLycoperosideFGEsculeosideA", "Total"), # pick variables
           aes(color = Class))
 ```
@@ -306,15 +306,15 @@ Let's customized a bit.
 ```{r ggpairs customized}
 # remove zeroes since they don't log transform
 # make log transformed columns
-alkaloids_totals_log <- alkaloids_totals %>%
+alkaloids_totals_log <- alkaloids_totals |>
   filter(Tomatine != 0, 
          TotalLycoperosideFGEsculeosideA != 0,
-         Total != 0) %>%
+         Total != 0) |>
   mutate(log10_tomatine = log10(Tomatine),
          log10_FGA = log10(TotalLycoperosideFGEsculeosideA),
          log10_total = log10(Total))
 
-alkaloids_totals_log %>%
+alkaloids_totals_log |>
     ggpairs(columns = c("log10_tomatine", "log10_FGA", "log10_total"),
           aes(color = Class, alpha = 0.5), # note alpha inside aes which is weird idk why
           columnLabels = c("Alpha-Tomatine", "Lycoperoside F/G\n Escueloside A", "Total Alkaloids"))
@@ -337,7 +337,7 @@ head(melted_alkaloids_cor)
 First pass minimalist plotting
 
 ```{r manual plotting 1}
-melted_alkaloids_cor %>%
+melted_alkaloids_cor |>
   ggplot(aes(x = Var1, y = Var2, fill = value)) +
   geom_tile()
 ```
@@ -388,7 +388,7 @@ Plot
 # remember we made alkaloid_labels
 print(alkaloid_labels)
 
-melted_alkaloids_lower %>%
+melted_alkaloids_lower |>
   ggplot(aes(x = Var1, y = Var2, fill = value)) +
   geom_tile() +
   geom_text(aes(label = round(value, 2)), color = "black") +
