@@ -58,8 +58,8 @@ Before we run the statistics, let's make a plot to see what this data looks like
 unique(penguins$sex)
 
 # plot
-(penguins_by_sex <- penguins %>%
-  drop_na(body_mass_g, sex) %>% # remove NAs for body_mass_g and sex
+(penguins_by_sex <- penguins |>
+  drop_na(body_mass_g, sex) |> # remove NAs for body_mass_g and sex
   ggplot(aes(x = sex, y = body_mass_g, color = sex)) + 
   geom_boxplot(outlier.shape = NA) + # remove outliers
   geom_jitter(height = 0, width = 0.3) + # jitter only in the x direction
@@ -90,28 +90,30 @@ knitr::include_graphics("img/not_normal.png")
 
 We will test normality by the [Shapiro-Wilk test](https://en.wikipedia.org/wiki/Shapiro%E2%80%93Wilk_test) using the function `rstatix::shapiro_test()`. This function is a pipe-friendly wrapper for the function [`shapiro.test()`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/shapiro.test), which just means you can use it with pipes.
 ```{r nornality sex}
-penguins %>%
-  drop_na(body_mass_g, sex) %>% # remove NAs
-  group_by(sex) %>% # test by sex
+penguins |>
+  drop_na(body_mass_g, sex) |> # remove NAs
+  group_by(sex) |> # test by sex
   shapiro_test(body_mass_g) # test for normality
 ```
+
 This data is not normal, which means we need to use non-parametric tests. Since we are not meeting the assumption for nornality, really you don't need to test for constant variance, but I'll show you how to do it anyway.
 
 #### Constant variance
 
 We can test for equal variance using Levene's test, [`levene_test()`](https://www.rdocumentation.org/packages/rstatix/versions/0.7.0/topics/levene_test) which is part of the `rstatix` package.  Again, this is a pipe-friendly wrapper for the function [`levene.test()`](https://www.rdocumentation.org/packages/lawstat/versions/3.4/topics/levene.test).
 ```{r constant variance sex}
-penguins %>%
-  drop_na(body_mass_g, sex) %>% # remove NAs
+penguins |>
+  drop_na(body_mass_g, sex) |> # remove NAs
   levene_test(body_mass_g ~ sex) # test for constant variance
 ```
+
 No constant variance. Double Non-parametric.
 
 Can we visualize normality another way?
 
 ```{r body mass histogram by sex}
-penguins %>%
-  drop_na(body_mass_g, sex) %>%
+penguins |>
+  drop_na(body_mass_g, sex) |>
   ggplot(aes(x = body_mass_g, y = sex, fill = sex)) +
   ggridges::geom_density_ridges(alpha = 0.7) + # density ridgeline plot
   scale_y_discrete(labels = c("Female", "Male")) +
@@ -123,10 +125,11 @@ penguins %>%
 
 ```
 
-Some of these distribution are bimodal (i.e., not normal). This is likely because we have 3 different species of penguins here. You can see below that actually each species looks reasonably normal.
+These two distributions look bimodal(and thus not normal). This is likely because we have 3 different species of penguins here. You can see below that actually each species looks reasonably normal.
+
 ```{r body mass histogram by sex and species}
-penguins %>%
-  drop_na(body_mass_g, sex) %>%
+penguins |>
+  drop_na(body_mass_g, sex) |>
   ggplot(aes(x = body_mass_g, fill = sex)) +
   geom_histogram() +
   facet_grid(cols = vars(species), rows = vars(sex)) + # 2 way facet
@@ -141,11 +144,12 @@ penguins %>%
 
 This means if we want to test for different means, we can use the Wilcoxon rank sun test, or Mann Whitney test. If your data was normal, you could just change `wilcox_test()` to `t_test()` and the rest would be the same.
 ```{r wilxocon test}
-penguins %>%
-  drop_na(body_mass_g, sex) %>%
+penguins |>
+  drop_na(body_mass_g, sex) |>
   wilcox_test(body_mass_g ~ sex,
               paired = FALSE)
 ```
+
 This is not surprising, that there is a significant difference in body weight between male and female penguins. We can see this clearly in our plot.
 
 How can we add the stats to our plot?
@@ -199,8 +203,8 @@ glue("2 + 3 = {x}")
 
 ```{r annotate asterisk pval glue}
 # we did this already, just assigning to object
-by_sex_pval <- penguins %>%
-  drop_na(body_mass_g, sex) %>%
+by_sex_pval <- penguins |>
+  drop_na(body_mass_g, sex) |>
   wilcox_test(body_mass_g ~ sex,
               paired = FALSE)
 
@@ -219,9 +223,9 @@ When we are comparing means between more than 2 samples, we will have to first r
 
 Are there significant differences in body mass 
 ```{r}
-(penguins_f_massbyspecies <- penguins %>%
-  drop_na(body_mass_g, species, sex) %>%
-  filter(sex == "female") %>%
+(penguins_f_massbyspecies <- penguins |>
+  drop_na(body_mass_g, species, sex) |>
+  filter(sex == "female") |>
   ggplot(aes(x = species, y = body_mass_g, fill = species)) +
   geom_violin(outlier.shape = NA,
               draw_quantiles = 0.5) + # add the median by drawing 50% quantile
@@ -241,16 +245,16 @@ Are there significant differences in body mass
 
 ```{r normality testing}
 # testing normality by group
-penguins %>%
-  drop_na(body_mass_g, sex) %>% # remove NAs
-  filter(sex == "female") %>%
-  group_by(species) %>% # test by species
+penguins |>
+  drop_na(body_mass_g, sex) |> # remove NAs
+  filter(sex == "female") |>
+  group_by(species) |> # test by species
   shapiro_test(body_mass_g) # test for normality
 
 # testing normality across all data
-penguins %>%
-  drop_na(body_mass_g, sex) %>% # remove NAs
-  filter(sex == "female") %>%
+penguins |>
+  drop_na(body_mass_g, sex) |> # remove NAs
+  filter(sex == "female") |>
   shapiro_test(body_mass_g) # test for normality
 ```
 
@@ -259,9 +263,9 @@ Ok looks like we have normally distributed data among the different species of f
 #### Constant variance
 [`levene_test()`](https://www.rdocumentation.org/packages/rstatix/versions/0.7.0/topics/levene_test) which is part of the `rstatix` package.  Again, this is a pipe-friendly wrapper for the function [`levene.test()`](https://www.rdocumentation.org/packages/lawstat/versions/3.4/topics/levene.test).
 ```{r constant variance ANOVA sex}
-penguins %>%
-  drop_na(body_mass_g, sex, species) %>% # remove NAs
-  filter(sex == "female") %>%
+penguins |>
+  drop_na(body_mass_g, sex, species) |> # remove NAs
+  filter(sex == "female") |>
   levene_test(body_mass_g ~ species) # test for constant variance
 ```
 
@@ -278,8 +282,8 @@ If we want to learn more about the function `aov()` we can do so using the code 
 We can run an ANOVA by indicating our model, and here I'm also selecting to drop the NAs for our variables of interest, and filtering within the `data =` argument.
 ```{r aov}
 aov_female_massbyspecies <- 
-  aov(data = penguins %>% 
-             filter(sex == "female") %>%
+  aov(data = penguins |> 
+             filter(sex == "female") |>
              drop_na(body_mass_g, species),
       body_mass_g ~ species)
 ```
@@ -340,10 +344,10 @@ We want to add the letters to this plot, so we can tell which groups of penguin 
 Before we can do this, we will need to do some of everyone's favorite task, wrangling. We are going to figure out what the maximum `body_mass_g` for each species is, so it will help us determine where to put our letter labels.  Then, we can add our labels to be higher than the largest data point. We will calculate this for each group, so that the letters are always right about our boxplot.
 
 ```{r body mass max}
-body_mass_max <- penguins %>%
-  filter(sex == "female") %>%
-  drop_na(body_mass_g, species) %>%
-  group_by(species) %>%
+body_mass_max <- penguins |>
+  filter(sex == "female") |>
+  drop_na(body_mass_g, species) |>
+  group_by(species) |>
   summarize(max_body_mass = max(body_mass_g))
 
 body_mass_max
@@ -359,8 +363,8 @@ Let's add our post-hoc group info to `body_mass_max`, since those two dataframes
 In this case, it doesn't matter which `_join()` we use because our dfs all have the exact same rows.
 
 ```{r tidy and join}
-tidier_tukey <- tidy_tukey %>%
-  rownames_to_column() %>% # converts rownames to columns
+tidier_tukey <- tidy_tukey |>
+  rownames_to_column() |> # converts rownames to columns
   rename(species = rowname) # renames the column now called rowname to species
   
 # join
