@@ -533,6 +533,10 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
     <a class="dropdown-item" href="../../../modules/module4/12_manhattan/12_manhattan_recitation_solutions.html">
  <span class="dropdown-text">Week 12 - Manhattan plots solutions</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/13_leftovers/13_leftovers_recitation_solutions.html">
+ <span class="dropdown-text">Week 13 - Leftovers solutions</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -652,6 +656,12 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
  <span class="menu-text">Week 12 - Manhattan plots solutions</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module4/13_leftovers/13_leftovers_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 13 - Leftovers solutions</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -751,8 +761,8 @@ $ P   &lt;dbl&gt; 0.91480604, 0.93707541, 0.28613953, 0.83044763, 0.64174552, 0.
 <h3 class="anchored" data-anchor-id="how-are-the-markers-distributed-across-the-chromosomes">How are the markers distributed across the chromosomes?</h3>
 <p>The function <code>summarize()</code> from <code>dplyr</code> is sometimes masked by another function. If you have find you are getting an error when you call <code>summarize()</code> that says something like “argument”by” is missing, with no default” then specify explicitly that you want to use <code>dplyr::summarize()</code>. You could also use the British spelling <code>summarise()</code> and that also works. Here’s a <a href="https://stackoverflow.com/questions/33807624/understanding-ddply-error-message-argument-by-is-missing-with-no-default">stack overflow post</a> where you can learn more.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gwasResults <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(CHR) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gwasResults <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(CHR) <span class="sc">|&gt;</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">min_bp =</span> <span class="fu">min</span>(BP),</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">max_bp =</span> <span class="fu">max</span>(BP),</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">number_of_markers =</span> <span class="fu">length</span>(SNP))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -780,12 +790,12 @@ $ P   &lt;dbl&gt; 0.91480604, 0.93707541, 0.28613953, 0.83044763, 0.64174552, 0.
 <p>Color by chromosome, make sure the x-axis breaks are appropriate, be sure your y-axis is -log10 pvalue. Label the top 3 most significant points with their SNP number.</p>
 <p>Create new column called NegLog10P which is the negative log10 pvalue.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gwasResults_neglog10 <span class="ot">&lt;-</span> gwasResults <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gwasResults_neglog10 <span class="ot">&lt;-</span> gwasResults <span class="sc">|&gt;</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">NegLog10P =</span> <span class="sc">-</span><span class="fu">log10</span>(P))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Create a new variable called SNP_number so we can plot this on the x-axis.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>gwasResults_neglog10 <span class="ot">&lt;-</span> gwasResults_neglog10 <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>gwasResults_neglog10 <span class="ot">&lt;-</span> gwasResults_neglog10 <span class="sc">|&gt;</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">SNP_number =</span> <span class="fu">parse_number</span>(SNP))</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(gwasResults_neglog10<span class="sc">$</span>SNP_number)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -795,8 +805,8 @@ $ P   &lt;dbl&gt; 0.91480604, 0.93707541, 0.28613953, 0.83044763, 0.64174552, 0.
 </div>
 <p>Set axis for plotting.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(set_axis <span class="ot">&lt;-</span> gwasResults_neglog10 <span class="sc">%&gt;%</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(CHR) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>(set_axis <span class="ot">&lt;-</span> gwasResults_neglog10 <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(CHR) <span class="sc">|&gt;</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">min =</span> <span class="fu">min</span>(SNP_number),</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">max =</span> <span class="fu">max</span>(SNP_number),</span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">center =</span> (max <span class="sc">-</span> min)<span class="sc">/</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -823,14 +833,14 @@ $ P   &lt;dbl&gt; 0.91480604, 0.93707541, 0.28613953, 0.83044763, 0.64174552, 0.
 </div>
 <p>Indicate which are the significant points in the plot.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>significant <span class="ot">&lt;-</span> gwasResults_neglog10 <span class="sc">%&gt;%</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(NegLog10P <span class="sc">&gt;</span> bonferroni_pval) <span class="sc">%&gt;%</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>NegLog10P) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>significant <span class="ot">&lt;-</span> gwasResults_neglog10 <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(NegLog10P <span class="sc">&gt;</span> bonferroni_pval) <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>NegLog10P) <span class="sc">|&gt;</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) <span class="co"># take the first 3 which works bc we arranged descending</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Plot</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>gwasResults_neglog10 <span class="sc">%&gt;%</span></span>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>gwasResults_neglog10 <span class="sc">|&gt;</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SNP_number, <span class="at">y =</span> NegLog10P, <span class="at">color =</span> <span class="fu">as.factor</span>(CHR))) <span class="sc">+</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">data =</span> significant,</span>

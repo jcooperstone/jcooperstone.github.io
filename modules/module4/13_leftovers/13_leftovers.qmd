@@ -59,14 +59,14 @@ library(gapminder) # where data is
 ### Wrangle
 We can create a dataframe that includes only the data for the countries in the continent Americas.
 ```{r gghlighlight wrangling}
-gapminder_americas <- gapminder %>%
+gapminder_americas <- gapminder |>
   filter(continent == "Americas")
 ```
 
 ### Plot
 If we look at all the countries at once, we get plot spaghetti 🍝.
 ```{r gghighlight base plot, warning = FALSE, message = FALSE}
-gapminder_americas %>%
+gapminder_americas |>
   ggplot(aes(x = year, y = lifeExp, group = country, color = country)) +
   geom_line() +
   theme_minimal() +
@@ -80,7 +80,7 @@ gapminder_americas %>%
 Create a lineplot showing the life expectacy over 1952 to 2007 for all countries, highlighting the United States.
 ```{r gghighlight US, warning = FALSE, message = FALSE}
 # highlight just the US
-gapminder_americas %>%
+gapminder_americas |>
   ggplot(aes(x = year, y = lifeExp, group = country, color = country)) +
   geom_line() +
   gghighlight(country == "United States") +
@@ -95,7 +95,7 @@ gapminder_americas %>%
 Facet our plot, and highlight the country for each facet.
 ```{r gghighlight facet, warning = FALSE, message = FALSE}
 # facet and highlight each country
-gapminder_americas %>%
+gapminder_americas |>
   ggplot(aes(x = year, y = lifeExp)) +
   geom_line(aes(color = country)) +
   gghighlight() +
@@ -128,16 +128,16 @@ library(palmerpenguins) # for making some plots to assemble
 ### Make some plots
 
 ```{r patchwork make plots}
-plot1 <- penguins %>%
+plot1 <- penguins |>
   ggplot(aes(x = species, y = body_mass_g, color = species)) +
   geom_boxplot()
 
-plot2 <- penguins %>%
+plot2 <- penguins |>
   ggplot(aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
   geom_point()
 
-plot3 <- penguins %>%
-  drop_na() %>%
+plot3 <- penguins |>
+  drop_na() |>
   ggplot(aes(x = island, y = flipper_length_mm, color = species)) +
   geom_boxplot() +
   facet_wrap(vars(sex))
@@ -183,8 +183,8 @@ library(magick) # for gif rendering
 ### Plot
 First let's make a base plot. Note that this measure of population isn't actually correct as its summing all of the populations across all the years.
 ```{r base plot to animate}
-(base_plot <- gapminder %>%
-  filter(continent == "Africa") %>%
+(base_plot <- gapminder |>
+  filter(continent == "Africa") |>
   ggplot(aes(x = pop, y = reorder(country, pop))) +
   geom_col() +
   scale_x_continuous(labels = scales::unit_format(unit = "M", scale = 1e-6)) +
@@ -258,13 +258,13 @@ colnames(coffee)
 We are going to wrangle the data to facilitate plotting. We are using `rescale` as we need the data for each attribute to be between 0 and 1.
 ```{r ggradar wrangling}
 # tidy data to summarize easily
-(coffee_summary_long <- coffee %>%
-  select(species, aroma:cupper_points) %>% # first column is the groups
+(coffee_summary_long <- coffee |>
+  select(species, aroma:cupper_points) |> # first column is the groups
   pivot_longer(cols = aroma:cupper_points, # our favorite - tidy data to faciliate summarizing
                names_to = "attribute",
-               values_to = "score") %>% 
-  group_by(attribute) %>% # perform operations by species and attribute pairs
-  mutate(across(where(is.numeric), rescale)) %>% # rescale data that is numeric
+               values_to = "score") |> 
+  group_by(attribute) |> # perform operations by species and attribute pairs
+  mutate(across(where(is.numeric), rescale)) |> # rescale data that is numeric
   ungroup() |> # get rid of grouping by attribute
   group_by(species, attribute) |> # group now by species and attribute
   summarize(mean_score = mean(score)))
@@ -273,7 +273,7 @@ We are going to wrangle the data to facilitate plotting. We are using `rescale` 
 `ggradar` takes wide data though, so we are going to pivot back to wide data.
 ```{r ggradar wrangling 2}
 # go back to wide
-coffee_summary_wide <- coffee_summary_long %>%
+coffee_summary_wide <- coffee_summary_long |>
   pivot_wider(names_from = "attribute",
               values_from = "mean_score")
 ```
