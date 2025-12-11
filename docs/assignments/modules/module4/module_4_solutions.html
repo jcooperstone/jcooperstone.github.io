@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jessica Cooperstone">
+
+<title>Module 4 Assignment Solutions – 💻🧰📊🥳</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../img/code-slash.png" rel="icon" type="image/png">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-77633ece19c8e04db6d5a17cd4436747.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-77a2314449dfb98733dd17d55e0a86b3.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-77633ece19c8e04db6d5a17cd4436747.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-M24LDNCMG6"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
+</script>
+<link href="../../../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="../../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="../../../site_libs/plotly-binding-4.11.0/plotly.js"></script>
+<script src="../../../site_libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="../../../site_libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="../../../site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="../../../site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="../../../site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="../../../site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../favicon.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">💻🧰📊🥳</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-syllabus" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Syllabus</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-syllabus">    
+        <li>
+    <a class="dropdown-item" href="../../../syllabus/syllabus.html">
+ <span class="dropdown-text">Syllabus</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-course-content" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Course content</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-course-content">    
+        <li class="dropdown-header">Module 1 - Principles</li>
+        <li>
+    <a class="dropdown-item" href="../../../modules/module1/01_principles/01_principles.html">
+ <span class="dropdown-text">Week 1 - Principles</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module1/02_good-and-bad/02_goodbad.html">
+ <span class="dropdown-text">Week 2 - Good and bad visualizations</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Module 2 - Coding fundamentals</li>
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/03_rmarkdown/03_Rmd.html">
+ <span class="dropdown-text">Week 3 - R Markdown</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/04_wrangling/04_wrangling.html">
+ <span class="dropdown-text">Week 4 - Wrangling</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/05_ggplot101/05_ggplot101.html">
+ <span class="dropdown-text">Week 5 - ggplot101</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/06_ggplot102/06_ggplot102.html">
+ <span class="dropdown-text">Week 6 - ggplot102</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Module 3 - Data exploration</li>
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/07_distributions/07_distributions.html">
+ <span class="dropdown-text">Week 7 - Data distributions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/08_correlations/08_correlations.html">
+ <span class="dropdown-text">Week 8 - Correlations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/09_add-stats/09_add-stats.html">
+ <span class="dropdown-text">Week 9 - Adding statistics</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Module 4 - Putting it together</li>
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/10_pca/10_pca.html">
+ <span class="dropdown-text">Week 10 - Principal components analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/11_interactive-plots/11_interactive-plots.html">
+ <span class="dropdown-text">Week 11 - Interactive plots</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/12_manhattan/12_manhattan.html">
+ <span class="dropdown-text">Week 12 - Manhattan plots</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/13_leftovers/13_leftovers.html">
+ <span class="dropdown-text">Week 13 - Leftovers</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-recitations" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Recitations</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-recitations">    
+        <li class="dropdown-header">Module 2 - Coding fundamentals</li>
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/03_rmarkdown/03_Rmd_recitation.html">
+ <span class="dropdown-text">Week 3 - R Markdown</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/04_wrangling/04_wrangling_recitation.html">
+ <span class="dropdown-text">Week 4 - Wrangling</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/05_ggplot101/05_ggplot101_recitation.html">
+ <span class="dropdown-text">Week 5 - ggplot101</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/06_ggplot102/06_ggplot102_recitation.html">
+ <span class="dropdown-text">Week 6 - ggplot102</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Module 3 - Data exploration</li>
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/07_distributions/07_distributions_recitation.html">
+ <span class="dropdown-text">Week 7 - Data distributions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/08_correlations/08_correlations_recitation.html">
+ <span class="dropdown-text">Week 8 - Correlations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/09_add-stats/09_add-stats_recitation.html">
+ <span class="dropdown-text">Week 9 - Adding statistics</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Module 4 - Putting it together</li>
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/10_pca/10_pca_recitation.html">
+ <span class="dropdown-text">Week 10 - Principal components analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/11_interactive-plots/11_interactive-plots_recitation.html">
+ <span class="dropdown-text">Week 11 - Interactive plots</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/12_manhattan/12_manhattan_recitation.html">
+ <span class="dropdown-text">Week 12 - Manhattan plots</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/13_leftovers/13_leftovers_recitation.html">
+ <span class="dropdown-text">Week 13 - Leftovers</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-assignments" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Assignments</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-assignments">    
+        <li class="dropdown-header">Module assignments</li>
+        <li>
+    <a class="dropdown-item" href="../../../assignments/modules/module1/module_1_assignment.html">
+ <span class="dropdown-text">Module 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../assignments/modules/module2/module_2_assignment.html">
+ <span class="dropdown-text">Module 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../assignments/modules/module3/module_3_assignment.html">
+ <span class="dropdown-text">Module 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../assignments/modules/module4/module_4_assignment.html">
+ <span class="dropdown-text">Module 4</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Reflections</li>
+        <li>
+    <a class="dropdown-item" href="../../../assignments/reflections.html">
+ <span class="dropdown-text">Reflection instructions</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Recitations</li>
+        <li>
+    <a class="dropdown-item" href="../../../assignments/recitations.html">
+ <span class="dropdown-text">Recitation instructions</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Capstone assignment</li>
+        <li>
+    <a class="dropdown-item" href="../../../assignments/capstone.html">
+ <span class="dropdown-text">Capstone instructions</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-solutions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Solutions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-solutions">    
+        <li class="dropdown-header">Module assignment solutions</li>
+        <li>
+    <a class="dropdown-item" href="../../../assignments/modules/module2/module_2_solutions.html">
+ <span class="dropdown-text">Module 2 solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../assignments/modules/module3/module_3_solutions.html">
+ <span class="dropdown-text">Module 3 solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../assignments/modules/module4/module_4_solutions.html">
+ <span class="dropdown-text">Module 4 solutions</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Recitation solutions</li>
+        <li>
+    <a class="dropdown-item" href="https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/main/rmds/03_Rmd_recitation_solutions.Rmd">
+ <span class="dropdown-text">Week 3 - R Markdown solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/04_wrangling/04_wrangling_recitation_solutions.html">
+ <span class="dropdown-text">Week 4 - Wrangling solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/05_ggplot101/05_ggplot101_recitation_solutions.html">
+ <span class="dropdown-text">Week 5 - ggplot101 solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/06_ggplot102/06_ggplot102_recitation_solutions.html">
+ <span class="dropdown-text">Week 6 - ggplot102 solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/07_distributions/07_distributions_recitation_solutions.html">
+ <span class="dropdown-text">Week 7 - Data distributions solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/08_correlations/08_correlations_recitation_solutions.html">
+ <span class="dropdown-text">Week 8 - Correlations solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module3/09_add-stats/09_add-stats_recitation_solutions.html">
+ <span class="dropdown-text">Week 9 - Adding statistics solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/10_pca/10_pca_recitation_solutions.html">
+ <span class="dropdown-text">Week 10 - Principal components analysis solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/11_interactive-plots/11_interactive-plots_recitation_solutions.html">
+ <span class="dropdown-text">Week 11 - Interactive plots solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/12_manhattan/12_manhattan_recitation_solutions.html">
+ <span class="dropdown-text">Week 12 - Manhattan plots solutions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/13_leftovers/13_leftovers_recitation_solutions.html">
+ <span class="dropdown-text">Week 13 - Leftovers solutions</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/jcooperstone/rdataviz" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../assignments/modules/module2/module_2_solutions.html">Module assignment solutions</a></li><li class="breadcrumb-item"><a href="../../../assignments/modules/module4/module_4_solutions.html">Module 4 solutions</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Module assignment solutions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../assignments/modules/module2/module_2_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 2 solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../assignments/modules/module3/module_3_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Module 3 solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../assignments/modules/module4/module_4_solutions.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Module 4 solutions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Recitation solutions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/main/rmds/03_Rmd_recitation_solutions.Rmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 3 - R Markdown solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module2/04_wrangling/04_wrangling_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 4 - Wrangling solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module2/05_ggplot101/05_ggplot101_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 5 - ggplot101 solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module2/06_ggplot102/06_ggplot102_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 6 - ggplot102 solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module3/07_distributions/07_distributions_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 7 - Data distributions solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module3/08_correlations/08_correlations_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 8 - Correlations solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module3/09_add-stats/09_add-stats_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 9 - Adding statistics solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module4/10_pca/10_pca_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 10 - Principal components analysis solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module4/11_interactive-plots/11_interactive-plots_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 11 - Interactive plots solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module4/12_manhattan/12_manhattan_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 12 - Manhattan plots solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module4/13_leftovers/13_leftovers_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 13 - Leftovers solutions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  </ul></li>
+  <li><a href="#principal-components-analysis-pca-of-american-kennel-club-dog-bred-trait-data-6-pts" id="toc-principal-components-analysis-pca-of-american-kennel-club-dog-bred-trait-data-6-pts" class="nav-link" data-scroll-target="#principal-components-analysis-pca-of-american-kennel-club-dog-bred-trait-data-6-pts">1. Principal components analysis (PCA) of American Kennel Club dog bred trait data (6 pts)</a>
+  <ul>
+  <li><a href="#scree-plot" id="toc-scree-plot" class="nav-link" data-scroll-target="#scree-plot">Scree plot</a>
+  <ul class="collapse">
+  <li><a href="#with-fviz_eig" id="toc-with-fviz_eig" class="nav-link" data-scroll-target="#with-fviz_eig">With <code>fviz_eig()</code></a></li>
+  <li><a href="#manually" id="toc-manually" class="nav-link" data-scroll-target="#manually">Manually</a></li>
+  </ul></li>
+  <li><a href="#scores-plot" id="toc-scores-plot" class="nav-link" data-scroll-target="#scores-plot">Scores plot</a>
+  <ul class="collapse">
+  <li><a href="#with-fviz_pca_ind" id="toc-with-fviz_pca_ind" class="nav-link" data-scroll-target="#with-fviz_pca_ind">With <code>fviz_pca_ind()</code></a></li>
+  <li><a href="#manually-1" id="toc-manually-1" class="nav-link" data-scroll-target="#manually-1">Manually</a></li>
+  </ul></li>
+  <li><a href="#loadings-plot" id="toc-loadings-plot" class="nav-link" data-scroll-target="#loadings-plot">Loadings plot</a>
+  <ul class="collapse">
+  <li><a href="#with-fviz_pca_var" id="toc-with-fviz_pca_var" class="nav-link" data-scroll-target="#with-fviz_pca_var">With <code>fviz_pca_var()</code></a></li>
+  <li><a href="#manually-2" id="toc-manually-2" class="nav-link" data-scroll-target="#manually-2">Manually</a></li>
+  </ul></li>
+  <li><a href="#scree-and-scores-plots" id="toc-scree-and-scores-plots" class="nav-link" data-scroll-target="#scree-and-scores-plots">Scree and scores plots</a></li>
+  </ul></li>
+  <li><a href="#make-your-pca-plot-interactive-2-pts" id="toc-make-your-pca-plot-interactive-2-pts" class="nav-link" data-scroll-target="#make-your-pca-plot-interactive-2-pts">2. Make your PCA plot interactive (2 pts)</a></li>
+  <li><a href="#see-how-your-pca-related-to-breed-popularity-2-pts" id="toc-see-how-your-pca-related-to-breed-popularity-2-pts" class="nav-link" data-scroll-target="#see-how-your-pca-related-to-breed-popularity-2-pts">3. See how your PCA related to breed popularity (2 pts)</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../assignments/modules/module2/module_2_solutions.html">Module assignment solutions</a></li><li class="breadcrumb-item"><a href="../../../assignments/modules/module4/module_4_solutions.html">Module 4 solutions</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Module 4 Assignment Solutions</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jessica Cooperstone </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>This is your assignment for Module 4 Putting It All Together, focused on the material you learned in the lectures and recitation activities on PCA, Manhattan plots, interactive plots, and the leftovers.</p>
+<p>Submission info:</p>
+<ul>
+<li>Please submit this assignment by uploading a <strong>knitted .html</strong> to Carmen</li>
+<li>Your headers should be logical and your report and code annotated with descriptions of what you’re doing. Starting on this assignment, I will be considering for overall format and readability of your assignment as part of your grade. I am doing this because the format of your report will be considered for your final capstone assignment. This means you should have reasonable headers and header levels, understandable flow between plots and code, and use Markdown language when appropriate.</li>
+<li>Make sure you include the Code Download button so that I can see your code as well</li>
+<li>Customize the YAML and the document so you like how it looks</li>
+</ul>
+<p>Remember there are often many ways to reach the same end product. I have showed you many ways in class to achieve a similar end product, you only need to show me one of them. As long as your answer is reasonable, you will get full credit even if its different than what I intended.</p>
+<blockquote class="blockquote">
+<p>This assignment will be due on Tuesday, December 3, 2024, at 11:59pm.</p>
+</blockquote>
+<section id="data" class="level3">
+<h3 class="anchored" data-anchor-id="data">Data</h3>
+<p>The <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2022/2022-02-01/readme.md">data</a> we will be using is the same we used in the ggplot102 recitation that includes information about dog breed trait information from the American Kennel Club.</p>
+<p>Download the data using the code below. <strong>Don’t use the code from week 5 recitation.</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>breed_traits <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">'https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/main/assignments/modules/module4/data/breed_traits_fixed.csv'</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>trait_description <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">'https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/main/assignments/modules/module4/data/trait_description.csv'</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>breed_rank_all <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">'https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/main/assignments/modules/module4/data/breed_rank_all.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For a little hint, here are the packages I used to complete this task. Yours might not be exactly the same.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gghighlight)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="principal-components-analysis-pca-of-american-kennel-club-dog-bred-trait-data-6-pts" class="level2">
+<h2 class="anchored" data-anchor-id="principal-components-analysis-pca-of-american-kennel-club-dog-bred-trait-data-6-pts">1. Principal components analysis (PCA) of American Kennel Club dog bred trait data (6 pts)</h2>
+<p>Run a PCA on <code>breed_traits</code> for all of the numeric data present in that dataset. Create the following plots and make them of publication quality:</p>
+<ol type="1">
+<li>A scree plot</li>
+<li>A scores plot</li>
+<li>A loadings plot</li>
+<li>A two panel plot that has the scores plot and the scree plot together</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a df that has only the quantitative traits</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>breed_traits_quant <span class="ot">&lt;-</span> breed_traits <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="st">`</span><span class="at">Coat Type</span><span class="st">`</span>, <span class="sc">-</span><span class="st">`</span><span class="at">Coat Length</span><span class="st">`</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># run PCA</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># no scaling (because all are on the same scale)</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># centering is a good idea</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>trait_pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(breed_traits_quant[,<span class="sc">-</span><span class="dv">1</span>],</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                    <span class="at">scale =</span> <span class="cn">FALSE</span>, <span class="co"># if you scale you will get slightly different result</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">center =</span> <span class="cn">TRUE</span>) <span class="co"># if you don't center you will get a slightly different result</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># save the importance into a new df</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>importance <span class="ot">&lt;-</span> <span class="fu">summary</span>(trait_pca)<span class="sc">$</span>importance <span class="sc">|&gt;</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If you chose to scale or not center or any combination of those, that is all fine. For this data set specifically, scaling is not necessary since all data is on the same scale.</p>
+<section id="scree-plot" class="level3">
+<h3 class="anchored" data-anchor-id="scree-plot">Scree plot</h3>
+<section id="with-fviz_eig" class="level4">
+<h4 class="anchored" data-anchor-id="with-fviz_eig">With <code>fviz_eig()</code></h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_eig</span>(trait_pca)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in geom_bar(stat = "identity", fill = barfill, color = barcolor, :
+Ignoring empty aesthetic: `width`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="module_4_solutions_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="manually" class="level4">
+<h4 class="anchored" data-anchor-id="manually">Manually</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create tidy data with a columns called PC and value </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>importance_tidy <span class="ot">&lt;-</span> importance <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="at">var =</span> <span class="st">"measure"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> PC1<span class="sc">:</span>PC10,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"PC"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"value"</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># create a vector with the order we want</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>my_order <span class="ot">&lt;-</span> <span class="fu">colnames</span>(importance)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># relevel according to my_order</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>importance_tidy<span class="sc">$</span>PC <span class="ot">&lt;-</span> <span class="fu">factor</span>(importance_tidy<span class="sc">$</span>PC, <span class="at">levels =</span> my_order)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>(scree_plot <span class="ot">&lt;-</span> importance_tidy <span class="sc">|&gt;</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(measure <span class="sc">==</span> <span class="st">"Proportion of Variance"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> PC, <span class="at">y  =</span> value)) <span class="sc">+</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">alpha =</span> <span class="fl">0.1</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Principal component"</span>,</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Percent variance explained"</span>,</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Scree plot of dog traits"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="module_4_solutions_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="scores-plot" class="level3">
+<h3 class="anchored" data-anchor-id="scores-plot">Scores plot</h3>
+<section id="with-fviz_pca_ind" class="level4">
+<h4 class="anchored" data-anchor-id="with-fviz_pca_ind">With <code>fviz_pca_ind()</code></h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_ind</span>(trait_pca)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="module_4_solutions_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="manually-1" class="level4">
+<h4 class="anchored" data-anchor-id="manually-1">Manually</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a df of trait_pca$x</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>scores_raw <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(trait_pca<span class="sc">$</span>x)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># bind breed name</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(breed_traits[,<span class="dv">1</span>], <span class="co"># first column where we have breed name</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                    scores_raw)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># create objects indicating percent variance explained by PC1 and PC2</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>PC1_percent <span class="ot">&lt;-</span> <span class="fu">round</span>((importance[<span class="dv">2</span>,<span class="dv">1</span>])<span class="sc">*</span><span class="dv">100</span>, <span class="co"># index 2nd row, 1st column, times 100</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                     <span class="dv">1</span>) <span class="co"># round to 1 decimal</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>PC2_percent <span class="ot">&lt;-</span> <span class="fu">round</span>((importance[<span class="dv">2</span>,<span class="dv">2</span>])<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>) </span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>(scores_plot <span class="ot">&lt;-</span> scores <span class="sc">|&gt;</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> PC1, <span class="at">y =</span> PC2)) <span class="sc">+</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="fu">glue</span>(<span class="st">"PC1: {PC1_percent}%"</span>), </span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">glue</span>(<span class="st">"PC2: {PC2_percent}%"</span>), </span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"PCA Scores Plot of American Kennel </span><span class="sc">\n</span><span class="st">Club Dog Trait Data"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="module_4_solutions_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="loadings-plot" class="level3">
+<h3 class="anchored" data-anchor-id="loadings-plot">Loadings plot</h3>
+<section id="with-fviz_pca_var" class="level4">
+<h4 class="anchored" data-anchor-id="with-fviz_pca_var">With <code>fviz_pca_var()</code></h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_var</span>(trait_pca)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.
+ℹ The deprecated feature was likely used in the ggpubr package.
+  Please report the issue at &lt;https://github.com/kassambara/ggpubr/issues&gt;.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="module_4_solutions_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="manually-2" class="level4">
+<h4 class="anchored" data-anchor-id="manually-2">Manually</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># grab raw loadings, without any metadata</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>loadings_raw <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(trait_pca<span class="sc">$</span>rotation)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># move rowname to column</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>loadings <span class="ot">&lt;-</span> loadings_raw <span class="sc">|&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rownames_to_column</span>(<span class="at">var =</span> <span class="st">"Trait"</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>(loadings_plot <span class="ot">&lt;-</span> loadings <span class="sc">|&gt;</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> PC1, <span class="at">y =</span> PC2, <span class="at">label =</span> Trait)) <span class="sc">+</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span>  </span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="fu">glue</span>(<span class="st">"PC1: {PC1_percent}%"</span>), </span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">glue</span>(<span class="st">"PC2: {PC2_percent}%"</span>), </span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"PCA Loadings Plot of American Kennel Club Dog Trait Data"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="module_4_solutions_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="scree-and-scores-plots" class="level3">
+<h3 class="anchored" data-anchor-id="scree-and-scores-plots">Scree and scores plots</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>scree_plot <span class="sc">+</span> scores_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="module_4_solutions_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Some of you misread the the fourth part of question 1 and combined the scores and loadings plot together. I am showing you how to do that also here.</p>
+<p>First we need to scale our data so that the scores and loadings are on the same scale.</p>
+<p>I can write a quick function to allow normalization.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>normalize <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">return</span>((x <span class="sc">-</span> <span class="fu">min</span>(x))<span class="sc">/</span>(<span class="fu">max</span>(x) <span class="sc">-</span> <span class="fu">min</span>(x)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then I can nornalize the scores using the scale function, since the loadings are already normalized.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>scores_normalized <span class="ot">&lt;-</span> scores <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">PC1_norm =</span> <span class="fu">scale</span>(<span class="fu">normalize</span>(PC1), <span class="at">center =</span> <span class="cn">TRUE</span>, <span class="at">scale =</span> <span class="cn">FALSE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">PC2_norm =</span> <span class="fu">scale</span>(<span class="fu">normalize</span>(PC2), <span class="at">center =</span> <span class="cn">TRUE</span>, <span class="at">scale =</span> <span class="cn">FALSE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Breed, PC1_norm, PC2_norm, <span class="fu">everything</span>()) <span class="co"># reorder </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>How did it go? PC1_norm and PC2_norm should all now be between -1 and 1</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(scores_normalized) <span class="co"># looks good</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 17
+  Breed     PC1_norm[,1] PC2_norm[,1]   PC1    PC2    PC3    PC4     PC5     PC6
+  &lt;chr&gt;            &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1 Retrieve…       -0.454      -0.120  -3.33 -0.730  1.02  -0.740 0.337   -0.293 
+2 French B…       -0.179      -0.337  -1.31 -2.05   2.39   0.321 0.482    1.46  
+3 German S…       -0.213      -0.295  -1.56 -1.79  -1.32  -0.849 0.283   -0.882 
+4 Retrieve…       -0.269      -0.286  -1.98 -1.74   2.37   0.354 0.727    0.167 
+5 Bulldogs         0.140      -0.145   1.03 -0.881  0.851  0.725 0.00688 -0.357 
+6 Poodles         -0.299       0.0585 -2.19  0.356 -2.22   1.98  1.39     0.0384
+# ℹ 8 more variables: PC7 &lt;dbl&gt;, PC8 &lt;dbl&gt;, PC9 &lt;dbl&gt;, PC10 &lt;dbl&gt;, PC11 &lt;dbl&gt;,
+#   PC12 &lt;dbl&gt;, PC13 &lt;dbl&gt;, PC14 &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>Now we can plot together the normalized scores plot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(scores_plot_norm <span class="ot">&lt;-</span> scores_normalized <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> PC1_norm, <span class="at">y =</span> PC2_norm)) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="fu">glue</span>(<span class="st">"PC1: {PC1_percent}%"</span>), </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">glue</span>(<span class="st">"PC2: {PC2_percent}%"</span>), </span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"PCA Scores Plot of American Kennel </span><span class="sc">\n</span><span class="st">Club Dog Trait Data"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="module_4_solutions_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>And use patchwork to combine the scores and loadings into one figure. I am also adjusting <code>fig.width</code> and <code>fig.height</code> in my chunk settings.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>scores_plot_norm <span class="sc">/</span> (loadings_plot <span class="sc">+</span> <span class="fu">xlim</span>(<span class="sc">-</span><span class="fl">0.46</span>, <span class="fl">0.55</span>) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="sc">-</span><span class="fl">0.57</span>, <span class="fl">0.42</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="module_4_solutions_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="make-your-pca-plot-interactive-2-pts" class="level2">
+<h2 class="anchored" data-anchor-id="make-your-pca-plot-interactive-2-pts">2. Make your PCA plot interactive (2 pts)</h2>
+<p>Make your PCA scores plot interactive, and so that when you hover each point, you can see what the name of that dog breed is (and only the breed of that dog, without the PC coordinates).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>scores_plotly <span class="ot">&lt;-</span> scores <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> PC1, <span class="at">y =</span> PC2, <span class="at">text =</span> <span class="fu">glue</span>(<span class="st">"Breed: {Breed}"</span>))) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="fu">glue</span>(<span class="st">"PC1: {PC1_percent}%"</span>), </span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">glue</span>(<span class="st">"PC2: {PC2_percent}%"</span>), </span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"PCA Scores Plot of American Kennel Club Dog Trait Data"</span>)</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(scores_plotly, <span class="at">tooltip =</span> <span class="st">"text"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-73563d6612d15819de6a" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-73563d6612d15819de6a">{"x":{"data":[{"x":[-3.7166508903637259,4.3553472570851],"y":[0,0],"text":"","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,0],"y":[-3.8360055309695777,2.8542183256051361],"text":"","type":"scatter","mode":"lines","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[-3.3293712348035838,-1.3125761989552298,-1.5631922044193762,-1.9762933430245146,1.0275182266348533,-2.1924696260680534,-0.89438632228761394,0.80480938063206475,-2.0087208526538198,-0.39165287229133688,-0.65517307774816369,-0.64571008658080808,-1.6629850889438738,-0.28761005623431973,0.82628426512390674,-3.3497418836615065,-0.57242263264033599,-1.43786938874592,-1.5813267960388542,-0.68420042650027491,-1.2602454874283135,-1.7724785453554943,1.1433949988892307,-2.4673939935287148,1.7133675701189441,-0.80253974829562202,-2.1678386118471029,-0.32611471889844107,-1.5074364644540819,-0.97510408577253993,-2.1056664848608144,-1.8858426890958968,1.2636614748951791,1.9635605691260165,-2.7345530320437716,0.62273669123972952,1.1549259226523283,1.5111338498509204,-1.5035306028961006,-0.62407062129646051,-0.1280843587947178,0.39271726451623495,1.8464914039378364,-1.4862421073517429,-1.9316772321506195,0.80002636264846294,-1.2052584897583671,3.3344141052003327,-2.5526551567017433,0.57869090627515118,-0.19876451277974336,1.2374343699549688,-3.0439043051573718,1.8455581672281562,1.95855469433954,-2.3164306197565407,1.0688259753206575,0.51732090938440534,-0.042772868633179056,-0.62743670002053764,1.7153250639456104,2.5373893626166786,-2.2263894720477873,1.2065229245187192,1.3224934209525356,-0.71214432527192228,-0.1584773239796593,-0.42950065065188942,-0.73770204786201943,1.7873405273896474,0.96970833009674406,-1.8193446836666378,1.413562257052221,2.0510759319203919,-2.6898387110177842,-1.0852550910037855,-0.53085486753103306,1.4373735397427445,1.0549214001180611,-1.0633398793131212,-1.2533305814415341,1.5334564038693697,-2.2078033584922685,3.2945348789688853,3.9884382503828806,2.6505185908728461,-0.59454300536906479,-0.28378984633544285,0.16002742050312255,-1.5911103965955771,-0.2211350823671806,-0.50980810189286763,-0.52452933167034821,1.596296585000873,1.5644214824125706,-3.0219251780948988,-0.28603478653039727,-1.3012459432233858,0.88861945092735561,3.5245271776458558,-0.76570899001245607,-3.2078228634448838,2.1989356705641088,-1.5693121164405126,0.19602417513257603,1.1549259226523283,0.13432571945114088,0.27983094519768398,-1.3646031138704551,1.1902409317278924,0.90221072884876752,-1.5693121164405126,-0.92282495117491659,0.58616927859838219,-0.55072607925736716,-1.115029372317905,1.1549259226523283,-0.23779637916175089,-1.0313842556651573,1.1459998841051171,1.959425170017534,2.5795956316202271,1.1257928560452086,0.37054194567114529,-1.5887564630178339,1.6727843070646302,-0.39433114758537474,-0.23622310716606956,-0.26487520289031263,-1.3646031138704551,0.43387880299206583,-0.11284357468369362,1.0956453014285346,-0.09757990948450887,1.4351344751536292,0.79798375358766027,0.5100516048327175,-0.34342419138120095,0.067276195089298788,2.476441921880332,2.1656507016470314,1.1369502205790669,0.61006071431652864,0.69612262704700634,0.16760543772229206,-0.74975910055362083,-0.8546385433665028,0.27055572881275319,-0.074628549827976273,2.9431937128991197,1.7849907405909138,0.29552261738757085,-2.2942400000569658,-1.3615609212576871,-2.5219250550550774,-0.18521961821931798,-1.0423442213305067,1.6489416779788311,-0.23163158940478479,-0.9570824968106908,-0.046008536439037725,-0.19967729579246629,0.97410021495470089,-1.4329650522221271,-0.60920836977377291,1.4921211959108811,0.012012830563423603,0.62673404159105206,1.5911213838451956,-2.2332595832174511,-0.4182633085690266,0.57536247100724724,3.0689598169196914,0.5477068226345817,0.1702030592575412,0.09840586634807022,0.91170914156716232,1.9276626963271073,1.1523632369175036,0.1369092430827801,1.2955204855282889,-0.89399798983035672,1.4256414865887437,1.1942174123421507,1.1020509234505516,-0.76739867832983555,-1.2118620255530215,-1.1197964120534996,2.1019560726534241,-2.2469472245511182,0.33575817040565092,-0.20525508952691995,3.8175605169840736,-2.2469472245511182,2.04782750791205],"y":[-0.72969752550347577,-2.0508492623012038,-1.7932916699146295,-1.7387128651166532,-0.88081383410761538,0.35605450968583141,2.0941982306167377,-3.1866871691221736,-0.99570726220696193,0.80762001397281358,-0.029183928753404476,0.39246416998503197,0.83429053209557014,-0.83143612027591307,-2.1601838720177136,2.1230856515671856,0.35373547540444711,-1.7623661638140478,0.20351110101429956,1.4069187560328504,0.26710616328180359,-0.92589698878801985,1.2207166816130266,1.3915611103441257,-1.0635992792726747,-1.0794623000318044,0.70485223198187286,0.8982368945931396,-0.90845621000933507,0.59689845024250499,-0.29356799509608206,0.41391945868708835,-3.0751558762473876,1.7492237103044803,-0.75438677224103146,0.52220100876123576,0.26254153229853655,1.1362445211080971,-1.4712541587908134,1.0976648640482549,-3.2752406229081745,-1.5847319318707396,0.17168330779437113,0.87148853401877413,1.9155274961028161,-0.40900057642954407,0.035168304875787454,-0.062301761507406156,-0.52401488703292587,-0.51845915274240006,-0.96823148723675168,-3.5319044465798179,0.28498221700776544,-0.61533922274892494,-2.4412518341236895,0.92104786650786741,-0.054715966450742282,0.89025899765957128,-0.024803338113367879,-0.364737226588213,-0.83003943138123459,1.204876706661606,-1.4817488751437462,0.46967998998748728,0.56655568284396352,1.5068034463735875,-0.92870269068334632,-1.0645821044783763,0.4963470222710652,-1.1629549769401981,-3.2793127645665288,0.79393726700663836,1.3750387420090904,-1.3638712346494561,0.010010789094892282,-1.3590191496199322,0.7120879403453283,0.55637247724459371,1.1074688548777809,0.16941498600326552,-1.8241628461923569,0.11907594876629594,-0.6149649854969147,-1.8764652943396491,1.3545707973900065,0.44730939174922568,1.3219195435981688,-0.043471564778294391,1.2509068726972759,-0.97820599926727725,-0.56400698951537387,-1.4557228487871401,-2.3096456527145555,0.35754786167364283,-0.51498075315362646,-0.52053258812303527,0.77955108530739781,-1.6282956761758565,-0.26291901933412165,-2.906086461116355,-0.72466163058216815,-0.48117889167745792,0.85005791588950563,0.072342644529924283,0.64078933065902399,0.26254153229853655,-2.1315375738708777,0.58663791710082702,0.5283133301984464,-1.062523535306523,0.50013491080111427,0.072342644529924283,-0.23498401712943795,0.21810413205919379,0.87292319020182552,-0.29612060544381713,0.26254153229853655,-0.41347802867581979,0.43967274018117097,-0.47450488727732254,0.87041620784957463,2.5501172412153763,-1.7573302688927401,0.97574848727527586,2.4339920313571985,-0.78482569064798269,0.76037657271775461,-0.40402184683034986,0.3468535765419517,0.5283133301984464,0.60961912742905522,0.78651687641902523,0.2723762879431586,1.912178365665562,-2.2214866215218172,0.7502047946774727,1.539156583569204,-0.036012795275681048,-0.36949662194043836,-1.0790239715562315,1.5590744488202184,1.1719053913414885,-0.44216059725731893,1.2319141208312534,1.6563434387162463,0.039136126820798922,-0.66129260763102693,0.20403518704182452,0.37627807017198989,0.10029329628519332,-0.14098487650565178,-0.56493398044162202,-0.73560213473291558,-0.4714380128668616,-1.0357921773060832,-0.55839464314114984,0.78576341238296976,1.3822414328439123,0.10094608682792819,-0.39428959981412748,0.24230963874025391,-0.62023861782481338,1.2181288525194112,1.2670484684167458,0.45603915700612691,-0.06682149737261836,0.42873988255103451,0.6859585271469314,-0.043004910581061401,-0.066200544134153883,0.81664978881850814,-0.6738139420654391,-0.37712124916783246,-0.94855646494517176,-0.060174341149860311,0.37149330413285625,-1.1268604729068772,-0.14695028510269745,0.65198779745665736,0.70173254875779045,0.76597604040874068,-0.91051791939259308,0.90080293368421416,1.3731229387542758,2.1557414246364992,1.7228302613156281,1.0152461724923447,0.50268652589443297,0.72365973157685437,0.70813265094826483,1.0380837069642745,2.3307445037095063,0.81179497359342279,0.70813265094826483,1.2215474816984209],"text":["Breed: Retrievers (Labrador)","Breed: French Bulldogs","Breed: German Shepherd Dogs","Breed: Retrievers (Golden)","Breed: Bulldogs","Breed: Poodles","Breed: Beagles","Breed: Rottweilers","Breed: Pointers (German Shorthaired)","Breed: Dachshunds","Breed: Pembroke Welsh Corgis","Breed: Australian Shepherds","Breed: Yorkshire Terriers","Breed: Boxers","Breed: Great Danes","Breed: Siberian Huskies","Breed: Cavalier King Charles Spaniels","Breed: Doberman Pinschers","Breed: Miniature Schnauzers","Breed: Shih Tzu","Breed: Boston Terriers","Breed: Bernese Mountain Dogs","Breed: Pomeranians","Breed: Havanese","Breed: Cane Corso","Breed: Spaniels (English Springer)","Breed: Shetland Sheepdogs","Breed: Brittanys","Breed: Pugs","Breed: Spaniels (Cocker)","Breed: Miniature American Shepherds","Breed: Border Collies","Breed: Mastiffs","Breed: Chihuahuas","Breed: Vizslas","Breed: Basset Hounds","Breed: Belgian Malinois","Breed: Maltese","Breed: Weimaraners","Breed: Collies","Breed: Newfoundlands","Breed: Rhodesian Ridgebacks","Breed: Shiba Inu","Breed: West Highland White Terriers","Breed: Bichons Frises","Breed: Bloodhounds","Breed: Spaniels (English Cocker)","Breed: Akitas","Breed: Portuguese Water Dogs","Breed: Retrievers (Chesapeake Bay)","Breed: Dalmatians","Breed: St. Bernards","Breed: Papillons","Breed: Australian Cattle Dogs","Breed: Bullmastiffs","Breed: Samoyeds","Breed: Scottish Terriers","Breed: Soft Coated Wheaten Terriers","Breed: Whippets","Breed: Pointers (German Wirehaired)","Breed: Chinese Shar-Pei","Breed: Airedale Terriers","Breed: Wirehaired Pointing Griffons","Breed: Bull Terriers","Breed: Alaskan Malamutes","Breed: Cardigan Welsh Corgis","Breed: Giant Schnauzers","Breed: Old English Sheepdogs","Breed: Italian Greyhounds","Breed: Great Pyrenees","Breed: Dogues de Bordeaux","Breed: Russell Terriers","Breed: Cairn Terriers","Breed: Irish Wolfhounds","Breed: Setters (Irish)","Breed: Greater Swiss Mountain Dogs","Breed: Miniature Pinschers","Breed: Lhasa Apsos","Breed: Chinese Crested","Breed: Coton de Tulear","Breed: Staffordshire Bull Terriers","Breed: American Staffordshire Terriers","Breed: Rat Terriers","Breed: Chow Chows","Breed: Anatolian Shepherd Dogs","Breed: Basenjis","Breed: Spaniels (Boykin)","Breed: Lagotti Romagnoli","Breed: Brussels Griffons","Breed: Retrievers (Nova Scotia Duck Tolling)","Breed: Norwegian Elkhounds","Breed: Standard Schnauzers","Breed: Dogo Argentinos","Breed: Bouviers des Flandres","Breed: Pekingese","Breed: Keeshonden","Breed: Border Terriers","Breed: Leonbergers","Breed: Tibetan Terriers","Breed: Neapolitan Mastiffs","Breed: Setters (English)","Breed: Retrievers (Flat-Coated)","Breed: Borzois","Breed: Fox Terriers (Wire)","Breed: Miniature Bull Terriers","Breed: Belgian Tervuren","Breed: Setters (Gordon)","Breed: Silky Terriers","Breed: Norwich Terriers","Breed: Spinoni Italiani","Breed: Japanese Chin","Breed: Welsh Terriers","Breed: Toy Fox Terriers","Breed: Schipperkes","Breed: Parson Russell Terriers","Breed: Pointers","Breed: Belgian Sheepdogs","Breed: Tibetan Spaniels","Breed: American Eskimo Dogs","Breed: Irish Terriers","Breed: Beaucerons","Breed: Afghan Hounds","Breed: Boerboels","Breed: Fox Terriers (Smooth)","Breed: Bearded Collies","Breed: Black Russian Terriers","Breed: Black and Tan Coonhounds","Breed: Spaniels (Welsh Springer)","Breed: American Hairless Terriers","Breed: Norfolk Terriers","Breed: Xoloitzcuintli","Breed: Manchester Terriers","Breed: Kerry Blue Terriers","Breed: Australian Terriers","Breed: Spaniels (Clumber)","Breed: Lakeland Terriers","Breed: Bluetick Coonhounds","Breed: English Toy Spaniels","Breed: German Pinschers","Breed: Tibetan Mastiffs","Breed: Bedlington Terriers","Breed: Greyhounds","Breed: Pulik","Breed: Salukis","Breed: Barbets","Breed: Redbone Coonhounds","Breed: Swedish Vallhunds","Breed: Sealyham Terriers","Breed: Spanish Water Dogs","Breed: Briards","Breed: Berger Picards","Breed: Entlebucher Mountain Dogs","Breed: Treeing Walker Coonhounds","Breed: Icelandic Sheepdogs","Breed: Wirehaired Vizslas","Breed: Pumik","Breed: Portuguese Podengo Pequenos","Breed: Spaniels (American Water)","Breed: Retrievers (Curly-Coated)","Breed: Spaniels (Field)","Breed: Lowchen","Breed: Nederlandse Kooikerhondjes","Breed: Affenpinschers","Breed: Petits Bassets Griffons Vendeens","Breed: Finnish Lapphunds","Breed: Scottish Deerhounds","Breed: Plott Hounds","Breed: Norwegian Buhunds","Breed: Glen of Imaal Terriers","Breed: Setters (Irish Red and White)","Breed: Ibizan Hounds","Breed: Spaniels (Sussex)","Breed: Bergamasco Sheepdogs","Breed: Spaniels (Irish Water)","Breed: Polish Lowland Sheepdogs","Breed: Otterhounds","Breed: Kuvaszok","Breed: Komondorok","Breed: Cirnechi dell Etna","Breed: Pharaoh Hounds","Breed: Dandie Dinmont Terriers","Breed: Pyrenean Shepherds","Breed: Skye Terriers","Breed: Canaan Dogs","Breed: American English Coonhounds","Breed: Chinooks","Breed: Finnish Spitz","Breed: Grand Basset Griffon Vendeens","Breed: Sloughis","Breed: Harriers","Breed: Cesky Terriers","Breed: American Foxhounds","Breed: Azawakhs","Breed: English Foxhounds","Breed: Norwegian Lundehunds"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,0,0,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":40.840182648401829,"r":7.3059360730593621,"b":37.260273972602747,"l":37.260273972602747},"paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"PCA Scores Plot of American Kennel Club Dog Trait Data","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-3.7166508903637259,4.3553472570851],"tickmode":"array","ticktext":["-2","0","2","4"],"tickvals":[-2,0,1.9999999999999996,3.9999999999999996],"categoryorder":"array","categoryarray":["-2","0","2","4"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"PC1: 22.2%","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-3.8360055309695777,2.8542183256051361],"tickmode":"array","ticktext":["-2","0","2"],"tickvals":[-2,4.4408920985006262e-16,2],"categoryorder":"array","categoryarray":["-2","0","2"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"PC2: 12.9%","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","layer":"below","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"106e6538d188b":{"yintercept":{},"type":"scatter"},"106e654467887":{"xintercept":{}},"106e65e93124a":{"x":{},"y":{},"text":{}}},"cur_data":"106e6538d188b","visdat":{"106e6538d188b":["function (y) ","x"],"106e654467887":["function (y) ","x"],"106e65e93124a":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="see-how-your-pca-related-to-breed-popularity-2-pts" class="level2">
+<h2 class="anchored" data-anchor-id="see-how-your-pca-related-to-breed-popularity-2-pts">3. See how your PCA related to breed popularity (2 pts)</h2>
+<p>Using <code>breed_traits</code> and <code>breed_rank_all</code>, label the points that show data for the top 10 dog breeds in 2020 and color them different from the rest of the points. Your plot does not need to be interactive.</p>
+<p>Try joining the dfs based on Breed</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># grab just breed and the rank in 2020</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>breed_rank_to_join <span class="ot">&lt;-</span> breed_rank_all <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Breed, <span class="st">`</span><span class="at">2020 Rank</span><span class="st">`</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co"># join with breed_traits  </span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># it actually doesn't matter which join you use in this case</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>joined <span class="ot">&lt;-</span> <span class="fu">left_join</span>(breed_rank_to_join, scores,</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>                    <span class="at">by =</span> <span class="st">"Breed"</span>)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co"># check</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(joined)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 16
+  Breed    `2020 Rank`   PC1    PC2    PC3    PC4     PC5     PC6    PC7     PC8
+  &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+1 Retriev…           1 -3.33 -0.730  1.02  -0.740 0.337   -0.293   0.324 -0.776 
+2 French …           2 -1.31 -2.05   2.39   0.321 0.482    1.46   -0.227 -0.550 
+3 German …           3 -1.56 -1.79  -1.32  -0.849 0.283   -0.882  -1.09  -0.0792
+4 Retriev…           4 -1.98 -1.74   2.37   0.354 0.727    0.167   0.222 -1.04  
+5 Bulldogs           5  1.03 -0.881  0.851  0.725 0.00688 -0.357   1.08  -1.14  
+6 Poodles            6 -2.19  0.356 -2.22   1.98  1.39     0.0384 -0.524  0.176 
+# ℹ 6 more variables: PC9 &lt;dbl&gt;, PC10 &lt;dbl&gt;, PC11 &lt;dbl&gt;, PC12 &lt;dbl&gt;,
+#   PC13 &lt;dbl&gt;, PC14 &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>Create a df with only the dogs that are in the top 10 most popular list for 2020.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>joined_top10 <span class="ot">&lt;-</span> joined <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">2020 Rank</span><span class="st">`</span> <span class="sc">&lt;=</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Plot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>joined <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> PC1, <span class="at">y =</span> PC2)) <span class="sc">+</span> <span class="co"># all points</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> joined_top10, <span class="co"># use data with only top 10 pups</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> PC1, <span class="at">y =</span> PC2), <span class="at">color =</span> <span class="st">"darkcyan"</span>) <span class="sc">+</span>  <span class="co"># top 10 doggos</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="at">data =</span> joined_top10, <span class="co"># add labels</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">aes</span>(<span class="at">x =</span> PC1, <span class="at">y =</span> PC2, <span class="at">label =</span> Breed), </span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>                  <span class="at">color =</span> <span class="st">"darkcyan"</span>, <span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="fu">glue</span>(<span class="st">"PC1: {PC1_percent}%"</span>), </span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">glue</span>(<span class="st">"PC2: {PC2_percent}%"</span>), </span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"PCA Scores Plot of American Kennel Club Dog Trait Data"</span>,</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Labelled points are the top 10 most popular breeds from 2020"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="module_4_solutions_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Without creating a new df, and using <code>if_else()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># without creating a new df and if_else</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>joined <span class="sc">|&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> PC1, <span class="at">y =</span> PC2)) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="st">`</span><span class="at">2020 Rank</span><span class="st">`</span> <span class="sc">&lt;=</span> <span class="dv">10</span>)) <span class="sc">+</span> <span class="co"># color based on whether 2020 rank &lt;= 10</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">if_else</span>(<span class="st">`</span><span class="at">2020 Rank</span><span class="st">`</span> <span class="sc">&lt;=</span> <span class="dv">10</span>, Breed, <span class="st">""</span>)),</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">size =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">"darkcyan"</span>) <span class="sc">+</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"darkcyan"</span>)) <span class="sc">+</span> <span class="co"># set what the color scale should be</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="fu">glue</span>(<span class="st">"PC1: {PC1_percent}%"</span>), </span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">glue</span>(<span class="st">"PC2: {PC2_percent}%"</span>), </span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"PCA Scores Plot of American Kennel Club Dog Trait Data"</span>,</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Labelled points are the top 10 most popular breeds from 2020"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="module_4_solutions_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Using <code>gghighlight()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using gghighlight</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>joined <span class="sc">|&gt;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> PC1, <span class="at">y =</span> PC2)) <span class="sc">+</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gghighlight</span>(<span class="st">`</span><span class="at">2020 Rank</span><span class="st">`</span> <span class="sc">&lt;=</span> <span class="dv">10</span>, <span class="at">use_direct_label =</span> <span class="cn">TRUE</span>, <span class="at">label_key =</span> Breed) <span class="sc">+</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="fu">glue</span>(<span class="st">"PC1: {PC1_percent}%"</span>), </span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">glue</span>(<span class="st">"PC2: {PC2_percent}%"</span>), </span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"PCA Scores Plot of American Kennel Club Dog Trait Data"</span>,</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Labelled points are the top 10 most popular breeds from 2020"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Could not calculate the predicate for layer 1, layer 2; ignored</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="module_4_solutions_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/www\.rdataviz\.com\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Created with RStudio and <a href="https://quarto.org/">Quarto</a> <br> © Jessica Cooperstone, 2025, License: <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a> <br> <a href="https://osu-codeclub.github.io/#category=website">Want to make a website like this one?</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jcooperstone/rdataviz">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

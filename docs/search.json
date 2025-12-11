@@ -1359,6 +1359,127 @@
     ]
   },
   {
+    "objectID": "assignments/modules/module4/module_4_solutions.html",
+    "href": "assignments/modules/module4/module_4_solutions.html",
+    "title": "Module 4 Assignment Solutions",
+    "section": "",
+    "text": "This is your assignment for Module 4 Putting It All Together, focused on the material you learned in the lectures and recitation activities on PCA, Manhattan plots, interactive plots, and the leftovers.\nSubmission info:\n\nPlease submit this assignment by uploading a knitted .html to Carmen\nYour headers should be logical and your report and code annotated with descriptions of what you’re doing. Starting on this assignment, I will be considering for overall format and readability of your assignment as part of your grade. I am doing this because the format of your report will be considered for your final capstone assignment. This means you should have reasonable headers and header levels, understandable flow between plots and code, and use Markdown language when appropriate.\nMake sure you include the Code Download button so that I can see your code as well\nCustomize the YAML and the document so you like how it looks\n\nRemember there are often many ways to reach the same end product. I have showed you many ways in class to achieve a similar end product, you only need to show me one of them. As long as your answer is reasonable, you will get full credit even if its different than what I intended.\n\nThis assignment will be due on Tuesday, December 3, 2024, at 11:59pm.\n\n\n\nThe data we will be using is the same we used in the ggplot102 recitation that includes information about dog breed trait information from the American Kennel Club.\nDownload the data using the code below. Don’t use the code from week 5 recitation.\n\nbreed_traits &lt;- readr::read_csv('https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/main/assignments/modules/module4/data/breed_traits_fixed.csv')\n\ntrait_description &lt;- readr::read_csv('https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/main/assignments/modules/module4/data/trait_description.csv')\n\nbreed_rank_all &lt;- readr::read_csv('https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/main/assignments/modules/module4/data/breed_rank_all.csv')\n\nFor a little hint, here are the packages I used to complete this task. Yours might not be exactly the same.\n\nlibrary(tidyverse)\nlibrary(factoextra)\nlibrary(glue)\nlibrary(patchwork)\nlibrary(ggrepel)\nlibrary(plotly)\nlibrary(gghighlight)",
+    "crumbs": [
+      "Module assignment solutions",
+      "Module 4 solutions"
+    ]
+  },
+  {
+    "objectID": "assignments/modules/module4/module_4_solutions.html#introduction",
+    "href": "assignments/modules/module4/module_4_solutions.html#introduction",
+    "title": "Module 4 Assignment Solutions",
+    "section": "",
+    "text": "This is your assignment for Module 4 Putting It All Together, focused on the material you learned in the lectures and recitation activities on PCA, Manhattan plots, interactive plots, and the leftovers.\nSubmission info:\n\nPlease submit this assignment by uploading a knitted .html to Carmen\nYour headers should be logical and your report and code annotated with descriptions of what you’re doing. Starting on this assignment, I will be considering for overall format and readability of your assignment as part of your grade. I am doing this because the format of your report will be considered for your final capstone assignment. This means you should have reasonable headers and header levels, understandable flow between plots and code, and use Markdown language when appropriate.\nMake sure you include the Code Download button so that I can see your code as well\nCustomize the YAML and the document so you like how it looks\n\nRemember there are often many ways to reach the same end product. I have showed you many ways in class to achieve a similar end product, you only need to show me one of them. As long as your answer is reasonable, you will get full credit even if its different than what I intended.\n\nThis assignment will be due on Tuesday, December 3, 2024, at 11:59pm.\n\n\n\nThe data we will be using is the same we used in the ggplot102 recitation that includes information about dog breed trait information from the American Kennel Club.\nDownload the data using the code below. Don’t use the code from week 5 recitation.\n\nbreed_traits &lt;- readr::read_csv('https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/main/assignments/modules/module4/data/breed_traits_fixed.csv')\n\ntrait_description &lt;- readr::read_csv('https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/main/assignments/modules/module4/data/trait_description.csv')\n\nbreed_rank_all &lt;- readr::read_csv('https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/main/assignments/modules/module4/data/breed_rank_all.csv')\n\nFor a little hint, here are the packages I used to complete this task. Yours might not be exactly the same.\n\nlibrary(tidyverse)\nlibrary(factoextra)\nlibrary(glue)\nlibrary(patchwork)\nlibrary(ggrepel)\nlibrary(plotly)\nlibrary(gghighlight)",
+    "crumbs": [
+      "Module assignment solutions",
+      "Module 4 solutions"
+    ]
+  },
+  {
+    "objectID": "assignments/modules/module4/module_4_solutions.html#principal-components-analysis-pca-of-american-kennel-club-dog-bred-trait-data-6-pts",
+    "href": "assignments/modules/module4/module_4_solutions.html#principal-components-analysis-pca-of-american-kennel-club-dog-bred-trait-data-6-pts",
+    "title": "Module 4 Assignment Solutions",
+    "section": "1. Principal components analysis (PCA) of American Kennel Club dog bred trait data (6 pts)",
+    "text": "1. Principal components analysis (PCA) of American Kennel Club dog bred trait data (6 pts)\nRun a PCA on breed_traits for all of the numeric data present in that dataset. Create the following plots and make them of publication quality:\n\nA scree plot\nA scores plot\nA loadings plot\nA two panel plot that has the scores plot and the scree plot together\n\n\n# create a df that has only the quantitative traits\nbreed_traits_quant &lt;- breed_traits |&gt;\n  select(-`Coat Type`, -`Coat Length`)\n\n# run PCA\n# no scaling (because all are on the same scale)\n# centering is a good idea\ntrait_pca &lt;- prcomp(breed_traits_quant[,-1],\n                    scale = FALSE, # if you scale you will get slightly different result\n                    center = TRUE) # if you don't center you will get a slightly different result\n\n# save the importance into a new df\nimportance &lt;- summary(trait_pca)$importance |&gt;\n  as.data.frame()\n\nIf you chose to scale or not center or any combination of those, that is all fine. For this data set specifically, scaling is not necessary since all data is on the same scale.\n\nScree plot\n\nWith fviz_eig()\n\nfviz_eig(trait_pca)\n\nWarning in geom_bar(stat = \"identity\", fill = barfill, color = barcolor, :\nIgnoring empty aesthetic: `width`.\n\n\n\n\n\n\n\n\n\n\n\nManually\n\n# create tidy data with a columns called PC and value \nimportance_tidy &lt;- importance |&gt;\n  rownames_to_column(var = \"measure\") |&gt;\n  pivot_longer(cols = PC1:PC10,\n               names_to = \"PC\",\n               values_to = \"value\")\n\n# create a vector with the order we want\nmy_order &lt;- colnames(importance)\n\n# relevel according to my_order\nimportance_tidy$PC &lt;- factor(importance_tidy$PC, levels = my_order)\n\n# plot\n(scree_plot &lt;- importance_tidy |&gt;\n  filter(measure == \"Proportion of Variance\") |&gt;\n  ggplot(aes(x = PC, y  = value)) +\n  geom_col(alpha = 0.1, color = \"black\") +\n  scale_y_continuous(labels = scales::percent) +\n  theme_minimal() +\n  labs(x = \"Principal component\",\n       y = \"Percent variance explained\",\n       title = \"Scree plot of dog traits\"))\n\n\n\n\n\n\n\n\n\n\n\nScores plot\n\nWith fviz_pca_ind()\n\nfviz_pca_ind(trait_pca)\n\n\n\n\n\n\n\n\n\n\nManually\n\n# create a df of trait_pca$x\nscores_raw &lt;- as.data.frame(trait_pca$x)\n\n# bind breed name\nscores &lt;- bind_cols(breed_traits[,1], # first column where we have breed name\n                    scores_raw)\n\n# create objects indicating percent variance explained by PC1 and PC2\nPC1_percent &lt;- round((importance[2,1])*100, # index 2nd row, 1st column, times 100\n                     1) # round to 1 decimal\nPC2_percent &lt;- round((importance[2,2])*100, 1) \n\n# plot\n(scores_plot &lt;- scores |&gt;\n  ggplot(aes(x = PC1, y = PC2)) +\n  geom_hline(yintercept = 0, linetype = \"dashed\") +\n  geom_vline(xintercept = 0, linetype = \"dashed\") +\n  geom_point(color = \"black\") +\n  theme_minimal() +\n  labs(x = glue(\"PC1: {PC1_percent}%\"), \n       y = glue(\"PC2: {PC2_percent}%\"), \n       title = \"PCA Scores Plot of American Kennel \\nClub Dog Trait Data\"))\n\n\n\n\n\n\n\n\n\n\n\nLoadings plot\n\nWith fviz_pca_var()\n\nfviz_pca_var(trait_pca)\n\nWarning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\nℹ Please use `linewidth` instead.\nℹ The deprecated feature was likely used in the ggpubr package.\n  Please report the issue at &lt;https://github.com/kassambara/ggpubr/issues&gt;.\n\n\n\n\n\n\n\n\n\n\n\nManually\n\n# grab raw loadings, without any metadata\nloadings_raw &lt;- as.data.frame(trait_pca$rotation)\n\n# move rowname to column\nloadings &lt;- loadings_raw |&gt;\n  rownames_to_column(var = \"Trait\")\n\n(loadings_plot &lt;- loadings |&gt;\n  ggplot(aes(x = PC1, y = PC2, label = Trait)) +\n  geom_hline(yintercept = 0, linetype = \"dashed\") +\n  geom_vline(xintercept = 0, linetype = \"dashed\") +  \n  geom_point() +\n  geom_label_repel(size = 2.5) +\n  theme_minimal() +\n  labs(x = glue(\"PC1: {PC1_percent}%\"), \n       y = glue(\"PC2: {PC2_percent}%\"), \n       title = \"PCA Loadings Plot of American Kennel Club Dog Trait Data\"))\n\n\n\n\n\n\n\n\n\n\n\nScree and scores plots\n\nscree_plot + scores_plot\n\n\n\n\n\n\n\n\nSome of you misread the the fourth part of question 1 and combined the scores and loadings plot together. I am showing you how to do that also here.\nFirst we need to scale our data so that the scores and loadings are on the same scale.\nI can write a quick function to allow normalization.\n\nnormalize &lt;- function(x) return((x - min(x))/(max(x) - min(x)))\n\nThen I can nornalize the scores using the scale function, since the loadings are already normalized.\n\nscores_normalized &lt;- scores |&gt;\n  mutate(PC1_norm = scale(normalize(PC1), center = TRUE, scale = FALSE)) |&gt;\n  mutate(PC2_norm = scale(normalize(PC2), center = TRUE, scale = FALSE)) |&gt;\n  select(Breed, PC1_norm, PC2_norm, everything()) # reorder \n\nHow did it go? PC1_norm and PC2_norm should all now be between -1 and 1\n\nhead(scores_normalized) # looks good\n\n# A tibble: 6 × 17\n  Breed     PC1_norm[,1] PC2_norm[,1]   PC1    PC2    PC3    PC4     PC5     PC6\n  &lt;chr&gt;            &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1 Retrieve…       -0.454      -0.120  -3.33 -0.730  1.02  -0.740 0.337   -0.293 \n2 French B…       -0.179      -0.337  -1.31 -2.05   2.39   0.321 0.482    1.46  \n3 German S…       -0.213      -0.295  -1.56 -1.79  -1.32  -0.849 0.283   -0.882 \n4 Retrieve…       -0.269      -0.286  -1.98 -1.74   2.37   0.354 0.727    0.167 \n5 Bulldogs         0.140      -0.145   1.03 -0.881  0.851  0.725 0.00688 -0.357 \n6 Poodles         -0.299       0.0585 -2.19  0.356 -2.22   1.98  1.39     0.0384\n# ℹ 8 more variables: PC7 &lt;dbl&gt;, PC8 &lt;dbl&gt;, PC9 &lt;dbl&gt;, PC10 &lt;dbl&gt;, PC11 &lt;dbl&gt;,\n#   PC12 &lt;dbl&gt;, PC13 &lt;dbl&gt;, PC14 &lt;dbl&gt;\n\n\nNow we can plot together the normalized scores plot.\n\n(scores_plot_norm &lt;- scores_normalized |&gt;\n  ggplot(aes(x = PC1_norm, y = PC2_norm)) +\n  geom_hline(yintercept = 0, linetype = \"dashed\") +\n  geom_vline(xintercept = 0, linetype = \"dashed\") +\n  geom_point(color = \"black\") +\n  theme_minimal() +\n  labs(x = glue(\"PC1: {PC1_percent}%\"), \n       y = glue(\"PC2: {PC2_percent}%\"), \n       title = \"PCA Scores Plot of American Kennel \\nClub Dog Trait Data\"))\n\n\n\n\n\n\n\n\nAnd use patchwork to combine the scores and loadings into one figure. I am also adjusting fig.width and fig.height in my chunk settings.\n\nscores_plot_norm / (loadings_plot + xlim(-0.46, 0.55) + ylim(-0.57, 0.42))",
+    "crumbs": [
+      "Module assignment solutions",
+      "Module 4 solutions"
+    ]
+  },
+  {
+    "objectID": "assignments/modules/module4/module_4_solutions.html#make-your-pca-plot-interactive-2-pts",
+    "href": "assignments/modules/module4/module_4_solutions.html#make-your-pca-plot-interactive-2-pts",
+    "title": "Module 4 Assignment Solutions",
+    "section": "2. Make your PCA plot interactive (2 pts)",
+    "text": "2. Make your PCA plot interactive (2 pts)\nMake your PCA scores plot interactive, and so that when you hover each point, you can see what the name of that dog breed is (and only the breed of that dog, without the PC coordinates).\n\nscores_plotly &lt;- scores |&gt;\n  ggplot(aes(x = PC1, y = PC2, text = glue(\"Breed: {Breed}\"))) +\n  geom_hline(yintercept = 0, linetype = \"dashed\") +\n  geom_vline(xintercept = 0, linetype = \"dashed\") +\n  geom_point(color = \"black\") +\n  theme_minimal() +\n  labs(x = glue(\"PC1: {PC1_percent}%\"), \n       y = glue(\"PC2: {PC2_percent}%\"), \n       title = \"PCA Scores Plot of American Kennel Club Dog Trait Data\")\n\nggplotly(scores_plotly, tooltip = \"text\")",
+    "crumbs": [
+      "Module assignment solutions",
+      "Module 4 solutions"
+    ]
+  },
+  {
+    "objectID": "assignments/modules/module4/module_4_solutions.html#see-how-your-pca-related-to-breed-popularity-2-pts",
+    "href": "assignments/modules/module4/module_4_solutions.html#see-how-your-pca-related-to-breed-popularity-2-pts",
+    "title": "Module 4 Assignment Solutions",
+    "section": "3. See how your PCA related to breed popularity (2 pts)",
+    "text": "3. See how your PCA related to breed popularity (2 pts)\nUsing breed_traits and breed_rank_all, label the points that show data for the top 10 dog breeds in 2020 and color them different from the rest of the points. Your plot does not need to be interactive.\nTry joining the dfs based on Breed\n\n# grab just breed and the rank in 2020\nbreed_rank_to_join &lt;- breed_rank_all |&gt;\n  select(Breed, `2020 Rank`)\n\n# join with breed_traits  \n# it actually doesn't matter which join you use in this case\njoined &lt;- left_join(breed_rank_to_join, scores,\n                    by = \"Breed\")\n\n# check\nhead(joined)\n\n# A tibble: 6 × 16\n  Breed    `2020 Rank`   PC1    PC2    PC3    PC4     PC5     PC6    PC7     PC8\n  &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;\n1 Retriev…           1 -3.33 -0.730  1.02  -0.740 0.337   -0.293   0.324 -0.776 \n2 French …           2 -1.31 -2.05   2.39   0.321 0.482    1.46   -0.227 -0.550 \n3 German …           3 -1.56 -1.79  -1.32  -0.849 0.283   -0.882  -1.09  -0.0792\n4 Retriev…           4 -1.98 -1.74   2.37   0.354 0.727    0.167   0.222 -1.04  \n5 Bulldogs           5  1.03 -0.881  0.851  0.725 0.00688 -0.357   1.08  -1.14  \n6 Poodles            6 -2.19  0.356 -2.22   1.98  1.39     0.0384 -0.524  0.176 \n# ℹ 6 more variables: PC9 &lt;dbl&gt;, PC10 &lt;dbl&gt;, PC11 &lt;dbl&gt;, PC12 &lt;dbl&gt;,\n#   PC13 &lt;dbl&gt;, PC14 &lt;dbl&gt;\n\n\nCreate a df with only the dogs that are in the top 10 most popular list for 2020.\n\njoined_top10 &lt;- joined |&gt;\n  filter(`2020 Rank` &lt;= 10)\n\nPlot.\n\njoined |&gt;\n  ggplot() +\n  geom_hline(yintercept = 0, linetype = \"dashed\") +\n  geom_vline(xintercept = 0, linetype = \"dashed\") +\n  geom_point(aes(x = PC1, y = PC2)) + # all points\n  geom_point(data = joined_top10, # use data with only top 10 pups\n             aes(x = PC1, y = PC2), color = \"darkcyan\") +  # top 10 doggos\n  geom_label_repel(data = joined_top10, # add labels\n                  aes(x = PC1, y = PC2, label = Breed), \n                  color = \"darkcyan\", size = 2.5) +\n  theme_minimal() +\n  theme(legend.position = \"none\") +\n  labs(x = glue(\"PC1: {PC1_percent}%\"), \n       y = glue(\"PC2: {PC2_percent}%\"), \n       title = \"PCA Scores Plot of American Kennel Club Dog Trait Data\",\n       subtitle = \"Labelled points are the top 10 most popular breeds from 2020\")\n\n\n\n\n\n\n\n\nWithout creating a new df, and using if_else()\n\n# without creating a new df and if_else\njoined |&gt;\n  ggplot(aes(x = PC1, y = PC2)) +\n  geom_hline(yintercept = 0, linetype = \"dashed\") +\n  geom_vline(xintercept = 0, linetype = \"dashed\") +\n  geom_point(aes(color = `2020 Rank` &lt;= 10)) + # color based on whether 2020 rank &lt;= 10\n  geom_label_repel(aes(label = if_else(`2020 Rank` &lt;= 10, Breed, \"\")),\n                   size = 2, color = \"darkcyan\") +\n  scale_color_manual(values = c(\"black\", \"darkcyan\")) + # set what the color scale should be\n  theme_minimal() +\n  theme(legend.position = \"none\") +\n  labs(x = glue(\"PC1: {PC1_percent}%\"), \n       y = glue(\"PC2: {PC2_percent}%\"), \n       title = \"PCA Scores Plot of American Kennel Club Dog Trait Data\",\n       subtitle = \"Labelled points are the top 10 most popular breeds from 2020\")\n\n\n\n\n\n\n\n\nUsing gghighlight()\n\n# using gghighlight\njoined |&gt;\n  ggplot() +\n  geom_hline(yintercept = 0, linetype = \"dashed\") +\n  geom_vline(xintercept = 0, linetype = \"dashed\") +\n  geom_point(aes(x = PC1, y = PC2)) +\n  gghighlight(`2020 Rank` &lt;= 10, use_direct_label = TRUE, label_key = Breed) +\n  theme_minimal() +\n  labs(x = glue(\"PC1: {PC1_percent}%\"), \n       y = glue(\"PC2: {PC2_percent}%\"), \n       title = \"PCA Scores Plot of American Kennel Club Dog Trait Data\",\n       subtitle = \"Labelled points are the top 10 most popular breeds from 2020\")\n\nWarning: Could not calculate the predicate for layer 1, layer 2; ignored",
+    "crumbs": [
+      "Module assignment solutions",
+      "Module 4 solutions"
+    ]
+  },
+  {
+    "objectID": "assignments/recitations.html",
+    "href": "assignments/recitations.html",
+    "title": "Reflections",
+    "section": "",
+    "text": "I ask you submit 8 of 11 recitations to Carmen to show you have made a good faith effort to engage with the course material. I will mark these at 0 or 1 points, with 1 point given for completion of at least 70% of the assignment.\nDue Date: Recitations are due the Sunday after each class. For example, if class is on Tuesday September 9, the recitation for that class is due on Sunday September 14 by 11:59pm.\n\n\nI expect you will turn assignments in on time. Late assignments are not accepted. If there are extenuating circumstances that prevent you from turning in an assignment on time, please connect with me as soon as possible after such a situation arises for discussion about a possible deadline extension.",
+    "crumbs": [
+      "Recitations",
+      "Recitation instructions"
+    ]
+  },
+  {
+    "objectID": "assignments/recitations.html#reflections",
+    "href": "assignments/recitations.html#reflections",
+    "title": "Reflections",
+    "section": "",
+    "text": "I ask you submit 8 of 11 recitations to Carmen to show you have made a good faith effort to engage with the course material. I will mark these at 0 or 1 points, with 1 point given for completion of at least 70% of the assignment.\nDue Date: Recitations are due the Sunday after each class. For example, if class is on Tuesday September 9, the recitation for that class is due on Sunday September 14 by 11:59pm.\n\n\nI expect you will turn assignments in on time. Late assignments are not accepted. If there are extenuating circumstances that prevent you from turning in an assignment on time, please connect with me as soon as possible after such a situation arises for discussion about a possible deadline extension.",
+    "crumbs": [
+      "Recitations",
+      "Recitation instructions"
+    ]
+  },
+  {
+    "objectID": "assignments/capstone.html",
+    "href": "assignments/capstone.html",
+    "title": "Capstone assignment",
+    "section": "",
+    "text": "At the end of the semester, you will complete a capstone assignment where you create a series of visualizations based on your research data, data coming from your lab, or other data that is publicly available. I expect this assignment to be completed in R Markdown, annotated, and knitted into an easy-to-read .html file. I also expect your code to be fully commented such that I can understand what you are doing with each step, and why. You will be required to submit a capstone assignment “plan” by the beginning of November.\nThere will be 1 capstone assignment.\nDue Dates:\n\n\n\n\n\nAssignment\nDue Date\n\n\n\n\nCapstone plan\nTuesday, October 28, 2025\n\n\nCapstone\nFriday, December 12, 2025\n\n\n\n\n\n\n\nI expect you will turn assignments in on time. Late assignments are not accepted. If there are extenuating circumstances that prevent you from turning in an assignment on time, please connect with me as soon as possible after such a situation arises for discussion about a possible deadline extension.",
+    "crumbs": [
+      "Capstone assignment",
+      "Capstone instructions"
+    ]
+  },
+  {
+    "objectID": "assignments/capstone.html#capstone-assignment",
+    "href": "assignments/capstone.html#capstone-assignment",
+    "title": "Capstone assignment",
+    "section": "",
+    "text": "At the end of the semester, you will complete a capstone assignment where you create a series of visualizations based on your research data, data coming from your lab, or other data that is publicly available. I expect this assignment to be completed in R Markdown, annotated, and knitted into an easy-to-read .html file. I also expect your code to be fully commented such that I can understand what you are doing with each step, and why. You will be required to submit a capstone assignment “plan” by the beginning of November.\nThere will be 1 capstone assignment.\nDue Dates:\n\n\n\n\n\nAssignment\nDue Date\n\n\n\n\nCapstone plan\nTuesday, October 28, 2025\n\n\nCapstone\nFriday, December 12, 2025\n\n\n\n\n\n\n\nI expect you will turn assignments in on time. Late assignments are not accepted. If there are extenuating circumstances that prevent you from turning in an assignment on time, please connect with me as soon as possible after such a situation arises for discussion about a possible deadline extension.",
+    "crumbs": [
+      "Capstone assignment",
+      "Capstone instructions"
+    ]
+  },
+  {
+    "objectID": "assignments/reflections.html",
+    "href": "assignments/reflections.html",
+    "title": "Reflections",
+    "section": "",
+    "text": "After each week, you will write a 1 paragraph reflection on the material that was presented in class. This can include your thoughts on how you will use these lessons in your own research and data visualizations, ways in which you have investigated this topic (or expect to) on your own, or what else you’d like to learn in this area. The purpose of this assignment is not to be burdensome, but to keep you engaged in the course material, and providing feedback to me on what parts you’ve found useful, what you’ve struggled with, and what you’d like to see more of in the future.\nThere will be 10 class reflections (you can select which classes you want to reflect upon).\nDue Date: Reflections are due 1 week after each class. For example, if class is on Tuesday August 20, the reflection for that class is due on Tuesday August 28 by 11:59pm.\n\n\nI expect you will turn assignments in on time. Late assignments are not accepted. If there are extenuating circumstances that prevent you from turning in an assignment on time, please connect with me as soon as possible after such a situation arises for discussion about a possible deadline extension.",
+    "crumbs": [
+      "Reflections",
+      "Reflection instructions"
+    ]
+  },
+  {
+    "objectID": "assignments/reflections.html#reflections",
+    "href": "assignments/reflections.html#reflections",
+    "title": "Reflections",
+    "section": "",
+    "text": "After each week, you will write a 1 paragraph reflection on the material that was presented in class. This can include your thoughts on how you will use these lessons in your own research and data visualizations, ways in which you have investigated this topic (or expect to) on your own, or what else you’d like to learn in this area. The purpose of this assignment is not to be burdensome, but to keep you engaged in the course material, and providing feedback to me on what parts you’ve found useful, what you’ve struggled with, and what you’d like to see more of in the future.\nThere will be 10 class reflections (you can select which classes you want to reflect upon).\nDue Date: Reflections are due 1 week after each class. For example, if class is on Tuesday August 20, the reflection for that class is due on Tuesday August 28 by 11:59pm.\n\n\nI expect you will turn assignments in on time. Late assignments are not accepted. If there are extenuating circumstances that prevent you from turning in an assignment on time, please connect with me as soon as possible after such a situation arises for discussion about a possible deadline extension.",
+    "crumbs": [
+      "Reflections",
+      "Reflection instructions"
+    ]
+  },
+  {
     "objectID": "assignments/modules/module4/module_4_assignment.html",
     "href": "assignments/modules/module4/module_4_assignment.html",
     "title": "Module 4 Assignment",
@@ -1411,72 +1532,6 @@
     "crumbs": [
       "Module assignments",
       "Module 4"
-    ]
-  },
-  {
-    "objectID": "assignments/reflections.html",
-    "href": "assignments/reflections.html",
-    "title": "Reflections",
-    "section": "",
-    "text": "After each week, you will write a 1 paragraph reflection on the material that was presented in class. This can include your thoughts on how you will use these lessons in your own research and data visualizations, ways in which you have investigated this topic (or expect to) on your own, or what else you’d like to learn in this area. The purpose of this assignment is not to be burdensome, but to keep you engaged in the course material, and providing feedback to me on what parts you’ve found useful, what you’ve struggled with, and what you’d like to see more of in the future.\nThere will be 10 class reflections (you can select which classes you want to reflect upon).\nDue Date: Reflections are due 1 week after each class. For example, if class is on Tuesday August 20, the reflection for that class is due on Tuesday August 28 by 11:59pm.\n\n\nI expect you will turn assignments in on time. Late assignments are not accepted. If there are extenuating circumstances that prevent you from turning in an assignment on time, please connect with me as soon as possible after such a situation arises for discussion about a possible deadline extension.",
-    "crumbs": [
-      "Reflections",
-      "Reflection instructions"
-    ]
-  },
-  {
-    "objectID": "assignments/reflections.html#reflections",
-    "href": "assignments/reflections.html#reflections",
-    "title": "Reflections",
-    "section": "",
-    "text": "After each week, you will write a 1 paragraph reflection on the material that was presented in class. This can include your thoughts on how you will use these lessons in your own research and data visualizations, ways in which you have investigated this topic (or expect to) on your own, or what else you’d like to learn in this area. The purpose of this assignment is not to be burdensome, but to keep you engaged in the course material, and providing feedback to me on what parts you’ve found useful, what you’ve struggled with, and what you’d like to see more of in the future.\nThere will be 10 class reflections (you can select which classes you want to reflect upon).\nDue Date: Reflections are due 1 week after each class. For example, if class is on Tuesday August 20, the reflection for that class is due on Tuesday August 28 by 11:59pm.\n\n\nI expect you will turn assignments in on time. Late assignments are not accepted. If there are extenuating circumstances that prevent you from turning in an assignment on time, please connect with me as soon as possible after such a situation arises for discussion about a possible deadline extension.",
-    "crumbs": [
-      "Reflections",
-      "Reflection instructions"
-    ]
-  },
-  {
-    "objectID": "assignments/capstone.html",
-    "href": "assignments/capstone.html",
-    "title": "Capstone assignment",
-    "section": "",
-    "text": "At the end of the semester, you will complete a capstone assignment where you create a series of visualizations based on your research data, data coming from your lab, or other data that is publicly available. I expect this assignment to be completed in R Markdown, annotated, and knitted into an easy-to-read .html file. I also expect your code to be fully commented such that I can understand what you are doing with each step, and why. You will be required to submit a capstone assignment “plan” by the beginning of November.\nThere will be 1 capstone assignment.\nDue Dates:\n\n\n\n\n\nAssignment\nDue Date\n\n\n\n\nCapstone plan\nTuesday, October 28, 2025\n\n\nCapstone\nFriday, December 12, 2025\n\n\n\n\n\n\n\nI expect you will turn assignments in on time. Late assignments are not accepted. If there are extenuating circumstances that prevent you from turning in an assignment on time, please connect with me as soon as possible after such a situation arises for discussion about a possible deadline extension.",
-    "crumbs": [
-      "Capstone assignment",
-      "Capstone instructions"
-    ]
-  },
-  {
-    "objectID": "assignments/capstone.html#capstone-assignment",
-    "href": "assignments/capstone.html#capstone-assignment",
-    "title": "Capstone assignment",
-    "section": "",
-    "text": "At the end of the semester, you will complete a capstone assignment where you create a series of visualizations based on your research data, data coming from your lab, or other data that is publicly available. I expect this assignment to be completed in R Markdown, annotated, and knitted into an easy-to-read .html file. I also expect your code to be fully commented such that I can understand what you are doing with each step, and why. You will be required to submit a capstone assignment “plan” by the beginning of November.\nThere will be 1 capstone assignment.\nDue Dates:\n\n\n\n\n\nAssignment\nDue Date\n\n\n\n\nCapstone plan\nTuesday, October 28, 2025\n\n\nCapstone\nFriday, December 12, 2025\n\n\n\n\n\n\n\nI expect you will turn assignments in on time. Late assignments are not accepted. If there are extenuating circumstances that prevent you from turning in an assignment on time, please connect with me as soon as possible after such a situation arises for discussion about a possible deadline extension.",
-    "crumbs": [
-      "Capstone assignment",
-      "Capstone instructions"
-    ]
-  },
-  {
-    "objectID": "assignments/recitations.html",
-    "href": "assignments/recitations.html",
-    "title": "Reflections",
-    "section": "",
-    "text": "I ask you submit 8 of 11 recitations to Carmen to show you have made a good faith effort to engage with the course material. I will mark these at 0 or 1 points, with 1 point given for completion of at least 70% of the assignment.\nDue Date: Recitations are due the Sunday after each class. For example, if class is on Tuesday September 9, the recitation for that class is due on Sunday September 14 by 11:59pm.\n\n\nI expect you will turn assignments in on time. Late assignments are not accepted. If there are extenuating circumstances that prevent you from turning in an assignment on time, please connect with me as soon as possible after such a situation arises for discussion about a possible deadline extension.",
-    "crumbs": [
-      "Recitations",
-      "Recitation instructions"
-    ]
-  },
-  {
-    "objectID": "assignments/recitations.html#reflections",
-    "href": "assignments/recitations.html#reflections",
-    "title": "Reflections",
-    "section": "",
-    "text": "I ask you submit 8 of 11 recitations to Carmen to show you have made a good faith effort to engage with the course material. I will mark these at 0 or 1 points, with 1 point given for completion of at least 70% of the assignment.\nDue Date: Recitations are due the Sunday after each class. For example, if class is on Tuesday September 9, the recitation for that class is due on Sunday September 14 by 11:59pm.\n\n\nI expect you will turn assignments in on time. Late assignments are not accepted. If there are extenuating circumstances that prevent you from turning in an assignment on time, please connect with me as soon as possible after such a situation arises for discussion about a possible deadline extension.",
-    "crumbs": [
-      "Recitations",
-      "Recitation instructions"
     ]
   },
   {
