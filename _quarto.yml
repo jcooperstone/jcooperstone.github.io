@@ -14,7 +14,7 @@ website:
   # license: "CC BY-NC"
   # copyright: 
   #   holder: "Jessica Cooperstone""
-  #   year: 2025
+  #   year: 2026
   # search
   search:
     location: navbar
@@ -30,11 +30,13 @@ website:
   # footer
   page-footer:
     border: true
-    left: "Created with RStudio and [Quarto](https://quarto.org/) <br> © Jessica Cooperstone, 2025, License: [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) <br> [Want to make a website like this one?](https://osu-codeclub.github.io/#category=website)"
+    left: "Created with RStudio and [Quarto](https://quarto.org/) <br> © Jessica Cooperstone, 2026, License: [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/) <br> [Want to make a website like this one?](https://osu-codeclub.github.io/#category=website)"
     right:
       - icon: github
         href: https://github.com/jcooperstone/rdataviz
-
+      - icon: cc-circle
+        href: https://creativecommons.org/licenses/by-nc/4.0/deed.en 
+      
   # nav
   navbar:
     logo: favicon.png
@@ -72,41 +74,42 @@ website:
         - section: Module 1 - Principles
           contents:
             - href: modules/module1/01_principles/01_principles.qmd
-              text: Week 1 - Principles
-            - href: modules/module1/02_good-and-bad/02_goodbad.qmd
-              text: Week 2 - Good and bad visualizations
+              text: Week 1 - Principles 1
+            - href: modules/module1/02_principles/02_principles.qmd
+              text: Week 2 - Principles 2
+            - href: modules/module1/03_good-and-bad/03_goodbad.qmd
+              text: Week 3 - Good and bad visualizations
 
         - section: Module 2 - Coding fundamentals
           contents:
-            - href: modules/module2/03_rmarkdown/03_Rmd.qmd
-              text: Week 3 - R Markdown
-            - href: modules/module2/04_wrangling/04_wrangling.qmd
-              text: Week 4 - Wrangling
-            - href: modules/module2/05_ggplot101/05_ggplot101.qmd
-              text: Week 5 - ggplot101
-            - href: modules/module2/06_ggplot102/06_ggplot102.qmd
-              text: Week 6 - ggplot102
+            - href: modules/module2/04_rmarkdown/04_Rmd.qmd
+              text: Week 4 - R Markdown
+            - href: modules/module2/05_wrangling/05_wrangling.qmd
+              text: Week 5 - Wrangling
+            - href: modules/module2/06_ggplot101/06_ggplot101.qmd
+              text: Week 6 - ggplot101
+            - href: modules/module2/07_ggplot102/07_ggplot102.qmd
+              text: Week 7 - ggplot102
         
         - section: Module 3 - Data exploration
           contents:
-            - href: modules/module3/07_distributions/07_distributions.qmd
-              text: Week 7 - Data distributions
-            - href: modules/module3/08_correlations/08_correlations.qmd
-              text: Week 8 - Correlations
-            - href: modules/module3/09_add-stats/09_add-stats.qmd
-              text: Week 9 - Adding statistics
+            - href: modules/module3/08_distributions/08_distributions.qmd
+              text: Week 8 - Data distributions
+            - href: modules/module3/09_correlations/09_correlations.qmd
+              text: Week 9 - Correlations
+            - href: modules/module3/10_add-stats/10_add-stats.qmd
+              text: Week 10 - Adding statistics
             
         - section: Module 4 - Putting it together
           contents:
-            - href: modules/module4/10_pca/10_pca.qmd
-              text: Week 10 - Principal components analysis
-            - href: modules/module4/11_interactive-plots/11_interactive-plots.qmd
-              text: Week 11 - Interactive plots            
             - href: modules/module4/12_manhattan/12_manhattan.qmd
-              text: Week 12 - Manhattan plots
-            - href: modules/module4/13_leftovers/13_leftovers.qmd
-              text: Week 13 - Leftovers
-
+              text: Week 12 - Manhattan plots and multi-plotting
+            - href: modules/module4/13_pca/13_pca.qmd
+              text: Week 13 - Principal components analysis
+            - href: modules/module4/14_leftovers/14_leftovers.qmd
+              text: Week 14 - Leftovers
+            - href: modules/module4/15_interactive-plots/15_interactive-plots.qmd
+              text: Week 15 - Interactive plots
     - id: recitations
       title: "Recitations"
       style: "docked"
@@ -114,35 +117,35 @@ website:
       contents:
         - section: Module 2 - Coding fundamentals
           contents:
-            - href: modules/module2/03_rmarkdown/03_Rmd_recitation.qmd
-              text: Week 3 - R Markdown
-            - href: modules/module2/04_wrangling/04_wrangling_recitation.qmd
-              text: Week 4 - Wrangling
-            - href: modules/module2/05_ggplot101/05_ggplot101_recitation.qmd
-              text: Week 5 - ggplot101
-            - href: modules/module2/06_ggplot102/06_ggplot102_recitation.qmd
-              text: Week 6 - ggplot102
+            - href: modules/module2/04_rmarkdown/04_Rmd_recitation.qmd
+              text: Week 4 - R Markdown
+            - href: modules/module2/05_wrangling/05_wrangling_recitation.qmd
+              text: Week 5 - Wrangling
+            - href: modules/module2/06_ggplot101/06_ggplot101_recitation.qmd
+              text: Week 6 - ggplot101
+            - href: modules/module2/07_ggplot102/07_ggplot102_recitation.qmd
+              text: Week 7 - ggplot102
         
         - section: Module 3 - Data exploration
           contents:
-            - href: modules/module3/07_distributions/07_distributions_recitation.qmd
-              text: Week 7 - Data distributions
-            - href: modules/module3/08_correlations/08_correlations_recitation.qmd
-              text: Week 8 - Correlations
-            - href: modules/module3/09_add-stats/09_add-stats_recitation.qmd
-              text: Week 9 - Adding statistics
+            - href: modules/module3/08_distributions/08_distributions_recitation.qmd
+              text: Week 8 - Data distributions
+            - href: modules/module3/09_correlations/09_correlations_recitation.qmd
+              text: Week 9 - Correlations
+            - href: modules/module3/10_add-stats/10_add-stats_recitation.qmd
+              text: Week 10 - Adding statistics
             
         - section: Module 4 - Putting it together
           contents:
-            - href: modules/module4/10_pca/10_pca_recitation.qmd
-              text: Week 10 - Principal components analysis
-            - href: modules/module4/11_interactive-plots/11_interactive-plots_recitation.qmd
-              text: Week 11 - Interactive plots
             - href: modules/module4/12_manhattan/12_manhattan_recitation.qmd
-              text: Week 12 - Manhattan plots
-            - href: modules/module4/13_leftovers/13_leftovers_recitation.qmd
-              text: Week 13 - Leftovers
-            
+              text: Week 12 - Manhattan plots and multi-plotting
+            - href: modules/module4/13_pca/13_pca_recitation.qmd
+              text: Week 13 - Principal components analysis
+            - href: modules/module4/14_leftovers/14_leftovers_recitation.qmd
+              text: Week 14 - Leftovers
+            - href: modules/module4/15_interactive-plots/15_interactive-plots_recitation.qmd
+              text: Week 15 - Interactive plots
+
     - id: assignments
       title: "Assignments"
       style: "docked"
@@ -190,28 +193,30 @@ website:
 
         - section: Recitation solutions
           # contents:
-          #   - href: https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/main/rmds/03_Rmd_recitation_solutions.Rmd
-          #     text: Week 3 - R Markdown solutions
-          #   - href: modules/module2/04_wrangling/04_wrangling_recitation_solutions.qmd
-          #     text: Week 4 - Wrangling solutions
-          #   - href: modules/module2/05_ggplot101/05_ggplot101_recitation_solutions.qmd
-          #     text: Week 5 - ggplot101 solutions
-          #   - href: modules/module2/06_ggplot102/06_ggplot102_recitation_solutions.qmd
-          #     text: Week 6 - ggplot102 solutions
-          #   - href: modules/module3/07_distributions/07_distributions_recitation_solutions.qmd
-          #     text: Week 7 - Data distributions solutions
-          #   - href: modules/module3/08_correlations/08_correlations_recitation_solutions.qmd
-          #     text: Week 8 - Correlations solutions
-          #   - href: modules/module3/09_add-stats/09_add-stats_recitation_solutions.qmd
-          #     text: Week 9 - Adding statistics solutions
-          #   - href: modules/module4/10_pca/10_pca_recitation_solutions.qmd
-          #     text: Week 10 - Principal components analysis solutions
-          #   - href: modules/module4/11_interactive-plots/11_interactive-plots_recitation_solutions.qmd
-          #     text: Week 11 - Interactive plots solutions
+          #   - href: https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/main/rmds/04_Rmd_recitation_solutions.Rmd
+          #     text: Week 4 - R Markdown solutions
+          #   - href: modules/module2/05_wrangling/05_wrangling_recitation_solutions.qmd
+          #     text: Week 5 - Wrangling solutions
+          #   - href: modules/module2/06_ggplot101/06_ggplot101_recitation_solutions.qmd
+          #     text: Week 6 - ggplot101 solutions
+          #   - href: modules/module2/07_ggplot102/07_ggplot102_recitation_solutions.qmd
+          #     text: Week 7 - ggplot102 solutions
+          #   - href: modules/module3/08_distributions/08_distributions_recitation_solutions.qmd
+          #     text: Week 8 - Data distributions solutions
+          #   - href: modules/module3/09_correlations/09_correlations_recitation_solutions.qmd
+          #     text: Week 9 - Correlations solutions
+          #   - href: modules/module3/10_add-stats/10_add-stats_recitation_solutions.qmd
+          #     text: Week 10 - Adding statistics solutions
           #   - href: modules/module4/12_manhattan/12_manhattan_recitation_solutions.qmd
           #     text: Week 12 - Manhattan plots solutions
-          #   - href: modules/module4/13_leftovers/13_leftovers_recitation_solutions.qmd
-          #     text: Week 13 - Leftovers solutions
+          #   - href: modules/module4/13_pca/13_pca_recitation_solutions.qmd
+          #     text: Week 13 - Principal components analysis solutions
+          #   - href: modules/module4/14_leftovers/14_leftovers_recitation_solutions.qmd
+          #     text: Week 14 - Leftovers solutions          
+          #   - href: modules/module4/15_interactive-plots/15_interactive-plots_recitation_solutions.qmd
+          #     text: Week 15 - Interactive plots solutions
+
+
 
       
 format:

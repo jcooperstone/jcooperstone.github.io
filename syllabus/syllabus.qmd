@@ -1,5 +1,5 @@
 ---
-title: "Syllabus, Autumn 2025"
+title: "Syllabus, Autumn 2026"
 format:
   html:
     toc: true
@@ -15,12 +15,12 @@ knitr::opts_chunk$set(echo = FALSE)
 **Instructor:** [Jessica Cooperstone, Ph.D.](https://www.cooperstonelab.com/)\
 **Email address:** cooperstone dot 1 at osu dot edu (preferred contact method)\
 **Phone number:** 614-292-2843 (non-preferred contact method)\
-**TA**: [Daniel Quiroz Moreno](https://danielquiroz97.gitlab.io/), quirozmoreno dot 1 at osu dot edu\
+**TA**: Mia Scott, scott dot 2291 at osu dot edu\
 **Office hours:** TBD
 
-<!-- - Jess: Tuesdays 1-2pm Howlett 348 or via [Zoom](https://go.osu.edu/dataviz-zoom) -->
+<!-- - Jess: XXXX Pelotonia Research Center 1103 or via [Zoom](https://go.osu.edu/dataviz-zoom) -->
 
-<!-- - Daniel: Thursdays 2-3pm Howlett 340 or via [Zoom](https://go.osu.edu/dataviz-zoom) (tell Daniel by the start of office hours if you're planning to attend) -->
+<!-- - Mia: XXXX Pelotonia Research Center 1150 or via [Zoom](https://go.osu.edu/dataviz-zoom) -->
 
 ## Course meeting time and place
 
@@ -57,7 +57,7 @@ library(readxl)
 library(knitr)
 library(tidyverse)
 schedule <- read_excel("../files/schedule_modules.xlsx",
-                       sheet = "Schedule_date_2025") 
+                       sheet = "Schedule_date_2026") 
 ```
 
 ```{r, echo = FALSE, fig.width = 6}
@@ -65,12 +65,12 @@ kable(schedule)
 ```
 
 ::: {.callout-note title="Non-standard days"}
-There is no class on November 11 for Veterans Day. On November 25 (the short week of Thanksgiving), I will provide to you the lecture material asynchronously and you can go through the recitation material on your own. Daniel and I will be available to answer questions during office hours, or at the beginning of the next class period.
+Class on November 10 (Election Day) and November 24 (the short week of Thanksgiving), I will provide to you the lecture material asynchronously and you can go through the recitation material on your own. Mia and I will be available to answer questions during office hours, or at the beginning of the next class period.
 :::
 
 ## Course resources
 
-There are no required textbooks for this course, though you will find many of the recommend texts and resources belowvery useful.
+There are no required textbooks for this course, though you will find many of the recommend texts and resources below very useful.
 
 -   [R for Data Science](https://r4ds.had.co.nz/index.html) by Hadley Wickham and Garrett Grolemund
 -   [Introduction to Data Science](https://rafalab.github.io/dsbook/) by Rafael Irizarry
@@ -99,15 +99,19 @@ You do not need to be an R expert for this class, but I will assume working-leve
 
 ### How your grade is calculated
 
-| Assignment category (how many assignments) | Points |
-|----|----|
-| Module assignments (4) | 32 (8 points per assignment) |
-| Recitations (8, you pick which ones) | 8 (1 point per recitation submitted) |
-| Class reflections (10, you pick which ones) | 20 (2 points per reflection) |
-| Capstone assignment (1 plan, 1 assignment) | 10 for the capstone plan, 30 for the assignment |
+```{r, echo = FALSE}
+library(readxl)
+library(knitr)
+points_per_assignment <- read_excel("../files/grading_scale.xlsx",
+                                    sheet = "points-per-assignment")
+```
+
+```{r, echo = FALSE, fig.width = 4}
+kable(points_per_assignment)
+```
 
 
-See the Assignments tab for additional information.
+See the `Assignments` tab for additional information.
 
 ### Assignment descriptions
 
@@ -125,7 +129,7 @@ See the Assignments tab for additional information.
 
 *Grading*: I will mark these at 0 or 1 points, with 1 point given for completion of at least 70% of the assignment.
 
-*Academic Integrity*: Students may use class notes and class resource materials. Students are not permitted to collaborate on assignments. Students must complete work on their own. Generative AI is not to be used. 
+*Academic Integrity*: Students may use class notes and class resource materials. Students are not permitted to collaborate on assignments. Students must complete work on their own. 
 
 
 #### Class reflections
@@ -141,7 +145,7 @@ There will be 10 class reflections (you can select which classes you want to ref
 -   Full credit: Reflections thoughtfully engage with course content, demonstrate the student thought about material and how it would (or wouldn’t) be relevant to their work and development. This is the level of engagement I expect for this course.
 -   Half credit: Reflections are superficial and demonstrate minimal engagement with the course content. A half credit grade indicates better engagement is required for the next reflection. I do not expect to assign these grades often.
 
-*Academic Integrity*: Students may use class notes and class resource materials. Students are not permitted to collaborate on assignments. Students must complete work on their own.
+*Academic Integrity*: Students may use class notes and class resource materials. Students are not permitted to collaborate on assignments. Students must complete work on their own. **Generative AI is not to be used for class reflections.**
 
 #### Capstone assignment
 
@@ -157,7 +161,7 @@ There will be 10 class reflections (you can select which classes you want to ref
 library(readxl)
 library(knitr)
 due_dates <- read_excel("../files/schedule_modules.xlsx",
-                       sheet = "module_due_dates_2025")
+                       sheet = "module_due_dates_2026")
 ```
 
 ```{r, echo = FALSE, fig.width = 6}
@@ -166,7 +170,7 @@ kable(due_dates)
 
 ### Late assignments
 
-I expect you will turn assignments in on time. Late assignments are not accepted. If there are extenuating circumstances that prevent you from turning in an assignment on time, please connect with me as soon as possible after such a situation arises for discussion about a possible deadline extension.
+I expect you will turn assignments in on time and in general, la01.te assignments are not accepted. If there are extenuating circumstances that prevent you from turning in an assignment on time, please connect with me as soon as possible after such a situation arises for discussion about a possible deadline extension.
 
 ### Grading scale
 
@@ -174,7 +178,7 @@ I expect you will turn assignments in on time. Late assignments are not accepted
 library(readxl)
 library(knitr)
 grading_scale <- read_excel("../files/grading_scale.xlsx",
-                       sheet = "Sheet1")
+                       sheet = "scale")
 ```
 
 ```{r, echo = FALSE, fig.width = 4}
@@ -190,6 +194,9 @@ I am providing the following list to give you an idea of my intended availabilit
 -  Grading and feedback: For assignments, you can generally expect feedback within 7 days.
 -  Email: We will reply to emails within 48 hours on days when class is in session at the university.
 
+### Use of Generative AI (e.g., ChatGPT, Co-Pilot or similar)
+
+Artificial intelligence tools, like ChatGPT, Microsoft Co-Pilot or similar are not to be used on assignments unless instructions explicitly indicate to do so. Suspected unauthorized use of generative AI on assignments of any type will be reported to COAM.
 
 ## Other course policies
 
@@ -208,9 +215,6 @@ If I suspect that a student has committed academic misconduct in this course, I 
 
 **If you have any questions about the above policy or what constitutes academic misconduct in this course, please contact me.**
 
-### Use of Generative AI (e.g., ChatGPT, Co-Pilot or similar)
-
-Artificial intelligence tools, like ChatGPT, Microsoft Co-Pilot or similar are not to be used on assignments unless instructions explicitly indicate to do so. Suspected unauthorized use of generative AI on assignments of any type will be reported to COAM.
 
 ### Creating an environment free from harassment, discrimination, and sexual misconduct
 

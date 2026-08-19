@@ -1,12 +1,12 @@
 ---
-title: "1 - Principles of Data Visualization"
-subtitle: "Week 1<br>8/26/2025 <br>💻 🧰 📊 🥳"
+title: "Principles of Data Visualization - 1"
+subtitle: "Week 1<br>💻 🧰 📊 🥳"
 author: "Jessica Cooperstone, Ph.D."
 format: 
   revealjs:
     incremental: true
     theme: jc_style.scss
-    footer: "[01 Principles](https://www.rdataviz.com/), © Jessica Cooperstone, 2025"
+    footer: "[Data Visualization in R](https://www.rdataviz.com/), © Jessica Cooperstone, 2026"
 ---
 
 ## Introductions 👋 {.center_title}
@@ -27,9 +27,9 @@ format:
 ✉️ [cooperstone.1\@osu.edu](cooperstone.1@osu.edu)\
 \
 
-### TA: Daniel Quiroz Moreno<br>
+### TA: Mia Scott<br>
 
-✉️ [quirozmoreno.1\@osu.edu](quirozmoreno.1@osu.edu)\
+✉️ [scott.2291\@osu.edu](scott.2291@osu.edu)\
 \
 
 ### Office hours: [go.osu.edu/dataviz-times](https://go.osu.edu/dataviz-times)
@@ -79,13 +79,16 @@ We are here to help you and will match the enthusiasm that you put into this cou
 
 ## Previous programming experience
 
-You do not need to be an R expert for this class, but I will assume working-level knowledge of R programming. If you have no experience with R, but would still like to take this class, you can. I ask then you get yourself up to speed by taking this free online class [https://www.edx.org/course/data-science-r-basics](https://www.edx.org/course/data-science-r-basic) (audit only) before the start of the 3rd week of class. 
+You do not need to be an R expert for this class, but I will assume working-level knowledge of R programming. If you have no experience with R, but would still like to take this class, you can. I ask then you get yourself up to speed before the start of the 4th week of class by:
+
+- taking this free online class [https://www.edx.org/course/data-science-r-basics](https://www.edx.org/course/data-science-r-basic) (audit only)
+- going through this [R for beginners workshop](https://osu-codeclub.github.io/carpentries-aug-2026/)
 
 ## Assigments {.center_title .smaller}
 
--   **Module assignments:** After each module, there will be an assignment to provide practice for the techniques learned in class.
+-   **Module assignments:** After each module, there will be an assignment (4) to provide practice for the techniques learned in class.
 
--   **Class reflections:** After 10 of the 15 weeks, you will write a 1 paragraph reflection on the material that was presented in class. This can include your thoughts on how you will use these lessons in your own research and data visualizations, ways in which you have investigated this topic (or expect to) on your own, or what else you'd like to learn in this area. The purpose of this assignment is not to be burdensome, but to keep you engaged in the course material, and providing feedback to me on what parts you've found useful, what you've struggled with, and what you'd like to see more of in the future.
+-   **Class reflections:** After 10 of the 16 weeks, you will write a 1 paragraph reflection on the material that was presented in class. This can include your thoughts on how you will use these lessons in your own research and data visualizations, ways in which you have investigated this topic (or expect to) on your own, or what else you'd like to learn in this area. The purpose of this assignment is not to be burdensome, but to keep you engaged in the course material, and providing feedback to me on what parts you've found useful, what you've struggled with, and what you'd like to see more of in the future.
 
 -   **Recitation submissions:** I ask you submit 8 of 11 recitations to Carmen to show you have made a good faith effort to engage with the course material. I will mark these at 0 or 1 points, with 1 point given for completion of at least 70% of the assignment.
 
@@ -101,7 +104,7 @@ You do not need to be an R expert for this class, but I will assume working-leve
 
 -   All assignments are open book, googling/investigating is required!
 
--   The use of generative AI (e.g., ChatGPT, Co-Pilot) on your assignments is not allowed.
+# Use of generative AI 
 
 ## 🗓 Schedule
 
@@ -114,7 +117,7 @@ library(readxl)
 library(knitr)
 library(tidyverse)
 schedule <- read_excel("../../../files/schedule_modules.xlsx",
-                       sheet = "Schedule_date_2025")
+                       sheet = "Schedule_date_2026")
 
 schedule_1 <- schedule |> 
   filter(Module == "1: Principles")
@@ -150,8 +153,8 @@ kable(schedule_3)
 
 ## 🗓️ Schedule (part 4) {.smaller}
 
-*November 11* is Veterans Day (no class) <br>
-*November 25* will be asynchronous
+*November 10* will be asynchronous (Election Day) <br>
+*November 25* will be asynchronous (short week of Thanksgiving)
 
 ```{r schedule4, echo = FALSE}
 kable(schedule_4)
@@ -587,12 +590,15 @@ knitr::include_graphics("img/bad_life_expectancy.png")
 
 ## Next class
 
+More discussion of principles of data visualization
 
-Submit (through Carmen) by Monday 9/1/2025 at 11:59pm:
+## Module 1 assignment
+
+Submit (through Carmen) by Monday 9/7/2026 at 11:59pm:
 
 * 1 good visualization (and a paragraph on why its good)
 * 1 bad visualization (and a paragraph on why its bad)
 
 ::: {.fragment}
-We will go through these next week. Daniel will pick the best good and the best bad visualizations and there will be prizes! 🎉
+We will go through these next week. Mia will pick her favorite good and the bad visualizations and there will be prizes! 🎉
 :::

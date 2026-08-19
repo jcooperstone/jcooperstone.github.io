@@ -1,0 +1,23 @@
+---
+title: "Principles of Data Visualization - 2"
+subtitle: "Week 2<br>💻 🧰 📊 🥳"
+author: "Jessica Cooperstone, Ph.D."
+format: 
+  revealjs:
+    incremental: true
+    theme: jc_style.scss
+    footer: "[Data Visualization in R](https://www.rdataviz.com/), © Jessica Cooperstone, 2026"
+---
+
+## Introductions 👋 {.center_title}
+
+
+## Next class - discussion of module 1 assignment
+
+Submit (through Carmen) by Monday 9/7/2026 at 11:59pm:
+
+* 1 good visualization (and a paragraph on why its good)
+* 1 bad visualization (and a paragraph on why its bad)
+
+::: {.fragment}
+We will go through these next week. Mia will pick her favorite good and the bad visualizations and there will be prizes! 🎉

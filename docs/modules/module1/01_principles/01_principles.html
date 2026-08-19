@@ -7,17 +7,20 @@
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.25">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.38">
 
   <meta name="author" content="Jessica Cooperstone, Ph.D.">
-  <title>💻🧰📊🥳 – 1 - Principles of Data Visualization</title>
+  <title>💻🧰📊🥳 – Principles of Data Visualization - 1</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
   <link rel="stylesheet" href="../../../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../../../site_libs/revealjs/dist/reveal.css">
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -30,7 +33,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../../site_libs/revealjs/dist/theme/quarto-fef68f04e783a05ca6dc916355c279b3.css">
+  <link rel="stylesheet" href="../../../site_libs/revealjs/dist/theme/quarto-c4bef06141956637c531066a4fd53acc.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-M24LDNCMG6"></script>
 
   <script type="text/javascript">
@@ -137,8 +140,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">1 - Principles of Data Visualization</h1>
-  <p class="subtitle">Week 1<br>8/26/2025 <br>💻 🧰 📊 🥳</p>
+  <h1 class="title">Principles of Data Visualization - 1</h1>
+  <p class="subtitle">Week 1<br>💻 🧰 📊 🥳</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -169,8 +172,8 @@ Jessica Cooperstone, Ph.D.
 <p>✉️ <a href="cooperstone.1@osu.edu">cooperstone.1@osu.edu</a><br>
 <br>
 </p>
-<h3 id="ta-daniel-quiroz-moreno">TA: Daniel Quiroz Moreno<br></h3>
-<p>✉️ <a href="quirozmoreno.1@osu.edu">quirozmoreno.1@osu.edu</a><br>
+<h3 id="ta-mia-scott">TA: Mia Scott<br></h3>
+<p>✉️ <a href="scott.2291@osu.edu">scott.2291@osu.edu</a><br>
 <br>
 </p>
 <h3 id="office-hours-go.osu.edudataviz-times">Office hours: <a href="https://go.osu.edu/dataviz-times">go.osu.edu/dataviz-times</a></h3>
@@ -221,13 +224,17 @@ Class will taught in a hybrid, synchronous manner, meaning I expect you to atten
 </section>
 <section id="previous-programming-experience" class="slide level2">
 <h2>Previous programming experience</h2>
-<p>You do not need to be an R expert for this class, but I will assume working-level knowledge of R programming. If you have no experience with R, but would still like to take this class, you can. I ask then you get yourself up to speed by taking this free online class <a href="https://www.edx.org/course/data-science-r-basic">https://www.edx.org/course/data-science-r-basics</a> (audit only) before the start of the 3rd week of class.</p>
+<p>You do not need to be an R expert for this class, but I will assume working-level knowledge of R programming. If you have no experience with R, but would still like to take this class, you can. I ask then you get yourself up to speed before the start of the 4th week of class by:</p>
+<ul>
+<li class="fragment">taking this free online class <a href="https://www.edx.org/course/data-science-r-basic">https://www.edx.org/course/data-science-r-basics</a> (audit only)</li>
+<li class="fragment">going through this <a href="https://osu-codeclub.github.io/carpentries-aug-2026/">R for beginners workshop</a></li>
+</ul>
 </section>
 <section id="assigments" class="slide level2 center_title smaller">
 <h2>Assigments</h2>
 <ul>
-<li class="fragment"><p><strong>Module assignments:</strong> After each module, there will be an assignment to provide practice for the techniques learned in class.</p></li>
-<li class="fragment"><p><strong>Class reflections:</strong> After 10 of the 15 weeks, you will write a 1 paragraph reflection on the material that was presented in class. This can include your thoughts on how you will use these lessons in your own research and data visualizations, ways in which you have investigated this topic (or expect to) on your own, or what else you’d like to learn in this area. The purpose of this assignment is not to be burdensome, but to keep you engaged in the course material, and providing feedback to me on what parts you’ve found useful, what you’ve struggled with, and what you’d like to see more of in the future.</p></li>
+<li class="fragment"><p><strong>Module assignments:</strong> After each module, there will be an assignment (4) to provide practice for the techniques learned in class.</p></li>
+<li class="fragment"><p><strong>Class reflections:</strong> After 10 of the 16 weeks, you will write a 1 paragraph reflection on the material that was presented in class. This can include your thoughts on how you will use these lessons in your own research and data visualizations, ways in which you have investigated this topic (or expect to) on your own, or what else you’d like to learn in this area. The purpose of this assignment is not to be burdensome, but to keep you engaged in the course material, and providing feedback to me on what parts you’ve found useful, what you’ve struggled with, and what you’d like to see more of in the future.</p></li>
 <li class="fragment"><p><strong>Recitation submissions:</strong> I ask you submit 8 of 11 recitations to Carmen to show you have made a good faith effort to engage with the course material. I will mark these at 0 or 1 points, with 1 point given for completion of at least 70% of the assignment.</p></li>
 <li class="fragment"><p><strong>Capstone assignment:</strong> At the end of the semester, you will complete a capstone assignment where you create a series of visualizations based on your research data, data coming from your lab, or other data that is publicly available. I expect this assignment to be completed in R Markdown, annotated, and knitted into an easy-to-read .html file. I also expect your code to be fully commented such that I can understand what you are doing with each step, and why.</p></li>
 </ul>
@@ -238,14 +245,18 @@ Class will taught in a hybrid, synchronous manner, meaning I expect you to atten
 <li class="fragment">I expect you will turn assignments in on time. Late assignments are not accepted. If there are extenuating circumstances that prevent you from turning in an assignment on time, please connect with me as soon as possible after such a situation arises for discussion about a possible deadline extension.</li>
 </ul>
 </section></section>
-<section>
 <section id="academic-integrity" class="title-slide slide level1 center_title center">
 <h1>Academic integrity 🏫</h1>
 <ul>
 <li class="fragment"><p>It is fine for you to work with your classmates/labmates/whoever, but I expect you to turn in your own independent assignments representing your work</p></li>
 <li class="fragment"><p>All assignments are open book, googling/investigating is required!</p></li>
-<li class="fragment"><p>The use of generative AI (e.g., ChatGPT, Co-Pilot) on your assignments is not allowed.</p></li>
 </ul>
+</section>
+
+<section>
+<section id="use-of-generative-ai" class="title-slide slide level1 center">
+<h1>Use of generative AI</h1>
+
 </section>
 <section id="schedule" class="slide level2">
 <h2>🗓 Schedule</h2>
@@ -258,6 +269,7 @@ Class will taught in a hybrid, synchronous manner, meaning I expect you to atten
 <table class="caption-top">
 <thead>
 <tr class="header">
+<th style="text-align: right;">Week</th>
 <th style="text-align: left;">Date</th>
 <th style="text-align: left;">Module</th>
 <th style="text-align: left;">Topic</th>
@@ -265,12 +277,20 @@ Class will taught in a hybrid, synchronous manner, meaning I expect you to atten
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">2025-08-26</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2026-08-25</td>
 <td style="text-align: left;">1: Principles</td>
-<td style="text-align: left;">Principles of data visualization</td>
+<td style="text-align: left;">Principles of data visualization 1</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2025-09-02</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">2026-09-01</td>
+<td style="text-align: left;">1: Principles</td>
+<td style="text-align: left;">Principles of data visualization 2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">2026-09-08</td>
 <td style="text-align: left;">1: Principles</td>
 <td style="text-align: left;">Good and bad visualizations</td>
 </tr>
@@ -285,12 +305,14 @@ Class will taught in a hybrid, synchronous manner, meaning I expect you to atten
 <div class="cell-output-display">
 <table class="caption-top">
 <colgroup>
-<col style="width: 15%">
-<col style="width: 32%">
-<col style="width: 52%">
+<col style="width: 6%">
+<col style="width: 14%">
+<col style="width: 30%">
+<col style="width: 48%">
 </colgroup>
 <thead>
 <tr class="header">
+<th style="text-align: right;">Week</th>
 <th style="text-align: left;">Date</th>
 <th style="text-align: left;">Module</th>
 <th style="text-align: left;">Topic</th>
@@ -298,22 +320,26 @@ Class will taught in a hybrid, synchronous manner, meaning I expect you to atten
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">2025-09-09</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">2026-09-15</td>
 <td style="text-align: left;">2: Coding fundamentals</td>
 <td style="text-align: left;">R Markdown for reproducible research</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2025-09-16</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">2026-09-22</td>
 <td style="text-align: left;">2: Coding fundamentals</td>
 <td style="text-align: left;">Wrangling, the basics</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2025-09-23</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">2026-09-29</td>
 <td style="text-align: left;">2: Coding fundamentals</td>
 <td style="text-align: left;">ggplot 101</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2025-09-30</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">2026-10-06</td>
 <td style="text-align: left;">2: Coding fundamentals</td>
 <td style="text-align: left;">Themes, labels, facets (ggplot 102)</td>
 </tr>
@@ -329,6 +355,7 @@ Class will taught in a hybrid, synchronous manner, meaning I expect you to atten
 <table class="caption-top">
 <thead>
 <tr class="header">
+<th style="text-align: right;">Week</th>
 <th style="text-align: left;">Date</th>
 <th style="text-align: left;">Module</th>
 <th style="text-align: left;">Topic</th>
@@ -336,17 +363,20 @@ Class will taught in a hybrid, synchronous manner, meaning I expect you to atten
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">2025-10-07</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: left;">2026-10-13</td>
 <td style="text-align: left;">3: Data exploration</td>
 <td style="text-align: left;">Data distributions</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2025-10-14</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">2026-10-20</td>
 <td style="text-align: left;">3: Data exploration</td>
 <td style="text-align: left;">Correlations</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2025-10-28</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">2026-10-27</td>
 <td style="text-align: left;">3: Data exploration</td>
 <td style="text-align: left;">Annotating statistics</td>
 </tr>
@@ -357,17 +387,19 @@ Class will taught in a hybrid, synchronous manner, meaning I expect you to atten
 </section>
 <section id="schedule-part-4" class="slide level2 smaller">
 <h2>🗓️ Schedule (part 4)</h2>
-<p><em>November 11</em> is Veterans Day (no class) <br> <em>November 25</em> will be asynchronous</p>
+<p><em>November 10</em> will be asynchronous (Election Day) <br> <em>November 25</em> will be asynchronous (short week of Thanksgiving)</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top">
 <colgroup>
-<col style="width: 11%">
-<col style="width: 23%">
-<col style="width: 65%">
+<col style="width: 4%">
+<col style="width: 10%">
+<col style="width: 22%">
+<col style="width: 62%">
 </colgroup>
 <thead>
 <tr class="header">
+<th style="text-align: right;">Week</th>
 <th style="text-align: left;">Date</th>
 <th style="text-align: left;">Module</th>
 <th style="text-align: left;">Topic</th>
@@ -375,24 +407,28 @@ Class will taught in a hybrid, synchronous manner, meaning I expect you to atten
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">2025-11-04</td>
-<td style="text-align: left;">4: Putting it together</td>
-<td style="text-align: left;">Principal components analysis</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">2025-11-18</td>
-<td style="text-align: left;">4: Putting it together</td>
-<td style="text-align: left;">Interactive plots</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2025-11-25</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: left;">2026-11-10</td>
 <td style="text-align: left;">4: Putting it together</td>
 <td style="text-align: left;">Manhattan plots and making lots of plots at once (asynchronous)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2025-12-02</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: left;">2026-11-17</td>
 <td style="text-align: left;">4: Putting it together</td>
-<td style="text-align: left;">ggplot extension packages</td>
+<td style="text-align: left;">Principal components analysis</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">14</td>
+<td style="text-align: left;">2026-11-24</td>
+<td style="text-align: left;">4: Putting it together</td>
+<td style="text-align: left;">ggplot extension packages (asynchronous)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">15</td>
+<td style="text-align: left;">2026-12-01</td>
+<td style="text-align: left;">4: Putting it together</td>
+<td style="text-align: left;">Interactive plots</td>
 </tr>
 </tbody>
 </table>
@@ -406,6 +442,7 @@ Class will taught in a hybrid, synchronous manner, meaning I expect you to atten
 <table class="caption-top">
 <thead>
 <tr class="header">
+<th style="text-align: right;">Week</th>
 <th style="text-align: left;">Date</th>
 <th style="text-align: left;">Module</th>
 <th style="text-align: left;">Topic</th>
@@ -413,12 +450,14 @@ Class will taught in a hybrid, synchronous manner, meaning I expect you to atten
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">2025-10-21</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: left;">2026-11-03</td>
 <td style="text-align: left;">Capstone prep</td>
 <td style="text-align: left;">Capstone plan prep, open session</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">2025-12-09</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: left;">2026-12-08</td>
 <td style="text-align: left;">Capstone prep</td>
 <td style="text-align: left;">Capstone assignment, open session</td>
 </tr>
@@ -650,13 +689,17 @@ Figure adapted from one by <a href="https://twitter.com/rick_scavetta?lang=en">R
 </section>
 <section id="next-class" class="slide level2">
 <h2>Next class</h2>
-<p>Submit (through Carmen) by Monday 9/1/2025 at 11:59pm:</p>
+<p>More discussion of principles of data visualization</p>
+</section>
+<section id="module-1-assignment" class="slide level2">
+<h2>Module 1 assignment</h2>
+<p>Submit (through Carmen) by Monday 9/7/2026 at 11:59pm:</p>
 <ul>
 <li class="fragment">1 good visualization (and a paragraph on why its good)</li>
 <li class="fragment">1 bad visualization (and a paragraph on why its bad)</li>
 </ul>
 <div class="fragment">
-<p>We will go through these next week. Daniel will pick the best good and the best bad visualizations and there will be prizes! 🎉</p>
+<p>We will go through these next week. Mia will pick her favorite good and the bad visualizations and there will be prizes! 🎉</p>
 </div>
 
 
@@ -664,7 +707,7 @@ Figure adapted from one by <a href="https://twitter.com/rick_scavetta?lang=en">R
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
-<p><a href="https://www.rdataviz.com/">01 Principles</a>, © Jessica Cooperstone, 2025</p>
+<p><a href="https://www.rdataviz.com/">Data Visualization in R</a>, © Jessica Cooperstone, 2026</p>
 </div>
 </div></div>
 

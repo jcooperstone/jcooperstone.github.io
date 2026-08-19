@@ -1,0 +1,47 @@
+---
+title: "Good and Bad Data Visualizations"
+subtitle: "Week 3<br>💻 🧰 📊 🥳"
+author: "Jessica Cooperstone, Ph.D."
+format: 
+  revealjs:
+    incremental: true
+    theme: simple
+    footer: "[Data Visualization in R](https://www.rdataviz.com/), © Jessica Cooperstone, 2026"
+---
+
+# Housekeeping
+
+-   Questions from the previous class?
+-   Take [edX R basics class](https://pll.harvard.edu/course/data-science-r-basics) if you don't have R experience. Can also go through content at an [R Basics Code Club workshop](https://osu-codeclub.github.io/carpentries-aug-2026/) from August 2026.
+-   Start think about identifying a data-set for your capstone assignment
+-   Don't forget about your reflections 🪞
+-   Recitations start next week!
+
+# Office hours
+
+-   Jess: XXXXX Pelotonia Research Center 1103 or via [Zoom](https://go.osu.edu/dataviz-zoom)
+-   Mia: XXXX Pelotonia Research Center 1170 or via [Zoom](https://go.osu.edu/dataviz-zoom) (tell Mia if you want to attend in person)
+-   Those who want to attend office hours in person, send us a message and we will come get you from the lobby
+-   Those who want to attend office hours virtually, use the same [Zoom link](https://go.osu.edu/dataviz-zoom) for class
+
+## What was easier to find?
+
+-   Good 👏 visualizations
+-   Bad 😡 visualizations
+
+# What are we doing today?
+
+- Bad: why are they bad (specifically), how can they be made better?
+- Good: why are they good (specifically), can we still improve them?
+
+# Bad visualizations 😡 {.center_title}
+
+
+<!-- ![](bad/.jpg){fig-align="center"} -->
+
+
+# Good visualizations 👏 {.center_title}
+
+
+
+# Closing thoughts
