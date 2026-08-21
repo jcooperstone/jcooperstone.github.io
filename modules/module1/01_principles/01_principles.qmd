@@ -106,6 +106,16 @@ You do not need to be an R expert for this class, but I will assume working-leve
 
 # Use of generative AI 
 
+Generative AI is allowable for aiding with your coding. When it is used, the following should be disclosed:
+
+1. What model was used
+2. What the purpose of the use was
+3. What prompts were provided
+4. How you edited code to make it work for your purpose
+5. All code provided should be fully commented
+
+Generative AI is not allowable for use in your reflections or for other written material turned in as part of an assignment. Suspected unauthorized use of generative AI on assignments of any type will be reported to COAM.
+
 ## 🗓 Schedule
 
 This is our tentative class schedule - but subject to change depending on our pacing, and your interests!

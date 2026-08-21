@@ -7,19 +7,21 @@ At the end of the semester, you will complete a capstone assignment where you cr
 
 There will be 1 capstone assignment. 
 
-**Due Dates:** 
+**Due Dates:** (all assignments are due by 11:59 pm of the day indicated)
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
 library(readxl)
 library(knitr)
 library(tidyverse)
 due_dates <- read_excel("../files/schedule_modules.xlsx",
-                       sheet = "module_due_dates_2025") 
+                       sheet = "module_due_dates_2026") 
 ```
 
 ```{r, echo = FALSE, fig.width = 6}
 due_dates %>%
   filter(str_detect(Assignment, "Capstone")) %>%
+  select(Assignment, due_date_paste) |> 
+  rename(`Due date` = due_date_paste) |> 
   kable()
 ```
 

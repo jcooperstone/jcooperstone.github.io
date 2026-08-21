@@ -11,18 +11,20 @@ Please upload to Carmen:
 -   1 good visualization, along with 1 paragraph about why it is good
 -   1 bad visualization, along with 1 paragraph about why it is bad.
 
-```{r, echo = FALSE, message = FALSE}
+Please be specific - describe what you see and how the visuals allow (or don't allow) you to capture a clear message.
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
 library(readxl)
 library(knitr)
 library(tidyverse)
 due_dates <- read_excel("../../../files/schedule_modules.xlsx",
-                       sheet = "module_due_dates_2025")
+                       sheet = "module_due_dates_2026")
 ```
 
 ```{r, echo = FALSE}
 module_1_due_date <- due_dates |> 
   filter(Assignment == "Module 1: Good and bad visualizations") |> 
-  pull(`Due Date`)
+  pull(due_date_paste)
 ```
 
 ::: callout-important

@@ -93,7 +93,10 @@ There are no required textbooks for this course, though you will find many of th
 
 ## Prior R experience
 
-You do not need to be an R expert for this class, but I will assume working-level knowledge of R programming. If you have no experience with R, but would still like to take this class, you can. I ask then you get yourself up to speed by taking this free online class <https://www.edx.org/course/data-science-r-basics> (audit only) before the start of the 3rd week of class. The course will take 8-16 hours to complete so please leave yourself enough time to do so before week 3. Tips and tricks in R will be scattered throughout the course material.
+You do not need to be an R expert for this class, but I will assume working-level knowledge of R programming. If you have no experience with R, but would still like to take this class, you can. I ask then you get yourself up to speed before the start of the 4th week of class by:
+
+- taking this free online class [https://www.edx.org/course/data-science-r-basics](https://www.edx.org/course/data-science-r-basic) (audit only)
+- going through this [R for beginners workshop](https://osu-codeclub.github.io/carpentries-aug-2026/)
 
 ## Grading
 
@@ -149,7 +152,7 @@ There will be 10 class reflections (you can select which classes you want to ref
 
 #### Capstone assignment
 
-*Description*: At the end of the semester, you will complete a capstone assignment where you create a series of visualizations based on your research data, data coming from your lab, or other data that is publicly available. I expect this assignment to be completed in R Markdown, annotated, and knitted into an easy-to-read .html file. I also expect your code to be fully commented such that I can understand what you are doing with each step, and why. You will be required to submit a capstone assignment “plan” by the beginning of November.
+*Description*: At the end of the semester, you will complete a capstone assignment where you create a series of visualizations based on your research data, data coming from your lab, or other data that is publicly available. I expect this assignment to be completed in R Markdown, annotated (i.e., all code is commented and your thought process is described and detailed), and knitted into an easy-to-read .html file. I also expect your code to be fully commented such that I can understand both 1) what you are doing with each step, and 2) why. You will be required to submit a capstone assignment “plan” part-way through the semester.
 
 *Grading*: Guidance will be provided for the grading of the capstone assignment. Assignments completed outside R Markdown, or not knitted to a .html are not acceptable.
 
@@ -196,7 +199,15 @@ I am providing the following list to give you an idea of my intended availabilit
 
 ### Use of Generative AI (e.g., ChatGPT, Co-Pilot or similar)
 
-Artificial intelligence tools, like ChatGPT, Microsoft Co-Pilot or similar are not to be used on assignments unless instructions explicitly indicate to do so. Suspected unauthorized use of generative AI on assignments of any type will be reported to COAM.
+Generative AI is allowable for aiding with your coding. When it is used, the following should be disclosed:
+
+1. What model was used
+2. What the purpose of the use was
+3. What prompts were provided
+4. How you edited code to make it work for your purpose
+5. All code provided should be fully commented
+
+Generative AI is not allowable for use in your reflections or for other written material turned in as part of an assignment. Suspected unauthorized use of generative AI on assignments of any type will be reported to COAM.
 
 ## Other course policies
 
