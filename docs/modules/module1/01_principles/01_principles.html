@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.9.38">
 
   <meta name="author" content="Jessica Cooperstone, Ph.D.">
-  <title>💻🧰📊🥳 – Principles of Data Visualization - 1</title>
+  <title>💻🧰📊🥳 – Course Intro &amp; Principles of Data Visualization 1</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -140,7 +140,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Principles of Data Visualization - 1</h1>
+  <h1 class="title">Course Intro &amp; Principles of Data Visualization 1</h1>
   <p class="subtitle">Week 1<br>💻 🧰 📊 🥳</p>
 
 <div class="quarto-title-authors">
@@ -191,7 +191,7 @@ Jessica Cooperstone, Ph.D.
 <h2>Syllabus</h2>
 <ul>
 <li class="fragment"><p>A full version of the syllabus can be found on Carmen</p></li>
-<li class="fragment"><p>A trimmed version of the syllabus can be found on our <a href="https://www.rdataviz.com/">course site</a></p></li>
+<li class="fragment"><p>A trimmed version of the syllabus can be found on our <a href="https://www.rdataviz.com/syllabus/syllabus.html">course site</a></p></li>
 </ul>
 </section>
 <section id="attendance" class="slide level2 center_title smaller">
@@ -244,19 +244,20 @@ Class will taught in a hybrid, synchronous manner, meaning I expect you to atten
 <ul>
 <li class="fragment">I expect you will turn assignments in on time. Late assignments are not accepted. If there are extenuating circumstances that prevent you from turning in an assignment on time, please connect with me as soon as possible after such a situation arises for discussion about a possible deadline extension.</li>
 </ul>
-</section></section>
-<section id="academic-integrity" class="title-slide slide level1 center_title center">
-<h1>Academic integrity 🏫</h1>
+</section>
+<section id="academic-integrity" class="slide level2 center_title">
+<h2>Academic integrity 🏫</h2>
 <ul>
 <li class="fragment"><p>It is fine for you to work with your classmates/labmates/whoever, but I expect you to turn in your own independent assignments representing your work</p></li>
 <li class="fragment"><p>All assignments are open book, googling/investigating is required!</p></li>
 </ul>
 </section>
-
-<section>
-<section id="use-of-generative-ai" class="title-slide slide level1 center">
-<h1>Use of generative AI</h1>
-<p>Generative AI is allowable for aiding with your coding. When it is used, the following should be disclosed:</p>
+<section id="use-of-generative-ai" class="slide level2">
+<h2>Use of generative AI</h2>
+<ul>
+<li class="fragment"><p>Generative AI is not allowable for use in your reflections or for other written material turned in as part of an assignment. Suspected unauthorized use of generative AI on assignments of any type will be reported to COAM.</p></li>
+<li class="fragment"><p>Generative AI is allowable for aiding with your coding. When it is used, the following should be disclosed:</p></li>
+</ul>
 <ol type="1">
 <li class="fragment">What model was used</li>
 <li class="fragment">What the purpose of the use was</li>
@@ -264,11 +265,11 @@ Class will taught in a hybrid, synchronous manner, meaning I expect you to atten
 <li class="fragment">How you edited code to make it work for your purpose</li>
 <li class="fragment">All code provided should be fully commented</li>
 </ol>
-<p>Generative AI is not allowable for use in your reflections or for other written material turned in as part of an assignment. Suspected unauthorized use of generative AI on assignments of any type will be reported to COAM.</p>
-</section>
-<section id="schedule" class="slide level2">
-<h2>🗓 Schedule</h2>
-<p>This is our tentative class schedule - but subject to change depending on our pacing, and your interests!</p>
+</section></section>
+<section>
+<section id="schedule" class="title-slide slide level1 center">
+<h1>🗓 Schedule</h1>
+<p>This is our tentative class schedule:</p>
 </section>
 <section id="schedule-part-1" class="slide level2">
 <h2>🗓️ Schedule (part 1)</h2>
@@ -474,47 +475,64 @@ Class will taught in a hybrid, synchronous manner, meaning I expect you to atten
 </div>
 </div>
 </section></section>
-<section>
+<section id="what-is-data-visualization" class="title-slide slide level1 center">
+<h1>What is data visualization?</h1>
+
+</section>
+
 <section id="why-do-we-visualize-our-data" class="title-slide slide level1 center_title center">
 <h1>Why do we visualize our data? 🗣️</h1>
 
 </section>
-<section id="there-may-be-a-data-dinosaur" class="slide level2" data-background-color="#fff">
-<h2>There may be a data dinosaur 🦖</h2>
 
-<img data-src="img/dinosaurus.gif" alt="A gif of 13 different datasets (include one who's points make the shape of a dinosaur) that all have the same mean and standard deviation, but have very different distributions" class="r-stretch"><p>Figure by <a href="https://www.autodesk.com/research/publications/same-stats-different-graphs">Alberto Cairo</a></p>
+<section id="section" class="title-slide slide level1 center" data-menu-title="With great power comes great responsibility">
+<h1></h1>
+<blockquote>
+<p>“With great power comes great responsibility” <br>– Voltaire or Spider-Man</p>
+</blockquote>
 </section>
-<section id="to-understand-distribution" class="slide level2" data-background-color="#fff">
-<h2>To understand distribution</h2>
-<p>Anscombe’s quartet 🎻</p>
-<div class="cell column-page quarto-layout-panel" data-layout-nrow="2">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="01_principles_files/figure-revealjs/unnamed-chunk-3-1.png" width="384"></p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="01_principles_files/figure-revealjs/unnamed-chunk-3-2.png" width="384"></p>
-</div>
-</div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="01_principles_files/figure-revealjs/unnamed-chunk-3-3.png" width="384"></p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="01_principles_files/figure-revealjs/unnamed-chunk-3-4.png" width="384"></p>
-</div>
-</div>
-</div>
-</section>
-<section id="to-discover-data-secrets" class="slide level2 center_title" data-background-color="#fff">
-<h2>To discover data secrets</h2>
 
-<img data-src="img/boxplots.gif" alt="A 3 panel figure showing raw data, boxplots, and violin plots demonstrating how boxplots don't fully explain the distribution of data" class="r-stretch"><p>Figures from <a href="https://www.autodesk.com/research/publications/same-stats-different-graphs">Justin Matejka and George Fitzmaurice</a></p>
-</section>
-<section id="to-convey-our-message" class="slide level2">
-<h2>To convey our message</h2>
+<section>
+<section id="principles-and-process-of-data-visualization" class="title-slide slide level1 center_title center">
+<h1>Principles and process of data visualization 📊</h1>
 
-<img data-src="img/apple_chr_map.png" alt="Figure from Bilbrey et al., 2021 New Phytologist showing the locations on the apple genetic map (17 chromosomes) where there are significant associations between metabolomic features, and genomic markers." width="1019" class="r-stretch quarto-figure-center"><p class="caption">Bilbrey et al., New Phytologist, 2021</p></section>
+</section>
+<section id="process-of-visual-analysis" class="slide level2">
+<h2><a href="https://help.tableau.com/current/blueprint/en-us/bp_cycle_of_visual_analysis.htm">Process of visual analysis</a></h2>
+
+<img data-src="img/bp_cycle_of_visual_analysis_489x425.png" class="quarto-figure quarto-figure-center r-stretch" alt="process of visual analysis, going from task, to get data, to select visual maping, view data, develop insight, act/share, with all parts interconnected and a person in the middle (source: https://help.tableau.com/current/blueprint/en-us/bp_cycle_of_visual_analysis.htm)" width="244"></section></section>
+<section>
+<section id="perception-and-data-visualization" class="title-slide slide level1 center">
+<h1>Perception and data visualization</h1>
+
+</section>
+<section id="pre-attentive-attributes" class="slide level2">
+<h2>Pre-attentive attributes</h2>
+
+<img data-src="img/bp_why_visual_analytics.png" class="quarto-figure quarto-figure-center r-stretch" alt="Example of Pre-attentive Attribute, including length, width, orientation, size, shape, enclosure, position, grouping, color hue, color, (source: help.tableau.com)" width="618"><p>
+Figure from <a href="https://medium.com/microsoft-power-bi/data-storytelling-101-the-magic-of-pre-attentive-attributes-522da9785f36">Data Storytelling 101: The Magic of Pre-attentive Attributes by Iwa Sanjaya</a>
+</p>
+</section>
+<section id="pick-out-the-blue-circle" class="slide level2">
+<h2>Pick out the blue circle</h2>
+
+<img data-src="img/fig-ch-01-dual-search.png" class="quarto-figure quarto-figure-center r-stretch" alt="Searching for the blue circle becomes progressively harder. From https://socviz.co/01-look-at-data.html#perception-and-data-visualization" width="1500"><p>
+Figure from <a href="https://socviz.co/01-look-at-data.html#perception-and-data-visualization">Data Visualization, a Practical Introduction by Kieran Healy</a>
+</p>
+</section>
+<section id="gestalt-principles" class="slide level2">
+<h2><a href="https://socviz.co/01-look-at-data.html#gestalt-rules">Gestalt Principles</a></h2>
+<p>We infer relationships from visual elements even when they are sparse.</p>
+<ul>
+<li class="fragment"><strong>Proximity</strong>: Things that are spatially near to one another seem to be related.</li>
+<li class="fragment"><strong>Similarity</strong>: Things that look alike seem to be related.</li>
+<li class="fragment"><strong>Connection</strong>: Things that are visually tied to one another seem to be related.</li>
+<li class="fragment"><strong>Continuity</strong>: Partially hidden objects are completed into familiar shapes.</li>
+<li class="fragment"><strong>Closure</strong>: Incomplete shapes are perceived as complete.</li>
+<li class="fragment"><strong>Figure and Ground</strong>: Visual elements are taken to be either in the foreground or the background.</li>
+<li class="fragment"><strong>Common Fate</strong>: Elements sharing a direction of movement are perceived as a unit.</li>
+</ul>
+</section>
 <section id="the-data-visualization-process" class="slide level2 center_title">
 <h2>The data visualization process</h2>
 
@@ -522,8 +540,25 @@ Class will taught in a hybrid, synchronous manner, meaning I expect you to atten
 Figure adapted from one by <a href="https://twitter.com/rick_scavetta?lang=en">Rick Scavetta</a>
 </p>
 </section>
-<section id="section" class="slide level2">
-<h2></h2>
+<section id="there-may-be-a-data-dinosaur" class="slide level2" data-background-color="#fff">
+<h2>There may be a data dinosaur 🦖</h2>
+
+<img data-src="img/dinosaurus.gif" alt="A gif of 13 different datasets (include one who's points make the shape of a dinosaur) that all have the same mean and standard deviation, but have very different distributions" class="r-stretch"><p>Figure by <a href="https://www.autodesk.com/research/publications/same-stats-different-graphs">Alberto Cairo</a></p>
+</section>
+<section id="what-are-we-trying-to-visualize" class="slide level2">
+<h2>What are we trying to visualize?</h2>
+<ul>
+<li class="fragment">Amounts</li>
+<li class="fragment">Distributions</li>
+<li class="fragment">Proportions</li>
+<li class="fragment">Associations</li>
+<li class="fragment">x-y relationships</li>
+<li class="fragment">Geospatial data</li>
+<li class="fragment">Uncertainty</li>
+</ul>
+</section>
+<section id="chart-types" class="slide level2">
+<h2>Chart types</h2>
 
 <img data-src="img/choosing-a-good-chart.jpg" class="quarto-figure quarto-figure-center r-stretch" alt="Chart suggestions, a thought starter. Shows how different plot types can be used if you want to compare across groups, show a relationship, understand a distribution, or undrestand compositional differences." width="1100"></section></section>
 <section>
@@ -531,25 +566,15 @@ Figure adapted from one by <a href="https://twitter.com/rick_scavetta?lang=en">R
 <h1>Small changes can make a big difference (and some examples)</h1>
 
 </section>
-<section id="simple-changes-improve-interpretability" class="slide level2 center_title" data-background-color="#fff">
-<h2>Simple changes improve interpretability</h2>
+<section id="order-axes-by-something-meaningful" class="slide level2 center_title" data-background-color="#fff">
+<h2>Order axes by something meaningful</h2>
 <div class="cell column-page quarto-layout-panel" data-layout-nrow="1">
 <div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <p><img data-src="01_principles_files/figure-revealjs/unnamed-chunk-9-1.png" width="480"></p>
 </div>
-</div>
-</div>
-</section>
-<section id="simple-changes-improve-interpretability-1" class="slide level2 center_title" data-background-color="#fff">
-<h2>Simple changes improve interpretability</h2>
-<div class="cell column-page quarto-layout-panel" data-layout-nrow="1">
-<div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="01_principles_files/figure-revealjs/unnamed-chunk-10-1.png" width="480"></p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="01_principles_files/figure-revealjs/unnamed-chunk-10-2.png" width="480"></p>
+<p><img data-src="01_principles_files/figure-revealjs/unnamed-chunk-9-2.png" width="480"></p>
 </div>
 </div>
 </div>
@@ -560,7 +585,7 @@ Figure adapted from one by <a href="https://twitter.com/rick_scavetta?lang=en">R
 <div class="cell column-page quarto-layout-panel" data-layout-nrow="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><img data-src="01_principles_files/figure-revealjs/unnamed-chunk-12-1.png" width="480"></p>
+<p><img data-src="01_principles_files/figure-revealjs/unnamed-chunk-11-1.png" width="480"></p>
 </div>
 </div>
 </div>
@@ -571,10 +596,10 @@ Figure adapted from one by <a href="https://twitter.com/rick_scavetta?lang=en">R
 <div class="cell column-page quarto-layout-panel" data-layout-nrow="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="01_principles_files/figure-revealjs/unnamed-chunk-13-1.png" width="480"></p>
+<p><img data-src="01_principles_files/figure-revealjs/unnamed-chunk-12-1.png" width="480"></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="01_principles_files/figure-revealjs/unnamed-chunk-13-2.png" width="480"></p>
+<p><img data-src="01_principles_files/figure-revealjs/unnamed-chunk-12-2.png" width="480"></p>
 </div>
 </div>
 </div>
@@ -592,77 +617,75 @@ Figure adapted from one by <a href="https://twitter.com/rick_scavetta?lang=en">R
 <div class="cell column-page quarto-layout-panel" data-layout-ncol="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img data-src="01_principles_files/figure-revealjs/unnamed-chunk-15-1.png" width="336"></p>
+<p><img data-src="01_principles_files/figure-revealjs/unnamed-chunk-14-1.png" width="288"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="01_principles_files/figure-revealjs/unnamed-chunk-14-2.png" width="288"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="01_principles_files/figure-revealjs/unnamed-chunk-14-3.png" width="288"></p>
 </div>
 </div>
 </div>
 </section>
-<section id="show-your-data-if-you-can-1" class="slide level2">
-<h2>Show your data if you can</h2>
-<p>#barbarplots</p>
-<div class="cell column-page quarto-layout-panel" data-layout-ncol="3">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img data-src="01_principles_files/figure-revealjs/unnamed-chunk-16-1.png" width="336"></p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img data-src="01_principles_files/figure-revealjs/unnamed-chunk-16-2.png" width="336"></p>
-</div>
-</div>
-</div>
-</section>
-<section id="show-your-data-if-you-can-2" class="slide level2">
-<h2>Show your data if you can</h2>
-<p>#barbarplots</p>
-<div class="cell column-page quarto-layout-panel" data-layout-ncol="3">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img data-src="01_principles_files/figure-revealjs/unnamed-chunk-17-1.png" width="288"></p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img data-src="01_principles_files/figure-revealjs/unnamed-chunk-17-2.png" width="288"></p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img data-src="01_principles_files/figure-revealjs/unnamed-chunk-17-3.png" width="288"></p>
-</div>
-</div>
-</div>
-</section>
-<section id="cut-your-axes-with-care" class="slide level2">
-<h2>Cut your axes with care</h2>
+<section id="know-when-to-include-zero" class="slide level2">
+<h2>Know when to include zero</h2>
 
 <img data-src="img/women_height.png" class="quarto-figure quarto-figure-center r-stretch" alt="Figure showing the average height of women (y-axis) from different countries (x-axis). But the y-axis only goes from 5 foot to 5 foot 7 inches, making women from India look tiny and women from Latvia seem enormous." width="452"></section>
-<section id="cut-your-axes-with-care-1" class="slide level2">
+<section id="cut-your-axes-with-care" class="slide level2">
 <h2>Cut your axes with care</h2>
 <div class="cell column-page quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="01_principles_files/figure-revealjs/unnamed-chunk-19-1.png" width="432"></p>
+<p><img data-src="01_principles_files/figure-revealjs/unnamed-chunk-16-1.png" width="432"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="01_principles_files/figure-revealjs/unnamed-chunk-16-2.png" width="432"></p>
 </div>
 </div>
 </div>
 </section>
-<section id="cut-your-axes-with-care-2" class="slide level2">
-<h2>Cut your axes with care</h2>
-<div class="cell column-page quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="01_principles_files/figure-revealjs/unnamed-chunk-20-1.png" width="432"></p>
+<section id="make-it-easy-to-compare" class="slide level2">
+<h2>Make it easy to compare 🍝</h2>
+<div class="r-stack">
+<div class="fragment fade-out">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="01_principles_files/figure-revealjs/unnamed-chunk-17-1.png" width="960"></p>
+</figure>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img data-src="01_principles_files/figure-revealjs/unnamed-chunk-20-2.png" width="432"></p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="01_principles_files/figure-revealjs/unnamed-chunk-18-1.png" width="960"></p>
+</figure>
+</div>
+</div>
 </div>
 </div>
 </div>
 </section>
-<section id="avoid-figure-spaghetti" class="slide level2">
-<h2>Avoid figure spaghetti 🍝</h2>
+<section id="think-about-the-best-color-scale-to-use" class="slide level2">
+<h2>Think about the best color scale to use</h2>
 
-<img data-src="01_principles_files/figure-revealjs/unnamed-chunk-21-1.png" width="960" class="r-stretch"></section>
-<section id="avoid-figure-spaghetti-1" class="slide level2">
-<h2>Avoid figure spaghetti 🍝</h2>
+<img data-src="img/200801_colorscale-intro-f-1.avif" class="quarto-figure quarto-figure-center r-stretch" alt="Figuring showing the difference between sequential, categorical, and diverging color scales. Figure by Lisa Charlotte Muth from https://www.datawrapper.de/blog/which-color-scale-to-use-in-data-vis"><p>Figure by Lisa Charlotte Muth and from <a href="https://www.datawrapper.de/blog/which-color-scale-to-use-in-data-vis">datawrapper.de</a></p>
+</section>
+<section id="make-sure-your-plot-has-a-clear-message" class="slide level2">
+<h2>Make sure your plot has a clear message 🍕</h2>
 
-<img data-src="01_principles_files/figure-revealjs/unnamed-chunk-22-1.png" width="960" class="r-stretch"></section>
+<img data-src="img/bad_pizza.png" class="quarto-figure quarto-figure-center r-stretch" alt="Figure showing the average height of women (y-axis) from different countries (x-axis). But the y-axis only goes from 5 foot to 5 foot 7 inches, making women from India look tiny and women from Latvia seem enormous." width="468"></section>
+<section id="simpler-is-better" class="slide level2">
+<h2>Simpler is better</h2>
+<p>No unnecessary words in a sentence, no unnecessary sentences in a paragraph. Keep only the parts of the plot that serve a purpose.</p>
+
+<img data-src="img/bad_life_expectancy.png" alt="A very ugly 3D plot showing life expectancy across the 5 continents where the 3D makes it hard to read, it has duplicative legends, and meaningless colors." width="512" class="r-stretch quarto-figure-center"><p class="caption">From https://socviz.co/lookatdata.html</p></section>
 <section id="be-consistent-among-figures" class="slide level2">
 <h2>Be consistent among figures</h2>
 <ul>
@@ -670,15 +693,6 @@ Figure adapted from one by <a href="https://twitter.com/rick_scavetta?lang=en">R
 <li class="fragment"><p>If you’re ordering/grouping, do so in the same manner</p></li>
 </ul>
 </section>
-<section id="make-sure-your-plot-has-a-clear-message" class="slide level2">
-<h2>Make sure your plot has a clear message 🍕</h2>
-
-<img data-src="img/bad_pizza.png" class="quarto-figure quarto-figure-center r-stretch" alt="Figure showing the average height of women (y-axis) from different countries (x-axis). But the y-axis only goes from 5 foot to 5 foot 7 inches, making women from India look tiny and women from Latvia seem enormous." width="468"></section>
-<section id="marie-kondo-your-plots" class="slide level2">
-<h2>Marie Kondo your plots</h2>
-<p>Declutter, and keep only parts that are informative (and spark joy) 😻</p>
-
-<img data-src="img/bad_life_expectancy.png" alt="A very ugly 3D plot showing life expectancy across the 5 continents where the 3D makes it hard to read, it has duplicative legends, and meaningless colors." width="512" class="r-stretch quarto-figure-center"><p class="caption">From https://socviz.co/lookatdata.html</p></section>
 <section id="oral-presentation-and-publication-figures-might-not-be-the-same" class="slide level2">
 <h2>Oral presentation and publication figures might not be the same</h2>
 </section></section>
@@ -768,7 +782,7 @@ Figure adapted from one by <a href="https://twitter.com/rick_scavetta?lang=en">R
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: false,
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',

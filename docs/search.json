@@ -1,10 +1,10 @@
 [
   {
-    "objectID": "modules/module1/02_principles/02_principles.html#introductions",
-    "href": "modules/module1/02_principles/02_principles.html#introductions",
+    "objectID": "modules/module1/02_principles/02_principles.html#questions-from-last-week",
+    "href": "modules/module1/02_principles/02_principles.html#questions-from-last-week",
     "title": "Principles of Data Visualization - 2",
-    "section": "Introductions 👋",
-    "text": "Introductions 👋",
+    "section": "Questions from last week?",
+    "text": "Questions from last week?",
     "crumbs": [
       "Module 1 - Principles",
       "Week 2 - Principles 2"
@@ -24,7 +24,7 @@
   {
     "objectID": "modules/module1/01_principles/01_principles.html#introductions",
     "href": "modules/module1/01_principles/01_principles.html#introductions",
-    "title": "Principles of Data Visualization - 1",
+    "title": "Course Intro & Principles of Data Visualization 1",
     "section": "Introductions 👋",
     "text": "Introductions 👋\n\nName\nProgram\nWhy you decided to take this class\nOne thing you hope to learn",
     "crumbs": [
@@ -35,7 +35,7 @@
   {
     "objectID": "modules/module1/01_principles/01_principles.html#teaching-team",
     "href": "modules/module1/01_principles/01_principles.html#teaching-team",
-    "title": "Principles of Data Visualization - 1",
+    "title": "Course Intro & Principles of Data Visualization 1",
     "section": "Teaching Team",
     "text": "Teaching Team\nInstructor: Jessica Cooperstone\n✉️ cooperstone.1@osu.edu\n\n\nTA: Mia Scott\n✉️ scott.2291@osu.edu\n\n\nOffice hours: go.osu.edu/dataviz-times",
     "crumbs": [
@@ -46,7 +46,7 @@
   {
     "objectID": "modules/module1/01_principles/01_principles.html#website",
     "href": "modules/module1/01_principles/01_principles.html#website",
-    "title": "Principles of Data Visualization - 1",
+    "title": "Course Intro & Principles of Data Visualization 1",
     "section": "Website",
     "text": "Website\nIf you have found these slides, you’ve made it to the website! (Good job.)\n\n\nAll course materials will be posted to, or linked to from www.rdataviz.com",
     "crumbs": [
@@ -57,7 +57,7 @@
   {
     "objectID": "modules/module1/01_principles/01_principles.html#syllabus",
     "href": "modules/module1/01_principles/01_principles.html#syllabus",
-    "title": "Principles of Data Visualization - 1",
+    "title": "Course Intro & Principles of Data Visualization 1",
     "section": "Syllabus",
     "text": "Syllabus\n\nA full version of the syllabus can be found on Carmen\nA trimmed version of the syllabus can be found on our course site",
     "crumbs": [
@@ -68,7 +68,7 @@
   {
     "objectID": "modules/module1/01_principles/01_principles.html#attendance",
     "href": "modules/module1/01_principles/01_principles.html#attendance",
-    "title": "Principles of Data Visualization - 1",
+    "title": "Course Intro & Principles of Data Visualization 1",
     "section": "Attendance",
     "text": "Attendance\n\n\nClass will taught in a hybrid, synchronous manner, meaning I expect you to attend class during class time. This attendance can happen in person, or virtually via Zoom I have found that students who attend in person are more engaged, and tend to master material more quickly. But, it is up to you how you want to attend.\n\nI will record class time for those who want to 1) revisit material or 2) can’t attend (this should be uncommon). These recordings are not to replace coming to class.",
     "crumbs": [
@@ -79,7 +79,7 @@
   {
     "objectID": "modules/module1/01_principles/01_principles.html#how-class-will-be",
     "href": "modules/module1/01_principles/01_principles.html#how-class-will-be",
-    "title": "Principles of Data Visualization - 1",
+    "title": "Course Intro & Principles of Data Visualization 1",
     "section": "How class will be?",
     "text": "How class will be?\n\nA combination of lecture, code run-throughs, live coding, and hands-on exercises.\nBring a laptop (not tablet) to class with R and RStudio downloaded (instructions)\nCome with your questions!\nEngage as much as you can!",
     "crumbs": [
@@ -90,7 +90,7 @@
   {
     "objectID": "modules/module1/01_principles/01_principles.html#how-can-you-get-help",
     "href": "modules/module1/01_principles/01_principles.html#how-can-you-get-help",
-    "title": "Principles of Data Visualization - 1",
+    "title": "Course Intro & Principles of Data Visualization 1",
     "section": "How can you get help?",
     "text": "How can you get help?\nWe are here to help you and will match the enthusiasm that you put into this course. We expect that you will run into issues for which you would like help. You can ask questions:\n\nDuring class time (both lecture and recitation)\nDuring office hours\nBefore or after class\nBy email (least preferred) - be sure to provide relevant information so we can help you!",
     "crumbs": [
@@ -101,7 +101,7 @@
   {
     "objectID": "modules/module1/01_principles/01_principles.html#previous-programming-experience",
     "href": "modules/module1/01_principles/01_principles.html#previous-programming-experience",
-    "title": "Principles of Data Visualization - 1",
+    "title": "Course Intro & Principles of Data Visualization 1",
     "section": "Previous programming experience",
     "text": "Previous programming experience\nYou do not need to be an R expert for this class, but I will assume working-level knowledge of R programming. If you have no experience with R, but would still like to take this class, you can. I ask then you get yourself up to speed before the start of the 4th week of class by:\n\ntaking this free online class https://www.edx.org/course/data-science-r-basics (audit only)\ngoing through this R for beginners workshop",
     "crumbs": [
@@ -112,7 +112,7 @@
   {
     "objectID": "modules/module1/01_principles/01_principles.html#assigments",
     "href": "modules/module1/01_principles/01_principles.html#assigments",
-    "title": "Principles of Data Visualization - 1",
+    "title": "Course Intro & Principles of Data Visualization 1",
     "section": "Assigments",
     "text": "Assigments\n\nModule assignments: After each module, there will be an assignment (4) to provide practice for the techniques learned in class.\nClass reflections: After 10 of the 16 weeks, you will write a 1 paragraph reflection on the material that was presented in class. This can include your thoughts on how you will use these lessons in your own research and data visualizations, ways in which you have investigated this topic (or expect to) on your own, or what else you’d like to learn in this area. The purpose of this assignment is not to be burdensome, but to keep you engaged in the course material, and providing feedback to me on what parts you’ve found useful, what you’ve struggled with, and what you’d like to see more of in the future.\nRecitation submissions: I ask you submit 8 of 11 recitations to Carmen to show you have made a good faith effort to engage with the course material. I will mark these at 0 or 1 points, with 1 point given for completion of at least 70% of the assignment.\nCapstone assignment: At the end of the semester, you will complete a capstone assignment where you create a series of visualizations based on your research data, data coming from your lab, or other data that is publicly available. I expect this assignment to be completed in R Markdown, annotated, and knitted into an easy-to-read .html file. I also expect your code to be fully commented such that I can understand what you are doing with each step, and why.",
     "crumbs": [
@@ -123,7 +123,7 @@
   {
     "objectID": "modules/module1/01_principles/01_principles.html#late-assignments",
     "href": "modules/module1/01_principles/01_principles.html#late-assignments",
-    "title": "Principles of Data Visualization - 1",
+    "title": "Course Intro & Principles of Data Visualization 1",
     "section": "Late assignments",
     "text": "Late assignments\n\nI expect you will turn assignments in on time. Late assignments are not accepted. If there are extenuating circumstances that prevent you from turning in an assignment on time, please connect with me as soon as possible after such a situation arises for discussion about a possible deadline extension.",
     "crumbs": [
@@ -132,11 +132,22 @@
     ]
   },
   {
-    "objectID": "modules/module1/01_principles/01_principles.html#schedule",
-    "href": "modules/module1/01_principles/01_principles.html#schedule",
-    "title": "Principles of Data Visualization - 1",
-    "section": "🗓 Schedule",
-    "text": "🗓 Schedule\nThis is our tentative class schedule - but subject to change depending on our pacing, and your interests!",
+    "objectID": "modules/module1/01_principles/01_principles.html#academic-integrity",
+    "href": "modules/module1/01_principles/01_principles.html#academic-integrity",
+    "title": "Course Intro & Principles of Data Visualization 1",
+    "section": "Academic integrity 🏫",
+    "text": "Academic integrity 🏫\n\nIt is fine for you to work with your classmates/labmates/whoever, but I expect you to turn in your own independent assignments representing your work\nAll assignments are open book, googling/investigating is required!",
+    "crumbs": [
+      "Module 1 - Principles",
+      "Week 1 - Principles 1"
+    ]
+  },
+  {
+    "objectID": "modules/module1/01_principles/01_principles.html#use-of-generative-ai",
+    "href": "modules/module1/01_principles/01_principles.html#use-of-generative-ai",
+    "title": "Course Intro & Principles of Data Visualization 1",
+    "section": "Use of generative AI",
+    "text": "Use of generative AI\n\nGenerative AI is not allowable for use in your reflections or for other written material turned in as part of an assignment. Suspected unauthorized use of generative AI on assignments of any type will be reported to COAM.\nGenerative AI is allowable for aiding with your coding. When it is used, the following should be disclosed:\n\n\nWhat model was used\nWhat the purpose of the use was\nWhat prompts were provided\nHow you edited code to make it work for your purpose\nAll code provided should be fully commented",
     "crumbs": [
       "Module 1 - Principles",
       "Week 1 - Principles 1"
@@ -145,7 +156,7 @@
   {
     "objectID": "modules/module1/01_principles/01_principles.html#schedule-part-1",
     "href": "modules/module1/01_principles/01_principles.html#schedule-part-1",
-    "title": "Principles of Data Visualization - 1",
+    "title": "Course Intro & Principles of Data Visualization 1",
     "section": "🗓️ Schedule (part 1)",
     "text": "🗓️ Schedule (part 1)\n\n\n\n\n\nWeek\nDate\nModule\nTopic\n\n\n\n\n1\n2026-08-25\n1: Principles\nPrinciples of data visualization 1\n\n\n2\n2026-09-01\n1: Principles\nPrinciples of data visualization 2\n\n\n3\n2026-09-08\n1: Principles\nGood and bad visualizations",
     "crumbs": [
@@ -156,7 +167,7 @@
   {
     "objectID": "modules/module1/01_principles/01_principles.html#schedule-part-2",
     "href": "modules/module1/01_principles/01_principles.html#schedule-part-2",
-    "title": "Principles of Data Visualization - 1",
+    "title": "Course Intro & Principles of Data Visualization 1",
     "section": "🗓️ Schedule (part 2)",
     "text": "🗓️ Schedule (part 2)\n\n\n\n\n\n\n\n\n\n\n\nWeek\nDate\nModule\nTopic\n\n\n\n\n4\n2026-09-15\n2: Coding fundamentals\nR Markdown for reproducible research\n\n\n5\n2026-09-22\n2: Coding fundamentals\nWrangling, the basics\n\n\n6\n2026-09-29\n2: Coding fundamentals\nggplot 101\n\n\n7\n2026-10-06\n2: Coding fundamentals\nThemes, labels, facets (ggplot 102)",
     "crumbs": [
@@ -167,7 +178,7 @@
   {
     "objectID": "modules/module1/01_principles/01_principles.html#schedule-part-3",
     "href": "modules/module1/01_principles/01_principles.html#schedule-part-3",
-    "title": "Principles of Data Visualization - 1",
+    "title": "Course Intro & Principles of Data Visualization 1",
     "section": "🗓️ Schedule (part 3)",
     "text": "🗓️ Schedule (part 3)\n\n\n\n\n\nWeek\nDate\nModule\nTopic\n\n\n\n\n8\n2026-10-13\n3: Data exploration\nData distributions\n\n\n9\n2026-10-20\n3: Data exploration\nCorrelations\n\n\n10\n2026-10-27\n3: Data exploration\nAnnotating statistics",
     "crumbs": [
@@ -178,7 +189,7 @@
   {
     "objectID": "modules/module1/01_principles/01_principles.html#schedule-part-4",
     "href": "modules/module1/01_principles/01_principles.html#schedule-part-4",
-    "title": "Principles of Data Visualization - 1",
+    "title": "Course Intro & Principles of Data Visualization 1",
     "section": "🗓️ Schedule (part 4)",
     "text": "🗓️ Schedule (part 4)\nNovember 10 will be asynchronous (Election Day)  November 25 will be asynchronous (short week of Thanksgiving)\n\n\n\n\n\n\n\n\n\n\n\nWeek\nDate\nModule\nTopic\n\n\n\n\n12\n2026-11-10\n4: Putting it together\nManhattan plots and making lots of plots at once (asynchronous)\n\n\n13\n2026-11-17\n4: Putting it together\nPrincipal components analysis\n\n\n14\n2026-11-24\n4: Putting it together\nggplot extension packages (asynchronous)\n\n\n15\n2026-12-01\n4: Putting it together\nInteractive plots",
     "crumbs": [
@@ -189,7 +200,7 @@
   {
     "objectID": "modules/module1/01_principles/01_principles.html#capstone-prep",
     "href": "modules/module1/01_principles/01_principles.html#capstone-prep",
-    "title": "Principles of Data Visualization - 1",
+    "title": "Course Intro & Principles of Data Visualization 1",
     "section": "🗓️ Capstone prep",
     "text": "🗓️ Capstone prep\n\n\n\n\n\nWeek\nDate\nModule\nTopic\n\n\n\n\n11\n2026-11-03\nCapstone prep\nCapstone plan prep, open session\n\n\n16\n2026-12-08\nCapstone prep\nCapstone assignment, open session",
     "crumbs": [
@@ -198,44 +209,44 @@
     ]
   },
   {
-    "objectID": "modules/module1/01_principles/01_principles.html#there-may-be-a-data-dinosaur",
-    "href": "modules/module1/01_principles/01_principles.html#there-may-be-a-data-dinosaur",
-    "title": "Principles of Data Visualization - 1",
-    "section": "There may be a data dinosaur 🦖",
-    "text": "There may be a data dinosaur 🦖\n\nFigure by Alberto Cairo",
+    "objectID": "modules/module1/01_principles/01_principles.html#process-of-visual-analysis",
+    "href": "modules/module1/01_principles/01_principles.html#process-of-visual-analysis",
+    "title": "Course Intro & Principles of Data Visualization 1",
+    "section": "Process of visual analysis",
+    "text": "Process of visual analysis",
     "crumbs": [
       "Module 1 - Principles",
       "Week 1 - Principles 1"
     ]
   },
   {
-    "objectID": "modules/module1/01_principles/01_principles.html#to-understand-distribution",
-    "href": "modules/module1/01_principles/01_principles.html#to-understand-distribution",
-    "title": "Principles of Data Visualization - 1",
-    "section": "To understand distribution",
-    "text": "To understand distribution\nAnscombe’s quartet 🎻",
+    "objectID": "modules/module1/01_principles/01_principles.html#pre-attentive-attributes",
+    "href": "modules/module1/01_principles/01_principles.html#pre-attentive-attributes",
+    "title": "Course Intro & Principles of Data Visualization 1",
+    "section": "Pre-attentive attributes",
+    "text": "Pre-attentive attributes\n\n\nFigure from Data Storytelling 101: The Magic of Pre-attentive Attributes by Iwa Sanjaya",
     "crumbs": [
       "Module 1 - Principles",
       "Week 1 - Principles 1"
     ]
   },
   {
-    "objectID": "modules/module1/01_principles/01_principles.html#to-discover-data-secrets",
-    "href": "modules/module1/01_principles/01_principles.html#to-discover-data-secrets",
-    "title": "Principles of Data Visualization - 1",
-    "section": "To discover data secrets",
-    "text": "To discover data secrets\n\nFigures from Justin Matejka and George Fitzmaurice",
+    "objectID": "modules/module1/01_principles/01_principles.html#pick-out-the-blue-circle",
+    "href": "modules/module1/01_principles/01_principles.html#pick-out-the-blue-circle",
+    "title": "Course Intro & Principles of Data Visualization 1",
+    "section": "Pick out the blue circle",
+    "text": "Pick out the blue circle\n\n\nFigure from Data Visualization, a Practical Introduction by Kieran Healy",
     "crumbs": [
       "Module 1 - Principles",
       "Week 1 - Principles 1"
     ]
   },
   {
-    "objectID": "modules/module1/01_principles/01_principles.html#to-convey-our-message",
-    "href": "modules/module1/01_principles/01_principles.html#to-convey-our-message",
-    "title": "Principles of Data Visualization - 1",
-    "section": "To convey our message",
-    "text": "To convey our message\n\nBilbrey et al., New Phytologist, 2021",
+    "objectID": "modules/module1/01_principles/01_principles.html#gestalt-principles",
+    "href": "modules/module1/01_principles/01_principles.html#gestalt-principles",
+    "title": "Course Intro & Principles of Data Visualization 1",
+    "section": "Gestalt Principles",
+    "text": "Gestalt Principles\nWe infer relationships from visual elements even when they are sparse.\n\nProximity: Things that are spatially near to one another seem to be related.\nSimilarity: Things that look alike seem to be related.\nConnection: Things that are visually tied to one another seem to be related.\nContinuity: Partially hidden objects are completed into familiar shapes.\nClosure: Incomplete shapes are perceived as complete.\nFigure and Ground: Visual elements are taken to be either in the foreground or the background.\nCommon Fate: Elements sharing a direction of movement are perceived as a unit.",
     "crumbs": [
       "Module 1 - Principles",
       "Week 1 - Principles 1"
@@ -244,7 +255,7 @@
   {
     "objectID": "modules/module1/01_principles/01_principles.html#the-data-visualization-process",
     "href": "modules/module1/01_principles/01_principles.html#the-data-visualization-process",
-    "title": "Principles of Data Visualization - 1",
+    "title": "Course Intro & Principles of Data Visualization 1",
     "section": "The data visualization process",
     "text": "The data visualization process\n\n\nFigure adapted from one by Rick Scavetta",
     "crumbs": [
@@ -253,22 +264,44 @@
     ]
   },
   {
-    "objectID": "modules/module1/01_principles/01_principles.html#simple-changes-improve-interpretability",
-    "href": "modules/module1/01_principles/01_principles.html#simple-changes-improve-interpretability",
-    "title": "Principles of Data Visualization - 1",
-    "section": "Simple changes improve interpretability",
-    "text": "Simple changes improve interpretability",
+    "objectID": "modules/module1/01_principles/01_principles.html#there-may-be-a-data-dinosaur",
+    "href": "modules/module1/01_principles/01_principles.html#there-may-be-a-data-dinosaur",
+    "title": "Course Intro & Principles of Data Visualization 1",
+    "section": "There may be a data dinosaur 🦖",
+    "text": "There may be a data dinosaur 🦖\n\nFigure by Alberto Cairo",
     "crumbs": [
       "Module 1 - Principles",
       "Week 1 - Principles 1"
     ]
   },
   {
-    "objectID": "modules/module1/01_principles/01_principles.html#simple-changes-improve-interpretability-1",
-    "href": "modules/module1/01_principles/01_principles.html#simple-changes-improve-interpretability-1",
-    "title": "Principles of Data Visualization - 1",
-    "section": "Simple changes improve interpretability",
-    "text": "Simple changes improve interpretability",
+    "objectID": "modules/module1/01_principles/01_principles.html#what-are-we-trying-to-visualize",
+    "href": "modules/module1/01_principles/01_principles.html#what-are-we-trying-to-visualize",
+    "title": "Course Intro & Principles of Data Visualization 1",
+    "section": "What are we trying to visualize?",
+    "text": "What are we trying to visualize?\n\nAmounts\nDistributions\nProportions\nAssociations\nx-y relationships\nGeospatial data\nUncertainty",
+    "crumbs": [
+      "Module 1 - Principles",
+      "Week 1 - Principles 1"
+    ]
+  },
+  {
+    "objectID": "modules/module1/01_principles/01_principles.html#chart-types",
+    "href": "modules/module1/01_principles/01_principles.html#chart-types",
+    "title": "Course Intro & Principles of Data Visualization 1",
+    "section": "Chart types",
+    "text": "Chart types",
+    "crumbs": [
+      "Module 1 - Principles",
+      "Week 1 - Principles 1"
+    ]
+  },
+  {
+    "objectID": "modules/module1/01_principles/01_principles.html#order-axes-by-something-meaningful",
+    "href": "modules/module1/01_principles/01_principles.html#order-axes-by-something-meaningful",
+    "title": "Course Intro & Principles of Data Visualization 1",
+    "section": "Order axes by something meaningful",
+    "text": "Order axes by something meaningful",
     "crumbs": [
       "Module 1 - Principles",
       "Week 1 - Principles 1"
@@ -277,7 +310,7 @@
   {
     "objectID": "modules/module1/01_principles/01_principles.html#encoding-data-with-easy-to-process-visual-clues",
     "href": "modules/module1/01_principles/01_principles.html#encoding-data-with-easy-to-process-visual-clues",
-    "title": "Principles of Data Visualization - 1",
+    "title": "Course Intro & Principles of Data Visualization 1",
     "section": "Encoding data with easy-to-process visual clues",
     "text": "Encoding data with easy-to-process visual clues\nLength is easier to see than angles or areas.",
     "crumbs": [
@@ -288,7 +321,7 @@
   {
     "objectID": "modules/module1/01_principles/01_principles.html#encoding-data-with-easy-to-process-visual-clues-1",
     "href": "modules/module1/01_principles/01_principles.html#encoding-data-with-easy-to-process-visual-clues-1",
-    "title": "Principles of Data Visualization - 1",
+    "title": "Course Intro & Principles of Data Visualization 1",
     "section": "Encoding data with easy-to-process visual clues",
     "text": "Encoding data with easy-to-process visual clues\nLength is easier to see than angles or areas.",
     "crumbs": [
@@ -299,7 +332,7 @@
   {
     "objectID": "modules/module1/01_principles/01_principles.html#color-scales-should-be-intuitive-and-accessible",
     "href": "modules/module1/01_principles/01_principles.html#color-scales-should-be-intuitive-and-accessible",
-    "title": "Principles of Data Visualization - 1",
+    "title": "Course Intro & Principles of Data Visualization 1",
     "section": "Color scales should be intuitive and accessible",
     "text": "Color scales should be intuitive and accessible\n\n\nThese are not.",
     "crumbs": [
@@ -310,7 +343,7 @@
   {
     "objectID": "modules/module1/01_principles/01_principles.html#show-your-data-if-you-can",
     "href": "modules/module1/01_principles/01_principles.html#show-your-data-if-you-can",
-    "title": "Principles of Data Visualization - 1",
+    "title": "Course Intro & Principles of Data Visualization 1",
     "section": "Show your data if you can",
     "text": "Show your data if you can\n#barbarplots",
     "crumbs": [
@@ -319,22 +352,11 @@
     ]
   },
   {
-    "objectID": "modules/module1/01_principles/01_principles.html#show-your-data-if-you-can-1",
-    "href": "modules/module1/01_principles/01_principles.html#show-your-data-if-you-can-1",
-    "title": "Principles of Data Visualization - 1",
-    "section": "Show your data if you can",
-    "text": "Show your data if you can\n#barbarplots",
-    "crumbs": [
-      "Module 1 - Principles",
-      "Week 1 - Principles 1"
-    ]
-  },
-  {
-    "objectID": "modules/module1/01_principles/01_principles.html#show-your-data-if-you-can-2",
-    "href": "modules/module1/01_principles/01_principles.html#show-your-data-if-you-can-2",
-    "title": "Principles of Data Visualization - 1",
-    "section": "Show your data if you can",
-    "text": "Show your data if you can\n#barbarplots",
+    "objectID": "modules/module1/01_principles/01_principles.html#know-when-to-include-zero",
+    "href": "modules/module1/01_principles/01_principles.html#know-when-to-include-zero",
+    "title": "Course Intro & Principles of Data Visualization 1",
+    "section": "Know when to include zero",
+    "text": "Know when to include zero",
     "crumbs": [
       "Module 1 - Principles",
       "Week 1 - Principles 1"
@@ -343,7 +365,7 @@
   {
     "objectID": "modules/module1/01_principles/01_principles.html#cut-your-axes-with-care",
     "href": "modules/module1/01_principles/01_principles.html#cut-your-axes-with-care",
-    "title": "Principles of Data Visualization - 1",
+    "title": "Course Intro & Principles of Data Visualization 1",
     "section": "Cut your axes with care",
     "text": "Cut your axes with care",
     "crumbs": [
@@ -352,55 +374,22 @@
     ]
   },
   {
-    "objectID": "modules/module1/01_principles/01_principles.html#cut-your-axes-with-care-1",
-    "href": "modules/module1/01_principles/01_principles.html#cut-your-axes-with-care-1",
-    "title": "Principles of Data Visualization - 1",
-    "section": "Cut your axes with care",
-    "text": "Cut your axes with care",
+    "objectID": "modules/module1/01_principles/01_principles.html#make-it-easy-to-compare",
+    "href": "modules/module1/01_principles/01_principles.html#make-it-easy-to-compare",
+    "title": "Course Intro & Principles of Data Visualization 1",
+    "section": "Make it easy to compare 🍝",
+    "text": "Make it easy to compare 🍝",
     "crumbs": [
       "Module 1 - Principles",
       "Week 1 - Principles 1"
     ]
   },
   {
-    "objectID": "modules/module1/01_principles/01_principles.html#cut-your-axes-with-care-2",
-    "href": "modules/module1/01_principles/01_principles.html#cut-your-axes-with-care-2",
-    "title": "Principles of Data Visualization - 1",
-    "section": "Cut your axes with care",
-    "text": "Cut your axes with care",
-    "crumbs": [
-      "Module 1 - Principles",
-      "Week 1 - Principles 1"
-    ]
-  },
-  {
-    "objectID": "modules/module1/01_principles/01_principles.html#avoid-figure-spaghetti",
-    "href": "modules/module1/01_principles/01_principles.html#avoid-figure-spaghetti",
-    "title": "Principles of Data Visualization - 1",
-    "section": "Avoid figure spaghetti 🍝",
-    "text": "Avoid figure spaghetti 🍝",
-    "crumbs": [
-      "Module 1 - Principles",
-      "Week 1 - Principles 1"
-    ]
-  },
-  {
-    "objectID": "modules/module1/01_principles/01_principles.html#avoid-figure-spaghetti-1",
-    "href": "modules/module1/01_principles/01_principles.html#avoid-figure-spaghetti-1",
-    "title": "Principles of Data Visualization - 1",
-    "section": "Avoid figure spaghetti 🍝",
-    "text": "Avoid figure spaghetti 🍝",
-    "crumbs": [
-      "Module 1 - Principles",
-      "Week 1 - Principles 1"
-    ]
-  },
-  {
-    "objectID": "modules/module1/01_principles/01_principles.html#be-consistent-among-figures",
-    "href": "modules/module1/01_principles/01_principles.html#be-consistent-among-figures",
-    "title": "Principles of Data Visualization - 1",
-    "section": "Be consistent among figures",
-    "text": "Be consistent among figures\n\nUse the same color schemes/shapes across figures\nIf you’re ordering/grouping, do so in the same manner",
+    "objectID": "modules/module1/01_principles/01_principles.html#think-about-the-best-color-scale-to-use",
+    "href": "modules/module1/01_principles/01_principles.html#think-about-the-best-color-scale-to-use",
+    "title": "Course Intro & Principles of Data Visualization 1",
+    "section": "Think about the best color scale to use",
+    "text": "Think about the best color scale to use\n\nFigure by Lisa Charlotte Muth and from datawrapper.de",
     "crumbs": [
       "Module 1 - Principles",
       "Week 1 - Principles 1"
@@ -409,7 +398,7 @@
   {
     "objectID": "modules/module1/01_principles/01_principles.html#make-sure-your-plot-has-a-clear-message",
     "href": "modules/module1/01_principles/01_principles.html#make-sure-your-plot-has-a-clear-message",
-    "title": "Principles of Data Visualization - 1",
+    "title": "Course Intro & Principles of Data Visualization 1",
     "section": "Make sure your plot has a clear message 🍕",
     "text": "Make sure your plot has a clear message 🍕",
     "crumbs": [
@@ -418,11 +407,22 @@
     ]
   },
   {
-    "objectID": "modules/module1/01_principles/01_principles.html#marie-kondo-your-plots",
-    "href": "modules/module1/01_principles/01_principles.html#marie-kondo-your-plots",
-    "title": "Principles of Data Visualization - 1",
-    "section": "Marie Kondo your plots",
-    "text": "Marie Kondo your plots\nDeclutter, and keep only parts that are informative (and spark joy) 😻\n\nFrom https://socviz.co/lookatdata.html",
+    "objectID": "modules/module1/01_principles/01_principles.html#simpler-is-better",
+    "href": "modules/module1/01_principles/01_principles.html#simpler-is-better",
+    "title": "Course Intro & Principles of Data Visualization 1",
+    "section": "Simpler is better",
+    "text": "Simpler is better\nNo unnecessary words in a sentence, no unnecessary sentences in a paragraph. Keep only the parts of the plot that serve a purpose.\n\nFrom https://socviz.co/lookatdata.html",
+    "crumbs": [
+      "Module 1 - Principles",
+      "Week 1 - Principles 1"
+    ]
+  },
+  {
+    "objectID": "modules/module1/01_principles/01_principles.html#be-consistent-among-figures",
+    "href": "modules/module1/01_principles/01_principles.html#be-consistent-among-figures",
+    "title": "Course Intro & Principles of Data Visualization 1",
+    "section": "Be consistent among figures",
+    "text": "Be consistent among figures\n\nUse the same color schemes/shapes across figures\nIf you’re ordering/grouping, do so in the same manner",
     "crumbs": [
       "Module 1 - Principles",
       "Week 1 - Principles 1"
@@ -431,7 +431,7 @@
   {
     "objectID": "modules/module1/01_principles/01_principles.html#oral-presentation-and-publication-figures-might-not-be-the-same",
     "href": "modules/module1/01_principles/01_principles.html#oral-presentation-and-publication-figures-might-not-be-the-same",
-    "title": "Principles of Data Visualization - 1",
+    "title": "Course Intro & Principles of Data Visualization 1",
     "section": "Oral presentation and publication figures might not be the same",
     "text": "Oral presentation and publication figures might not be the same",
     "crumbs": [
@@ -442,7 +442,7 @@
   {
     "objectID": "modules/module1/01_principles/01_principles.html#what-should-you-think-about-when-making-visualizations",
     "href": "modules/module1/01_principles/01_principles.html#what-should-you-think-about-when-making-visualizations",
-    "title": "Principles of Data Visualization - 1",
+    "title": "Course Intro & Principles of Data Visualization 1",
     "section": "What should you think about when making visualizations?",
     "text": "What should you think about when making visualizations?\n\nWho are you talking to? 📢\nWhat are you trying to convey? 📝\nHow can you fairly represent your data? 🚯",
     "crumbs": [
@@ -453,7 +453,7 @@
   {
     "objectID": "modules/module1/01_principles/01_principles.html#next-class",
     "href": "modules/module1/01_principles/01_principles.html#next-class",
-    "title": "Principles of Data Visualization - 1",
+    "title": "Course Intro & Principles of Data Visualization 1",
     "section": "Next class",
     "text": "Next class\nMore discussion of principles of data visualization",
     "crumbs": [
@@ -464,7 +464,7 @@
   {
     "objectID": "modules/module1/01_principles/01_principles.html#module-1-assignment",
     "href": "modules/module1/01_principles/01_principles.html#module-1-assignment",
-    "title": "Principles of Data Visualization - 1",
+    "title": "Course Intro & Principles of Data Visualization 1",
     "section": "Module 1 assignment",
     "text": "Module 1 assignment\nSubmit (through Carmen) by Monday 9/7/2026 at 11:59pm:\n\n1 good visualization (and a paragraph on why its good)\n1 bad visualization (and a paragraph on why its bad)\n\n\nWe will go through these next week. Mia will pick her favorite good and the bad visualizations and there will be prizes! 🎉",
     "crumbs": [

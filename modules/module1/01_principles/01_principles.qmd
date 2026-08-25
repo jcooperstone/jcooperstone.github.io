@@ -1,9 +1,11 @@
 ---
-title: "Principles of Data Visualization - 1"
+title: "Course Intro & Principles of Data Visualization 1"
 subtitle: "Week 1<br>💻 🧰 📊 🥳"
 author: "Jessica Cooperstone, Ph.D."
 format: 
   revealjs:
+    slide-number: true
+    show-slide-number: all
     incremental: true
     theme: jc_style.scss
     footer: "[Data Visualization in R](https://www.rdataviz.com/), © Jessica Cooperstone, 2026"
@@ -47,7 +49,7 @@ If you have found these slides, you've made it to the website! (Good job.)\
 
 -   A full version of the syllabus can be found on Carmen
 
--   A trimmed version of the syllabus can be found on our [course site](https://www.rdataviz.com/)
+-   A trimmed version of the syllabus can be found on our [course site](https://www.rdataviz.com/syllabus/syllabus.html) 
 
 ## Attendance {.center_title .smaller}
 
@@ -98,27 +100,26 @@ You do not need to be an R expert for this class, but I will assume working-leve
 
 -   I expect you will turn assignments in on time. Late assignments are not accepted. If there are extenuating circumstances that prevent you from turning in an assignment on time, please connect with me as soon as possible after such a situation arises for discussion about a possible deadline extension.
 
-# Academic integrity 🏫 {.center_title}
+## Academic integrity 🏫 {.center_title}
 
 -   It is fine for you to work with your classmates/labmates/whoever, but I expect you to turn in your own independent assignments representing your work
 
 -   All assignments are open book, googling/investigating is required!
 
-# Use of generative AI 
+## Use of generative AI 
 
-Generative AI is allowable for aiding with your coding. When it is used, the following should be disclosed:
+- Generative AI is not allowable for use in your reflections or for other written material turned in as part of an assignment. Suspected unauthorized use of generative AI on assignments of any type will be reported to COAM.
 
+- Generative AI is allowable for aiding with your coding. When it is used, the following should be disclosed:
 1. What model was used
 2. What the purpose of the use was
 3. What prompts were provided
 4. How you edited code to make it work for your purpose
 5. All code provided should be fully commented
 
-Generative AI is not allowable for use in your reflections or for other written material turned in as part of an assignment. Suspected unauthorized use of generative AI on assignments of any type will be reported to COAM.
+# 🗓 Schedule
 
-## 🗓 Schedule
-
-This is our tentative class schedule - but subject to change depending on our pacing, and your interests!
+This is our tentative class schedule:
 
 ## 🗓️ Schedule (part 1)
 
@@ -176,65 +177,55 @@ kable(schedule_4)
 kable(capstone)
 ```
 
+# What is data visualization?
+
 # Why do we visualize our data? 🗣️ {.center_title}
 
-## There may be a data dinosaur 🦖 {background-color="#fff"}
+# {data-menu-title="With great power comes great responsibility"}
 
-```{r echo = FALSE, fig.alt="A gif of 13 different datasets (include one who's points make the shape of a dinosaur) that all have the same mean and standard deviation, but have very different distributions"}
-knitr::include_graphics("img/dinosaurus.gif")
-```
+> "With great power comes great responsibility" <br>-- Voltaire or Spider-Man
 
-Figure by [Alberto Cairo](https://www.autodesk.com/research/publications/same-stats-different-graphs)
+# Principles and process of data visualization 📊 {.center_title}
 
-## To understand distribution {background-color="#fff"}
+## [Process of visual analysis](https://help.tableau.com/current/blueprint/en-us/bp_cycle_of_visual_analysis.htm)
 
-Anscombe's quartet 🎻
-
-```{r echo = FALSE}
-#| column: page
-#| layout-nrow: 2
-#| fig-height: 2.5
-#| fig-width: 4
-
-anscombe %>%
-  ggplot(aes(x = x1, y = y1)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +
-  theme_minimal()
-
-anscombe %>%
-  ggplot(aes(x = x2, y = y2)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +
-  theme_minimal()
-
-anscombe %>%
-  ggplot(aes(x = x3, y = y3)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +
-  theme_minimal()
-
-anscombe %>%
-  ggplot(aes(x = x4, y = y4)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +
-  theme_minimal()
-```
-
-## To discover data secrets {.center_title background-color="#fff"}
-
-```{r echo = FALSE, fig.alt="A 3 panel figure showing raw data, boxplots, and violin plots demonstrating how boxplots don't fully explain the distribution of data"}
-knitr::include_graphics("img/boxplots.gif")
-```
-
-Figures from [Justin Matejka and George Fitzmaurice](https://www.autodesk.com/research/publications/same-stats-different-graphs)
-
-## To convey our message
-
-```{r echo = FALSE, fig.alt="Figure from Bilbrey et al., 2021 New Phytologist showing the locations on the apple genetic map (17 chromosomes) where there are significant associations between metabolomic features, and genomic markers.", fig.cap="Bilbrey et al., New Phytologist, 2021"}
+```{r echo = FALSE, fig.alt="process of visual analysis, going from task, to get data, to select visual maping, view data, develop insight, act/share, with all parts interconnected and a person in the middle (source: https://help.tableau.com/current/blueprint/en-us/bp_cycle_of_visual_analysis.htm)"}
 #| fig-align: center
-knitr::include_graphics("img/apple_chr_map.png")
+knitr::include_graphics("img/bp_cycle_of_visual_analysis_489x425.png")
 ```
+
+# Perception and data visualization
+
+## Pre-attentive attributes
+
+```{r echo = FALSE, fig.alt="Example of Pre-attentive Attribute, including length, width, orientation, size, shape, enclosure, position, grouping, color hue, color, (source: help.tableau.com)"}
+#| fig-align: center
+knitr::include_graphics("img/bp_why_visual_analytics.png")
+```
+
+<p>Figure from [Data Storytelling 101: The Magic of Pre-attentive Attributes by Iwa Sanjaya](https://medium.com/microsoft-power-bi/data-storytelling-101-the-magic-of-pre-attentive-attributes-522da9785f36)</p>
+
+## Pick out the blue circle
+
+```{r echo = FALSE, fig.alt="Searching for the blue circle becomes progressively harder. From https://socviz.co/01-look-at-data.html#perception-and-data-visualization"}
+#| fig-align: center
+knitr::include_graphics("img/fig-ch-01-dual-search.png")
+```
+
+<p>Figure from [Data Visualization, a Practical Introduction by Kieran Healy ](https://socviz.co/01-look-at-data.html#perception-and-data-visualization)</p>
+
+
+## [Gestalt Principles](https://socviz.co/01-look-at-data.html#gestalt-rules)
+
+We infer relationships from visual elements even when they are sparse.
+
+- **Proximity**: Things that are spatially near to one another seem to be related.
+- **Similarity**: Things that look alike seem to be related.
+- **Connection**: Things that are visually tied to one another seem to be related.
+- **Continuity**: Partially hidden objects are completed into familiar shapes.
+- **Closure**: Incomplete shapes are perceived as complete.
+- **Figure and Ground**: Visual elements are taken to be either in the foreground or the background.
+- **Common Fate**: Elements sharing a direction of movement are perceived as a unit.
 
 ## The data visualization process {.center_title}
 
@@ -244,7 +235,25 @@ knitr::include_graphics("img/explore_explain.png")
 
 <p>Figure adapted from one by [Rick Scavetta](https://twitter.com/rick_scavetta?lang=en)</p>
 
-## 
+## There may be a data dinosaur 🦖 {background-color="#fff"}
+
+```{r echo = FALSE, fig.alt="A gif of 13 different datasets (include one who's points make the shape of a dinosaur) that all have the same mean and standard deviation, but have very different distributions"}
+knitr::include_graphics("img/dinosaurus.gif")
+```
+
+Figure by [Alberto Cairo](https://www.autodesk.com/research/publications/same-stats-different-graphs)
+
+## What are we trying to visualize?
+
+- Amounts
+- Distributions
+- Proportions
+- Associations
+- x-y relationships
+- Geospatial data
+- Uncertainty
+
+## Chart types
 
 ```{r echo = FALSE, fig.alt="Chart suggestions, a thought starter. Shows how different plot types can be used if you want to compare across groups, show a relationship, understand a distribution, or undrestand compositional differences."}
 #| fig-align: center
@@ -253,29 +262,13 @@ knitr::include_graphics("img/choosing-a-good-chart.jpg")
 
 # Small changes can make a big difference (and some examples)
 
-## Simple changes improve interpretability {.center_title background-color="#fff"}
+## Order axes by something meaningful {.center_title background-color="#fff"}
 
 ```{r echo = FALSE, message = FALSE, warning = FALSE}
 library(gapminder)
 library(tidyverse)
 library(ggpubr)
 ```
-
-```{r echo=FALSE}
-#| column: page
-#| layout-nrow: 1
-#| fig-height: 5.5
-#| fig-width: 5
-
-gapminder %>%
-  filter(continent == "Asia" & year == "2007") %>%
-  ggplot(aes(x = lifeExp, y = country)) +
-    geom_col() + theme_bw() + 
-  theme(axis.text = element_text(size =12))
-
-```
-
-## Simple changes improve interpretability {.center_title background-color="#fff"}
 
 ```{r echo=FALSE}
 #| column: page
@@ -365,58 +358,6 @@ These are not.
 #| column: page
 #| layout-ncol: 3
 #| fig-height: 4
-#| fig-width: 3.5
-
-gapminder %>%
-  filter(year == 2007) %>%
-  ggplot(aes(x = continent, y = lifeExp)) +
-  stat_summary(geom = "bar") +
-  theme_minimal() +
-  labs(x = "Continent",
-       y = "Life expectancy in 2017",
-       title = "Life expectancy by continent",
-       subtitle = "Data from the Gapminder project")
-```
-
-## Show your data if you can
-
-#barbarplots
-
-```{r}
-#| column: page
-#| layout-ncol: 3
-#| fig-height: 4
-#| fig-width: 3.5
-
-gapminder %>%
-  filter(year == 2007) %>%
-  ggplot(aes(x = continent, y = lifeExp)) +
-  stat_summary(geom = "bar") +
-  theme_minimal() +
-  labs(x = "Continent",
-       y = "Life expectancy in 2017",
-       title = "Life expectancy by continent",
-       subtitle = "Data from the Gapminder project")
-
-gapminder %>%
-  filter(year == 2007) %>%
-  ggplot(aes(x = continent, y = lifeExp)) +
-  geom_boxplot() +
-  theme_minimal() +
-  labs(x = "Continent",
-       y = "Life expectancy in 2017",
-       title = "Life expectancy by continent",
-       subtitle = "Data from the Gapminder project")
-```
-
-## Show your data if you can
-
-#barbarplots
-
-```{r}
-#| column: page
-#| layout-ncol: 3
-#| fig-height: 4
 #| fig-width: 3
 
 gapminder %>%
@@ -451,30 +392,11 @@ gapminder %>%
        subtitle = "Data from the Gapminder project")
 ```
 
-## Cut your axes with care
+## Know when to include zero
 
 ```{r echo = FALSE, fig.alt="Figure showing the average height of women (y-axis) from different countries (x-axis). But the y-axis only goes from 5 foot to 5 foot 7 inches, making women from India look tiny and women from Latvia seem enormous."}
 #| fig-align: center
 knitr::include_graphics("img/women_height.png")
-```
-
-## Cut your axes with care
-
-```{r}
-#| column: page
-#| layout-ncol: 2
-#| fig-height: 4
-#| fig-width: 4.5
-
-gapminder %>%
-  filter(year == 2007) %>%
-  ggplot(aes(x = continent, y = lifeExp)) +
-  stat_summary(geom = "bar") +
-  theme_minimal() +
-  labs(x = "Continent",
-       y = "Life expectancy in 2017",
-       title = "Life expectancy by continent",
-       subtitle = "Data from the Gapminder project")
 ```
 
 ## Cut your axes with care
@@ -507,8 +429,11 @@ gapminder %>%
        subtitle = "Data from the Gapminder project")
 ```
 
-## Avoid figure spaghetti 🍝
+## Make it easy to compare 🍝
 
+::: {.r-stack}
+
+::: {.fragment .fade-out}
 ```{r}
 library(tidyverse)
 library(hrbrthemes)
@@ -540,9 +465,9 @@ data %>%
          caption = "From https://www.data-to-viz.com/caveat/spaghetti.html") +
     theme_minimal()
 ```
+:::
 
-## Avoid figure spaghetti 🍝
-
+::: {.fragment}
 ```{r}
 tmp <- data %>%
   mutate(name2=name)
@@ -563,12 +488,17 @@ tmp %>%
          y = "Number of babies") +
     facet_wrap(~name) 
 ```
+:::
+:::
 
-## Be consistent among figures
+## Think about the best color scale to use
 
--   Use the same color schemes/shapes across figures
+```{r echo = FALSE, fig.alt="Figuring showing the difference between sequential, categorical, and diverging color scales. Figure by Lisa Charlotte Muth from https://www.datawrapper.de/blog/which-color-scale-to-use-in-data-vis"}
+#| fig-align: center
+knitr::include_graphics("img/200801_colorscale-intro-f-1.avif")
+```
 
--   If you're ordering/grouping, do so in the same manner
+Figure by Lisa Charlotte Muth and from [datawrapper.de](https://www.datawrapper.de/blog/which-color-scale-to-use-in-data-vis)
 
 ## Make sure your plot has a clear message 🍕
 
@@ -577,14 +507,21 @@ tmp %>%
 knitr::include_graphics("img/bad_pizza.png")
 ```
 
-## Marie Kondo your plots
+## Simpler is better
 
-Declutter, and keep only parts that are informative (and spark joy) 😻
+No unnecessary words in a sentence, no unnecessary sentences in a paragraph. Keep only the parts of the plot that serve a purpose.
 
 ```{r echo = FALSE, fig.alt="A very ugly 3D plot showing life expectancy across the 5 continents where the 3D makes it hard to read, it has duplicative legends, and meaningless colors.", fig.cap="From https://socviz.co/lookatdata.html"}
 #| fig-align: center
 knitr::include_graphics("img/bad_life_expectancy.png")
 ```
+
+## Be consistent among figures
+
+-   Use the same color schemes/shapes across figures
+
+-   If you're ordering/grouping, do so in the same manner
+
 
 ## Oral presentation and publication figures might not be the same
 

@@ -9,7 +9,8 @@ format:
     footer: "[Data Visualization in R](https://www.rdataviz.com/), © Jessica Cooperstone, 2026"
 ---
 
-## Introductions 👋 {.center_title}
+## Questions from last week?  {.center_title}
+
 
 
 ## Next class - discussion of module 1 assignment
