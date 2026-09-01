@@ -11,6 +11,17 @@
     ]
   },
   {
+    "objectID": "modules/module1/02_principles/02_principles.html#office-hours",
+    "href": "modules/module1/02_principles/02_principles.html#office-hours",
+    "title": "Principles of Data Visualization - 2",
+    "section": "Office hours",
+    "text": "Office hours\nMondays, 4-5pm, Pelotonia Research Center or via Zoom",
+    "crumbs": [
+      "Module 1 - Principles",
+      "Week 2 - Principles 2"
+    ]
+  },
+  {
     "objectID": "modules/module1/02_principles/02_principles.html#the-data-visualization-process",
     "href": "modules/module1/02_principles/02_principles.html#the-data-visualization-process",
     "title": "Principles of Data Visualization - 2",
@@ -1748,7 +1759,7 @@
     "href": "syllabus/syllabus.html",
     "title": "Syllabus, Autumn 2026",
     "section": "",
-    "text": "Instructor: Jessica Cooperstone, Ph.D.\nEmail address: cooperstone dot 1 at osu dot edu (preferred contact method)\nPhone number: 614-292-2843 (non-preferred contact method)\nTA: Mia Scott, scott dot 2291 at osu dot edu\nOffice hours: TBD",
+    "text": "Instructor: Jessica Cooperstone, Ph.D.\nEmail address: cooperstone dot 1 at osu dot edu (preferred contact method)\nPhone number: 614-292-2843 (non-preferred contact method)\nTA: Mia Scott, scott dot 2291 at osu dot edu\nOffice hours: Mondays 4-5 pm at Pelotonia Research Center or via Zoom",
     "crumbs": [
       "Syllabus"
     ]
@@ -1758,7 +1769,7 @@
     "href": "syllabus/syllabus.html#instructor",
     "title": "Syllabus, Autumn 2026",
     "section": "",
-    "text": "Instructor: Jessica Cooperstone, Ph.D.\nEmail address: cooperstone dot 1 at osu dot edu (preferred contact method)\nPhone number: 614-292-2843 (non-preferred contact method)\nTA: Mia Scott, scott dot 2291 at osu dot edu\nOffice hours: TBD",
+    "text": "Instructor: Jessica Cooperstone, Ph.D.\nEmail address: cooperstone dot 1 at osu dot edu (preferred contact method)\nPhone number: 614-292-2843 (non-preferred contact method)\nTA: Mia Scott, scott dot 2291 at osu dot edu\nOffice hours: Mondays 4-5 pm at Pelotonia Research Center or via Zoom",
     "crumbs": [
       "Syllabus"
     ]
@@ -2859,17 +2870,6 @@
     "crumbs": [
       "Module 1 - Principles",
       "Week 3 - Good and bad visualizations"
-    ]
-  },
-  {
-    "objectID": "modules/module1/02_principles/02_principles.html#office-hours",
-    "href": "modules/module1/02_principles/02_principles.html#office-hours",
-    "title": "Principles of Data Visualization - 2",
-    "section": "Office hours",
-    "text": "Office hours\nMondays, 4-5pm, Pelotonia Research Center or via Zoom",
-    "crumbs": [
-      "Module 1 - Principles",
-      "Week 2 - Principles 2"
     ]
   }
 ]
