@@ -11,6 +11,10 @@ format:
 
 ## Questions from last week?  {.center_title}
 
+## Office hours
+
+Mondays, 4-5pm, Pelotonia Research Center or via [Zoom](www.go.osu.edu/dataviz-zoom)
+
 ## The data visualization process {.center_title}
 
 ```{r echo = FALSE, fig.alt="A figure with three circles, and arrows between the first and second, and second and third. First circle says data, middle circle says analyst, and third right-most circle says learner. In between data and analyst= is explore, analyze and learn, and in between analyst and learner is explain, explore and persuade."}
