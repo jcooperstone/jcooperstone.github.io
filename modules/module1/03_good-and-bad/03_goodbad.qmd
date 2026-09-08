@@ -19,10 +19,9 @@ format:
 
 # Office hours
 
--   Jess: XXXXX Pelotonia Research Center 1103 or via [Zoom](https://go.osu.edu/dataviz-zoom)
--   Mia: XXXX Pelotonia Research Center 1170 or via [Zoom](https://go.osu.edu/dataviz-zoom) (tell Mia if you want to attend in person)
--   Those who want to attend office hours in person, send us a message and we will come get you from the lobby
--   Those who want to attend office hours virtually, use the same [Zoom link](https://go.osu.edu/dataviz-zoom) for class
+Mondays, 4-5pm, Pelotonia Research Center or via [Zoom](www.go.osu.edu/dataviz-zoom)
+
+# How did you go about finding your visualizations?
 
 ## What was easier to find?
 
@@ -36,12 +35,60 @@ format:
 
 # Bad visualizations 😡 {.center_title}
 
+## SE Asian Convenience Stores 🍙
 
-<!-- ![](bad/.jpg){fig-align="center"} -->
+Yongju
+
+![](bad/yongju.png){fig-align="center"}
+
+
+## Kottman at it again
+
+Xucheng
+
+![](bad/xucheng.jpg){fig-align="center"}
+
+## COVID from March 2020 🤧
+
+Shanelle
+
+![](bad/shanelle.png){fig-align="center"}
+
+## Mia's favorite worst 🦍
+
+Haaniya 🏅
+
+![](bad/worst-bad-haaniya.jpeg){fig-align="center"}
 
 
 # Good visualizations 👏 {.center_title}
 
+## Plant response to freezing 🌱🥶
 
+![](good/freddy.png){fig-align="center"}
+
+## Whey cool 🥛
+
+![](good/elizabeth.jpeg){fig-align="center"}
+
+## Writer's productivity 📖
+
+![](good/anu.png){fig-align="center"}
+
+## Killing weeds 🌾
+
+![](good/newman.jpeg){fig-align="center"}
+
+## Mia's favorite best 🦠
+
+Amy 🏅
+
+![](good/amy.jpg){fig-align="center"}
+
+## Mia's favorite best 🦠
+
+Karina 🏅
+
+![](good/karina.png){fig-align="center"}
 
 # Closing thoughts
