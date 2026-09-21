@@ -192,9 +192,9 @@ website:
           #     text: Module 4 solutions
 
         - section: Recitation solutions
-          # contents:
-          #   - href: https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/main/rmds/04_Rmd_recitation_solutions.Rmd
-          #     text: Week 4 - R Markdown solutions
+          contents:
+            - href: https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/main/rmds/04_Rmd_recitation_solutions.Rmd
+              text: Week 4 - R Markdown solutions
           #   - href: modules/module2/05_wrangling/05_wrangling_recitation_solutions.qmd
           #     text: Week 5 - Wrangling solutions
           #   - href: modules/module2/06_ggplot101/06_ggplot101_recitation_solutions.qmd

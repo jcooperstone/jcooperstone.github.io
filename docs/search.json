@@ -576,7 +576,7 @@
     "href": "modules/module2/04_rmarkdown/04_Rmd.html#what-is-r-markdown",
     "title": "R Markdown for Reproducible Research",
     "section": "What is R Markdown?",
-    "text": "What is R Markdown?\nRMarkdown provides a framework for saving and executing code, and sharing your results. R Markdown files have the file format .Rmd.\nYou can do so many things in R Markdown, from making reports that include text, code, code annotations, figures, tables etc., to creating this course website!\nIf you’ve never used R Markdown before, you can download it using the chunk below. Unlike other R packages, you don’t need to use library(rmarkdown) to load the package each time you want to use R Markdown.\n\ninstall.packages(\"rmarkdown\")",
+    "text": "What is R Markdown?\nR Markdown provides a framework for saving and executing code, and sharing your results. R Markdown files have the file format .Rmd.\nYou can do so many things in R Markdown, from making reports that include text, code, code annotations, figures, tables etc., to creating this course website!\nIf you’ve never used R Markdown before, you can download it using the chunk below. Unlike other R packages, you don’t need to use library(rmarkdown) to load the package each time you want to use R Markdown.\n\ninstall.packages(\"rmarkdown\")",
     "crumbs": [
       "Module 2 - Coding fundamentals",
       "Week 4 - R Markdown"
@@ -1723,14 +1723,28 @@
     "href": "assignments/modules/module2/module_2_assignment.html",
     "title": "Module 2 Assignment",
     "section": "",
-    "text": "This is your assignment for Module 2, focused on the material you learned in the lectures and recitation activities on R Markdown, wrangling, ggplot101, and ggplot102.\nSubmission info: you will submit this assignment by uploading a knitted .html to Carmen.\n\nMake sure you include the Code Download button\nShow your code within your knitted .html\nCustomize the YAML and the document so you like how it looks\n\nRemember there are often many ways to reach the same end product.\n\n\n\n\n\n\nImportant\n\n\n\nThis assignment will be due on Tuesday, October 13, 2026 at 11:59pm."
+    "text": "Important\n\n\n\nThis assignment will be due on Tuesday, October 13, 2026 at 11:59pm."
   },
   {
     "objectID": "assignments/modules/module2/module_2_assignment.html#introduction",
     "href": "assignments/modules/module2/module_2_assignment.html#introduction",
     "title": "Module 2 Assignment",
-    "section": "",
-    "text": "This is your assignment for Module 2, focused on the material you learned in the lectures and recitation activities on R Markdown, wrangling, ggplot101, and ggplot102.\nSubmission info: you will submit this assignment by uploading a knitted .html to Carmen.\n\nMake sure you include the Code Download button\nShow your code within your knitted .html\nCustomize the YAML and the document so you like how it looks\n\nRemember there are often many ways to reach the same end product.\n\n\n\n\n\n\nImportant\n\n\n\nThis assignment will be due on Tuesday, October 13, 2026 at 11:59pm."
+    "section": "Introduction",
+    "text": "Introduction\nThis is your assignment for Module 2, focused on the material you learned in the lectures and recitation activities on R Markdown, wrangling, ggplot101, and ggplot102.\nSubmission info: you will submit this assignment by uploading a knitted .html to Carmen that you created from an R Markdown or Quarto document.\n\nMake sure you include the Code Download button\nShow your code within your knitted .html\nCustomize the YAML and the document so you like how your final report looks - do check this before you submit\nAll code should be annotated (meaning, you should be writing descriptions in your own words about what the code is doing)\nAll decisions should be described in the text of your document"
+  },
+  {
+    "objectID": "assignments/modules/module2/module_2_assignment.html#why-are-you-doing-this",
+    "href": "assignments/modules/module2/module_2_assignment.html#why-are-you-doing-this",
+    "title": "Module 2 Assignment",
+    "section": "Why are you doing this?",
+    "text": "Why are you doing this?\nThe purpose of this assignment is to demonstrate that you are able to:\n\nLook at data and choose a suitable chart type for that data\nUse R to create a visualization that executes on your decisions in #1."
+  },
+  {
+    "objectID": "assignments/modules/module2/module_2_assignment.html#deadlines",
+    "href": "assignments/modules/module2/module_2_assignment.html#deadlines",
+    "title": "Module 2 Assignment",
+    "section": "Deadlines",
+    "text": "Deadlines\n\n\n\n\n\n\nImportant\n\n\n\nThis assignment will be due on Tuesday, October 13, 2026 at 11:59pm."
   },
   {
     "objectID": "assignments/modules/module1/module_1_assignment.html",
@@ -1869,14 +1883,14 @@
     "href": "rmds/04_Rmd_recitation_solutions.html",
     "title": "R Markdown Recitation Solutions",
     "section": "",
-    "text": "This will be your template RMarkdown document for playing around with RMarkdown. This was opened using the default Rmd settings. You are going to be playing around with the 3 components of an Rmd:\n\ntext\ncode\nthe YAML (aka the header)\n\nTo see if each of your changes has worked, you will need to knit."
+    "text": "This will be your template R Markdown document for playing around with R Markdown. This was opened using the default Rmd settings. You are going to be playing around with the 3 components of an Rmd:\n\ntext\ncode\nthe YAML (aka the header)\n\nTo see if each of your changes has worked, you will need to knit."
   },
   {
     "objectID": "rmds/04_Rmd_recitation_solutions.html#r-markdown-recitation",
     "href": "rmds/04_Rmd_recitation_solutions.html#r-markdown-recitation",
     "title": "R Markdown Recitation Solutions",
     "section": "",
-    "text": "This will be your template RMarkdown document for playing around with RMarkdown. This was opened using the default Rmd settings. You are going to be playing around with the 3 components of an Rmd:\n\ntext\ncode\nthe YAML (aka the header)\n\nTo see if each of your changes has worked, you will need to knit."
+    "text": "This will be your template R Markdown document for playing around with R Markdown. This was opened using the default Rmd settings. You are going to be playing around with the 3 components of an Rmd:\n\ntext\ncode\nthe YAML (aka the header)\n\nTo see if each of your changes has worked, you will need to knit."
   },
   {
     "objectID": "rmds/04_Rmd_recitation_solutions.html#second-biggest-header",

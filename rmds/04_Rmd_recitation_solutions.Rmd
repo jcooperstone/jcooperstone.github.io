@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## R Markdown Recitation
 
-This will be your template RMarkdown document for playing around with RMarkdown. This was opened using the default Rmd settings. You are going to be playing around with the 3 components of an Rmd:
+This will be your template R Markdown document for playing around with R Markdown. This was opened using the default Rmd settings. You are going to be playing around with the 3 components of an Rmd:
 
 1.  text
 2.  code
