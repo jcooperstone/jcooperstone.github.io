@@ -105,7 +105,7 @@ life_expectancy_long |>
 ```
 
 ## Modifying data
-Create a new dataset for life_expectancy that only includes observed data (i.e., remove the projected data after 2022). If you used 2024 that would also be fine - but this data was pulled in 2022.
+Create a new dataset for life_expectancy that only includes observed data (i.e., remove the projected data after 2022). If you used 2026 that would also be fine - but this data was pulled in 2022.
 
 ```{r life_expectancy projected removed}
 # with long data
