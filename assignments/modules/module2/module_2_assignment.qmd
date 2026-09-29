@@ -26,22 +26,93 @@ This assignment will be due on **`r module_2_due_date` at 11:59pm**.
 :::
 
 ## Introduction
-This is your assignment for Module 2, focused on the material you learned in the lectures and recitation activities on R Markdown, wrangling, ggplot101, and ggplot102. 
+This is your assignment for Module 2, focused on the material you learned in the lectures and recitation activities on R Markdown, wrangling, ggplot101, and ggplot102. This assignment is worth 8 points.
 
 Submission info: you will submit this assignment by uploading a knitted `.html` to Carmen that you created from an R Markdown or Quarto document. 
 
-- Make sure you include the `Code Download` button
+- Make sure you include the `Code Download` button or another way to download your code
 - Show your code within your knitted `.html`
 - Customize the YAML and the document so you like how your final report looks - do check this before you submit
 - All code should be annotated (meaning, you should be writing descriptions in your own words about what the code is doing)
 - All decisions should be described in the text of your document
+
+::: {.callout-caution}
+## A reminder about generative AI use
+Please remember that you can use generative AI to help with your coding, but it should **NOT** be used to generate your assignment text or on conceptual questions. You should be able to explain your code and your decisions in your own words. If you use generative AI for your code, please cite:
+
+1) what the goal of the use was
+2) your prompt
+3) what you got
+4) what edits you made
+
+:::
 
 ## Why are you doing this?
 
 The purpose of this assignment is to demonstrate that you are able to:
 
 1. Look at data and choose a suitable chart type for that data
-2. Use R to create a visualization that executes on your decisions in #1.
+2. Use R and R Markdown/quarto to create a visualization that executes on your decisions in #1.
+
+## 1. Provide feedback to improve an existing figure (2 points)
+
+One of your lab mates presents the figure below in lab meeting and it is your job to give them constructive feedback how to improve this figure to best communicate the data. The data below shows the yield of different peppers for 20 different genotypes under two different treatments, where water is limited or not limited. The different colors represent the different categories of peppers, those that are collected that are green (this is the color they should be), those that are red (this is another color they should be), those that are rotten (this is bad) and those that are unmarketable (those are also not desirable). Your main question is to understand how pepper genotypes perform under the two different water conditions. 
+
+```{r echo = FALSE}
+library(tidyverse)
+library(readxl)
+
+peppers <- read_excel("peppers.xlsx") |> 
+  rename(Rotton = BER)
+
+peppers_tidy <- peppers |> 
+  pivot_longer(cols = Green:Unmarketable,
+              names_to = "Quality",
+              values_to = "Yield")
+
+peppers_tidy |> 
+  ggplot(aes(x = Genotype, y =  Yield, fill = Quality)) +
+  geom_col(position = "stack") +
+  facet_wrap(vars(Treatment)) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = "bottom"
+  )              
+```
+
+Provide 4 things you could try to improve this figure and describe why each would be an improvement over the current version.
+
+## 2. Creating tidy data (2 points)
+
+You are presented with data collected with yield data over 5 years that looks like this:
+
+```{r, echo = FALSE}
+yield <- read_excel("yield-year.xlsx")
+```
+
+```{r, echo = FALSE}
+knitr::kable(yield)
+```
+
+You can download this data using this code:
+
+```{r, eval = FALSE}
+download.file("")
+```
+
+### a. Describe in words what it means for data to be in a tidy format
+### b. Describe in words how you would convert the dataframe above to be in a tidy format
+### c. Provide code for how you could convert this data to be in a tidy format
+
+## 3. Select the right plot for a dataset
+
+You have the following dataset:
+
+You'd like to make soem visualizations to answer the following questions:
+
+a. 
+
+## 4. 
 
 ## Deadlines
 

@@ -1,0 +1,52 @@
+---
+title: "Module 2 Assignment"
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+library(readxl)
+library(knitr)
+library(tidyverse)
+due_dates <- read_excel("../../../files/schedule_modules.xlsx",
+                       sheet = "module_due_dates_2026")
+```
+
+```{r, echo = FALSE}
+module_2_due_date <- due_dates |> 
+  filter(Assignment == "Module 2: Coding Fundamentals") |> 
+  pull(due_date_paste)
+```
+
+::: callout-important
+This assignment will be due on **`r module_2_due_date` at 11:59pm**.
+:::
+
+## Introduction
+This is your assignment for Module 2, focused on the material you learned in the lectures and recitation activities on R Markdown, wrangling, ggplot101, and ggplot102. 
+
+Submission info: you will submit this assignment by uploading a knitted `.html` to Carmen that you created from an R Markdown or Quarto document. 
+
+- Make sure you include the `Code Download` button
+- Show your code within your knitted `.html`
+- Customize the YAML and the document so you like how your final report looks - do check this before you submit
+- All code should be annotated (meaning, you should be writing descriptions in your own words about what the code is doing)
+- All decisions should be described in the text of your document
+
+## Why are you doing this?
+
+The purpose of this assignment is to demonstrate that you are able to:
+
+1. Look at data and choose a suitable chart type for that data
+2. Use R to create a visualization that executes on your decisions in #1.
+
+## Deadlines
+
+::: callout-important
+This assignment will be due on **`r module_2_due_date` at 11:59pm**.
+:::
+
+

@@ -26,41 +26,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -545,150 +510,23 @@ Important
 </div>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>This is your assignment for Module 2, focused on the material you learned in the lectures and recitation activities on R Markdown, wrangling, ggplot101, and ggplot102. This assignment is worth 8 points.</p>
+<p>This is your assignment for Module 2, focused on the material you learned in the lectures and recitation activities on R Markdown, wrangling, ggplot101, and ggplot102.</p>
 <p>Submission info: you will submit this assignment by uploading a knitted <code>.html</code> to Carmen that you created from an R Markdown or Quarto document.</p>
 <ul>
-<li>Make sure you include the <code>Code Download</code> button or another way to download your code</li>
+<li>Make sure you include the <code>Code Download</code> button</li>
 <li>Show your code within your knitted <code>.html</code></li>
 <li>Customize the YAML and the document so you like how your final report looks - do check this before you submit</li>
 <li>All code should be annotated (meaning, you should be writing descriptions in your own words about what the code is doing)</li>
 <li>All decisions should be described in the text of your document</li>
 </ul>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Caution</span>A reminder about generative AI use
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Please remember that you can use generative AI to help with your coding, but it should <strong>NOT</strong> be used to generate your assignment text or on conceptual questions. You should be able to explain your code and your decisions in your own words. If you use generative AI for your code, please cite:</p>
-<ol type="1">
-<li>what the goal of the use was</li>
-<li>your prompt</li>
-<li>what you got</li>
-<li>what edits you made</li>
-</ol>
-</div>
-</div>
 </section>
 <section id="why-are-you-doing-this" class="level2">
 <h2 class="anchored" data-anchor-id="why-are-you-doing-this">Why are you doing this?</h2>
 <p>The purpose of this assignment is to demonstrate that you are able to:</p>
 <ol type="1">
 <li>Look at data and choose a suitable chart type for that data</li>
-<li>Use R and R Markdown/quarto to create a visualization that executes on your decisions in #1.</li>
+<li>Use R to create a visualization that executes on your decisions in #1.</li>
 </ol>
-</section>
-<section id="provide-feedback-to-improve-an-existing-figure-2-points" class="level2">
-<h2 class="anchored" data-anchor-id="provide-feedback-to-improve-an-existing-figure-2-points">1. Provide feedback to improve an existing figure (2 points)</h2>
-<p>One of your lab mates presents the figure below in lab meeting and it is your job to give them constructive feedback how to improve this figure to best communicate the data. The data below shows the yield of different peppers for 20 different genotypes under two different treatments, where water is limited or not limited. The different colors represent the different categories of peppers, those that are collected that are green (this is the color they should be), those that are red (this is another color they should be), those that are rotten (this is bad) and those that are unmarketable (those are also not desirable). Your main question is to understand how pepper genotypes perform under the two different water conditions.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="module_2_assignment_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Provide 4 things you could try to improve this figure and describe why each would be an improvement over the current version.</p>
-</section>
-<section id="creating-tidy-data-2-points" class="level2">
-<h2 class="anchored" data-anchor-id="creating-tidy-data-2-points">2. Creating tidy data (2 points)</h2>
-<p>You are presented with data collected with yield data over 5 years that looks like this:</p>
-<div class="cell">
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">location</th>
-<th style="text-align: right;">2022</th>
-<th style="text-align: right;">2023</th>
-<th style="text-align: right;">2024</th>
-<th style="text-align: right;">2025</th>
-<th style="text-align: right;">2026</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Ohio</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">93</td>
-<td style="text-align: right;">40</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">California</td>
-<td style="text-align: right;">50</td>
-<td style="text-align: right;">29</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">40</td>
-<td style="text-align: right;">53</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">New York</td>
-<td style="text-align: right;">19</td>
-<td style="text-align: right;">83</td>
-<td style="text-align: right;">62</td>
-<td style="text-align: right;">20</td>
-<td style="text-align: right;">61</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Florida</td>
-<td style="text-align: right;">70</td>
-<td style="text-align: right;">95</td>
-<td style="text-align: right;">47</td>
-<td style="text-align: right;">94</td>
-<td style="text-align: right;">7</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Texas</td>
-<td style="text-align: right;">84</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">90</td>
-<td style="text-align: right;">83</td>
-<td style="text-align: right;">70</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Virginia</td>
-<td style="text-align: right;">76</td>
-<td style="text-align: right;">96</td>
-<td style="text-align: right;">79</td>
-<td style="text-align: right;">83</td>
-<td style="text-align: right;">15</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p>You can download this data using this code:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">""</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<section id="a.-describe-in-words-what-it-means-for-data-to-be-in-a-tidy-format" class="level3">
-<h3 class="anchored" data-anchor-id="a.-describe-in-words-what-it-means-for-data-to-be-in-a-tidy-format">a. Describe in words what it means for data to be in a tidy format</h3>
-</section>
-<section id="b.-describe-in-words-how-you-would-convert-the-dataframe-above-to-be-in-a-tidy-format" class="level3">
-<h3 class="anchored" data-anchor-id="b.-describe-in-words-how-you-would-convert-the-dataframe-above-to-be-in-a-tidy-format">b. Describe in words how you would convert the dataframe above to be in a tidy format</h3>
-</section>
-<section id="c.-provide-code-for-how-you-could-convert-this-data-to-be-in-a-tidy-format" class="level3">
-<h3 class="anchored" data-anchor-id="c.-provide-code-for-how-you-could-convert-this-data-to-be-in-a-tidy-format">c.&nbsp;Provide code for how you could convert this data to be in a tidy format</h3>
-</section>
-</section>
-<section id="select-the-right-plot-for-a-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="select-the-right-plot-for-a-dataset">3. Select the right plot for a dataset</h2>
-<p>You have the following dataset:</p>
-<p>You’d like to make soem visualizations to answer the following questions:</p>
-<ol type="a">
-<li></li>
-</ol>
-</section>
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section">4.</h2>
 </section>
 <section id="deadlines" class="level2">
 <h2 class="anchored" data-anchor-id="deadlines">Deadlines</h2>
