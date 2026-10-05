@@ -94,25 +94,79 @@ yield <- read_excel("yield-year.xlsx")
 knitr::kable(yield)
 ```
 
-You can download this data using this code:
+You can download this data using this code for question 2c.
 
 ```{r, eval = FALSE}
-download.file("")
+download.file("https://github.com/jcooperstone/jcooperstone.github.io/raw/refs/heads/main/assignments/modules/module2/yield-year.xlsx", destfile = "yield-year.xlsx")
 ```
 
 ### a. Describe in words what it means for data to be in a tidy format
 ### b. Describe in words how you would convert the dataframe above to be in a tidy format
 ### c. Provide code for how you could convert this data to be in a tidy format
 
-## 3. Select the right plot for a dataset
+## 3. Select the right plot for a dataset (2 points)
 
-You have the following dataset:
+I am going to describe different types of data, and I'd like you to share:
 
-You'd like to make soem visualizations to answer the following questions:
+- what type of question you would be asking with this data
+- what type of plot would be best to visualize it
+- why you picked that visualization
+- how you would code that plot in words (but you don't actually need to code it)
 
-a. 
+**You do not need to actually create the plot.**
 
-## 4. 
+### a. The height and weight of a sample of 10,000 people from Ohio
+
+### b. The expression level of 3 genes in treatment (n = 10) and control (n = 10) samples
+
+### c. The number of students in Ohio who got a PhD per year from 1950 until now
+
+### d. The amount of time spent studying and the grade achieved on the organic chemistry final for 200 students at Ohio State.
+
+## 4. Recreate the following plot (2 points)
+
+Recreate the following plot (as close as you can) which compiles the total number of PhDs awarded across different broad disciplines from 2008 to 2017. You can find the data here: [Number of PhDs awarded in the United States from 2008-2017, collated by the National Science Foundation](https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-02-19/phd_by_field.csv)
+
+::: {.callout-tip}
+## You can use the code below to read this data into R:
+```{r eval = FALSE}
+readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-02-19/phd_by_field.csv")
+```
+
+:::
+
+```{r echo = FALSE, message = FALSE, warning = FALSE}
+library(scales) # for comma format for numbers in number of PhDs plot
+
+phd_field <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-02-19/phd_by_field.csv")
+
+# use summarize to calculate the total number of phds across each broad_field
+broad_field_sum <- phd_field |>
+  group_by(broad_field) |>
+  summarize(broad_field_sum = sum(n_phds, na.rm = TRUE)) |>
+  arrange(-broad_field_sum)
+
+total_phds <- broad_field_sum |> 
+  ggplot(aes(x = broad_field_sum, y = reorder(broad_field, broad_field_sum))) +
+  geom_col(color = "black", fill = "gray") +
+  scale_x_continuous(labels = comma) + # add a comma to the x-axis breaks
+  theme_minimal() +
+  labs(title = "Total PhDs awarded in the US across different \nbroad disciplines from 2008 to 2017",
+       x = "Number of PhDs",
+       y = "Broad field",
+       subtitle = "Data collected by the National Science Foundation")
+
+ggsave(filename = "total_phds.pdf", plot = total_phds)
+```
+
+```{r echo = FALSE}
+total_phds
+```
+
+I would like to see:
+
+- A description in words as to how you need to wrangle the data to make it amendable for creating this plot
+- Your code for making the plot along with annotations for what all of the code does
 
 ## Deadlines
 

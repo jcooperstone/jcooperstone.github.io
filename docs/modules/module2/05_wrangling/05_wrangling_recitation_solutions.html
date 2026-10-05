@@ -456,6 +456,10 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
     <a class="dropdown-item" href="../../../assignments/modules/module1/module_1_assignment.html">
  <span class="dropdown-text">Module 1</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../../assignments/modules/module2/module_2_assignment.html">
+ <span class="dropdown-text">Module 2</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Reflections</li>
         <li>
@@ -492,12 +496,15 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
     <a class="dropdown-item" href="../../../modules/module2/05_wrangling/05_wrangling_recitation_solutions.html">
  <span class="dropdown-text">Week 5 - Wrangling solutions</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/06_ggplot101/06_ggplot101_recitation_solutions.html">
+ <span class="dropdown-text">Week 6 - ggplot101 solutions</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-    <a href="https://github.com/jcooperstone/rdataviz" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
@@ -542,6 +549,12 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
   <div class="sidebar-item-container"> 
   <a href="../../../modules/module2/05_wrangling/05_wrangling_recitation_solutions.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Week 5 - Wrangling solutions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../modules/module2/06_ggplot101/06_ggplot101_recitation_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 6 - ggplot101 solutions</span></a>
   </div>
 </li>
       </ul>
@@ -1074,7 +1087,7 @@ $ `2100`  &lt;dbl&gt; 76.8, 80.0, 88.4, NA, 83.3, 87.2, 86.2, 85.9, 92.3, 92.0, 
 </section>
 <section id="modifying-data" class="level2">
 <h2 class="anchored" data-anchor-id="modifying-data">Modifying data</h2>
-<p>Create a new dataset for life_expectancy that only includes observed data (i.e., remove the projected data after 2022). If you used 2026 that would also be fine - but this data was pulled in 2022.</p>
+<p>Create a new dataset for life_expectancy that only includes observed data (i.e., remove the projected data after 2022). If you used 202 that would also be fine - but this data was pulled in 2022.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># with long data</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>life_expectancy_actual <span class="ot">&lt;-</span> life_expectancy_long <span class="sc">|&gt;</span> </span>
@@ -1983,12 +1996,6 @@ $ `2100`  &lt;dbl&gt; 76.8, 80.0, 88.4, NA, 83.3, 87.2, 86.2, 85.9, 92.3, 92.0, 
     </div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
-    <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/jcooperstone/rdataviz">
-      <i class="bi bi-github" role="img">
-</i> 
-    </a>
-  </li>  
     <li class="nav-item compact">
     <a class="nav-link" href="https://creativecommons.org/licenses/by-nc/4.0/deed.en">
       <i class="bi bi-cc-circle" role="img">
