@@ -39,7 +39,7 @@ Since there are so few robusta observations, I decided to make the y-axes on dif
 coffee_ratings |>
   ggplot(aes(x = total_cup_points, fill = species)) +
   geom_histogram(bins = 200) +
-  geom_vline(aes(xintercept = mean(total_cup_points)), color = "black") +
+  geom_vline(aes(xintercept = median(total_cup_points)), color = "black") +
   scale_fill_manual(values = c("#C19A6B", "#5C4033")) +
   coord_cartesian(xlim = c(60,100)) + # change x-axis limits
   facet_wrap(vars(species),
@@ -51,7 +51,7 @@ coffee_ratings |>
   labs(x = "Total cupping score (out of 100)",
        y = "",
        fill = "Species",
-       title = "Distribution of cupping scores across 14,000 coffee samples",
+       title = "Distribution of cupping scores across ~1,400 coffee samples",
        subtitle = "Note the y-axes are different between plots",
        caption = "Vertical line represents the median total cupping score across all samples")
 ```
@@ -91,7 +91,7 @@ coffee_ratings |>
   theme(legend.position = c(.18, .99),
         legend.justification = c("right", "top"),
         legend.box.just = "right",
-        legend.box.background = element_rect(size = 0.5),
+        legend.box.background = element_rect(linewidth = 0.5),
         legend.box.margin = margin(5, 5, 5, 5)) +
   labs(x = "Total cupping score (out of 100)",
        y = "",
@@ -155,7 +155,7 @@ coffee_labels <- c("Acidity",
 names(coffee_labels) <- coffee_characteristics
 ```
 
-Managing fonts:
+Managing fonts in R requires some special packages. For example, the font I am trying to use here ([Atkinson Hyperlegible](https://fonts.google.com/specimen/Atkinson+Hyperlegible?preview.script=Latn)) want to use is not available in R by default. So I need to use the `sysfonts` and `showtext` packages to get it. The `ragg` package is also needed to render the font properly.
 ```{r}
 # get fonts not default available in R
 library(sysfonts) # aux packagew here fonts live
@@ -175,7 +175,9 @@ showtext_auto()
 
 
 ### Boxplots
-This is just ok.
+
+This plot I think is just ok. The boxplot show some, but not a complete distribution of the data, which is why I think some of the other plots are more informative.
+
 ```{r}
 coffee_ratings_tidy |>
   ggplot(aes(x = species, y = rating, fill = species)) +
@@ -215,7 +217,8 @@ coffee_ratings_tidy |>
 ```
 
 ### Dot plots
-This is just ok.
+
+I think I like the dog plots here less than the violins because they are more visually crowded without showing more useful information.
 ```{r}
 coffee_ratings_tidy |>
   ggplot(aes(x = species, y = rating, color = species)) +
@@ -228,8 +231,8 @@ coffee_ratings_tidy |>
   theme_classic() + 
   theme(legend.position = "none",
         text = element_text(family = "Atkinson Hyperlegible")) + # changing font
-  labs(x = "Cupper rating (out of 10)",
-       y = "Coffee Species",
+  labs(x = "Coffee Species",
+       y = "Cupper rating (out of 10)",
        title = "Distribution of cupper scores for individual coffee attributes")
 ```
 

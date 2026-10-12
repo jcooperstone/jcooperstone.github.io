@@ -1,7 +1,7 @@
 ---
 title: "ggplot 101 (and 🍅)"
 author: "Jessica Cooperstone"
-subtitle: "Week 5"
+subtitle: "Week 6"
 format:
   html:
     toc: true

@@ -1,7 +1,7 @@
 ---
 title: "ggplot 102: Facets, Scales, Labels, and Themes (but now 🐶) recitation"
 author: "Jessica Cooperstone"
-subtitle: "Week 6"
+subtitle: "Week 7"
 ---
 
 

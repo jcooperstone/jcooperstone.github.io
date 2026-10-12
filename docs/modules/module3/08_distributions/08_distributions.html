@@ -500,6 +500,10 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
     <a class="dropdown-item" href="../../../modules/module2/06_ggplot101/06_ggplot101_recitation_solutions.html">
  <span class="dropdown-text">Week 6 - ggplot101 solutions</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module2/07_ggplot102/07_ggplot102_recitation_solutions.html">
+ <span class="dropdown-text">Week 7 - ggplot102 solutions</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -678,6 +682,7 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
   <li><a href="#geom_boxplot" id="toc-geom_boxplot" class="nav-link" data-scroll-target="#geom_boxplot"><code>geom_boxplot()</code></a></li>
   <li><a href="#geom_jitter" id="toc-geom_jitter" class="nav-link" data-scroll-target="#geom_jitter"><code>geom_jitter()</code></a></li>
   <li><a href="#geom_histogram" id="toc-geom_histogram" class="nav-link" data-scroll-target="#geom_histogram"><code>geom_histogram()</code></a></li>
+  <li><a href="#geom_density" id="toc-geom_density" class="nav-link" data-scroll-target="#geom_density"><code>geom_density()</code></a></li>
   <li><a href="#ggridgesgeom_density_ridges" id="toc-ggridgesgeom_density_ridges" class="nav-link" data-scroll-target="#ggridgesgeom_density_ridges"><code>ggridges::geom_density_ridges()</code></a>
   <ul class="collapse">
   <li><a href="#changing-class-labels" id="toc-changing-class-labels" class="nav-link" data-scroll-target="#changing-class-labels">Changing class labels</a></li>
@@ -730,7 +735,7 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
 </div>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>We will will building on our lesson on ggplot101 and ggplot102 which focused on an overall understanding of the grammar of graphics, basic syntax, adding data, aesthetic mappings, geoms, facets, scales, labels, and themes. Today we are going to apply what we learned towards trying to better understanding our underlying data distributions.</p>
+<p>We will be building on our lesson on ggplot101 and ggplot102 which focused on an overall understanding of the grammar of graphics, basic syntax, adding data, aesthetic mappings, geoms, facets, scales, labels, and themes. Today we are going to apply what we learned towards trying to better understanding our underlying data distributions.</p>
 <p>Often, we think about figure generation as the last part of the scientific process, something you do as you prepare a manuscript for publication. I hope to convince you that exploring your data, and making exploratory plots is a critical part of the data analysis and interpretation process.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -759,7 +764,7 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You can download the Excel file from <a href="https://acsess.onlinelibrary.wiley.com/doi/full/10.1002/tpg2.20192">the supporting information link</a>, or you can access it directly <a href="https://github.com/jcooperstone/jcooperstone.github.io/raw/refs/heads/main/modules/module3/07_distributions/tpg220192-sup-0002-supmat.xlsx">here</a>.</p>
+<p>You can download the Excel file from <a href="https://acsess.onlinelibrary.wiley.com/doi/full/10.1002/tpg2.20192">the supporting information link</a>, or you can access it directly <a href="https://github.com/jcooperstone/jcooperstone.github.io/raw/refs/heads/main/modules/module3/08_distributions/tpg220192-sup-0002-supmat.xlsx">here</a>.</p>
 </div>
 </div>
 <p>The data is present in a Excel worksheet, so we will use the function <code>read_excel()</code> from the tidyverse (but not core tidyverse) package <code>readxl</code>. We want to import Supplemental Table 1. You can indicate which sheet you want to import in the arguments to <code>read_excel()</code>.</p>
@@ -1141,6 +1146,7 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
 5 Wild Cherry                   4928.</code></pre>
 </div>
 </div>
+<p>What happens if you just map <code>Tomatine</code> to the y-axis before summarizing? You will see that the y-axis scale is way off. This is because <code>geom_col()</code> defaults to <code>position = "stack"</code> which will just sum the alkaloid content across all the observations. Even changing to <code>position = "identity"</code> does not work. This is because we are plotting a transformation of the data (calculation of the mean) which these geoms are not doing.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this is wrong but an easy mistake to make</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># this is not what we want</span></span>
@@ -1245,13 +1251,13 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
 </section>
 <section id="geom_boxplot" class="level3">
 <h3 class="anchored" data-anchor-id="geom_boxplot"><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html"><code>geom_boxplot()</code></a></h3>
-<p>A boxplot has the benefit of showing you more than the median and the standard deviation, so you can better see the true distribution of your data. With <code>geom_boxplot()</code>:</p>
+<p>A boxplot has the benefit of showing you more than the mean and standard deviation, so you can better see the true distribution of your data. With <code>geom_boxplot()</code>:</p>
 <ul>
 <li><strong>Lower whisker</strong>: smallest observation greater than or equal to lower hinge - 1.5 * IQR</li>
-<li><strong>Lower hinge/bottom line of box part of boxplot</strong> 25% quantile</li>
+<li><strong>Lower hinge/bottom line of box part of boxplot</strong>: 25% quantile</li>
 <li><strong>Middle</strong>: median, 50% quantile</li>
 <li><strong>Upper hinge/top line of box part of boxplot</strong> 75% quantile</li>
-<li><strong>Upper whisker</strong> largest observation less than or equal to upper hinge + 1.5 * IQR</li>
+<li><strong>Upper whisker</strong>: largest observation less than or equal to upper hinge + 1.5 * IQR</li>
 </ul>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">|&gt;</span></span>
@@ -1319,7 +1325,7 @@ log-10 transformation introduced infinite values.</code></pre>
 <li>A width of <code>0</code> is no <em>horizontal</em> jitter</li>
 <li>A height of <code>0</code> is no <em>vertical</em> jitter</li>
 </ul>
-<p>Typically you <strong>don’t want veritcal jitter</strong> so that the points retain their fidelity on the y-axis (which is where their concentration is plotted). I basically always use <code>geom_jitter(height = 0)</code> for plots where I want to retain y-axis fidelity.</p>
+<p>Typically you <strong>don’t want vertical jitter</strong> so that the points retain their fidelity on the y-axis (which is where their concentration is plotted). I basically always use <code>geom_jitter(height = 0)</code> for plots where I want to retain y-axis fidelity.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">|&gt;</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Class, <span class="at">y =</span> Tomatine)) <span class="sc">+</span></span>
@@ -1360,6 +1366,10 @@ log-10 transformation introduced infinite values.</code></pre>
 </div>
 </div>
 </div>
+</section>
+<section id="geom_density" class="level3">
+<h3 class="anchored" data-anchor-id="geom_density"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html"><code>geom_density()</code></a></h3>
+<p>A density plot is like a smoothed version of a histogram.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">|&gt;</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Tomatine)) <span class="sc">+</span></span>
@@ -1377,7 +1387,7 @@ log-10 transformation introduced infinite values.</code></pre>
 </section>
 <section id="ggridgesgeom_density_ridges" class="level3">
 <h3 class="anchored" data-anchor-id="ggridgesgeom_density_ridges"><a href="https://www.rdocumentation.org/packages/ggridges/versions/0.5.2/topics/geom_density_ridges"><code>ggridges::geom_density_ridges()</code></a></h3>
-<p>I really like the function <code>geom_density_ridges()</code> which is a part of the ggplot add-on package <code>ggridges</code>. It allows you to create ridgeline plots to show distributes in a single non-faceted plot.</p>
+<p>I really like the function <code>geom_density_ridges()</code> which is a part of the ggplot add-on package <code>ggridges</code>. It allows you to create ridgeline plots to show distributions in a single non-faceted plot.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggridges) <span class="co"># for ridgeline plots</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales) <span class="co"># for comma format</span></span>
@@ -1410,7 +1420,7 @@ log-10 transformation introduced infinite values.</code></pre>
 <span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Alpha-tomatine content, µg/100g fresh weight"</span>,</span>
 <span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">""</span>,</span>
 <span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Distribution of Alpha-Tomatine Content Across 107 Accessions </span><span class="sc">\n</span><span class="st">of Tomato Grown Across 3 Environments"</span>,</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Black line represents tomato class median concent"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Black line represents tomato class median content"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Picking joint bandwidth of 0.198</code></pre>
 </div>
@@ -1539,7 +1549,7 @@ Attaching package: 'ggdist'</code></pre>
 </div>
 </div>
 </div>
-<p>Don’t forget we can keep layering. We can always map other aethetics to our plot (e.g.&nbsp;<code>shape = as.factor(Year)</code>, and we include <code>as.factor()</code> because <code>Year</code> is a character datatype).</p>
+<p>Don’t forget we can keep layering. We can always map other aethetics to our plot (e.g.&nbsp;<code>shape = as.factor(Year)</code>, and we include <code>as.factor()</code> because <code>Year</code> is a character datatype and here we are making it a factor.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>alkaloids <span class="sc">|&gt;</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Tomatine <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
@@ -1547,13 +1557,14 @@ Attaching package: 'ggdist'</code></pre>
 <span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">"log10"</span>, <span class="at">labels =</span> comma) <span class="sc">+</span> </span>
 <span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_dots</span>(<span class="at">side =</span> <span class="st">"both"</span>) <span class="sc">+</span></span>
 <span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_ggdist</span>() <span class="sc">+</span></span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">18</span>, .<span class="dv">99</span>),</span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"top"</span>),</span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.box.just =</span> <span class="st">"right"</span>,</span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.box.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"black"</span>),</span>
-<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.box.margin =</span> <span class="fu">margin</span>(<span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>)) <span class="sc">+</span></span>
-<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">shape =</span> <span class="st">"Year"</span>,</span>
-<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Alpha-tomatine (µg/100 g fresh weight)"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"inside"</span>, <span class="co"># need this to tell ggplot to put the legend inside the plot area</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position.inside =</span> <span class="fu">c</span>(.<span class="dv">18</span>, .<span class="dv">99</span>), <span class="co"># indicates precisely where to put the legend</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"top"</span>),</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.box.just =</span> <span class="st">"right"</span>,</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.box.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">"black"</span>),</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.box.margin =</span> <span class="fu">margin</span>(<span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">shape =</span> <span class="st">"Year"</span>,</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Alpha-tomatine (µg/100 g fresh weight)"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1570,7 +1581,7 @@ Attaching package: 'ggdist'</code></pre>
 <li><p><a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-visualization.pdf"><code>ggplot2</code> cheatsheet</a></p></li>
 <li><p><a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code> documentation</a></p></li>
 <li><p><a href="https://ggplot2-book.org/index.html">ggplot2: elegant graphics for data analysis by Hadley Wickham</a></p></li>
-<li><p><a href="https://github.com/erikgahner/awesome-ggplot2">A really compehensive list of resources compiled by Erik Gahner Larsen</a></p></li>
+<li><p><a href="https://github.com/erikgahner/awesome-ggplot2">A really comprehensive list of resources compiled by Erik Gahner Larsen</a></p></li>
 <li><p><a href="https://wilkelab.org/ggridges/"><code>ggridges</code></a></p></li>
 <li><p><a href="https://mjskay.github.io/ggdist/index.html"><code>ggdist</code></a></p></li>
 <li><p><a href="https://cran.r-project.org/web/packages/ggbeeswarm/index.html"><code>ggbeeswarm</code></a></p></li>

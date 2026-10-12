@@ -19,7 +19,7 @@ knitr::include_graphics("img/dogs.jpg")
 
 ## Introduction
 
-We will practice what we learned this week in [ggplot102](2_05_themes_labels_facets/05_ggplot102.html) on:
+We will practice what we learned this week in [ggplot102](https://www.rdataviz.com/modules/module2/07_ggplot102/07_ggplot102.html) on:
 
 * [Facets](https://ggplot2.tidyverse.org/reference/index.html#facetting)
 * [Scales](https://ggplot2.tidyverse.org/reference/index.html#scales)
@@ -40,13 +40,16 @@ library(tidytuesdayR)
 ```
 
 We will be using the data that is from February 1, 2022, so let's download it. The readme for this data is [here](https://github.com/rfordatascience/tidytuesday/blob/master/data/2022/2022-02-01/readme.md).
+
+> Note: `tt_load()` downloads data from the internet each time you render this document. If the GitHub API is rate-limited or down, the render will fail. If you run into this, you can download the data once and save it locally (e.g., `write_csv(tuesdata$breed_rank, "data/breed_rank.csv")`) and then read from those local files instead.
+
 ```{r load-data}
 tuesdata <- tidytuesdayR::tt_load('2022-02-01')
 ```
 
 ### Let's look at it
 `tuesdata` is a list of 3 dataframes `breed_traits`, `trait_description` and `breed_rank`.
-```{r glimpse tuesdata}
+```{r glimpse-tuesdata}
 glimpse(tuesdata)
 ```
 
@@ -61,7 +64,7 @@ glimpse(tuesdata$breed_traits)
 glimpse(tuesdata$trait_description)
 ```
 
-```{r glimpse breed_rank}
+```{r glimpse-breed_rank}
 glimpse(tuesdata$breed_rank)
 ```
 
@@ -71,7 +74,7 @@ Write code to determine what the 5 most popular dog breeds in 2020 were. There a
 
 #### `clean_names()`
 Because each of these datasets has some non-conventional column names, I am going to run `janitor::clean_names()` on each df, and save them in my environment so I won't have to keep using the dollar sign `$` accessor. In this case, you can also access each data frame using  the double `[[]]` brackets syntax.
-```{r clean-names and dfs}
+```{r clean-names-and-dfs, message = FALSE, warning = FALSE}
 library(janitor)
 
 breed_traits <- clean_names(tuesdata$breed_traits)
@@ -85,32 +88,32 @@ breed_rank <- clean_names(tuesdata$breed_rank)
 
 Then let's look at the beginning of each df.
 
-```{r look at cleaned df 1, eval = FALSE}
+```{r look-at-cleaned-df-1, eval = FALSE}
 head(breed_traits)
 ```
 
-```{r look at cleaned df kable 1, echo = FALSE}
+```{r look-at-cleaned-df-kable-1, echo = FALSE}
 knitr::kable(breed_traits[1:6,])
 ```
 
-```{r look at cleaned df 2, eval = FALSE}
+```{r look-at-cleaned-df-2, eval = FALSE}
 head(trait_description)
 ```
 
-```{r look at cleaned df kable 2, echo = FALSE}
+```{r look-at-cleaned-df-kable-2, echo = FALSE}
 knitr::kable(trait_description[1:6,])
 ```
 
-```{r look at cleaned df 3, eval = FALSE}
+```{r look-at-cleaned-df-3, eval = FALSE}
 head(breed_rank)
 ```
 
-```{r look at cleaned df kable 3 , echo = FALSE}
+```{r look-at-cleaned-df-kable-3, echo = FALSE}
 knitr::kable(breed_rank[1:6,])
 ```
 
 What are the most popular breeds in 2020, three ways.
-```{r most popular 2020}
+```{r most-popular-2020}
 breed_rank |>
   filter(x2020_rank <= 5)
 
@@ -125,7 +128,9 @@ breed_rank |>
 ## Top 5 breeds across 2013-2020
 
 What are the 5 most popular and the 5 least popular dogs across this time frame? There are many ways to do this. Hint: create a new variable that is a sum of all the ranks from 2013, allowing a composite score of the popularity of each dog breed across this time period.
-```{r all time most and least popular wide}
+
+Here I am using the data in its wide format and claculating sums across the rows. This syntax works but is a bit clunky, this would not be the approach I would pick.
+```{r all-time-most-and-least-popular-wide}
 # most popular
 breed_rank |>
   rowwise() |> # perform calculations rowwise
@@ -147,7 +152,7 @@ breed_rank |>
 ```
 
 Another way to do it still with wide data.
-```{r all time most and least popular second way wide}
+```{r all-time-most-and-least-popular-second-way-wide}
 # create a vector with the rowSums for the ranks from 2013 to 2020
 breed_rank_2013to2020 <- breed_rank |>
   select(x2013_rank:x2020_rank) |>
@@ -170,8 +175,8 @@ breed_rank_sum |>
   slice_max(n = 5, order_by = rank_sum)
 ```
 
-A third way with long data. This is my preferred way especially since we need long data later to plot.
-```{r all time most and least popular long}
+Another way with long data. This is my preferred way especially since we need long data later to plot.
+```{r all-time-most-and-least-popular-long}
 # create long data cleaned
 breed_rank_sum_long <- breed_rank |>
   pivot_longer(cols = x2013_rank:x2020_rank, 
@@ -200,28 +205,56 @@ breed_rank_sum_long |>
   slice_max(order_by = rank_sum, n = 5)
 ```
 
+You could actually skip using `separate_*()` completely by using instead the function `parse_number()`.
+
+```{r all-time-most-and-least-popular-long-v2}
+# create long data cleaned
+breed_rank_sum_long2 <- breed_rank |>
+  pivot_longer(cols = x2013_rank:x2020_rank, 
+               names_to = "year", 
+               values_to = "rank") |>
+  mutate(year = parse_number(year)) |> # extract the number from the year column
+  select(breed, year, rank)
+
+head(breed_rank_sum_long2)
+
+# most popular
+breed_rank_sum_long2 |>
+  group_by(breed) |> # do operation by breed
+  summarize(rank_sum = sum(rank)) |> # add all ranks
+  arrange(rank_sum) |> # actually not necessary
+  slice_min(order_by = rank_sum, n = 5)
+
+# least popular
+breed_rank_sum_long2 |>
+  group_by(breed) |> # do operation by breed
+  summarize(rank_sum = sum(rank)) |> # add all ranks
+  arrange(desc(rank_sum)) |> # actually not necessary
+  slice_max(order_by = rank_sum, n = 5)
+```
 
 ## Popularity ranking 2013-2020
 
 Create a plot where you take the 12 most popular dogs from 2020, and plot their popularity rank from 2013 to 2020. Hint, to facet, you need to have the variable you want to facet in one column.
 
 I'm showing you a slightly different way to clean up your long dataframe here.
-```{r breed rank tidy, warning = FALSE, message = FALSE}
+```{r breed-rank-tidy, warning = FALSE, message = FALSE}
 # go from wide to long data or "tidy" data
 breed_rank_tidy <- breed_rank |>
   pivot_longer(cols = x2013_rank:x2020_rank,
               names_to = "year",
               values_to = "rank")
 
-# remove extra character in year and assign it back
+# remove extra characters in year, convert to numeric, and assign it back
 breed_rank_tidy$year <- breed_rank_tidy$year |>
   str_remove(pattern = "x") |>
-  str_remove(pattern = "_rank")
+  str_remove(pattern = "_rank") |>
+  as.numeric()
 ```
 
 The `%in%` operator checks to see if a value is within a vector of values. In this case, we are checking to see whether the variable `breed` is within the 12 breeds we have filtered for (i.e., `dogs_to_include$breed`). Here is a [page](https://sparkbyexamples.com/r-programming/usage-of-in-operator-in-r/) with some examples of using `%in%`.
 
-```{r filtering top 12 and plot}
+```{r filtering-top-12-and-plot, fig.alt = "Faceted scatter plot showing popularity rank from 2013 to 2020 for the 12 most popular AKC dog breeds in 2020. Each facet panel shows one breed with year on the x-axis and rank on the y-axis."}
 # what dogs should I include?
 # create a df including only top the 12 dogs in 2020
 dogs_to_include <- breed_rank_tidy |>
@@ -237,8 +270,9 @@ breed_rank_tidy |>
     theme(axis.text.x = element_text(angle = 90))
 ```
 
-Alter the aesthetics of this plot until you think it looks good.
-```{r top 12 make pretty}
+Alter the aesthetics of this plot until you think it looks good. Note that in the basic plot above we used `labeller = labeller(breed = label_wrap_gen(20))` to wrap long breed names in facet labels. Here, we're replacing that with `fct_reorder(breed, rank)` to order facets by mean rank (most popular first). Since the breed names here fit without wrapping, we don't need `label_wrap_gen()` anymore — but it's a useful tool to keep in mind when facet labels are long.
+
+```{r top-12-make-pretty, fig.alt = "Faceted line and point plot showing popularity rank from 2013 to 2020 for the 12 most popular AKC dog breeds in 2020. Facets are ordered by mean rank with Labrador Retrievers first. The y-axis is reversed so that a higher position on the plot represents a more popular (lower number) rank."}
 breed_rank_tidy |>
   filter(breed %in% dogs_to_include$breed) |>
   ggplot(aes(x = year, y = rank, group = breed)) +
@@ -246,7 +280,7 @@ breed_rank_tidy |>
     geom_line() +
     facet_wrap(vars(fct_reorder(breed, rank))) + # orders facets by mean rank so more popular first
     scale_y_reverse(breaks = seq(1, 25, 4)) + # reverse so that lower number rank is at the top and set the labels to start at 1, increment by 4 until 25 since a zero rank doesn't exist
-    theme_minimal() + 
+    theme_minimal() +
     theme(axis.text.x = element_text(angle = 90), # make x-axis labels on 90degree angle
           strip.text = element_text(size = 8), # change strip text size
           panel.grid.major.x = element_blank()) + # remove some grid lines
@@ -258,7 +292,7 @@ breed_rank_tidy |>
 ```
 
 What dog has jumped in the rankings most from 2013 to 2020? What has dropped the most?
-```{r biggest ranking changes}
+```{r biggest-ranking-changes}
 breed_rank |>
   mutate(rank_inc = (x2020_rank - x2013_rank)) |>
   select(breed, rank_inc, everything()) |>
