@@ -8,7 +8,7 @@
 
 <meta name="author" content="Jessica Cooperstone">
 
-<title>Module 2 Assignment Solutions – 💻🧰📊🥳</title>
+<title>Module 2 Assignment – 💻🧰📊🥳</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -523,15 +523,24 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#why-are-you-doing-this" id="toc-why-are-you-doing-this" class="nav-link" data-scroll-target="#why-are-you-doing-this">Why are you doing this?</a></li>
+  <li><a href="#provide-feedback-to-improve-an-existing-figure-2-points" id="toc-provide-feedback-to-improve-an-existing-figure-2-points" class="nav-link" data-scroll-target="#provide-feedback-to-improve-an-existing-figure-2-points">1. Provide feedback to improve an existing figure (2 points)</a></li>
+  <li><a href="#creating-tidy-data-2-points" id="toc-creating-tidy-data-2-points" class="nav-link" data-scroll-target="#creating-tidy-data-2-points">2. Creating tidy data (2 points)</a>
   <ul>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#a.-describe-in-words-what-it-means-for-data-to-be-in-a-tidy-format" id="toc-a.-describe-in-words-what-it-means-for-data-to-be-in-a-tidy-format" class="nav-link" data-scroll-target="#a.-describe-in-words-what-it-means-for-data-to-be-in-a-tidy-format">a. Describe in words what it means for data to be in a tidy format</a></li>
+  <li><a href="#b.-describe-in-words-how-you-would-convert-the-dataframe-above-to-be-in-a-tidy-format" id="toc-b.-describe-in-words-how-you-would-convert-the-dataframe-above-to-be-in-a-tidy-format" class="nav-link" data-scroll-target="#b.-describe-in-words-how-you-would-convert-the-dataframe-above-to-be-in-a-tidy-format">b. Describe in words how you would convert the dataframe above to be in a tidy format</a></li>
+  <li><a href="#c.-provide-code-for-how-you-could-convert-this-data-to-be-in-a-tidy-format" id="toc-c.-provide-code-for-how-you-could-convert-this-data-to-be-in-a-tidy-format" class="nav-link" data-scroll-target="#c.-provide-code-for-how-you-could-convert-this-data-to-be-in-a-tidy-format">c.&nbsp;Provide code for how you could convert this data to be in a tidy format</a></li>
   </ul></li>
-  <li><a href="#including-the-code-download-button" id="toc-including-the-code-download-button" class="nav-link" data-scroll-target="#including-the-code-download-button">Including the code download button</a></li>
-  <li><a href="#writing-in-markdown-1" id="toc-writing-in-markdown-1" class="nav-link" data-scroll-target="#writing-in-markdown-1">Writing in Markdown 1</a></li>
-  <li><a href="#visualization-1" id="toc-visualization-1" class="nav-link" data-scroll-target="#visualization-1">Visualization 1</a></li>
-  <li><a href="#visualization-2" id="toc-visualization-2" class="nav-link" data-scroll-target="#visualization-2">Visualization 2</a></li>
-  <li><a href="#visualization-3" id="toc-visualization-3" class="nav-link" data-scroll-target="#visualization-3">Visualization 3</a></li>
+  <li><a href="#select-the-right-plot-for-a-dataset-2-points" id="toc-select-the-right-plot-for-a-dataset-2-points" class="nav-link" data-scroll-target="#select-the-right-plot-for-a-dataset-2-points">3. Select the right plot for a dataset (2 points)</a>
+  <ul>
+  <li><a href="#a.-the-height-and-weight-of-a-sample-of-10000-people-from-ohio" id="toc-a.-the-height-and-weight-of-a-sample-of-10000-people-from-ohio" class="nav-link" data-scroll-target="#a.-the-height-and-weight-of-a-sample-of-10000-people-from-ohio">a. The height and weight of a sample of 10,000 people from Ohio</a></li>
+  <li><a href="#b.-the-expression-level-of-3-genes-in-treatment-n-10-and-control-n-10-samples" id="toc-b.-the-expression-level-of-3-genes-in-treatment-n-10-and-control-n-10-samples" class="nav-link" data-scroll-target="#b.-the-expression-level-of-3-genes-in-treatment-n-10-and-control-n-10-samples">b. The expression level of 3 genes in treatment (n = 10) and control (n = 10) samples</a></li>
+  <li><a href="#c.-the-number-of-students-in-ohio-who-got-a-phd-per-year-from-1950-until-now" id="toc-c.-the-number-of-students-in-ohio-who-got-a-phd-per-year-from-1950-until-now" class="nav-link" data-scroll-target="#c.-the-number-of-students-in-ohio-who-got-a-phd-per-year-from-1950-until-now">c.&nbsp;The number of students in Ohio who got a PhD per year from 1950 until now</a></li>
+  <li><a href="#d.-the-amount-of-time-spent-studying-and-the-grade-achieved-on-the-organic-chemistry-final-for-200-students-at-ohio-state." id="toc-d.-the-amount-of-time-spent-studying-and-the-grade-achieved-on-the-organic-chemistry-final-for-200-students-at-ohio-state." class="nav-link" data-scroll-target="#d.-the-amount-of-time-spent-studying-and-the-grade-achieved-on-the-organic-chemistry-final-for-200-students-at-ohio-state.">d.&nbsp;The amount of time spent studying and the grade achieved on the organic chemistry final for 200 students at Ohio State.</a></li>
+  </ul></li>
+  <li><a href="#recreate-the-following-plot-2-points" id="toc-recreate-the-following-plot-2-points" class="nav-link" data-scroll-target="#recreate-the-following-plot-2-points">4. Recreate the following plot (2 points)</a></li>
+  <li><a href="#deadlines" id="toc-deadlines" class="nav-link" data-scroll-target="#deadlines">Deadlines</a></li>
   </ul>
 </nav>
     </div>
@@ -541,7 +550,7 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Module 2 Assignment Solutions</h1>
+<h1 class="title">Module 2 Assignment</h1>
 </div>
 
 
@@ -564,111 +573,316 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
 </header>
 
 
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This assignment will be due on <strong>Tuesday, October 13, 2026 at 11:59pm</strong>.</p>
+</div>
+</div>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>This is your assignment for Module 2, focused on the material you learned in the lectures and recitation activities on RMarkdown, wrangling, ggplot101, and ggplot102.</p>
-<p>You will submit this assignment by uploading a knitted .html to Carmen. Make sure you include the Code Download button, and please show your code within your knitted .html as well. Customize the YAML and the document so you like how it looks.</p>
-<p>Remember there are often many ways to reach the same end product.</p>
-<blockquote class="blockquote">
-<p>This assignment will be due on Tuesday, October 1, 2024, at 11:59pm.</p>
-</blockquote>
-<section id="data" class="level3">
-<h3 class="anchored" data-anchor-id="data">Data</h3>
-<p>The <a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-02-19">data</a> we will be using is collected by the National Science Foundation about the fields and number of Ph.D.&nbsp;degrees awarded each year.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>phd_field <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-02-19/phd_by_field.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is your assignment for Module 2, focused on the material you learned in the lectures and recitation activities on R Markdown, wrangling, ggplot101, and ggplot102. This assignment is worth 8 points.</p>
+<p>Submission info: you will submit this assignment by uploading a knitted <code>.html</code> to Carmen that you created from an R Markdown or Quarto document.</p>
+<ul>
+<li>Make sure you include the <code>Code Download</code> button or another way to download your code</li>
+<li>Show your code within your knitted <code>.html</code></li>
+<li>Customize the YAML and the document so you like how your final report looks - do check this before you submit</li>
+<li>All code should be annotated (meaning, you should be writing descriptions in your own words about what the code is doing)</li>
+<li>All decisions should be described in the text of your document</li>
+</ul>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>Take a look at the data collected by NSF on how which fields give PhDs each year, and how many are awarded.</p>
-</section>
-</section>
-<section id="including-the-code-download-button" class="level2">
-<h2 class="anchored" data-anchor-id="including-the-code-download-button">Including the code download button</h2>
-<p>To get a code download button, you need to indicate that you want one in your YAML. You do this by setting <code>code_download: true</code> in your YAML. I’m clipping a YAML below which could be copied and edited.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">"Module 2 assignment"</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>author<span class="sc">:</span> <span class="st">"Jessica Cooperstone"</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">"October 1, 2024"</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>output<span class="sc">:</span> </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  html_document<span class="sc">:</span> <span class="co"># knit to a .html doc</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    toc<span class="sc">:</span> true <span class="co"># creates a table of contents</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    toc_float<span class="sc">:</span> true <span class="co"># has that TOC float so you can see it even when you scroll</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    number_sections<span class="sc">:</span> true <span class="co"># numbers your sections</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    theme<span class="sc">:</span> flatly <span class="co"># set a global theme, this is what i use for this site</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    code_download<span class="sc">:</span> true <span class="co"># insert the code download button</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>A reminder about generative AI use
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Please remember that you can use generative AI to help with your coding, but it should <strong>NOT</strong> be used to generate your assignment text or on conceptual questions. You should be able to explain your code and your decisions in your own words. If you use generative AI for your code, please cite:</p>
+<ol type="1">
+<li>what the goal of the use was</li>
+<li>your prompt</li>
+<li>what you got</li>
+<li>what edits you made</li>
+</ol>
+</div>
 </div>
 </section>
-<section id="writing-in-markdown-1" class="level2">
-<h2 class="anchored" data-anchor-id="writing-in-markdown-1">Writing in Markdown 1</h2>
-<p>Using coding in text, write a sentence in markdown that pulls from this data how many total PhDs were awarded in 2017. If you want to make some calculations in a code chunk first that is ok.</p>
+<section id="why-are-you-doing-this" class="level2">
+<h2 class="anchored" data-anchor-id="why-are-you-doing-this">Why are you doing this?</h2>
+<p>The purpose of this assignment is to demonstrate that you are able to:</p>
+<ol type="1">
+<li>Look at data and choose a suitable chart type for that data</li>
+<li>Use R and R Markdown/quarto to create a visualization that executes on your decisions in #1.</li>
+</ol>
+</section>
+<section id="provide-feedback-to-improve-an-existing-figure-2-points" class="level2">
+<h2 class="anchored" data-anchor-id="provide-feedback-to-improve-an-existing-figure-2-points">1. Provide feedback to improve an existing figure (2 points)</h2>
+<p>One of your lab mates presents the figure below in lab meeting and it is your job to give them constructive feedback how to improve this figure to best communicate the data. The data below shows the yield of different peppers for 20 different genotypes under two different treatments, where water is limited or not limited. The different colors represent the different categories of peppers, those that are collected that are green (this is the color they should be), those that are red (this is another color they should be), those that are rotten (this is bad) and those that are unmarketable (those are also not desirable). Your main question is to understand how pepper genotypes perform under the two different water conditions.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales) <span class="co"># for using comma format </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="module_2_solutions_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<p>Setting as an object the number for the total Ph.D.s earned in 2017.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>phds_2017 <span class="ot">&lt;-</span> phd_field <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2017</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(n_phds) <span class="sc">|&gt;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colSums</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="co"># calculate a column sum</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>You could also do it this way:</p>
+</div>
+<p>Provide 4 things you could try to improve this figure and describe why each would be an improvement over the current version.</p>
+<ol type="1">
+<li>Organize the plot around the comparison that is the most important - in this case, the comparison of genotypes under water sufficient and water limiting conditions. We could instead facet by genotype and have the x-axis be the water treatment. Let’s see how that would look:</li>
+</ol>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>phd_field <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2017</span>) <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_phds =</span> <span class="fu">sum</span>(n_phds, <span class="co"># sum n_phds</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                             <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="co"># remove missing values</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>peppers_tidy <span class="sc">|&gt;</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Treatment, <span class="at">y =</span>  Yield, <span class="at">fill =</span> Quality)) <span class="sc">+</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>) <span class="sc">+</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(Genotype)) <span class="sc">+</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  )              </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="module_2_solutions_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>When we do this, certain treatments now stand out – like P12 which is high in both non-limited and water-limited conditions.</p>
+<ol start="2" type="1">
+<li>Instead I could try and order the genotypes by total yield (sum of all the quality traits) in the non-limited treatment, and then instead of putting the plots side by side, I could stack them top to bottom, and order the water limited samples in the same order. Let’s see how that looks.</li>
+</ol>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the total yield</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># and sort the df by decreasing yield in the non-limited condition</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>peppers_total_yield <span class="ot">&lt;-</span> peppers_tidy <span class="sc">|&gt;</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Genotype, Treatment) <span class="sc">|&gt;</span> </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_yield =</span> <span class="fu">sum</span>(Yield)) <span class="sc">|&gt;</span> </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Treatment <span class="sc">==</span> <span class="st">"Non-limited"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>total_yield)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'Genotype'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(peppers_total_yield)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Genotype</th>
+<th style="text-align: left;">Treatment</th>
+<th style="text-align: right;">total_yield</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">P-4</td>
+<td style="text-align: left;">Non-limited</td>
+<td style="text-align: right;">9.96</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">P-5</td>
+<td style="text-align: left;">Non-limited</td>
+<td style="text-align: right;">9.88</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">P-10</td>
+<td style="text-align: left;">Non-limited</td>
+<td style="text-align: right;">9.78</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">P-2</td>
+<td style="text-align: left;">Non-limited</td>
+<td style="text-align: right;">9.52</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">P-8</td>
+<td style="text-align: left;">Non-limited</td>
+<td style="text-align: right;">9.34</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">P-9</td>
+<td style="text-align: left;">Non-limited</td>
+<td style="text-align: right;">9.26</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">P-3</td>
+<td style="text-align: left;">Non-limited</td>
+<td style="text-align: right;">9.24</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">P-14</td>
+<td style="text-align: left;">Non-limited</td>
+<td style="text-align: right;">9.16</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">P-1</td>
+<td style="text-align: left;">Non-limited</td>
+<td style="text-align: right;">9.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">P-20</td>
+<td style="text-align: left;">Non-limited</td>
+<td style="text-align: right;">8.98</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">P-6</td>
+<td style="text-align: left;">Non-limited</td>
+<td style="text-align: right;">8.90</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">P-15</td>
+<td style="text-align: left;">Non-limited</td>
+<td style="text-align: right;">8.88</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">P-12</td>
+<td style="text-align: left;">Non-limited</td>
+<td style="text-align: right;">8.72</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">P-13</td>
+<td style="text-align: left;">Non-limited</td>
+<td style="text-align: right;">8.64</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">P-7</td>
+<td style="text-align: left;">Non-limited</td>
+<td style="text-align: right;">8.62</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">P-18</td>
+<td style="text-align: left;">Non-limited</td>
+<td style="text-align: right;">8.54</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">P-19</td>
+<td style="text-align: left;">Non-limited</td>
+<td style="text-align: right;">8.26</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">P-16</td>
+<td style="text-align: left;">Non-limited</td>
+<td style="text-align: right;">8.10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">P-17</td>
+<td style="text-align: left;">Non-limited</td>
+<td style="text-align: right;">8.02</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">P-11</td>
+<td style="text-align: left;">Non-limited</td>
+<td style="text-align: right;">8.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a vector with the order we want for the genotypes for total yield</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>genotype_totalyield_order <span class="ot">&lt;-</span> peppers_total_yield<span class="sc">$</span>Genotype</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check our order</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>genotype_totalyield_order</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-  total_phds
-       &lt;dbl&gt;
-1      54110</code></pre>
+<pre><code> [1] "P-4"  "P-5"  "P-10" "P-2"  "P-8"  "P-9"  "P-3"  "P-14" "P-1"  "P-20"
+[11] "P-6"  "P-15" "P-12" "P-13" "P-7"  "P-18" "P-19" "P-16" "P-17" "P-11"</code></pre>
 </div>
-</div>
-<p>How to write in Markdown:</p>
-<p>In 2017, there were were <code>`r format(phds_2017, scientific = F, big.mark = ",")`</code> Ph.D.&nbsp;degrees awarded in the United States.</p>
-<p>In 2017, there were were <code>`r phd_field |&gt; filter(year == 2017) |&gt; select(n_phds) |&gt; colSums(na.rm = TRUE) |&gt; format(scientific = F, big.mark = ",")`</code> Ph.D.&nbsp;degrees awarded in the United States.</p>
-<p>How this will look when rendered to html:</p>
-<p>In 2017, there were 54,110 Ph.D.&nbsp;degrees awarded in the United States.</p>
-<p>In 2017, there were 54,110 Ph.D.&nbsp;degrees awarded in the United States.</p>
-</section>
-<section id="visualization-1" class="level2">
-<h2 class="anchored" data-anchor-id="visualization-1">Visualization 1</h2>
-<p>Make a chart to visualize of the total number of PhDs awarded for each <code>broad_field</code> across the total time period of this data. You pick the type of chart that you think is appropriate, and make sure your plot is appropriately labelled and you are happy with how it looks. Hint, to do this you’ll probably have to do some data wrangling first.</p>
-<p>First I will calculate the total number of Ph.D.s awarded across each <code>broad_field</code> for the whole time period.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>broad_field_sum <span class="ot">&lt;-</span> phd_field <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(broad_field) <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">broad_field_sum =</span> <span class="fu">sum</span>(n_phds, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>broad_field_sum)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>broad_field_sum</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># relevel according to genotype_totalyield_order</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>peppers_tidy<span class="sc">$</span>Genotype <span class="ot">&lt;-</span> <span class="fu">factor</span>(peppers_tidy<span class="sc">$</span>Genotype, </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                                <span class="at">levels =</span> genotype_totalyield_order)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># check to see if it worked</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(peppers_tidy)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7 × 2
-  broad_field                       broad_field_sum
-  &lt;chr&gt;                                       &lt;dbl&gt;
-1 Life sciences                              205703
-2 Psychology and social sciences             119116
-3 Humanities and arts                         53045
-4 Education                                   52639
-5 Mathematics and computer sciences           35481
-6 Other                                       28855
-7 Engineering                                 18139</code></pre>
+<pre><code>Rows: 160
+Columns: 5
+$ Treatment &lt;chr&gt; "Non-limited", "Non-limited", "Non-limited", "Non-limited", …
+$ Genotype  &lt;fct&gt; P-1, P-1, P-1, P-1, P-2, P-2, P-2, P-2, P-3, P-3, P-3, P-3, …
+$ Total     &lt;dbl&gt; 9.00, 9.00, 9.00, 9.00, 9.52, 9.52, 9.52, 9.52, 9.24, 9.24, …
+$ Quality   &lt;chr&gt; "Green", "Red", "Rotten", "Unmarketable", "Green", "Red", "R…
+$ Yield     &lt;dbl&gt; 8.20, 0.30, 0.10, 0.40, 8.12, 0.50, 0.20, 0.70, 8.04, 0.20, …</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>peppers_tidy <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Genotype, <span class="at">y =</span> Yield, <span class="at">fill =</span> Quality)) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="fu">vars</span>(Treatment)) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Pepper yield under water sufficient and water limiting conditions"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Genotypes are ordered based on decreasing total yield in sufficient conditions"</span>) <span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  )              </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="module_2_solutions_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
-<p>This summary helps me know what to expect to see in my plots. Now I can create some plots.</p>
-<p>The first one will just show the total number of Ph.D.s across each <code>broad_field</code>. I decided to put the <code>broad_field</code> on the y-axis so that the labels are easier to read. I’ve also re-ordered <code>broad_field</code> based on the total number of PhDs for each category (i.e., <code>broad_field_sum</code>). I chose to use no colors because I didn’t feel like it was adding much here.</p>
+</div>
+<p>We could also think about whether total yield is the most relevant metric, or whether green + red would be more useful for ordering.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>broad_field_sum <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> broad_field_sum, <span class="at">y =</span> <span class="fu">fct_reorder</span>(broad_field, broad_field_sum))) <span class="sc">+</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> comma) <span class="sc">+</span> <span class="co"># add a comma to the x-axis breaks</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Total number of Ph.D.s"</span>,</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">""</span>, <span class="co"># no label on the y</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Number of PhDs awarded across different </span><span class="sc">\n</span><span class="st">broad disciplines from 2008-2017"</span>,</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Data collected by the National Science Foundation"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate yield for good quality peppers (green + red)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>peppers_good_yield <span class="ot">&lt;-</span> peppers_tidy <span class="sc">|&gt;</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Quality <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Green"</span>, <span class="st">"Red"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Genotype, Treatment) <span class="sc">|&gt;</span> </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">good_yield =</span> <span class="fu">sum</span>(Yield)) <span class="sc">|&gt;</span> </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Treatment <span class="sc">==</span> <span class="st">"Non-limited"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>good_yield)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'Genotype'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a vector with the order we want for the genotypes for total yield</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>genotype_goodyield_order <span class="ot">&lt;-</span> peppers_good_yield<span class="sc">$</span>Genotype</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check our order</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>genotype_goodyield_order</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] P-2  P-1  P-4  P-6  P-3  P-5  P-8  P-10 P-7  P-9  P-12 P-14 P-11 P-13 P-16
+[16] P-18 P-15 P-17 P-20 P-19
+20 Levels: P-4 P-5 P-10 P-2 P-8 P-9 P-3 P-14 P-1 P-20 P-6 P-15 P-12 ... P-11</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># relevel according to genotype_totalyield_order</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># create a new df so we can go back to peppers_tidy if we want</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>peppers_tidy_goodyield <span class="ot">&lt;-</span> peppers_tidy</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>peppers_tidy_goodyield<span class="sc">$</span>Genotype <span class="ot">&lt;-</span> <span class="fu">factor</span>(peppers_tidy_goodyield<span class="sc">$</span>Genotype, </span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">levels =</span> genotype_goodyield_order)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"># check to see if it worked</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(peppers_tidy_goodyield)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 160
+Columns: 5
+$ Treatment &lt;chr&gt; "Non-limited", "Non-limited", "Non-limited", "Non-limited", …
+$ Genotype  &lt;fct&gt; P-1, P-1, P-1, P-1, P-2, P-2, P-2, P-2, P-3, P-3, P-3, P-3, …
+$ Total     &lt;dbl&gt; 9.00, 9.00, 9.00, 9.00, 9.52, 9.52, 9.52, 9.52, 9.24, 9.24, …
+$ Quality   &lt;chr&gt; "Green", "Red", "Rotten", "Unmarketable", "Green", "Red", "R…
+$ Yield     &lt;dbl&gt; 8.20, 0.30, 0.10, 0.40, 8.12, 0.50, 0.20, 0.70, 8.04, 0.20, …</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>peppers_tidy_goodyield <span class="sc">|&gt;</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Genotype, <span class="at">y =</span> Yield, <span class="at">fill =</span> Quality)) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>) <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="fu">vars</span>(Treatment)) <span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Pepper yield under water sufficient and water limiting conditions"</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Genotypes are ordered based on decreasing </span><span class="sc">\n</span><span class="st">good quality pepper (i.e., green + red) yield in sufficient conditions"</span>) <span class="sc">+</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  )      </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -677,41 +891,54 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
 </div>
 </div>
 </div>
-<p>The following few examples weren’t exactly the question (which was to show total PhDs across each <code>broad_field</code> across the total time period of this data), but I’ll show you here how to make some other stuff.</p>
+<p>Comparing this plot to the previous one can help us understand differences in genotypes that are high yielding but not necessarily high in good quality peppers.</p>
+<ol start="3" type="1">
+<li>Make the colors of the plot more intuitive. For example, we could make the green peppers green, the red peppers red, and the rotten and unmarketable peppers shades of brown. This would make it easier to understand the plot at a glance.</li>
+</ol>
+<p>Let’s start with the plot we made where we ordered the genotypes by total yield in the non-limited condition, and change the colors of the plot.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>broad_field_sumonly_eachyear <span class="ot">&lt;-</span> phd_field <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">all_the_phds =</span> <span class="fu">sum</span>(n_phds, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) </span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>broad_field_sumonly_eachyear</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 2
-    year all_the_phds
-   &lt;dbl&gt;        &lt;dbl&gt;
- 1  2008        48026
- 2  2009        49141
- 3  2010        47628
- 4  2011        48546
- 5  2012        50777
- 6  2013        52370
- 7  2014        53364
- 8  2015        54154
- 9  2016        54862
-10  2017        54110</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>peppers_tidy <span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Genotype, <span class="at">y =</span> Yield, <span class="at">fill =</span> Quality)) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>, </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span> <span class="co"># outline the bars in black to see more easily</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Green"</span> <span class="ot">=</span> <span class="st">"#156110"</span>, </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Red"</span> <span class="ot">=</span> <span class="st">"#DE2212"</span>, </span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Rotten"</span> <span class="ot">=</span> <span class="st">"#613310"</span>, </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Unmarketable"</span> <span class="ot">=</span> <span class="st">"black"</span>)) <span class="sc">+</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="fu">vars</span>(Treatment)) <span class="sc">+</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Pepper yield under water sufficient and water limiting conditions"</span>,</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Genotypes are ordered based on decreasing total yield in sufficient conditions"</span>) <span class="sc">+</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="module_2_solutions_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
-<p>Then we can plot.</p>
+</div>
+<p>What if we make this color change to the plot where we faceted by genotype, and then ordered the facets based on total yield in the non-limited condition? Since we’ve converted <code>Genotype</code> into a factor, the facets will now be in the same order as the levels of <code>Genotype</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>broad_field_sumonly_eachyear <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> all_the_phds)) <span class="sc">+</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> comma) <span class="sc">+</span> <span class="co"># add a comma to the x-axis breaks</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2008</span>, <span class="dv">2017</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>,</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Number of Ph.Ds"</span>, </span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Total number of Ph.D.s awarded in the United States per year from 2008-2017"</span>,</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Data collected by the National Science Foundation"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>peppers_tidy <span class="sc">|&gt;</span> </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Treatment, <span class="at">y =</span> Yield, <span class="at">fill =</span> Quality)) <span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"stack"</span>, </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span> <span class="co"># outline the bars in black to see more easily</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Green"</span> <span class="ot">=</span> <span class="st">"#156110"</span>, </span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Red"</span> <span class="ot">=</span> <span class="st">"#DE2212"</span>, </span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Rotten"</span> <span class="ot">=</span> <span class="st">"#613310"</span>, </span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Unmarketable"</span> <span class="ot">=</span> <span class="st">"black"</span>)) <span class="sc">+</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(Genotype), <span class="at">ncol =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Pepper yield under water sufficient and water limiting conditions"</span>,</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Genotypes are ordered based on decreasing total yield in sufficient conditions"</span>) <span class="sc">+</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -720,184 +947,132 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
 </div>
 </div>
 </div>
-<p>This wasn’t exactly the question, but if we want to see a little bit better this over the time period, first we need to create a df that has total PhDs per broad field per year. We can do this by adding <code>year</code> to our <code>group_by()</code> statement.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>broad_field_sum_byyear <span class="ot">&lt;-</span> phd_field <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(broad_field, year) <span class="sc">|&gt;</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">total_phds =</span> <span class="fu">sum</span>(n_phds, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`summarise()` has grouped output by 'broad_field'. You can override using the
-`.groups` argument.</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># what does that look like</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(broad_field_sum_byyear)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 3
-# Groups:   broad_field [1]
-  broad_field  year total_phds
-  &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;
-1 Education    2008       6561
-2 Education    2009       6528
-3 Education    2010       5287
-4 Education    2011       4670
-5 Education    2012       4803
-6 Education    2013       4934</code></pre>
-</div>
-</div>
-<p>Now we can plot. We can now make different types of plots. Let’s start simpler. Here I’ve re-ordered the legend to be in the same order as the chart so you can see the disciplines that award the most Ph.D.s just by looking at the order of the legend.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>broad_field_sum_byyear <span class="sc">|&gt;</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> total_phds, </span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># reorder broad_field by descending total_phds         </span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="fu">reorder</span>(broad_field, <span class="sc">-</span>total_phds))) <span class="sc">+</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2008</span>, <span class="dv">2017</span>, <span class="dv">2</span>)) <span class="sc">+</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> comma) <span class="sc">+</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>,</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total number of Ph.D.s"</span>,</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Broad Field"</span>,</span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Number of Ph.D.s awarded by discipline in the United States"</span>,</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"From 2008-2017"</span>,</span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Data collected by the National Science Foundation"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="module_2_solutions_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Could also try facets.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># re-setting factors of broad_field so that it is re-levelled by the discipline with</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the most phds</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># you could also do this manually</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>broad_field_sum_byyear<span class="sc">$</span>broad_field <span class="ot">&lt;-</span> <span class="fu">fct_reorder</span>(broad_field_sum_byyear<span class="sc">$</span>broad_field,</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>                                                  <span class="sc">-</span>broad_field_sum_byyear<span class="sc">$</span>total_phds)</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>broad_field_sum_byyear <span class="sc">|&gt;</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> total_phds, <span class="at">color =</span> broad_field)) <span class="sc">+</span></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2008</span>, <span class="dv">2017</span>, <span class="dv">2</span>)) <span class="sc">+</span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> comma) <span class="sc">+</span></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(broad_field)) <span class="sc">+</span></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>,</span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total number of Ph.D.s"</span>,</span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Broad Field"</span>,</span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Number of Ph.D.s awarded by discipline in the United States"</span>,</span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"From 2008-2017"</span>,</span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Data collected by the National Science Foundation"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="module_2_solutions_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Can also try with “free_y” axes. You can see the number better but can’t as easily compare between the disciplines.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>broad_field_sum_byyear <span class="sc">|&gt;</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> total_phds, <span class="at">color =</span> broad_field)) <span class="sc">+</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2008</span>, <span class="dv">2017</span>, <span class="dv">2</span>)) <span class="sc">+</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> comma) <span class="sc">+</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(broad_field), <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>,</span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Total number of Ph.D.s"</span>,</span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">color =</span> <span class="st">"Broad Field"</span>,</span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Number of Ph.D.s awarded by discipline in the United States"</span>,</span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"From 2008-2017"</span>,</span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Data collected by the National Science Foundation"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="module_2_solutions_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
 </section>
-<section id="visualization-2" class="level2">
-<h2 class="anchored" data-anchor-id="visualization-2">Visualization 2</h2>
-<p>Pick the <code>field</code> that most closely matches the area of your degree. Make a line graph (with points for each datapoint) that shows how the number of PhDs awarded in your <code>field</code> has changed from 2008 to 2017. Make sure your x-axis indicates each year for which you have data, your graph is appropriately labelled, and you think it is aesthetically pleasing.</p>
+<section id="creating-tidy-data-2-points" class="level2">
+<h2 class="anchored" data-anchor-id="creating-tidy-data-2-points">2. Creating tidy data (2 points)</h2>
+<p>You are presented with data collected with yield data over 5 years that looks like this:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># what are the options for broad_field?</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>phd_field <span class="sc">|&gt;</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(broad_field) <span class="sc">|&gt;</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7 × 1
-  broad_field                      
-  &lt;chr&gt;                            
-1 Life sciences                    
-2 Mathematics and computer sciences
-3 Psychology and social sciences   
-4 Engineering                      
-5 Education                        
-6 Humanities and arts              
-7 Other                            </code></pre>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">location</th>
+<th style="text-align: right;">2022</th>
+<th style="text-align: right;">2023</th>
+<th style="text-align: right;">2024</th>
+<th style="text-align: right;">2025</th>
+<th style="text-align: right;">2026</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Ohio</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">93</td>
+<td style="text-align: right;">40</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">California</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">53</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">New York</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">83</td>
+<td style="text-align: right;">62</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">61</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Florida</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">95</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">94</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Texas</td>
+<td style="text-align: right;">84</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">83</td>
+<td style="text-align: right;">70</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Virginia</td>
+<td style="text-align: right;">76</td>
+<td style="text-align: right;">96</td>
+<td style="text-align: right;">79</td>
+<td style="text-align: right;">83</td>
+<td style="text-align: right;">15</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># what are the options for life sciences?</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>phd_field <span class="sc">|&gt;</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(broad_field <span class="sc">==</span> <span class="st">"Life sciences"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(major_field) <span class="sc">|&gt;</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 1
-  major_field                                          
-  &lt;chr&gt;                                                
-1 Agricultural sciences and natural resources          
-2 Biological and biomedical sciences                   
-3 Health sciences                                      
-4 Chemistry                                            
-5 Geosciences, atmospheric sciences, and ocean sciences
-6 Physics and astronomy                                </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># what are the options for Agricultural sciences and natural resources?</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>phd_field <span class="sc">|&gt;</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(major_field <span class="sc">==</span> <span class="st">"Agricultural sciences and natural resources"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(field) <span class="sc">|&gt;</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 26 × 1
-   field                                        
-   &lt;chr&gt;                                        
- 1 Agricultural economics                       
- 2 Agricultural and horticultural plant breeding
- 3 Agricultural animal breeding                 
- 4 Agronomy and crop science                    
- 5 Animal nutrition                             
- 6 Animal science, poultry or avian             
- 7 Animal sciences, other                       
- 8 Environmental science                        
- 9 Fishing and fisheries sciences and management
-10 Food science                                 
-# ℹ 16 more rows</code></pre>
-</div>
-</div>
-<p>I’m picking “Horticulture science” as my field.</p>
+<p>You can download this data using this code for question 2c.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>phd_field <span class="sc">|&gt;</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(field <span class="sc">==</span> <span class="st">"Horticulture science"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n_phds)) <span class="sc">+</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2008</span>, <span class="dv">2017</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>,</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Number of Ph.D. Degrees Awarded"</span>,</span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Number of Ph.D. Degrees Awarded in Horticulture Science in the United States"</span>,</span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Data collected by the National Science Foundation"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">"https://github.com/jcooperstone/jcooperstone.github.io/raw/refs/heads/main/assignments/modules/module2/yield-year.xlsx"</span>, <span class="at">destfile =</span> <span class="st">"yield-year.xlsx"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="a.-describe-in-words-what-it-means-for-data-to-be-in-a-tidy-format" class="level3">
+<h3 class="anchored" data-anchor-id="a.-describe-in-words-what-it-means-for-data-to-be-in-a-tidy-format">a. Describe in words what it means for data to be in a tidy format</h3>
+</section>
+<section id="b.-describe-in-words-how-you-would-convert-the-dataframe-above-to-be-in-a-tidy-format" class="level3">
+<h3 class="anchored" data-anchor-id="b.-describe-in-words-how-you-would-convert-the-dataframe-above-to-be-in-a-tidy-format">b. Describe in words how you would convert the dataframe above to be in a tidy format</h3>
+</section>
+<section id="c.-provide-code-for-how-you-could-convert-this-data-to-be-in-a-tidy-format" class="level3">
+<h3 class="anchored" data-anchor-id="c.-provide-code-for-how-you-could-convert-this-data-to-be-in-a-tidy-format">c.&nbsp;Provide code for how you could convert this data to be in a tidy format</h3>
+</section>
+</section>
+<section id="select-the-right-plot-for-a-dataset-2-points" class="level2">
+<h2 class="anchored" data-anchor-id="select-the-right-plot-for-a-dataset-2-points">3. Select the right plot for a dataset (2 points)</h2>
+<p>I am going to describe different types of data, and I’d like you to share:</p>
+<ul>
+<li>what type of question you would be asking with this data</li>
+<li>what type of plot would be best to visualize it</li>
+<li>why you picked that visualization</li>
+<li>how you would code that plot in words (but you don’t actually need to code it)</li>
+</ul>
+<p><strong>You do not need to actually create the plot.</strong></p>
+<section id="a.-the-height-and-weight-of-a-sample-of-10000-people-from-ohio" class="level3">
+<h3 class="anchored" data-anchor-id="a.-the-height-and-weight-of-a-sample-of-10000-people-from-ohio">a. The height and weight of a sample of 10,000 people from Ohio</h3>
+</section>
+<section id="b.-the-expression-level-of-3-genes-in-treatment-n-10-and-control-n-10-samples" class="level3">
+<h3 class="anchored" data-anchor-id="b.-the-expression-level-of-3-genes-in-treatment-n-10-and-control-n-10-samples">b. The expression level of 3 genes in treatment (n = 10) and control (n = 10) samples</h3>
+</section>
+<section id="c.-the-number-of-students-in-ohio-who-got-a-phd-per-year-from-1950-until-now" class="level3">
+<h3 class="anchored" data-anchor-id="c.-the-number-of-students-in-ohio-who-got-a-phd-per-year-from-1950-until-now">c.&nbsp;The number of students in Ohio who got a PhD per year from 1950 until now</h3>
+</section>
+<section id="d.-the-amount-of-time-spent-studying-and-the-grade-achieved-on-the-organic-chemistry-final-for-200-students-at-ohio-state." class="level3">
+<h3 class="anchored" data-anchor-id="d.-the-amount-of-time-spent-studying-and-the-grade-achieved-on-the-organic-chemistry-final-for-200-students-at-ohio-state.">d.&nbsp;The amount of time spent studying and the grade achieved on the organic chemistry final for 200 students at Ohio State.</h3>
+</section>
+</section>
+<section id="recreate-the-following-plot-2-points" class="level2">
+<h2 class="anchored" data-anchor-id="recreate-the-following-plot-2-points">4. Recreate the following plot (2 points)</h2>
+<p>Recreate the following plot (as close as you can) which compiles the total number of PhDs awarded across different broad disciplines from 2008 to 2017. You can find the data here: <a href="https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-02-19/phd_by_field.csv">Number of PhDs awarded in the United States from 2008-2017, collated by the National Science Foundation</a></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>You can use the code below to read this data into R:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-02-19/phd_by_field.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -906,61 +1081,25 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
 </div>
 </div>
 </div>
+<p>I would like to see:</p>
+<ul>
+<li>A description in words as to how you need to wrangle the data to make it amendable for creating this plot</li>
+<li>Your code for making the plot along with annotations for what all of the code does</li>
+</ul>
 </section>
-<section id="visualization-3" class="level2">
-<h2 class="anchored" data-anchor-id="visualization-3">Visualization 3</h2>
-<p>Pick at least 3 additional fields (you can use more if you like) that are adjacent to your Ph.D.&nbsp;field. Make a faceted plot to show the number of degrees awarded in each of these disciplines across the same time period. Make sure you label your plot appropriately and you think it is aesthetic (i.e., if you have squished strip text you want to fix that).</p>
-<p>First I am making a vector of the fields in plant science.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>plant_sci <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Agricultural and horticultural plant breeding"</span>,</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Agronomy and crop science"</span>,</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Horticulture science"</span>,</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Plant pathology and phytopathology, agricultural"</span>,</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Plant sciences, other"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="deadlines" class="level2">
+<h2 class="anchored" data-anchor-id="deadlines">Deadlines</h2>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>Then I can plot. <code>\n</code> adds an automatic line break.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>phd_field <span class="sc">|&gt;</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(field <span class="sc">%in%</span> plant_sci) <span class="sc">|&gt;</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n_phds)) <span class="sc">+</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2008</span>, <span class="dv">2017</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(field), <span class="at">labeller =</span> <span class="fu">label_wrap_gen</span>()) <span class="sc">+</span> <span class="co"># wraps labels</span></span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>)) <span class="sc">+</span></span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>,</span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Number of Ph.D. Degrees Awarded"</span>,</span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Number of Ph.D. Degrees Awarded in Plant Science Subdisciplines </span><span class="sc">\n</span><span class="st">in the United States"</span>,</span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Data collected by the National Science Foundation"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="module_2_solutions_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<div class="callout-title-container flex-fill">
+Important
 </div>
 </div>
-</div>
-<p>Or I can make the same style plot but with bars instead of a lines/points.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>phd_field <span class="sc">|&gt;</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(field <span class="sc">%in%</span> plant_sci) <span class="sc">|&gt;</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n_phds)) <span class="sc">+</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2008</span>, <span class="dv">2017</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(field), <span class="at">labeller =</span> <span class="fu">label_wrap_gen</span>()) <span class="sc">+</span> <span class="co"># wraps labels</span></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>)) <span class="sc">+</span></span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Year"</span>,</span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Number of Ph.D. Degrees Awarded"</span>,</span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Number of Ph.D. Degrees Awarded in Plant Science Subdisciplines </span><span class="sc">\n</span><span class="st">in the United States"</span>,</span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Data collected by the National Science Foundation"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="module_2_solutions_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<div class="callout-body-container callout-body">
+<p>This assignment will be due on <strong>Tuesday, October 13, 2026 at 11:59pm</strong>.</p>
 </div>
 </div>
 

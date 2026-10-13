@@ -97,7 +97,14 @@ knitr::kable(yield)
 You can download this data using this code for question 2c.
 
 ```{r, eval = FALSE}
-download.file("https://github.com/jcooperstone/jcooperstone.github.io/raw/refs/heads/main/assignments/modules/module2/yield-year.xlsx", destfile = "yield-year.xlsx")
+# on a Mac/Linux
+download.file("https://github.com/jcooperstone/jcooperstone.github.io/raw/refs/heads/main/assignments/modules/module2/yield-year.xlsx", 
+              destfile = "yield-year.xlsx")
+
+# on a Windows machine
+download.file("https://github.com/jcooperstone/jcooperstone.github.io/raw/refs/heads/main/assignments/modules/module2/yield-year.xlsx", 
+              destfile = "yield-year.xlsx", 
+              mode = "wb")
 ```
 
 ### a. Describe in words what it means for data to be in a tidy format

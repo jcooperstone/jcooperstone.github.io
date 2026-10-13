@@ -7,294 +7,319 @@ format:
     toc-depth: 4
 ---
 
+---
+title: "Module 2 Assignment"
+---
+
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Introduction
-This is your assignment for Module 2, focused on the material you learned in the lectures and recitation activities on RMarkdown, wrangling, ggplot101, and ggplot102. 
-
-You will submit this assignment by uploading a knitted .html to Carmen. Make sure you include the Code Download button, and please show your code within your knitted .html as well. Customize the YAML and the document so you like how it looks.
-
-Remember there are often many ways to reach the same end product.
-
-> This assignment will be due on Tuesday, October 1, 2024, at 11:59pm.
-
-### Data
-The [data](https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-02-19) we will be using is collected by the National Science Foundation about the fields and number of Ph.D. degrees awarded each year.
-```{r, message = FALSE, warning = FALSE}
-phd_field <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-02-19/phd_by_field.csv")
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+library(readxl)
+library(knitr)
+library(tidyverse)
+due_dates <- read_excel("../../../files/schedule_modules.xlsx",
+                       sheet = "module_due_dates_2026")
 ```
 
-Take a look at the data collected by NSF on how which fields give PhDs each year, and how many are awarded.
+```{r, echo = FALSE}
+module_2_due_date <- due_dates |> 
+  filter(Assignment == "Module 2: Coding Fundamentals") |> 
+  pull(due_date_paste)
+```
 
-## Including the code download button
+::: callout-important
+This assignment will be due on **`r module_2_due_date` at 11:59pm**.
+:::
 
-To get a code download button, you need to indicate that you want one in your YAML. You do this by setting `code_download: true` in your YAML. I'm clipping a YAML below which could be copied and edited.
+## Introduction
+This is your assignment for Module 2, focused on the material you learned in the lectures and recitation activities on R Markdown, wrangling, ggplot101, and ggplot102. This assignment is worth 8 points.
+
+Submission info: you will submit this assignment by uploading a knitted `.html` to Carmen that you created from an R Markdown or Quarto document. 
+
+- Make sure you include the `Code Download` button or another way to download your code
+- Show your code within your knitted `.html`
+- Customize the YAML and the document so you like how your final report looks - do check this before you submit
+- All code should be annotated (meaning, you should be writing descriptions in your own words about what the code is doing)
+- All decisions should be described in the text of your document
+
+::: {.callout-caution}
+## A reminder about generative AI use
+Please remember that you can use generative AI to help with your coding, but it should **NOT** be used to generate your assignment text or on conceptual questions. You should be able to explain your code and your decisions in your own words. If you use generative AI for your code, please cite:
+
+1) what the goal of the use was
+2) your prompt
+3) what you got
+4) what edits you made
+
+:::
+
+## Why are you doing this?
+
+The purpose of this assignment is to demonstrate that you are able to:
+
+1. Look at data and choose a suitable chart type for that data
+2. Use R and R Markdown/quarto to create a visualization that executes on your decisions in #1.
+
+## 1. Provide feedback to improve an existing figure (2 points)
+
+One of your lab mates presents the figure below in lab meeting and it is your job to give them constructive feedback how to improve this figure to best communicate the data. The data below shows the yield of different peppers for 20 different genotypes under two different treatments, where water is limited or not limited. The different colors represent the different categories of peppers, those that are collected that are green (this is the color they should be), those that are red (this is another color they should be), those that are rotten (this is bad) and those that are unmarketable (those are also not desirable). Your main question is to understand how pepper genotypes perform under the two different water conditions. 
+
+```{r echo = FALSE}
+library(tidyverse)
+library(readxl)
+
+peppers <- read_excel("peppers.xlsx") |> 
+  rename(Rotten = BER)
+
+peppers_tidy <- peppers |> 
+  pivot_longer(cols = Green:Unmarketable,
+              names_to = "Quality",
+              values_to = "Yield")
+
+peppers_tidy |> 
+  ggplot(aes(x = Genotype, y =  Yield, fill = Quality)) +
+  geom_col(position = "stack") + # make a stacked bar plot
+  facet_wrap(vars(Treatment)) + # facet by treatment
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1), # make the x-axis text on a 45degree angle
+    legend.position = "bottom" # move legend to bottom
+  )              
+```
+
+Provide 4 things you could try to improve this figure and describe why each would be an improvement over the current version.
+
+1. Organize the plot around the comparison that is the most important - in this case, the comparison of genotypes under water sufficient and water limiting conditions. We could instead facet by genotype and have the x-axis be the water treatment. Let's see how that would look:
+
+```{r}
+peppers_tidy |> 
+  ggplot(aes(x = Treatment, y =  Yield, fill = Quality)) +
+  geom_col(position = "stack") +
+  facet_wrap(vars(Genotype)) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = "bottom"
+  )              
+```
+
+When we do this, certain treatments now stand out -- like P12 which is high in both non-limited and water-limited conditions.
+
+2. Instead I could try and order the genotypes by total yield (sum of all the quality traits) in the non-limited treatment, and then instead of putting the plots side by side, I could stack them top to bottom, and order the water limited samples in the same order. Let's see how that looks.
+
+```{r}
+# calculate the total yield
+# and sort the df by decreasing yield in the non-limited condition
+peppers_total_yield <- peppers_tidy |> 
+  group_by(Genotype, Treatment) |> 
+  summarize(total_yield = sum(Yield)) |> 
+  filter(Treatment == "Non-limited") |> 
+  arrange(-total_yield)
+
+knitr::kable(peppers_total_yield)
+```
+
+```{r}
+# create a vector with the order we want for the genotypes for total yield
+genotype_totalyield_order <- peppers_total_yield$Genotype
+
+# check our order
+genotype_totalyield_order
+
+# relevel according to genotype_totalyield_order
+peppers_tidy$Genotype <- factor(peppers_tidy$Genotype, 
+                                levels = genotype_totalyield_order)
+
+# check to see if it worked
+glimpse(peppers_tidy)
+
+peppers_tidy |> 
+  ggplot(aes(x = Genotype, y = Yield, fill = Quality)) +
+  geom_col(position = "stack") +
+  facet_grid(vars(Treatment)) +
+  labs(title = "Pepper yield under water sufficient and water limiting conditions",
+       subtitle = "Genotypes are ordered based on decreasing total yield in sufficient conditions") +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = "bottom"
+  )              
+```
+
+We could also think about whether total yield is the most relevant metric, or whether green + red would be more useful for ordering.
+
+```{r}
+# calculate yield for good quality peppers (green + red)
+peppers_good_yield <- peppers_tidy |> 
+  filter(Quality %in% c("Green", "Red")) |> 
+  group_by(Genotype, Treatment) |> 
+  summarize(good_yield = sum(Yield)) |> 
+  filter(Treatment == "Non-limited") |> 
+  arrange(-good_yield)
+
+# create a vector with the order we want for the genotypes for total yield
+genotype_goodyield_order <- peppers_good_yield$Genotype
+
+# check our order
+genotype_goodyield_order
+
+# relevel according to genotype_totalyield_order
+# create a new df so we can go back to peppers_tidy if we want
+peppers_tidy_goodyield <- peppers_tidy
+
+peppers_tidy_goodyield$Genotype <- factor(peppers_tidy_goodyield$Genotype, 
+                                          levels = genotype_goodyield_order)
+
+# check to see if it worked
+glimpse(peppers_tidy_goodyield)
+
+peppers_tidy_goodyield |> 
+  ggplot(aes(x = Genotype, y = Yield, fill = Quality)) +
+  geom_col(position = "stack") +
+  facet_grid(vars(Treatment)) +
+  labs(title = "Pepper yield under water sufficient and water limiting conditions",
+       subtitle = "Genotypes are ordered based on decreasing \ngood quality pepper (i.e., green + red) yield in sufficient conditions") +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = "bottom"
+  )      
+```
+
+Comparing this plot to the previous one can help us understand differences in genotypes that are high yielding but not necessarily high in good quality peppers.
+
+3. Make the colors of the plot more intuitive. For example, we could make the green peppers green, the red peppers red, and the rotten and unmarketable peppers shades of brown. This would make it easier to understand the plot at a glance.
+
+Let's start with the plot we made where we ordered the genotypes by total yield in the non-limited condition, and change the colors of the plot.
+
+```{r}
+peppers_tidy |> 
+  ggplot(aes(x = Genotype, y = Yield, fill = Quality)) +
+  geom_col(position = "stack", 
+           color = "black") + # outline the bars in black to see more easily
+  scale_fill_manual(values = c("Green" = "#156110", 
+                               "Red" = "#DE2212", 
+                               "Rotten" = "#613310", 
+                               "Unmarketable" = "black")) +
+  facet_grid(vars(Treatment)) +
+  labs(title = "Pepper yield under water sufficient and water limiting conditions",
+       subtitle = "Genotypes are ordered based on decreasing total yield in sufficient conditions") +
+  theme_bw() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = "bottom"
+  ) 
+```
+
+
+What if we make this color change to the plot where we faceted by genotype, and then ordered the facets based on total yield in the non-limited condition? Since we've converted `Genotype` into a factor, the facets will now be in the same order as the levels of `Genotype`. 
+
+```{r}
+peppers_tidy |> 
+  ggplot(aes(x = Treatment, y = Yield, fill = Quality)) +
+  geom_col(position = "stack", 
+           color = "black") + # outline the bars in black to see more easily
+  scale_fill_manual(values = c("Green" = "#156110", 
+                               "Red" = "#DE2212", 
+                               "Rotten" = "#613310", 
+                               "Unmarketable" = "black")) +
+  facet_wrap(vars(Genotype), ncol = 5) +
+  labs(title = "Pepper yield under water sufficient and water limiting conditions",
+       subtitle = "Genotypes are ordered based on decreasing total yield in sufficient conditions") +
+  theme_bw() +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = "bottom"
+  )
+```
+
+## 2. Creating tidy data (2 points)
+
+You are presented with data collected with yield data over 5 years that looks like this:
+
+```{r, echo = FALSE}
+yield <- read_excel("yield-year.xlsx")
+```
+
+```{r, echo = FALSE}
+knitr::kable(yield)
+```
+
+You can download this data using this code for question 2c.
 
 ```{r, eval = FALSE}
----
-title: "Module 2 assignment"
-author: "Jessica Cooperstone"
-date: "October 1, 2024"
-output: 
-  html_document: # knit to a .html doc
-    toc: true # creates a table of contents
-    toc_float: true # has that TOC float so you can see it even when you scroll
-    number_sections: true # numbers your sections
-    theme: flatly # set a global theme, this is what i use for this site
-    code_download: true # insert the code download button
----
+download.file("https://github.com/jcooperstone/jcooperstone.github.io/raw/refs/heads/main/assignments/modules/module2/yield-year.xlsx", destfile = "yield-year.xlsx")
 ```
 
-## Writing in Markdown 1
+### a. Describe in words what it means for data to be in a tidy format
+### b. Describe in words how you would convert the dataframe above to be in a tidy format
+### c. Provide code for how you could convert this data to be in a tidy format
 
-Using coding in text, write a sentence in markdown that pulls from this data how many total PhDs were awarded in 2017. If you want to make some calculations in a code chunk first that is ok.
+## 3. Select the right plot for a dataset (2 points)
 
-```{r, warning = FALSE, message = FALSE}
-library(tidyverse)
-library(scales) # for using comma format 
+I am going to describe different types of data, and I'd like you to share:
+
+- what type of question you would be asking with this data
+- what type of plot would be best to visualize it
+- why you picked that visualization
+- how you would code that plot in words (but you don't actually need to code it)
+
+**You do not need to actually create the plot.**
+
+### a. The height and weight of a sample of 10,000 people from Ohio
+
+### b. The expression level of 3 genes in treatment (n = 10) and control (n = 10) samples
+
+### c. The number of students in Ohio who got a PhD per year from 1950 until now
+
+### d. The amount of time spent studying and the grade achieved on the organic chemistry final for 200 students at Ohio State.
+
+## 4. Recreate the following plot (2 points)
+
+Recreate the following plot (as close as you can) which compiles the total number of PhDs awarded across different broad disciplines from 2008 to 2017. You can find the data here: [Number of PhDs awarded in the United States from 2008-2017, collated by the National Science Foundation](https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-02-19/phd_by_field.csv)
+
+::: {.callout-tip}
+## You can use the code below to read this data into R:
+```{r eval = FALSE}
+readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-02-19/phd_by_field.csv")
 ```
 
-Setting as an object the number for the total Ph.D.s earned in 2017.
-```{r}
-phds_2017 <- phd_field |>
-  filter(year == 2017) |>
-  select(n_phds) |>
-  colSums(na.rm = TRUE) # calculate a column sum
-```
+:::
 
-You could also do it this way:
-```{r}
-phd_field |>
-  filter(year == 2017) |>
-  summarize(total_phds = sum(n_phds, # sum n_phds
-                             na.rm = TRUE)) # remove missing values
-```
+```{r echo = FALSE, message = FALSE, warning = FALSE}
+library(scales) # for comma format for numbers in number of PhDs plot
 
-How to write in Markdown:
+phd_field <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-02-19/phd_by_field.csv")
 
-In 2017, there were were `` `r '\x60r format(phds_2017, scientific = F, big.mark = ",")\x60'` `` Ph.D. degrees awarded in the United States.
-
-In 2017, there were were `` `r '\x60r phd_field |> filter(year == 2017) |> select(n_phds) |> colSums(na.rm = TRUE) |> format(scientific = F, big.mark = ",")\x60'` `` Ph.D. degrees awarded in the United States.
-
-How this will look when rendered to html:
-
-In 2017, there were `r format(phds_2017, scientific = F, big.mark = ",")` Ph.D. degrees awarded in the United States.
-
-In 2017, there were `r phd_field |> filter(year == 2017) |> select(n_phds) |> colSums(na.rm = TRUE) |> format(scientific = F, big.mark = ",")` Ph.D. degrees awarded in the United States.
-
-## Visualization 1
-Make a chart to visualize of the total number of PhDs awarded for each `broad_field` across the total time period of this data. You pick the type of chart that you think is appropriate, and make sure your plot is appropriately labelled and you are happy with how it looks. Hint, to do this you'll probably have to do some data wrangling first.
-
-
-First I will calculate the total number of Ph.D.s awarded across each `broad_field` for the whole time period.
-```{r}
+# use summarize to calculate the total number of phds across each broad_field
 broad_field_sum <- phd_field |>
   group_by(broad_field) |>
   summarize(broad_field_sum = sum(n_phds, na.rm = TRUE)) |>
   arrange(-broad_field_sum)
 
-broad_field_sum
-```
-
-This summary helps me know what to expect to see in my plots. Now I can create some plots.
-
-The first one will just show the total number of Ph.D.s across each `broad_field`. I decided to put the `broad_field` on the y-axis so that the labels are easier to read. I've also re-ordered `broad_field` based on the total number of PhDs for each category (i.e., `broad_field_sum`). I chose to use no colors because I didn't feel like it was adding much here.
-```{r}
-broad_field_sum |>
-  ggplot(aes(x = broad_field_sum, y = fct_reorder(broad_field, broad_field_sum))) +
-  geom_col(color = "black", fill = "grey") +
+total_phds <- broad_field_sum |> 
+  ggplot(aes(x = broad_field_sum, y = reorder(broad_field, broad_field_sum))) +
+  geom_col(color = "black", fill = "gray") +
   scale_x_continuous(labels = comma) + # add a comma to the x-axis breaks
   theme_minimal() +
-  labs(x = "Total number of Ph.D.s",
-       y = "", # no label on the y
-       title = "Number of PhDs awarded across different \nbroad disciplines from 2008-2017",
-       caption = "Data collected by the National Science Foundation")
-```
-
-The following few examples weren't exactly the question (which was to show total PhDs across each `broad_field` across the total time period of this data), but I'll show you here how to make some other stuff.
-```{r}
-broad_field_sumonly_eachyear <- phd_field |>
-  group_by(year) |>
-  summarize(all_the_phds = sum(n_phds, na.rm = TRUE)) 
-
-broad_field_sumonly_eachyear
-```
-
-Then we can plot.
-```{r}
-broad_field_sumonly_eachyear |>
-  ggplot(aes(x = year, y = all_the_phds)) +
-  geom_col(color = "black", fill = "grey") +
-  scale_y_continuous(labels = comma) + # add a comma to the x-axis breaks
-  scale_x_continuous(breaks = seq(2008, 2017, 1)) +
-  theme_minimal() +
-  labs(x = "Year",
-       y = "Number of Ph.Ds", 
-       title = "Total number of Ph.D.s awarded in the United States per year from 2008-2017",
-       caption = "Data collected by the National Science Foundation")
-```
-
-This wasn't exactly the question, but if we want to see a little bit better this over the time period, first  we need to create a df that has total PhDs per broad field per year. We can do this by adding `year` to our `group_by()` statement.
-```{r}
-broad_field_sum_byyear <- phd_field |>
-  group_by(broad_field, year) |>
-  summarize(total_phds = sum(n_phds, na.rm = TRUE)) 
-
-# what does that look like
-head(broad_field_sum_byyear)
-```
-
-Now we can plot. We can now make different types of plots. Let's start simpler. Here I've re-ordered the legend to be in the same order as the chart so you can see the disciplines that award the most Ph.D.s just by looking at the order of the legend.
-
-```{r}
-broad_field_sum_byyear |>
-  ggplot(aes(x = year, y = total_phds, 
-    # reorder broad_field by descending total_phds         
-             color = reorder(broad_field, -total_phds))) +
-  geom_line() +
-  geom_point() +
-  scale_x_continuous(breaks = seq(2008, 2017, 2)) +
-  scale_y_continuous(labels = comma) +
-  scale_color_brewer(palette = "Set1") +
-  theme_bw() +
-  labs(x = "Year",
-       y = "Total number of Ph.D.s",
-       color = "Broad Field",
-       title = "Number of Ph.D.s awarded by discipline in the United States",
-       subtitle = "From 2008-2017",
-       caption = "Data collected by the National Science Foundation")
-```
-
-Could also try facets.
-```{r}
-# re-setting factors of broad_field so that it is re-levelled by the discipline with
-# the most phds
-# you could also do this manually
-broad_field_sum_byyear$broad_field <- fct_reorder(broad_field_sum_byyear$broad_field,
-                                                  -broad_field_sum_byyear$total_phds)
-
-broad_field_sum_byyear |>
-  ggplot(aes(x = year, y = total_phds, color = broad_field)) +
-  geom_line() +
-  geom_point() +
-  scale_x_continuous(breaks = seq(2008, 2017, 2)) +
-  scale_y_continuous(labels = comma) +
-  facet_wrap(vars(broad_field)) +
-  theme_bw() +
-  theme(legend.position = "none") +
-  labs(x = "Year",
-       y = "Total number of Ph.D.s",
-       color = "Broad Field",
-       title = "Number of Ph.D.s awarded by discipline in the United States",
-       subtitle = "From 2008-2017",
-       caption = "Data collected by the National Science Foundation")
-```
-
-Can also try with "free_y" axes. You can see the number better but can't as easily compare between the disciplines.
-```{r}
-broad_field_sum_byyear |>
-  ggplot(aes(x = year, y = total_phds, color = broad_field)) +
-  geom_line() +
-  geom_point() +
-  scale_x_continuous(breaks = seq(2008, 2017, 2)) +
-  scale_y_continuous(labels = comma) +
-  facet_wrap(vars(broad_field), scales = "free_y") +
-  theme_bw() +
-  theme(legend.position = "none") +
-  labs(x = "Year",
-       y = "Total number of Ph.D.s",
-       color = "Broad Field",
-       title = "Number of Ph.D.s awarded by discipline in the United States",
-       subtitle = "From 2008-2017",
-       caption = "Data collected by the National Science Foundation")
-```
-
-
-## Visualization 2
-
-Pick the `field` that most closely matches the area of your degree. Make a line graph (with points for each datapoint) that shows how the number of PhDs awarded in your `field` has changed from 2008 to 2017. Make sure your x-axis indicates each year for which you have data, your graph is appropriately labelled, and you think it is aesthetically pleasing.
-
-```{r}
-# what are the options for broad_field?
-phd_field |>
-  select(broad_field) |>
-  unique()
-
-# what are the options for life sciences?
-phd_field |>
-  filter(broad_field == "Life sciences") |>
-  select(major_field) |>
-  unique()
-
-# what are the options for Agricultural sciences and natural resources?
-phd_field |>
-  filter(major_field == "Agricultural sciences and natural resources") |>
-  select(field) |>
-  unique()
-```
-
-I'm picking "Horticulture science" as my field.
-```{r}
-phd_field |>
-  filter(field == "Horticulture science") |>
-  ggplot(aes(x = year, y = n_phds)) +
-  geom_point() +
-  geom_line() +
-  scale_x_continuous(breaks = seq(2008, 2017, 1)) +
-  theme_minimal() +
-  labs(x = "Year",
-       y = "Number of Ph.D. Degrees Awarded",
-       title = "Number of Ph.D. Degrees Awarded in Horticulture Science in the United States",
+  labs(title = "Total PhDs awarded in the US across different \nbroad disciplines from 2008 to 2017",
+       x = "Number of PhDs",
+       y = "Broad field",
        subtitle = "Data collected by the National Science Foundation")
+
+ggsave(filename = "total_phds.pdf", plot = total_phds)
 ```
 
-## Visualization 3
-
-Pick at least 3 additional fields (you can use more if you like) that are adjacent to your Ph.D. field. Make a faceted plot to show the number of degrees awarded in each of these disciplines across the same time period. Make sure you label your plot appropriately and you think it is aesthetic (i.e., if you have squished strip text you want to fix that).
-
-First I am making a vector of the fields in plant science.
-```{r}
-plant_sci <- c("Agricultural and horticultural plant breeding",
-               "Agronomy and crop science",
-               "Horticulture science",
-               "Plant pathology and phytopathology, agricultural",
-               "Plant sciences, other")
+```{r echo = FALSE}
+total_phds
 ```
 
-Then I can plot. `\n` adds an automatic line break.
-```{r}
-phd_field |>
-  filter(field %in% plant_sci) |>
-  ggplot(aes(x = year, y = n_phds)) +
-  geom_point() +
-  geom_line() +
-  scale_x_continuous(breaks = seq(2008, 2017, 1)) +
-  facet_wrap(vars(field), labeller = label_wrap_gen()) + # wraps labels
-  theme_classic() +
-  theme(axis.text.x = element_text(angle = 90)) +
-  labs(x = "Year",
-       y = "Number of Ph.D. Degrees Awarded",
-       title = "Number of Ph.D. Degrees Awarded in Plant Science Subdisciplines \nin the United States",
-       subtitle = "Data collected by the National Science Foundation")
-```
+I would like to see:
 
-Or I can make the same style plot but with bars instead of a lines/points.
+- A description in words as to how you need to wrangle the data to make it amendable for creating this plot
+- Your code for making the plot along with annotations for what all of the code does
 
-```{r}
-phd_field |>
-  filter(field %in% plant_sci) |>
-  ggplot(aes(x = year, y = n_phds)) +
-  geom_col() +
-  scale_x_continuous(breaks = seq(2008, 2017, 1)) +
-  facet_wrap(vars(field), labeller = label_wrap_gen()) + # wraps labels
-  theme_classic() +
-  theme(axis.text.x = element_text(angle = 90)) +
-  labs(x = "Year",
-       y = "Number of Ph.D. Degrees Awarded",
-       title = "Number of Ph.D. Degrees Awarded in Plant Science Subdisciplines \nin the United States",
-       subtitle = "Data collected by the National Science Foundation")
-```
+## Deadlines
 
-
+::: callout-important
+This assignment will be due on **`r module_2_due_date` at 11:59pm**.
+:::
