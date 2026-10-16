@@ -598,7 +598,13 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#why-are-you-doing-this" id="toc-why-are-you-doing-this" class="nav-link" data-scroll-target="#why-are-you-doing-this">Why are you doing this?</a></li>
-  <li><a href="#provide-feedback-to-improve-an-existing-figure-2-points" id="toc-provide-feedback-to-improve-an-existing-figure-2-points" class="nav-link" data-scroll-target="#provide-feedback-to-improve-an-existing-figure-2-points">1. Provide feedback to improve an existing figure (2 points)</a></li>
+  <li><a href="#provide-feedback-to-improve-an-existing-figure-2-points" id="toc-provide-feedback-to-improve-an-existing-figure-2-points" class="nav-link" data-scroll-target="#provide-feedback-to-improve-an-existing-figure-2-points">1. Provide feedback to improve an existing figure (2 points)</a>
+  <ul>
+  <li><a href="#organize-the-plot-around-the-comparison-that-is-the-most-important" id="toc-organize-the-plot-around-the-comparison-that-is-the-most-important" class="nav-link" data-scroll-target="#organize-the-plot-around-the-comparison-that-is-the-most-important">1. Organize the plot around the comparison that is the most important</a></li>
+  <li><a href="#order-genotypes-by-something-experimentally-relevant" id="toc-order-genotypes-by-something-experimentally-relevant" class="nav-link" data-scroll-target="#order-genotypes-by-something-experimentally-relevant">2. Order genotypes by something experimentally relevant</a></li>
+  <li><a href="#improve-the-coloring-of-the-plot-to-make-it-more-intuitive" id="toc-improve-the-coloring-of-the-plot-to-make-it-more-intuitive" class="nav-link" data-scroll-target="#improve-the-coloring-of-the-plot-to-make-it-more-intuitive">3. Improve the coloring of the plot to make it more intuitive</a></li>
+  <li><a href="#calculate-differences-and-plot-that-directly" id="toc-calculate-differences-and-plot-that-directly" class="nav-link" data-scroll-target="#calculate-differences-and-plot-that-directly">4. Calculate differences and plot that directly</a></li>
+  </ul></li>
   <li><a href="#creating-tidy-data-2-points" id="toc-creating-tidy-data-2-points" class="nav-link" data-scroll-target="#creating-tidy-data-2-points">2. Creating tidy data (2 points)</a>
   <ul>
   <li><a href="#a.-describe-in-words-what-it-means-for-data-to-be-in-a-tidy-format" id="toc-a.-describe-in-words-what-it-means-for-data-to-be-in-a-tidy-format" class="nav-link" data-scroll-target="#a.-describe-in-words-what-it-means-for-data-to-be-in-a-tidy-format">a. Describe in words what it means for data to be in a tidy format</a></li>
@@ -712,9 +718,9 @@ Important
 </div>
 <p>Provide 4 things you could try to improve this figure and describe why each would be an improvement over the current version.</p>
 <p>What I provide below is not an exhaustive list, but I tried to focus on the bigger, more substantive changes that you could make to improve the plot and presentation of this data.</p>
-<ol type="1">
-<li>Organize the plot around the comparison that is the most important - in this case, the comparison of genotypes under water sufficient and water limiting conditions. We could instead facet by genotype and have the x-axis be the water treatment. Let’s see how that would look:</li>
-</ol>
+<section id="organize-the-plot-around-the-comparison-that-is-the-most-important" class="level3">
+<h3 class="anchored" data-anchor-id="organize-the-plot-around-the-comparison-that-is-the-most-important">1. Organize the plot around the comparison that is the most important</h3>
+<p>In this case, the comparison of genotypes under water sufficient and water limiting conditions. We could instead facet by genotype and have the x-axis be the water treatment. Let’s see how that would look:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>peppers_tidy <span class="sc">|&gt;</span> </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Treatment, <span class="at">y =</span>  Yield, <span class="at">fill =</span> Quality)) <span class="sc">+</span></span>
@@ -733,9 +739,10 @@ Important
 </div>
 </div>
 <p>When we do this, certain treatments now stand out – like P12 which is high in both non-limited and water-limited conditions.</p>
-<ol start="2" type="1">
-<li>Instead I could try and order the genotypes by total yield (sum of all the quality traits) in the non-limited treatment, and then instead of putting the plots side by side, I could stack them top to bottom, and order the water limited samples in the same order. Let’s see how that looks.</li>
-</ol>
+</section>
+<section id="order-genotypes-by-something-experimentally-relevant" class="level3">
+<h3 class="anchored" data-anchor-id="order-genotypes-by-something-experimentally-relevant">2. Order genotypes by something experimentally relevant</h3>
+<p>Instead I could try and order the genotypes by total yield (sum of all the quality traits) in the non-limited treatment, and then instead of putting the plots side by side, I could stack them top to bottom, and order the water limited samples in the same order. Let’s see how that looks.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the total yield</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># and sort the df by decreasing yield in the non-limited condition</span></span>
@@ -960,9 +967,10 @@ $ Yield     &lt;dbl&gt; 8.20, 0.30, 0.10, 0.40, 8.12, 0.50, 0.20, 0.70, 8.04, 0.
 </div>
 </div>
 <p>Comparing this plot to the previous one can help us understand differences in genotypes that are high yielding but not necessarily high in good quality peppers.</p>
-<ol start="3" type="1">
-<li>Make the colors of the plot more intuitive. For example, we could make the green peppers green, the red peppers red, and the rotten and unmarketable peppers shades of brown. This would make it easier to understand the plot at a glance.</li>
-</ol>
+</section>
+<section id="improve-the-coloring-of-the-plot-to-make-it-more-intuitive" class="level3">
+<h3 class="anchored" data-anchor-id="improve-the-coloring-of-the-plot-to-make-it-more-intuitive">3. Improve the coloring of the plot to make it more intuitive</h3>
+<p>Make the colors of the plot more intuitive. For example, we could make the green peppers green, the red peppers red, and the rotten and unmarketable peppers shades of brown. This would make it easier to understand the plot at a glance.</p>
 <p>Let’s start with the plot we made where we ordered the genotypes by total yield in the non-limited condition, and change the colors of the plot.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>peppers_tidy <span class="sc">|&gt;</span> </span>
@@ -1015,9 +1023,10 @@ $ Yield     &lt;dbl&gt; 8.20, 0.30, 0.10, 0.40, 8.12, 0.50, 0.20, 0.70, 8.04, 0.
 </div>
 </div>
 </div>
-<ol start="4" type="1">
-<li>Calculate the difference in yield between the two treatments for each genotype and plot that instead. This would make it easier to see which genotypes are more tolerant to water limiting conditions. In this case, I am also reordering the <code>Genotypes</code> on the x-axis based on the difference under the two conditions.</li>
-</ol>
+</section>
+<section id="calculate-differences-and-plot-that-directly" class="level3">
+<h3 class="anchored" data-anchor-id="calculate-differences-and-plot-that-directly">4. Calculate differences and plot that directly</h3>
+<p>Calculate the difference in yield between the two treatments for each genotype and plot that instead. This would make it easier to see which genotypes are more tolerant to water limiting conditions. In this case, I am also reordering the <code>Genotypes</code> on the x-axis based on the difference under the two conditions.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first we can calculate the difference in yield between the two water treatments</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>peppers_tidy <span class="sc">|&gt;</span> </span>
@@ -1115,6 +1124,7 @@ $ Yield     &lt;dbl&gt; 8.20, 0.30, 0.10, 0.40, 8.12, 0.50, 0.20, 0.70, 8.04, 0.
 </div>
 </div>
 <p>Looking at this all together helps us better understand our data.</p>
+</section>
 </section>
 <section id="creating-tidy-data-2-points" class="level2">
 <h2 class="anchored" data-anchor-id="creating-tidy-data-2-points">2. Creating tidy data (2 points)</h2>

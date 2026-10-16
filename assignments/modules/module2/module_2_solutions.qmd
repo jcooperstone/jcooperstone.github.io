@@ -93,7 +93,9 @@ Provide 4 things you could try to improve this figure and describe why each woul
 
 What I provide below is not an exhaustive list, but I tried to focus on the bigger, more substantive changes that you could make to improve the plot and presentation of this data.
 
-1. Organize the plot around the comparison that is the most important - in this case, the comparison of genotypes under water sufficient and water limiting conditions. We could instead facet by genotype and have the x-axis be the water treatment. Let's see how that would look:
+### 1. Organize the plot around the comparison that is the most important
+
+In this case, the comparison of genotypes under water sufficient and water limiting conditions. We could instead facet by genotype and have the x-axis be the water treatment. Let's see how that would look:
 
 ```{r}
 peppers_tidy |> 
@@ -108,7 +110,9 @@ peppers_tidy |>
 
 When we do this, certain treatments now stand out -- like P12 which is high in both non-limited and water-limited conditions.
 
-2. Instead I could try and order the genotypes by total yield (sum of all the quality traits) in the non-limited treatment, and then instead of putting the plots side by side, I could stack them top to bottom, and order the water limited samples in the same order. Let's see how that looks.
+### 2. Order genotypes by something experimentally relevant
+
+Instead I could try and order the genotypes by total yield (sum of all the quality traits) in the non-limited treatment, and then instead of putting the plots side by side, I could stack them top to bottom, and order the water limited samples in the same order. Let's see how that looks.
 
 ```{r}
 # calculate the total yield
@@ -189,7 +193,9 @@ peppers_tidy_goodyield |>
 
 Comparing this plot to the previous one can help us understand differences in genotypes that are high yielding but not necessarily high in good quality peppers.
 
-3. Make the colors of the plot more intuitive. For example, we could make the green peppers green, the red peppers red, and the rotten and unmarketable peppers shades of brown. This would make it easier to understand the plot at a glance.
+### 3. Improve the coloring of the plot to make it more intuitive
+
+Make the colors of the plot more intuitive. For example, we could make the green peppers green, the red peppers red, and the rotten and unmarketable peppers shades of brown. This would make it easier to understand the plot at a glance.
 
 Let's start with the plot we made where we ordered the genotypes by total yield in the non-limited condition, and change the colors of the plot.
 
@@ -234,7 +240,9 @@ peppers_tidy |>
   )
 ```
 
-4. Calculate the difference in yield between the two treatments for each genotype and plot that instead. This would make it easier to see which genotypes are more tolerant to water limiting conditions. In this case, I am also reordering the `Genotypes` on the x-axis based on the difference under the two conditions.
+### 4. Calculate differences and plot that directly 
+
+Calculate the difference in yield between the two treatments for each genotype and plot that instead. This would make it easier to see which genotypes are more tolerant to water limiting conditions. In this case, I am also reordering the `Genotypes` on the x-axis based on the difference under the two conditions.
 
 ```{r}
 # first we can calculate the difference in yield between the two water treatments
