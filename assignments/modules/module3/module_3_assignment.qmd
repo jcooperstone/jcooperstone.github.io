@@ -4,25 +4,10 @@ title: "Module 3 Assignment"
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 ```
 
-## Introduction
-This is your assignment for Module 3, focused on the material you learned in the lectures and recitation activities on data distributions, correlations, and annotating statistics. 
-
-Submission info: you will submit this assignment by uploading a knitted `.html` to Carmen. 
-
-- Make sure you include the Code Download button
-- Show your code within your knitted `.html`
-- Customize the YAML and the document so you like how it looks
-- Include information about both **what** you are doing and **why** you are doing it.
-
-Starting on this assignment, I will be considering for overall format and readability of your assignment as part of your grade. I am doing this because the format of your report will be considered for your final capstone assignment. This means you should have reasonable headers and header levels, understandable flow between plots and code, and use Markdown language when appropriate.
-
-Remember there are often many ways to reach the same end product. I have showed you many ways in class to achieve a similar end product, you only need to show me one of them. As long as your answer is reasonable, you will get full credit even if its different than what I intended.
-
-
-```{r, echo = FALSE, message = FALSE, warning = FALSE}
+```{r, echo = FALSE}
 library(readxl)
 library(knitr)
 library(tidyverse)
@@ -35,6 +20,269 @@ module_3_due_date <- due_dates |>
   filter(Assignment == "Module 3: Data Exploration") |> 
   pull(due_date_paste)
 ```
+
+::: callout-important
+This assignment will be due on **`r module_3_due_date` at 11:59pm**.
+:::
+
+## Introduction
+This is your assignment for Module 3, focused on the material you learned in the lectures and recitation activities on data distributions, correlations, and annotating statistics. This assignment is worth 8 points.
+
+**Submission info**: you will submit this assignment by uploading a knitted `.html` to Carmen that you created from an R Markdown or Quarto document. 
+
+- Make sure you include the `Code Download` button or another way to download your code
+- Show your code within your knitted `.html`
+- Customize the YAML and the document so you like how your final report looks - do check this before you submit
+- All code should be annotated (meaning, you should be writing descriptions in your own words about what the code is doing)
+- All decisions should be described in the text of your document
+
+::: {.callout-note}
+Starting on this assignment, I will be considering for **overall format and readability of your assignment as part of your grade**. I am doing this because the format of your report will be considered for your final capstone assignment. This means you should have reasonable headers and header levels, understandable flow between plots and code, and use Markdown language when appropriate.
+:::
+
+::: {.callout-caution}
+## A reminder about generative AI use
+Please remember that you can use generative AI to help with your coding, but it should **NOT** be used to generate your assignment text or on conceptual questions. You should be able to explain your code and your decisions in your own words. If you use generative AI for your code, please cite:
+
+1) what the goal of the use was
+2) your prompt
+3) what you got
+4) what edits you made
+:::
+
+## 1. Understanding data distributions (4 points)
+
+Load the following data and create a series of 3 plots that help you understand the underlying data distribution. Order your plots from providing the least to the most information. Each plot should be complete with appropriate labels and titles. For each plot, provide:
+
+a. the reason you selected that plot
+b. the code used to create the plot with annotation for each step
+
+After creating these 3 plots, provide a short paragraph (~5 sentences) summarizing what you learned about the data distribution from your plots, and which you think is the most informative. 
+
+:::{.callout-note}
+Remember, you can use AI to help you with the code, but **not** in the selection of the plot.
+:::
+
+You can download the data here.
+```{r}
+# on a Mac/Linux
+download.file("https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/refs/heads/main/assignments/modules/module3/data/module3_q1.csv", 
+              destfile = "module3_q1-test.csv")
+
+# on a Windows machine
+download.file("https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/refs/heads/main/assignments/modules/module3/data/module3_q1.csv", 
+              destfile = "module3_q1-test.csv", 
+              mode = "wb")
+```
+
+```{r, echo = FALSE}
+# creating the data
+set.seed(2026)
+sex <- rep(c("male", "female"), each = 1000)
+sex_random <- sample(sex, 198, replace = TRUE)
+
+dose <- rep(c("none", "low", "high"), each = 66)
+
+outcome <- c(rnorm(66, mean = 10, sd = 2), 
+            rnorm(66, mean = 10, sd = 2), 
+            rnorm(56, mean = 10, sd = 2),
+            rnorm(10, mean = 20, sd = 6))
+
+m3_q1 <- data.frame(sex_random, dose, outcome) |> 
+  rename(sex = sex_random)
+```
+
+```{r, echo = FALSE, eval = FALSE}
+write_csv(m3_q1, "data/module3_q1.csv")
+```
+
+```{r, echo = FALSE, eval = FALSE}
+m3_q1 <- read_csv("data/module3_q1.csv")
+
+# make dose a factor and set the levels to go none, low, high
+# also set labels here so that is what gets put in plots
+# do the same thing for sex
+m3_q1 <- m3_q1 |> 
+  mutate(dose = factor(dose, levels = c("none", "low", "high"),
+                             labels = c("None (Control)", "Low", "High")),
+        sex = factor(sex, levels = c("male", "female"),
+                          labels = c("Male", "Female")))
+
+# calculate the mean and sd of outcome for each dose
+m3_q1_summary_dose <- m3_q1 |> 
+  group_by(dose) |> 
+  summarise(mean_outcome = mean(outcome),
+            sd_outcome = sd(outcome))
+
+# create a barplot that shows the relationship between dose and outcome
+# the error bars show the standard deviation of the outcome for each dose
+m3_q1 |> 
+  ggplot() +
+# use stat_summary to calculate the mean based on our data
+    stat_summary(aes(x = dose, y = outcome), 
+                    fun.y = mean, geom = "bar",
+                    color = "black", fill = "lightgray") +
+    geom_errorbar(data = m3_q1_summary_dose, # use my calculated sd for the error bars
+                 aes(x = dose,
+                   ymin = mean_outcome - sd_outcome, 
+                   ymax = mean_outcome + sd_outcome),
+                   width = 0.2) +
+# change the x-axis labels to adjust capitalization and be more descriptive
+# we don't need this here since I changed the labels in the actual data
+# but I'm just showing you how you'd do this if you didn't change the data itself                    
+#    scale_x_discrete(labels = c("None (Control)", "Low", "High")) +                 
+    theme_minimal() +
+    labs(x = "Dose",
+         y = "Outcome",
+         title = "Mean Outcome by Dose",
+         subtitle = "Error bars show standard deviation")
+```
+
+```{r, echo = FALSE, eval = FALSE}
+# create a boxplot to show the 5-number summary and outliers for each dose group, separated by sex
+m3_q1 |> 
+  ggplot(aes(x = dose, y = outcome, fill = sex)) +
+    geom_boxplot() +
+    scale_fill_brewer(palette = "Set2") + # pick colorblind friendly palette that isn't so gendered                
+    theme_minimal() +
+    labs(x = "Dose",
+         y = "Outcome",
+         fill = "Sex",  # capitalize
+         title = "Distibution Outcome by Dose",
+         subtitle = "Data is disaggregated by sex")
+```
+
+```{r, echo = FALSE, eval = FALSE}
+# create a boxplot to show the 5-number summary and outliers for each dose group, separated by sex
+# add jittered points to show more about the distribution of the data
+m3_q1 |> 
+  ggplot(aes(x = dose, y = outcome, fill = sex)) +
+# don't want to plot outliers twice since we will also see them in geom_jitter 
+    geom_boxplot(outlier.shape = NA) +
+# gets the points to jitter on the appropriate boxplot 
+    geom_jitter(shape = 21, # pick a shape that takes a fill so points will also be colored by sex
+                color = "black", # add a black outline to the points so they are easier to see
+                position = position_jitterdodge()) +
+# change the x-axis labels to adjust capitalization and be more descriptive                    
+    scale_x_discrete(labels = c("None (Control)", "Low", "High")) +
+    scale_fill_brewer(palette = "Set2") + # pick colorblind friendly palette that isn't so gendered
+    scale_color_brewer(palette = "Set2") + # pick colorblind friendly palette that isn't so gendered
+    theme_minimal() +
+    labs(x = "Dose",
+         y = "Outcome",
+         fill = "Sex",  # capitalize
+         title = "Distibution Outcome by Dose",
+         subtitle = "Data is disaggregated by sex")
+```
+
+```{r, echo = FALSE, eval = FALSE}
+# make a density plot to understand data distributions
+m3_q1 |> 
+  ggplot(aes(x = outcome, y = dose, fill = sex)) +
+    ggridges::geom_density_ridges(alpha = 0.6) + # make a little transparent to see better when the doses overlap
+    facet_wrap(vars(sex)) + # facet by sex
+    scale_fill_brewer(palette = "Set2") + # pick colorblind friendly palette that isn't so gendered
+    scale_color_brewer(palette = "Set2") + # pick colorblind friendly palette that isn't so gendered
+    theme_minimal() +
+    theme(legend.position = "none") + # remove legend bc duplicative with facets
+    labs(x = "Dose",
+         y = "Outcome",
+         fill = "Sex",  # capitalize
+         title = "Distibution Outcome by Dose",
+         subtitle = "Data is disaggregated by sex")
+```
+
+## 2. Evaluating a collaborator's data (1 point)
+
+A collaborator sends you the following figure from an experiment comparing a response in a control group and a treated group (n = 30 per group), and says "treatment doesn't seem to do much." 
+
+They show you this figure:
+```{r, eval = FALSE, echo = FALSE}
+set.seed(2026)
+m3_q2 <- tibble(
+  group = rep(c("Control", "Treated"), each = 30),
+  response = c(rnorm(30, mean = 10, sd = 4),
+               rnorm(15, mean = 6, sd = 1),
+               rnorm(15, mean = 14, sd = 1))
+)
+
+write_csv(m3_q2, "data/module3_q2.csv")
+```
+
+```{r, echo = FALSE}
+m3_q2 <- read_csv("data/module3_q2.csv")
+
+m3_q2 |>
+  ggplot(aes(x = group, y = response)) +
+    stat_summary(fun = mean, geom = "bar", fill = "gray80", color = "black") +
+    stat_summary(fun.data = mean_sdl, fun.args = list(mult = 1),
+                 geom = "errorbar", width = 0.2) +
+    theme_minimal() +
+    labs(x = "Group", y = "Response",
+         title = "Mean response by group",
+         subtitle = "Error bars show standard deviation")
+```
+
+The data are below.
+```{r}
+knitr::kable(m3_q2)
+```
+
+You can also download the data here:
+
+```{r, eval = FALSE}
+# on a Mac/Linux
+download.file("https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/refs/heads/main/assignments/modules/module3/data/module3_q2.csv", 
+              destfile = "module3_q2.csv")
+
+# on a Windows machine
+download.file("https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/refs/heads/main/assignments/modules/module3/data/module3_q2.csv", 
+              destfile = "module3_q2.csv", 
+              mode = "wb")
+```
+
+a. In 3-4 sentences, describe what this plot communicates, and what information it hides from the reader. Be specific about what aspects of the distributions could be different between groups without changing what you see here.
+b. Create a replacement plot that would let the collaborator evaluate their claim. Include the code (annotated) and appropriate labels and titles.
+c. In 2-3 sentences, explain why you chose your plot type, and what you would tell your collaborator.
+
+```{r, echo = FALSE, eval = FALSE}
+# SOLUTION NOTES
+# a. bars show only means and SD; the means are ~equal and the SDs are ~equal, so the
+#    plot suggests "no difference." Hidden: shape (treated is bimodal - responders and
+#    non-responders), individual observations, n, outliers. Also bars start at zero,
+#    which isn't meaningful for a mean here.
+# b. Any plot showing the full distribution is fine: violin + jitter, histogram/density
+#    faceted by group, ggdist/raincloud, ridges. A boxplot alone is NOT sufficient
+#    (it also hides bimodality) - dock points unless points are layered on.
+# c. Should say that the treatment seems to split the group into two subpopulations
+
+m3_q2 |>
+  ggplot(aes(x = group, y = response)) +
+    geom_violin(fill = "gray90") + # show the shape of the distribution
+    geom_jitter(width = 0.1, height = 0, alpha = 0.7) + # show every observation
+    theme_minimal() +
+    labs(x = "Group", y = "Response",
+         title = "Response by group",
+         subtitle = "Each point is one observation")
+```
+
+## 3. Redesigning a published figure (3 points)
+
+Find a figure in a peer-reviewed paper from **your own field** that shows a distribution, a correlation, or a comparison between groups. It should **not** be from the paper we used in class. Include the figure (a screenshot is fine) and a full citation with a link or DOI.
+
+a. What question is the figure trying to answer, and who is the intended audience? (2-3 sentences)
+b. List at least two things the figure does well, and at least two things that could be improved or that could lead a reader to a wrong conclusion. Tie your points to ideas from this module (e.g., what the plot hides, the chosen geom, annotation of statistics, overplotting, color, scales).
+c. Make a redesigned version of the figure. You will not have the real data, so simulate data that resembles what the figure shows (e.g., similar groups, sample sizes, and approximate means/SDs, or a similar correlation). You are welcome to feed the figure into an LLM an ask it to approximate the data for you. Include your annotated code.
+d. In ~5 sentences, explain what you changed and why, and what you are giving up, if anything, compared to the original.
+
+:::{.callout-note}
+You will be graded on the quality of your critique and the reasoning behind your redesign, not on how closely your simulated data match the original or how elaborate the figure is. As usual, generative AI can help with simulating data and code, but your critique and design decisions must be your own.
+:::
+
+ 
+
+
+
 
 ::: callout-important
 This assignment will be due on **`r module_3_due_date` at 11:59pm**.

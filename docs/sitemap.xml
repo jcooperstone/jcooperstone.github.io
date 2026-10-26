@@ -6,7 +6,7 @@
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module1/01_principles/01_principles.html</loc>
-    <lastmod>2026-09-01T16:15:31.983Z</lastmod>
+    <lastmod>2026-10-26T17:44:39.590Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/modules/module2/07_ggplot102/07_ggplot102.html</loc>
@@ -78,7 +78,7 @@
   </url>
   <url>
     <loc>https://www.rdataviz.com/index.html</loc>
-    <lastmod>2026-07-02T15:18:48.421Z</lastmod>
+    <lastmod>2026-10-26T18:33:53.793Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/assignments/modules/module2/module_2_solutions-old.html</loc>
@@ -89,31 +89,35 @@
     <lastmod>2026-10-16T16:08:22.358Z</lastmod>
   </url>
   <url>
-    <loc>https://www.rdataviz.com/assignments/modules/module3/module_3_solutions.html</loc>
+    <loc>https://www.rdataviz.com/assignments/modules/module3/module_3_solutions-old.html</loc>
     <lastmod>2025-11-06T14:13:41.341Z</lastmod>
   </url>
   <url>
-    <loc>https://www.rdataviz.com/assignments/modules/module4/module_4_solutions.html</loc>
-    <lastmod>2025-12-11T14:24:36.643Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.rdataviz.com/assignments/recitations.html</loc>
-    <lastmod>2025-08-12T17:49:59.280Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.rdataviz.com/assignments/capstone.html</loc>
-    <lastmod>2026-08-21T16:09:18.465Z</lastmod>
-  </url>
-  <url>
-    <loc>https://www.rdataviz.com/assignments/reflections.html</loc>
-    <lastmod>2025-08-06T16:54:12.548Z</lastmod>
+    <loc>https://www.rdataviz.com/assignments/modules/module3/module_3_assignment.html</loc>
+    <lastmod>2026-10-26T18:52:42.917Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/assignments/modules/module4/module_4_assignment.html</loc>
     <lastmod>2026-08-21T16:00:38.964Z</lastmod>
   </url>
   <url>
-    <loc>https://www.rdataviz.com/assignments/modules/module3/module_3_assignment.html</loc>
+    <loc>https://www.rdataviz.com/assignments/reflections.html</loc>
+    <lastmod>2025-08-06T16:54:12.548Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rdataviz.com/assignments/capstone.html</loc>
+    <lastmod>2026-08-21T16:09:18.465Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rdataviz.com/assignments/recitations.html</loc>
+    <lastmod>2025-08-12T17:49:59.280Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rdataviz.com/assignments/modules/module4/module_4_solutions.html</loc>
+    <lastmod>2025-12-11T14:24:36.643Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.rdataviz.com/assignments/modules/module3/module_3_assignment-old.html</loc>
     <lastmod>2026-08-21T16:05:38.204Z</lastmod>
   </url>
   <url>
@@ -130,7 +134,7 @@
   </url>
   <url>
     <loc>https://www.rdataviz.com/syllabus/syllabus.html</loc>
-    <lastmod>2026-09-01T18:35:40.129Z</lastmod>
+    <lastmod>2026-10-26T17:42:49.841Z</lastmod>
   </url>
   <url>
     <loc>https://www.rdataviz.com/rmds/04_Rmd_recitation_solutions.html</loc>

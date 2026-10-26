@@ -4,6 +4,7 @@ format:
   html:
     toc: true
     toc-depth: 4
+    page-layout: full
 ---
 
 ```{r setup, include=FALSE}
@@ -61,7 +62,7 @@ kable(schedule)
 ```
 
 ::: {.callout-note title="Non-standard days"}
-Class on November 10 (Election Day) and November 24 (the short week of Thanksgiving), I will provide to you the lecture material asynchronously and you can go through the recitation material on your own. Mia and I will be available to answer questions during office hours, or at the beginning of the next class period.
+Class on November 3 (Election Day) and November 24 (the short week of Thanksgiving), I will provide to you the lecture material asynchronously and you can go through the recitation material on your own. Mia and I will be available to answer questions during office hours, or at the beginning of the next class period.
 :::
 
 ## Course resources

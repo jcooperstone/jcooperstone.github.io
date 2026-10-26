@@ -1,5 +1,8 @@
 ---
 title: "HCS 7100: Data Visualization in R, Autumn 2026"
+format: 
+  html:
+    page-layout: full
 ---
 
 ::: grid
@@ -16,4 +19,37 @@ Instructor: [Jessica Cooperstone](https://www.cooperstonelab.com/) <br> Teaching
 This course aims to introduce students to the principles and practice of data visualization. Students will learn fundamental principles of data visualization and create figures that appropriately and ethically represent their data. Data visualizations will be created in the R programming environment, using tools including the grammar of graphics implemented in `ggplot2`. In the process of creating visualizations, students will also become familiar with data handling and wrangling in R.
 :::
 :::
+:::
+
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+library(readxl)
+library(knitr)
+library(tidyverse)
+schedule <- read_excel("files/schedule_modules.xlsx",
+                       sheet = "Schedule_date_2026")
+```
+
+:::{.column-page}
+
+| Week | Date   | Module                    | Topic                                                        | Recitations | Assignments |
+|------|--------|---------------------------|--------------------------------------------------------------|-------------|-------------|
+| 1    | Aug 25 | 1: Principles             | [Principles of data visualization 1](modules/module1/01_principles/01_principles.qmd)                          |             |             |
+| 2    | Sep 01 | 1: Principles             | [Principles of data visualization 2](modules/module1/02_principles/02_principles.qmd)                          |             |              |
+| 3    | Sep 08 | 1: Principles             | [Good and bad visualizations](modules/module1/03_good-and-bad/03_goodbad.qmd)                                  |             | [Module 1](assignments/modules/module1/module_1_assignment.qmd)            |
+| 4    | Sep 15 | 2: Coding fundamentals    | [R Markdown for reproducible research](modules/module2/04_rmarkdown/04_Rmd.qmd)                        | [Rmd](modules/module2/04_rmarkdown/04_Rmd_recitation.qmd)            |             |
+| 5    | Sep 22 | 2: Coding fundamentals    | [Wrangling, the basics](modules/module2/05_wrangling/05_wrangling.qmd)                                       | [Wrangling](modules/module2/05_wrangling/05_wrangling_recitation.qmd)            |             |
+| 6    | Sep 29 | 2: Coding fundamentals    | [ggplot 101](modules/module2/06_ggplot101/06_ggplot101.qmd)                                                   | [ggplot101](modules/module2/06_ggplot101/06_ggplot101_recitation.qmd)            |             |
+| 7    | Oct 06 | 2: Coding fundamentals    | [Themes, labels, facets (ggplot 102)](modules/module2/07_ggplot102/07_ggplot102.qmd)                         | [ggplot102](modules/module2/07_ggplot102/07_ggplot102_recitation.qmd)            |              |
+| 8    | Oct 13 | 3: Data exploration       | [Data distributions](modules/module3/08_distributions/08_distributions.qmd)                                         | [Distributions](modules/module3/08_distributions/08_distributions_recitation.qmd)            | [Module 2](assignments/modules/module2/module_2_assignment.qmd)            |
+| 9    | Oct 20 | 3: Data exploration       | [Correlations](modules/module3/09_correlations/09_correlations.qmd)                                                 | [Correlations](modules/module3/09_correlations/09_correlations_recitation.qmd)            |             |
+| 10   | Oct 27 | 3: Data exploration       | [Annotating statistics](modules/module3/10_add-stats/10_add-stats.qmd)                                        | [Statistics](modules/module3/10_add-stats/10_add-stats_recitation.qmd)            |             |
+| 11   | Nov 03 | 4: Putting it together    | [Manhattan plots and making lots of plots at once (async)](modules/module4/12_manhattan/12_manhattan.qmd) | [Manhattan](modules/module4/12_manhattan/12_manhattan_recitation.qmd)            | Module 3            |
+| 12   | Nov 10 | Capstone prep     | Capstone plan prep, open session                            |             |             |
+| 13   | Nov 17 | 4: Putting it together    | [Principal components analysis](modules/module4/13_pca/13_pca.qmd)                               |  [PCA](modules/module4/13_pca/13_pca_recitation.qmd)           | [Capstone plan](assignments/capstone.qmd)            |
+| 14   | Nov 24 | 4: Putting it together    | [ggplot extension packages (asynchronous)](modules/module4/14_leftovers/14_leftovers.qmd)                    | [Extensions](modules/module4/14_leftovers/14_leftovers_recitation.qmd)            |             |
+| 15   | Dec 01 | 4: Putting it together    | [Interactive plots](modules/module4/15_interactive-plots/15_interactive-plots.qmd)                                          | [Interactive](modules/module4/15_interactive-plots/15_interactive-plots_recitation.qmd)            |             |
+| 16   | Dec 08 | Capstone prep             | Capstone assignment, open session                           |             | Module 4, [Capstone final](assignments/capstone.qmd)            |
+
+
 :::

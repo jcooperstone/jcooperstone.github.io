@@ -164,8 +164,8 @@ kable(schedule_3)
 
 ## 🗓️ Schedule (part 4) {.smaller}
 
-*November 10* will be asynchronous (Election Day) <br>
-*November 25* will be asynchronous (short week of Thanksgiving)
+*November 3* will be asynchronous (Election Day) <br>
+*November 24* will be asynchronous (short week of Thanksgiving)
 
 ```{r schedule4, echo = FALSE}
 kable(schedule_4)

@@ -1,0 +1,42 @@
+---
+title: "Module 3 Assignment"
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+This is your assignment for Module 3, focused on the material you learned in the lectures and recitation activities on data distributions, correlations, and annotating statistics. 
+
+Submission info: you will submit this assignment by uploading a knitted `.html` to Carmen. 
+
+- Make sure you include the Code Download button
+- Show your code within your knitted `.html`
+- Customize the YAML and the document so you like how it looks
+- Include information about both **what** you are doing and **why** you are doing it.
+
+Starting on this assignment, I will be considering for overall format and readability of your assignment as part of your grade. I am doing this because the format of your report will be considered for your final capstone assignment. This means you should have reasonable headers and header levels, understandable flow between plots and code, and use Markdown language when appropriate.
+
+Remember there are often many ways to reach the same end product. I have showed you many ways in class to achieve a similar end product, you only need to show me one of them. As long as your answer is reasonable, you will get full credit even if its different than what I intended.
+
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+library(readxl)
+library(knitr)
+library(tidyverse)
+due_dates <- read_excel("../../../files/schedule_modules.xlsx",
+                       sheet = "module_due_dates_2026")
+```
+
+```{r, echo = FALSE}
+module_3_due_date <- due_dates |> 
+  filter(Assignment == "Module 3: Data Exploration") |> 
+  pull(due_date_paste)
+```
+
+::: callout-important
+This assignment will be due on **`r module_3_due_date` at 11:59pm**.
+:::
+
