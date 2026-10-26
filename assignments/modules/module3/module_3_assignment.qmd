@@ -37,7 +37,7 @@ This is your assignment for Module 3, focused on the material you learned in the
 - All decisions should be described in the text of your document
 
 ::: {.callout-note}
-Starting on this assignment, I will be considering for **overall format and readability of your assignment as part of your grade**. I am doing this because the format of your report will be considered for your final capstone assignment. This means you should have reasonable headers and header levels, understandable flow between plots and code, and use Markdown language when appropriate.
+Starting on this assignment, I will be considering for **overall format and readability of your assignment as part of your grade**. I am doing this because the format of your report will be considered for your final capstone assignment. This means you should have reasonable headers and header levels, understandable flow between plots and code, and use Markdown language when appropriate. If a question has subparts, they should be labelled so they are easily distinguishable.
 :::
 
 ::: {.callout-caution}
@@ -63,15 +63,15 @@ After creating these 3 plots, provide a short paragraph (~5 sentences) summarizi
 Remember, you can use AI to help you with the code, but **not** in the selection of the plot.
 :::
 
-You can download the data here.
-```{r}
+You can download the data here. The data includes 198 observations of a response variable (outcome) measured in a study with two independent variables: sex (male or female) and dose (none, low, or high). The data are simulated to represent a hypothetical experiment.
+```{r, eval = FALSE}
 # on a Mac/Linux
 download.file("https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/refs/heads/main/assignments/modules/module3/data/module3_q1.csv", 
-              destfile = "module3_q1-test.csv")
+              destfile = "module3_q1.csv")
 
 # on a Windows machine
 download.file("https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/refs/heads/main/assignments/modules/module3/data/module3_q1.csv", 
-              destfile = "module3_q1-test.csv", 
+              destfile = "module3_q1.csv", 
               mode = "wb")
 ```
 
@@ -120,7 +120,7 @@ m3_q1 |>
   ggplot() +
 # use stat_summary to calculate the mean based on our data
     stat_summary(aes(x = dose, y = outcome), 
-                    fun.y = mean, geom = "bar",
+                    fun = mean, geom = "bar", # function to use is mean, geom is bar
                     color = "black", fill = "lightgray") +
     geom_errorbar(data = m3_q1_summary_dose, # use my calculated sd for the error bars
                  aes(x = dose,
@@ -148,7 +148,7 @@ m3_q1 |>
     labs(x = "Dose",
          y = "Outcome",
          fill = "Sex",  # capitalize
-         title = "Distibution Outcome by Dose",
+         title = "Distribution of Outcome by Dose",
          subtitle = "Data is disaggregated by sex")
 ```
 
@@ -163,15 +163,12 @@ m3_q1 |>
     geom_jitter(shape = 21, # pick a shape that takes a fill so points will also be colored by sex
                 color = "black", # add a black outline to the points so they are easier to see
                 position = position_jitterdodge()) +
-# change the x-axis labels to adjust capitalization and be more descriptive                    
-    scale_x_discrete(labels = c("None (Control)", "Low", "High")) +
     scale_fill_brewer(palette = "Set2") + # pick colorblind friendly palette that isn't so gendered
-    scale_color_brewer(palette = "Set2") + # pick colorblind friendly palette that isn't so gendered
     theme_minimal() +
     labs(x = "Dose",
          y = "Outcome",
          fill = "Sex",  # capitalize
-         title = "Distibution Outcome by Dose",
+         title = "Distribution of Outcome by Dose",
          subtitle = "Data is disaggregated by sex")
 ```
 
@@ -185,10 +182,10 @@ m3_q1 |>
     scale_color_brewer(palette = "Set2") + # pick colorblind friendly palette that isn't so gendered
     theme_minimal() +
     theme(legend.position = "none") + # remove legend bc duplicative with facets
-    labs(x = "Dose",
-         y = "Outcome",
+    labs(x = "Outcome",
+         y = "Dose",
          fill = "Sex",  # capitalize
-         title = "Distibution Outcome by Dose",
+         title = "Distribution of Outcome by Dose",
          subtitle = "Data is disaggregated by sex")
 ```
 
@@ -211,6 +208,7 @@ write_csv(m3_q2, "data/module3_q2.csv")
 
 ```{r, echo = FALSE}
 m3_q2 <- read_csv("data/module3_q2.csv")
+library(Hmisc) # for mean_sdl function
 
 m3_q2 |>
   ggplot(aes(x = group, y = response)) +
@@ -223,12 +221,7 @@ m3_q2 |>
          subtitle = "Error bars show standard deviation")
 ```
 
-The data are below.
-```{r}
-knitr::kable(m3_q2)
-```
-
-You can also download the data here:
+The data can be downloaded here:
 
 ```{r, eval = FALSE}
 # on a Mac/Linux
@@ -246,16 +239,6 @@ b. Create a replacement plot that would let the collaborator evaluate their clai
 c. In 2-3 sentences, explain why you chose your plot type, and what you would tell your collaborator.
 
 ```{r, echo = FALSE, eval = FALSE}
-# SOLUTION NOTES
-# a. bars show only means and SD; the means are ~equal and the SDs are ~equal, so the
-#    plot suggests "no difference." Hidden: shape (treated is bimodal - responders and
-#    non-responders), individual observations, n, outliers. Also bars start at zero,
-#    which isn't meaningful for a mean here.
-# b. Any plot showing the full distribution is fine: violin + jitter, histogram/density
-#    faceted by group, ggdist/raincloud, ridges. A boxplot alone is NOT sufficient
-#    (it also hides bimodality) - dock points unless points are layered on.
-# c. Should say that the treatment seems to split the group into two subpopulations
-
 m3_q2 |>
   ggplot(aes(x = group, y = response)) +
     geom_violin(fill = "gray90") + # show the shape of the distribution
@@ -276,13 +259,8 @@ c. Make a redesigned version of the figure. You will not have the real data, so 
 d. In ~5 sentences, explain what you changed and why, and what you are giving up, if anything, compared to the original.
 
 :::{.callout-note}
-You will be graded on the quality of your critique and the reasoning behind your redesign, not on how closely your simulated data match the original or how elaborate the figure is. As usual, generative AI can help with simulating data and code, but your critique and design decisions must be your own.
+You will be graded on the quality of your critique and the reasoning behind your redesign, not on how closely your simulated data match the original or how elaborate the figure is. As usual, generative AI can help with generating data and code, but your critique and design decisions must be your own.
 :::
-
- 
-
-
-
 
 ::: callout-important
 This assignment will be due on **`r module_3_due_date` at 11:59pm**.

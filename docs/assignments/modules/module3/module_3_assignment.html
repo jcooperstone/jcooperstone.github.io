@@ -583,7 +583,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Starting on this assignment, I will be considering for <strong>overall format and readability of your assignment as part of your grade</strong>. I am doing this because the format of your report will be considered for your final capstone assignment. This means you should have reasonable headers and header levels, understandable flow between plots and code, and use Markdown language when appropriate.</p>
+<p>Starting on this assignment, I will be considering for <strong>overall format and readability of your assignment as part of your grade</strong>. I am doing this because the format of your report will be considered for your final capstone assignment. This means you should have reasonable headers and header levels, understandable flow between plots and code, and use Markdown language when appropriate. If a question has subparts, they should be labelled so they are easily distinguishable.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-caution callout-titled">
@@ -627,15 +627,15 @@ Note
 <p>Remember, you can use AI to help you with the code, but <strong>not</strong> in the selection of the plot.</p>
 </div>
 </div>
-<p>You can download the data here.</p>
+<p>You can download the data here. The data includes 198 observations of a response variable (outcome) measured in a study with two independent variables: sex (male or female) and dose (none, low, or high). The data are simulated to represent a hypothetical experiment.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># on a Mac/Linux</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">"https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/refs/heads/main/assignments/modules/module3/data/module3_q1.csv"</span>, </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">destfile =</span> <span class="st">"module3_q1-test.csv"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">destfile =</span> <span class="st">"module3_q1.csv"</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># on a Windows machine</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">"https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/refs/heads/main/assignments/modules/module3/data/module3_q1.csv"</span>, </span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">destfile =</span> <span class="st">"module3_q1-test.csv"</span>, </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">destfile =</span> <span class="st">"module3_q1.csv"</span>, </span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">mode =</span> <span class="st">"wb"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
@@ -652,272 +652,16 @@ Note
 </div>
 </div>
 </div>
-<p>The data are below.</p>
+<p>The data can be downloaded here:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(m3_q2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">group</th>
-<th style="text-align: right;">response</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Control</td>
-<td style="text-align: right;">9.434117</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Control</td>
-<td style="text-align: right;">10.669320</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Control</td>
-<td style="text-align: right;">9.204845</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Control</td>
-<td style="text-align: right;">8.835171</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Control</td>
-<td style="text-align: right;">3.062412</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Control</td>
-<td style="text-align: right;">8.909087</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Control</td>
-<td style="text-align: right;">2.800282</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Control</td>
-<td style="text-align: right;">14.610964</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Control</td>
-<td style="text-align: right;">5.986722</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Control</td>
-<td style="text-align: right;">10.592840</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Control</td>
-<td style="text-align: right;">12.077987</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Control</td>
-<td style="text-align: right;">10.021745</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Control</td>
-<td style="text-align: right;">15.388083</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Control</td>
-<td style="text-align: right;">6.611866</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Control</td>
-<td style="text-align: right;">11.773592</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Control</td>
-<td style="text-align: right;">6.091402</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Control</td>
-<td style="text-align: right;">18.497964</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Control</td>
-<td style="text-align: right;">12.750796</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Control</td>
-<td style="text-align: right;">8.626527</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Control</td>
-<td style="text-align: right;">13.140678</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Control</td>
-<td style="text-align: right;">5.377690</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Control</td>
-<td style="text-align: right;">16.035665</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Control</td>
-<td style="text-align: right;">5.378015</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Control</td>
-<td style="text-align: right;">3.772753</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Control</td>
-<td style="text-align: right;">9.779008</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Control</td>
-<td style="text-align: right;">13.396773</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Control</td>
-<td style="text-align: right;">9.955613</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Control</td>
-<td style="text-align: right;">6.958745</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Control</td>
-<td style="text-align: right;">14.703197</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Control</td>
-<td style="text-align: right;">19.657799</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Treated</td>
-<td style="text-align: right;">4.041487</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Treated</td>
-<td style="text-align: right;">7.473590</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Treated</td>
-<td style="text-align: right;">5.525116</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Treated</td>
-<td style="text-align: right;">6.981171</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Treated</td>
-<td style="text-align: right;">4.175645</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Treated</td>
-<td style="text-align: right;">5.739389</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Treated</td>
-<td style="text-align: right;">5.041155</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Treated</td>
-<td style="text-align: right;">5.509704</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Treated</td>
-<td style="text-align: right;">4.922703</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Treated</td>
-<td style="text-align: right;">6.369426</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Treated</td>
-<td style="text-align: right;">7.216266</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Treated</td>
-<td style="text-align: right;">5.506157</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Treated</td>
-<td style="text-align: right;">5.772215</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Treated</td>
-<td style="text-align: right;">4.888351</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Treated</td>
-<td style="text-align: right;">6.995833</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Treated</td>
-<td style="text-align: right;">14.561829</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Treated</td>
-<td style="text-align: right;">12.435721</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Treated</td>
-<td style="text-align: right;">15.481077</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Treated</td>
-<td style="text-align: right;">12.830795</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Treated</td>
-<td style="text-align: right;">12.947987</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Treated</td>
-<td style="text-align: right;">12.528154</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Treated</td>
-<td style="text-align: right;">12.806563</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Treated</td>
-<td style="text-align: right;">13.652021</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Treated</td>
-<td style="text-align: right;">14.532822</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Treated</td>
-<td style="text-align: right;">13.289011</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Treated</td>
-<td style="text-align: right;">13.801011</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Treated</td>
-<td style="text-align: right;">13.718627</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Treated</td>
-<td style="text-align: right;">15.170926</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Treated</td>
-<td style="text-align: right;">16.288733</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Treated</td>
-<td style="text-align: right;">12.931143</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p>You can also download the data here:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># on a Mac/Linux</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">"https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/refs/heads/main/assignments/modules/module3/data/module3_q2.csv"</span>, </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">destfile =</span> <span class="st">"module3_q2.csv"</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># on a Windows machine</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">"https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/refs/heads/main/assignments/modules/module3/data/module3_q2.csv"</span>, </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">destfile =</span> <span class="st">"module3_q2.csv"</span>, </span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">mode =</span> <span class="st">"wb"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># on a Mac/Linux</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">"https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/refs/heads/main/assignments/modules/module3/data/module3_q2.csv"</span>, </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">destfile =</span> <span class="st">"module3_q2.csv"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># on a Windows machine</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">"https://raw.githubusercontent.com/jcooperstone/jcooperstone.github.io/refs/heads/main/assignments/modules/module3/data/module3_q2.csv"</span>, </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">destfile =</span> <span class="st">"module3_q2.csv"</span>, </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">mode =</span> <span class="st">"wb"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ol type="a">
 <li>In 3-4 sentences, describe what this plot communicates, and what information it hides from the reader. Be specific about what aspects of the distributions could be different between groups without changing what you see here.</li>
@@ -944,7 +688,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You will be graded on the quality of your critique and the reasoning behind your redesign, not on how closely your simulated data match the original or how elaborate the figure is. As usual, generative AI can help with simulating data and code, but your critique and design decisions must be your own.</p>
+<p>You will be graded on the quality of your critique and the reasoning behind your redesign, not on how closely your simulated data match the original or how elaborate the figure is. As usual, generative AI can help with generating data and code, but your critique and design decisions must be your own.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-important callout-titled">
