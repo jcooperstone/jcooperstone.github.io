@@ -160,17 +160,19 @@ There will be 10 class reflections (you can select which classes you want to ref
 ```{r, echo = FALSE}
 library(readxl)
 library(knitr)
+library(tidyverse)
 due_dates <- read_excel("../files/schedule_modules.xlsx",
-                       sheet = "module_due_dates_2026")
+                       sheet = "module_due_dates_2026") |> 
+                        select(Assignment, due_date_paste)
 ```
 
 ```{r, echo = FALSE, fig.width = 6}
-kable(due_dates)
+kable(due_dates |> rename(`Due date` = due_date_paste))
 ```
 
 ### Late assignments
 
-I expect you will turn assignments in on time and in general, la01.te assignments are not accepted. If there are extenuating circumstances that prevent you from turning in an assignment on time, please connect with me as soon as possible after such a situation arises for discussion about a possible deadline extension.
+I expect you will turn assignments in on time and in general, late assignments are not accepted. If there are extenuating circumstances that prevent you from turning in an assignment on time, please connect with me as soon as possible after such a situation arises for discussion about a possible deadline extension.
 
 ### Grading scale
 
