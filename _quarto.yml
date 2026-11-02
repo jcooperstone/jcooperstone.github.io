@@ -205,8 +205,8 @@ website:
               text: Week 8 - Data distributions solutions
             - href: modules/module3/09_correlations/09_correlations_recitation_solutions.qmd
               text: Week 9 - Correlations solutions
-          #   - href: modules/module3/10_add-stats/10_add-stats_recitation_solutions.qmd
-          #     text: Week 10 - Adding statistics solutions
+            - href: modules/module3/10_add-stats/10_add-stats_recitation_solutions.qmd
+              text: Week 10 - Adding statistics solutions
           #   - href: modules/module4/12_manhattan/12_manhattan_recitation_solutions.qmd
           #     text: Week 12 - Manhattan plots solutions
           #   - href: modules/module4/13_pca/13_pca_recitation_solutions.qmd
