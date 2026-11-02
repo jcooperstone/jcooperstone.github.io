@@ -34,13 +34,20 @@ knitr::include_graphics("img/palmerpenguins_hex.png")
 ```
 
 ```{r libraries, warning = FALSE, message = FALSE}
-# install.packages(palmerpenguins)
+# install.packages("palmerpenguins") # if you don't already have this package
+# install.packages("rstatix") # if you don't already have this package
+# install.packages("agricolae") # if you don't already have this package
+# install.packages("ggpubr") # if you don't already have this package
+# install.packages("glue") # if you don't already have this package
+
 library(tidyverse)
 library(palmerpenguins) # for penguins data
 library(rstatix) # for pipeable stats testing
 library(agricolae) # for posthoc tests 
 library(ggpubr) # extension for adding stats to plots
 library(glue) # for easy pasting
+library(ggridges) # for density ridgeline plots
+library(ggdist) # for dot plots
 ```
 
 ```{r head penguins}
@@ -213,7 +220,7 @@ penguins_by_sex +
   ylim(2500, 7500) + # adjust the y-axis so there's space for the label
   annotate(geom = "text", x = 2, y = 6500, label = "*", size = 6) +
   annotate(geom = "text", x = 2, y = 7000,
-           label = glue("Wilcoxon signed rank test \np-value = {by_sex_pval$p}"))
+           label = glue("Wilcoxon rank sum test \np-value = {by_sex_pval$p}"))
 ```
 
 
@@ -221,7 +228,7 @@ penguins_by_sex +
 
 When we are comparing means between more than 2 samples, we will have to first run a statistical test to see if there are any significant differences among our groups, and then if there are, run a post-hoc test. Before we do that, let's plot.
 
-Are there significant differences in body mass 
+Are there significant differences in body mass by species in female penguins?
 ```{r}
 (penguins_f_massbyspecies <- penguins |>
   drop_na(body_mass_g, species, sex) |>

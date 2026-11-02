@@ -373,8 +373,8 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Module 4 - Putting it together</li>
         <li>
-    <a class="dropdown-item" href="../../../modules/module4/12_manhattan/12_manhattan.html">
- <span class="dropdown-text">Week 12 - Manhattan plots and multi-plotting</span></a>
+    <a class="dropdown-item" href="../../../modules/module4/11_manhattan/11_manhattan.html">
+ <span class="dropdown-text">Week 11 - Manhattan plots and multi-plotting</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../../modules/module4/13_pca/13_pca.html">
@@ -429,7 +429,7 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Module 4 - Putting it together</li>
         <li>
-    <a class="dropdown-item" href="../../../modules/module4/12_manhattan/12_manhattan_recitation.html">
+    <a class="dropdown-item" href="../../../modules/module4/11_manhattan/11_manhattan_recitation.html">
  <span class="dropdown-text">Week 11 - Manhattan plots and multi-plotting</span></a>
   </li>  
         <li>
@@ -928,7 +928,15 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>kruskal_chol <span class="ot">&lt;-</span> NHANES <span class="sc">|&gt;</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(AgeDecade, TotChol) <span class="sc">|&gt;</span> <span class="co"># remove NAs</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kruskal_test</span>(TotChol <span class="sc">~</span> AgeDecade)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kruskal_test</span>(TotChol <span class="sc">~</span> AgeDecade)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>kruskal_chol</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 6
+  .y.         n statistic    df     p method        
+* &lt;chr&gt;   &lt;int&gt;     &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;         
+1 TotChol  8166     1672.     7     0 Kruskal-Wallis</code></pre>
+</div>
 </div>
 <p>Ok significant difference exists. Where is it?</p>
 </section>
@@ -936,12 +944,12 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
 <h3 class="anchored" data-anchor-id="post-hoc-analysis">Post-hoc analysis</h3>
 <p>Run Dunn test, which is the posthoc test that goes along the Kruskal-Wallis. In an analogy example, ANOVA is to Tukey as Kruskall-Wallis is to Dunn. I am using the Benjamini Hochberg multiple testing correction, the default in this method is <code>p.adjust.method = "holm"</code> which also would be ok to use in this case.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>kruskal_chol_posthoc <span class="ot">&lt;-</span> NHANES <span class="sc">|&gt;</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(AgeDecade, TotChol) <span class="sc">|&gt;</span> <span class="co"># remove NAs</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dunn_test</span>(TotChol <span class="sc">~</span> AgeDecade,</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">p.adjust.method =</span> <span class="st">"BH"</span>) <span class="co"># Benjamini Hochberg multiple testing correction</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(kruskal_chol_posthoc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>kruskal_chol_posthoc <span class="ot">&lt;-</span> NHANES <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(AgeDecade, TotChol) <span class="sc">|&gt;</span> <span class="co"># remove NAs</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dunn_test</span>(TotChol <span class="sc">~</span> AgeDecade,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">p.adjust.method =</span> <span class="st">"BH"</span>) <span class="co"># Benjamini Hochberg multiple testing correction</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(kruskal_chol_posthoc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
@@ -1285,7 +1293,7 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
 <p>Use <code>rcompanion::cldList()</code> to create the groups for us. Reading the documentation about <a href="https://www.rdocumentation.org/packages/rcompanion/versions/2.4.34/topics/cldList"><code>cldList()</code></a> helped me learn that:</p>
 <ol type="1">
 <li>there needs to be a formula that compares the p-values (here, p.adj) to a comparison column (here, one I created called comparison)</li>
-<li>there needs to be a comparison column that is in the form similar to “Treat.A - Treat.B = 0” where <code>=</code>, <code>0</code> are removed by default. The removal of <code>0</code> affects our group names but we can fix that later. Since we have hyphens in our group names, I removed them since this column only allows one hyphen between the groups to be compared</li>
+<li>there needs to be a comparison column that is in the form similar to “Treat.A - Treat.B = 0”. Zeroes are stripped here, which is a problem for us since we have zeroes in the group names (i.e., 0-9). We can fix this though. Since we have hyphens in our group names, I removed them since this column only allows one hyphen between the groups to be compared</li>
 <li>set a threshold for what p-value is considered significant</li>
 </ol>
 <p>To do this, first:</p>
@@ -1294,14 +1302,14 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
 <li>Then, I made a new column called comparison that “glues” together (i.e., pastes) the values from group1_rep and group2_rep</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># combine group1 and group2 to make one column called comparison</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># then replace hyphens with something else because cldList can only have one hyphen</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>kruskal_chol_posthoc_1 <span class="ot">&lt;-</span> kruskal_chol_posthoc <span class="sc">|&gt;</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">group1_rep =</span> <span class="fu">str_replace_all</span>(group1, <span class="at">pattern =</span> <span class="st">"-"</span>, <span class="at">replacement =</span> <span class="st">"to"</span>),</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">group2_rep =</span> <span class="fu">str_replace_all</span>(group2, <span class="at">pattern =</span> <span class="st">"-"</span>, <span class="at">replacement =</span> <span class="st">"to"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">comparison =</span> <span class="fu">glue</span>(<span class="st">"{group1_rep} -{group2_rep}"</span>))</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(kruskal_chol_posthoc_1))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># combine group1 and group2 to make one column called comparison</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># then replace hyphens with something else because cldList can only have one hyphen</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>kruskal_chol_posthoc_1 <span class="ot">&lt;-</span> kruskal_chol_posthoc <span class="sc">|&gt;</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">group1_rep =</span> <span class="fu">str_replace_all</span>(group1, <span class="at">pattern =</span> <span class="st">"-"</span>, <span class="at">replacement =</span> <span class="st">"to"</span>),</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">group2_rep =</span> <span class="fu">str_replace_all</span>(group2, <span class="at">pattern =</span> <span class="st">"-"</span>, <span class="at">replacement =</span> <span class="st">"to"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">comparison =</span> <span class="fu">glue</span>(<span class="st">"{group1_rep} - {group2_rep}"</span>))</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(kruskal_chol_posthoc_1))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
@@ -1311,12 +1319,12 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
 <col style="width: 3%">
 <col style="width: 4%">
 <col style="width: 9%">
-<col style="width: 9%">
-<col style="width: 9%">
+<col style="width: 8%">
+<col style="width: 8%">
 <col style="width: 11%">
 <col style="width: 9%">
 <col style="width: 9%">
-<col style="width: 12%">
+<col style="width: 13%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1424,10 +1432,10 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run cldList()</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>(group_cldList <span class="ot">&lt;-</span> <span class="fu">cldList</span>(p.adj <span class="sc">~</span> comparison,</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> kruskal_chol_posthoc_1,</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">threshold =</span> <span class="fl">0.05</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run cldList()</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>(group_cldList <span class="ot">&lt;-</span> <span class="fu">cldList</span>(p.adj <span class="sc">~</span> comparison,</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> kruskal_chol_posthoc_1,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">threshold =</span> <span class="fl">0.05</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Group Letter MonoLetter
 1   to9      a      a    
@@ -1442,15 +1450,15 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
 </div>
 <p>The zeroes of the <code>Group</code> column got lost, let’s fix that by replacing with the values we are actually going to want to use (those with the hyphen vs.&nbsp;those that have “to”).</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># grab a vector that contains the names of the AgeDecade</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># want this without any missimg values</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>age_groups <span class="ot">&lt;-</span> <span class="fu">levels</span>(NHANES<span class="sc">$</span>AgeDecade)</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># replace the groups with missing 0 with our cleaned up groups</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>group_cldList<span class="sc">$</span>Group <span class="ot">&lt;-</span> age_groups</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co"># did it work?</span></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>group_cldList</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># grab a vector that contains the names of the AgeDecade</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># want this without any missimg values</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>age_groups <span class="ot">&lt;-</span> <span class="fu">levels</span>(NHANES<span class="sc">$</span>AgeDecade)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co"># replace the groups with missing 0 with our cleaned up groups</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>group_cldList<span class="sc">$</span>Group <span class="ot">&lt;-</span> age_groups</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co"># did it work?</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>group_cldList</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Group Letter MonoLetter
 1    0-9      a      a    
@@ -1465,14 +1473,14 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
 </div>
 <p>Or, you could create groups from <code>kruskal_chol_posthoc</code> results manually.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(NHANES<span class="sc">$</span>AgeDecade)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(NHANES<span class="sc">$</span>AgeDecade)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  30-39  0-9    40-49  60-69  50-59  10-19  20-29  70+   &lt;NA&gt;  
 Levels:  0-9  10-19  20-29  30-39  40-49  50-59  60-69  70+</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>(group_manual <span class="ot">&lt;-</span> </span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>(<span class="at">group =</span> <span class="fu">levels</span>(NHANES<span class="sc">$</span>AgeDecade), <span class="co"># use levels to get the right order</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">letter =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"de"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"c"</span>))) <span class="co"># letters manually</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>(group_manual <span class="ot">&lt;-</span> </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">data.frame</span>(<span class="at">group =</span> <span class="fu">levels</span>(NHANES<span class="sc">$</span>AgeDecade), <span class="co"># use levels to get the right order</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">letter =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"de"</span>, <span class="st">"d"</span>, <span class="st">"e"</span>, <span class="st">"c"</span>))) <span class="co"># letters manually</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   group letter
 1    0-9      a
@@ -1487,10 +1495,10 @@ Levels:  0-9  10-19  20-29  30-39  40-49  50-59  60-69  70+</code></pre>
 </div>
 <p>Make a dataframe that has the maximum total cholesterol for each age so that we know where to place the numbers on the plot. I was having some trouble with the <code>summarize()</code> function from <code>dplyr</code> being masked by one from <code>Hmisc</code> so I’m referring to the one I want explicitly. Another way to try and get around an issue like this would be to load the <code>tidyverse</code> as your last package so it isn’t the one that gets masked.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>(max_chol <span class="ot">&lt;-</span> NHANES <span class="sc">|&gt;</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(TotChol, AgeDecade) <span class="sc">|&gt;</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(AgeDecade) <span class="sc">|&gt;</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">max_tot_chol =</span> <span class="fu">max</span>(TotChol)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>(max_chol <span class="ot">&lt;-</span> NHANES <span class="sc">|&gt;</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(TotChol, AgeDecade) <span class="sc">|&gt;</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(AgeDecade) <span class="sc">|&gt;</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">max_tot_chol =</span> <span class="fu">max</span>(TotChol)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 8 × 2
   AgeDecade max_tot_chol
@@ -1513,8 +1521,8 @@ Levels:  0-9  10-19  20-29  30-39  40-49  50-59  60-69  70+</code></pre>
 <p>The <code>*_join()</code> is a preferred method because it does not rely on your data being ordered in the same way.</p>
 <p>Bind the groups to the maximum cholesterol df by selecting just that column with the <code>Letter</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>(dunn_for_plotting_bind <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(max_chol, group_cldList<span class="sc">$</span>Letter) <span class="sc">|&gt;</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Letter =</span> <span class="dv">3</span>)) <span class="co"># rename the third column "Letter"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>(dunn_for_plotting_bind <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(max_chol, group_cldList<span class="sc">$</span>Letter) <span class="sc">|&gt;</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Letter =</span> <span class="dv">3</span>)) <span class="co"># rename the third column "Letter"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>New names:
 • `` -&gt; `...3`</code></pre>
@@ -1535,13 +1543,13 @@ Levels:  0-9  10-19  20-29  30-39  40-49  50-59  60-69  70+</code></pre>
 </div>
 <p>Join the groups to the maximum cholesterol df.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># since the two columns hae diff names in the two df</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># i'm indicating which columns should be joined</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>dunn_for_plotting <span class="ot">&lt;-</span> <span class="fu">full_join</span>(max_chol, group_cldList,</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">join_by</span>(AgeDecade <span class="sc">==</span> Group))</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="co"># did it work?</span></span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>dunn_for_plotting</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># since the two columns hae diff names in the two df</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co"># i'm indicating which columns should be joined</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>dunn_for_plotting <span class="ot">&lt;-</span> <span class="fu">full_join</span>(max_chol, group_cldList,</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">join_by</span>(AgeDecade <span class="sc">==</span> Group))</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="co"># did it work?</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>dunn_for_plotting</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 8 × 4
   AgeDecade max_tot_chol Letter MonoLetter
@@ -1560,13 +1568,13 @@ Levels:  0-9  10-19  20-29  30-39  40-49  50-59  60-69  70+</code></pre>
 <section id="plot" class="level3">
 <h3 class="anchored" data-anchor-id="plot">Plot</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using geom_text()</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>totchol_age_baseplot <span class="sc">+</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> dunn_for_plotting,</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> AgeDecade, </span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> max_tot_chol <span class="sc">+</span> <span class="dv">1</span>,</span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">label =</span> Letter)) <span class="sc">+</span></span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">caption =</span> <span class="st">"Groups with different letters are significantly different using the Kruskal Wallis test, </span><span class="sc">\n</span><span class="st">and the Dunn test for pairwise comparisons at p &lt; 0.05"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using geom_text()</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>totchol_age_baseplot <span class="sc">+</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> dunn_for_plotting,</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> AgeDecade, </span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> max_tot_chol <span class="sc">+</span> <span class="dv">1</span>,</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">label =</span> Letter)) <span class="sc">+</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">caption =</span> <span class="st">"Groups with different letters are significantly different using the Kruskal Wallis test, </span><span class="sc">\n</span><span class="st">and the Dunn test for pairwise comparisons at p &lt; 0.05"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1574,13 +1582,13 @@ Levels:  0-9  10-19  20-29  30-39  40-49  50-59  60-69  70+</code></pre>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using annotate()</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>totchol_age_baseplot <span class="sc">+</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>,</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>),</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> dunn_for_plotting<span class="sc">$</span>max_tot_chol <span class="sc">+</span> <span class="dv">1</span>,</span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> dunn_for_plotting<span class="sc">$</span>Letter) <span class="sc">+</span></span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">caption =</span> <span class="st">"Groups with different letters are significantly different using the Kruskal Wallis test, </span><span class="sc">\n</span><span class="st">and the Dunn test for pairwise comparisons at p &lt; 0.05"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using annotate()</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>totchol_age_baseplot <span class="sc">+</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>,</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>),</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> dunn_for_plotting<span class="sc">$</span>max_tot_chol <span class="sc">+</span> <span class="dv">1</span>,</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> dunn_for_plotting<span class="sc">$</span>Letter) <span class="sc">+</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">caption =</span> <span class="st">"Groups with different letters are significantly different using the Kruskal Wallis test, </span><span class="sc">\n</span><span class="st">and the Dunn test for pairwise comparisons at p &lt; 0.05"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1591,34 +1599,34 @@ Levels:  0-9  10-19  20-29  30-39  40-49  50-59  60-69  70+</code></pre>
 </div>
 <p>I also decided to add for context, what the cut-off for normal cholesterol is, so someone can see how these values relate to normal values. A normal cholesterol level is below 200 mg/dL or below 5.17 mmol/L.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>totchol_age_baseplot <span class="sc">+</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand_limits</span>(<span class="at">x =</span> <span class="dv">0</span>) <span class="sc">+</span> <span class="co"># a little more space to add a note</span></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">5.17</span>, <span class="co"># set the yintercept</span></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="co"># make the line dashed</span></span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span> <span class="co"># make the linered</span></span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add means comparison letters</span></span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>,</span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>),</span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> dunn_for_plotting<span class="sc">$</span>max_tot_chol <span class="sc">+</span> <span class="dv">1</span>,</span>
-<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> dunn_for_plotting<span class="sc">$</span>Letter) <span class="sc">+</span></span>
-<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add a lil note about cholesterol</span></span>
-<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>,</span>
-<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="dv">1</span>, </span>
-<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> <span class="dv">13</span>, </span>
-<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>           <span class="at">size =</span> <span class="dv">3</span>,</span>
-<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">"5.17 nmol/L cholesterol </span><span class="sc">\n</span><span class="st">is the upper limit </span><span class="sc">\n</span><span class="st">for normal levels"</span>) <span class="sc">+</span></span>
-<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># put that note in a box</span></span>
-<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"rect"</span>, </span>
-<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>           <span class="at">xmin =</span> <span class="fl">0.1</span>, </span>
-<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>           <span class="at">xmax =</span> <span class="fl">1.85</span>, </span>
-<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>           <span class="at">ymin =</span> <span class="fl">11.9</span>, </span>
-<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>           <span class="at">ymax =</span> <span class="fl">14.1</span>,</span>
-<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> <span class="st">"black"</span>, </span>
-<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>           <span class="at">alpha =</span> .<span class="dv">2</span>) <span class="sc">+</span> <span class="co"># transparency</span></span>
-<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add an arrow from the note to the horizontal line</span></span>
-<span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> <span class="fl">11.9</span>, <span class="at">xend =</span> <span class="fl">0.2</span>, <span class="at">yend =</span> <span class="fl">5.17</span>),</span>
-<span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a>                  <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.15</span>, <span class="st">"cm"</span>))) <span class="sc">+</span></span>
-<span id="cb38-28"><a href="#cb38-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">caption =</span> <span class="st">"Groups with different letters are significantly different using the Kruskal Wallis test, </span><span class="sc">\n</span><span class="st">and the Dunn test for pairwise comparisons at p &lt; 0.05"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>totchol_age_baseplot <span class="sc">+</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand_limits</span>(<span class="at">x =</span> <span class="dv">0</span>) <span class="sc">+</span> <span class="co"># a little more space to add a note</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">5.17</span>, <span class="co"># set the yintercept</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="co"># make the line dashed</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span> <span class="co"># make the linered</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add means comparison letters</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>,</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>),</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> dunn_for_plotting<span class="sc">$</span>max_tot_chol <span class="sc">+</span> <span class="dv">1</span>,</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> dunn_for_plotting<span class="sc">$</span>Letter) <span class="sc">+</span></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add a lil note about cholesterol</span></span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>,</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="dv">1</span>, </span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> <span class="dv">13</span>, </span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>           <span class="at">size =</span> <span class="dv">3</span>,</span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">"5.17 nmol/L cholesterol </span><span class="sc">\n</span><span class="st">is the upper limit </span><span class="sc">\n</span><span class="st">for normal levels"</span>) <span class="sc">+</span></span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># put that note in a box</span></span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"rect"</span>, </span>
+<span id="cb39-19"><a href="#cb39-19" aria-hidden="true" tabindex="-1"></a>           <span class="at">xmin =</span> <span class="fl">0.1</span>, </span>
+<span id="cb39-20"><a href="#cb39-20" aria-hidden="true" tabindex="-1"></a>           <span class="at">xmax =</span> <span class="fl">1.85</span>, </span>
+<span id="cb39-21"><a href="#cb39-21" aria-hidden="true" tabindex="-1"></a>           <span class="at">ymin =</span> <span class="fl">11.9</span>, </span>
+<span id="cb39-22"><a href="#cb39-22" aria-hidden="true" tabindex="-1"></a>           <span class="at">ymax =</span> <span class="fl">14.1</span>,</span>
+<span id="cb39-23"><a href="#cb39-23" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> <span class="st">"black"</span>, </span>
+<span id="cb39-24"><a href="#cb39-24" aria-hidden="true" tabindex="-1"></a>           <span class="at">alpha =</span> .<span class="dv">2</span>) <span class="sc">+</span> <span class="co"># transparency</span></span>
+<span id="cb39-25"><a href="#cb39-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add an arrow from the note to the horizontal line</span></span>
+<span id="cb39-26"><a href="#cb39-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> <span class="fl">11.9</span>, <span class="at">xend =</span> <span class="fl">0.2</span>, <span class="at">yend =</span> <span class="fl">5.17</span>),</span>
+<span id="cb39-27"><a href="#cb39-27" aria-hidden="true" tabindex="-1"></a>                  <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.15</span>, <span class="st">"cm"</span>))) <span class="sc">+</span></span>
+<span id="cb39-28"><a href="#cb39-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">caption =</span> <span class="st">"Groups with different letters are significantly different using the Kruskal Wallis test, </span><span class="sc">\n</span><span class="st">and the Dunn test for pairwise comparisons at p &lt; 0.05"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">

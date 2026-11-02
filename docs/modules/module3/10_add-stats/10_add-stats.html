@@ -373,8 +373,8 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Module 4 - Putting it together</li>
         <li>
-    <a class="dropdown-item" href="../../../modules/module4/12_manhattan/12_manhattan.html">
- <span class="dropdown-text">Week 12 - Manhattan plots and multi-plotting</span></a>
+    <a class="dropdown-item" href="../../../modules/module4/11_manhattan/11_manhattan.html">
+ <span class="dropdown-text">Week 11 - Manhattan plots and multi-plotting</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../../modules/module4/13_pca/13_pca.html">
@@ -429,7 +429,7 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Module 4 - Putting it together</li>
         <li>
-    <a class="dropdown-item" href="../../../modules/module4/12_manhattan/12_manhattan_recitation.html">
+    <a class="dropdown-item" href="../../../modules/module4/11_manhattan/11_manhattan_recitation.html">
  <span class="dropdown-text">Week 11 - Manhattan plots and multi-plotting</span></a>
   </li>  
         <li>
@@ -654,8 +654,8 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../modules/module4/12_manhattan/12_manhattan.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 12 - Manhattan plots and multi-plotting</span></a>
+  <a href="../../../modules/module4/11_manhattan/11_manhattan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 11 - Manhattan plots and multi-plotting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -784,13 +784,20 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(palmerpenguins)</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins) <span class="co"># for penguins data</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstatix) <span class="co"># for pipeable stats testing</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(agricolae) <span class="co"># for posthoc tests </span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr) <span class="co"># extension for adding stats to plots</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue) <span class="co"># for easy pasting</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("palmerpenguins") # if you don't already have this package</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("rstatix") # if you don't already have this package</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("agricolae") # if you don't already have this package</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("ggpubr") # if you don't already have this package</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("glue") # if you don't already have this package</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins) <span class="co"># for penguins data</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstatix) <span class="co"># for pipeable stats testing</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(agricolae) <span class="co"># for posthoc tests </span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr) <span class="co"># extension for adding stats to plots</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue) <span class="co"># for easy pasting</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggridges) <span class="co"># for density ridgeline plots</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggdist) <span class="co"># for dot plots</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(penguins)) <span class="co"># kable to make a pretty table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1122,7 +1129,7 @@ Levels: female male</code></pre>
 <span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">2500</span>, <span class="dv">7500</span>) <span class="sc">+</span> <span class="co"># adjust the y-axis so there's space for the label</span></span>
 <span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> <span class="dv">6500</span>, <span class="at">label =</span> <span class="st">"*"</span>, <span class="at">size =</span> <span class="dv">6</span>) <span class="sc">+</span></span>
 <span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> <span class="dv">7000</span>,</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">glue</span>(<span class="st">"Wilcoxon signed rank test </span><span class="sc">\n</span><span class="st">p-value = {by_sex_pval$p}"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">glue</span>(<span class="st">"Wilcoxon rank sum test </span><span class="sc">\n</span><span class="st">p-value = {by_sex_pval$p}"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1137,7 +1144,7 @@ Levels: female male</code></pre>
 <section id="group-comparisons-anova-or-similar" class="level2">
 <h2 class="anchored" data-anchor-id="group-comparisons-anova-or-similar">&gt;2 group comparisons (ANOVA or similar)</h2>
 <p>When we are comparing means between more than 2 samples, we will have to first run a statistical test to see if there are any significant differences among our groups, and then if there are, run a post-hoc test. Before we do that, let’s plot.</p>
-<p>Are there significant differences in body mass</p>
+<p>Are there significant differences in body mass by species in female penguins?</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>(penguins_f_massbyspecies <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(body_mass_g, species, sex) <span class="sc">|&gt;</span></span>

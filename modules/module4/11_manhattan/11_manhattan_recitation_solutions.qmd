@@ -1,7 +1,7 @@
 ---
 title: "Manhattan Plots Recitation Solutions"
 author: "Jessica Cooperstone"
-subtitle: "Week 12"
+subtitle: "Week 11"
 format:
   html:
     toc: true

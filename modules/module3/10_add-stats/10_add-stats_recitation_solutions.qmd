@@ -165,6 +165,8 @@ Still no constant variance.
 kruskal_chol <- NHANES |>
   drop_na(AgeDecade, TotChol) |> # remove NAs
   kruskal_test(TotChol ~ AgeDecade)
+
+kruskal_chol
 ```
 
 Ok significant difference exists. Where is it?
@@ -186,7 +188,7 @@ In the table above, you can see whether each group comparison is different. But,
 Use `rcompanion::cldList()` to create the groups for us. Reading the documentation about [`cldList()`](https://www.rdocumentation.org/packages/rcompanion/versions/2.4.34/topics/cldList) helped me learn that: 
 
 1. there needs to be a formula that compares the p-values (here, p.adj) to a comparison column (here, one I created called comparison)
-2. there needs to be a comparison column that is in the form similar to "Treat.A - Treat.B = 0" where `=`, `0` are removed by default. The removal of `0` affects our group names but we can fix that later. Since we have hyphens in our group names, I removed them since this column only allows one hyphen between the groups to be compared
+2. there needs to be a comparison column that is in the form similar to "Treat.A - Treat.B = 0". Zeroes are stripped here, which is a problem for us since we have zeroes in the group names (i.e., 0-9). We can fix this though. Since we have hyphens in our group names, I removed them since this column only allows one hyphen between the groups to be compared
 3. set a threshold for what p-value is considered significant
 
 To do this, first:
@@ -200,7 +202,7 @@ To do this, first:
 kruskal_chol_posthoc_1 <- kruskal_chol_posthoc |>
   mutate(group1_rep = str_replace_all(group1, pattern = "-", replacement = "to"),
          group2_rep = str_replace_all(group2, pattern = "-", replacement = "to")) |>
-  mutate(comparison = glue("{group1_rep} -{group2_rep}"))
+  mutate(comparison = glue("{group1_rep} - {group2_rep}"))
 
 knitr::kable(head(kruskal_chol_posthoc_1))
 ```
