@@ -536,6 +536,10 @@ gtag('config', 'G-M24LDNCMG6', { 'anonymize_ip': true});
     <a class="dropdown-item" href="../../../modules/module3/10_add-stats/10_add-stats_recitation_solutions.html">
  <span class="dropdown-text">Week 10 - Adding statistics solutions</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../../../modules/module4/11_manhattan/11_manhattan_recitation_solutions.html">
+ <span class="dropdown-text">Week 11 - Manhattan plots solutions</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -1811,8 +1815,7 @@ Cumulative Proportion  0.99627 1.00000 1.0000000</code></pre>
 </div>
 </div>
 </div>
-<p>The issue here is that the scores and loadings are on different scales - let’s make them on the same scale.</p>
-<p>I can write a quick function to allow normalization.</p>
+<p>I can write a quick function to create a multiplier to scale the scores to the loadings. This will allow me to plot both on the same axes.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>mult <span class="ot">&lt;-</span> <span class="fu">min</span>(<span class="fu">max</span>(<span class="fu">abs</span>(loadings<span class="sc">$</span>PC1)) <span class="sc">/</span> <span class="fu">max</span>(<span class="fu">abs</span>(scores<span class="sc">$</span>PC1)), <span class="fu">max</span>(<span class="fu">abs</span>(loadings<span class="sc">$</span>PC2)) <span class="sc">/</span> <span class="fu">max</span>(<span class="fu">abs</span>(scores<span class="sc">$</span>PC2)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>

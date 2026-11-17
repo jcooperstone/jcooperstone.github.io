@@ -486,9 +486,7 @@ scores |>
        title = "PCA Scores Plot of 10 Alkaloids Present in 107 Tomato Accessions")
 ```
 
-The issue here is that the scores and loadings are on different scales - let's make them on the same scale.
-
-I can write a quick function to allow normalization.
+I can write a quick function to create a multiplier to scale the scores to the loadings. This will allow me to plot both on the same axes.
 ```{r}
 mult <- min(max(abs(loadings$PC1)) / max(abs(scores$PC1)), max(abs(loadings$PC2)) / max(abs(scores$PC2)))
 ```
