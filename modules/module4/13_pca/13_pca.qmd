@@ -50,7 +50,7 @@ dim(alkaloid_blups)
 
 ### Light wrangling
 
-Here we have the best linear unbiased predictors (BLUPs) representing the alkaloid content of 107 genotypes of tomatoes. There is extra meta-data here we won't use, so like we did in correlations, we are going to create a vector to indicate which column name reprents the alkaloids we want to include in our principal components analysis. Then we can create a new trimmed dataframe.
+Here we have the best linear unbiased predictors (BLUPs) representing the alkaloid content of 107 genotypes of tomatoes. There is extra meta-data here we won't use, so like we did in correlations, we are going to create a vector to indicate which column name represents the alkaloids we want to include in our principal components analysis. Then we can create a new trimmed dataframe.
 
 ```{r alkaloid totals trim}
 alkaloid_total_names <- c("Dehydrotomatidine",
@@ -71,9 +71,11 @@ alkaloid_blups_trim <- alkaloid_blups |>
 colnames(alkaloid_blups_trim) # yes
 ```
 
+Note that we are keeping `Total` which is co-linear with all of the rest of the alkaloids. I want to do this here but it will distort your values on the PCs. You'll have to think about whether this makes sense to do in your analysis.
+
 ## Run PCA
 
-There are many packages that have functions that run PCA (including ) but I think the most common function used is a part of base R, and is called [`prcomp()`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/prcomp).
+There are many packages that have functions that run PCA but I think the most common function used is a part of base R, and is called [`prcomp()`](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/prcomp).
 
 ::: callout-warning
 Note, PCA will allow zeroes, but will throw an error if you feed it NAs.
@@ -115,7 +117,7 @@ We can also look at the output of our PCA in a different way using the function 
 summary(alkaloids_pca) 
 ```
 
-We can convert this summary into something later usable by extraction the element `importance` from `summary(alkaloids_pca)` and converting it to a dataframe.
+We can convert this summary into something later usable by extractiing the element `importance` from `summary(alkaloids_pca)` and converting it to a dataframe.
 
 ```{r extract importance}
 importance <- summary(alkaloids_pca)$importance |>
@@ -126,11 +128,11 @@ knitr::kable(head(importance))
 
 By looking at the summary we can see, for example, that the first two PCs explain `r round((importance[3,2])*100, 2)`% of variance.
 
-We are going to go over making scree, scores and loadings plots using helper functions (here, they start `fviz_()` and come from the package [`factoextra`](https://www.rdocumentation.org/packages/factoextra/versions/1.0.7), and manually via ggplot. The helper functions allow you look at each plot type simply. This is an important step because when you make your plots with ggplot, you want to be sure they look how they should.
+We are going to go over making scree, scores and loadings plots using helper functions (here, they start `fviz_()` and come from the package [`factoextra`](https://www.rdocumentation.org/packages/factoextra/versions/1.0.7)), and manually via ggplot. The helper functions allow you look at each plot type simply. This is an important step because when you make your plots with ggplot, you want to be sure they look how they should.
 
 ## Scree plot
 
-A [scree plot](https://en.wikipedia.org/wiki/Scree_plot#:~:text=In%20multivariate%20statistics%2C%20a%20scree,principal%20component%20analysis%20(PCA).) shows what percentage of total variance is explained by each principal component.
+A [scree plot](https://en.wikipedia.org/wiki/Scree_plot) shows what percentage of total variance is explained by each principal component.
 
 ### Using `fviz_eig()`
 
@@ -140,7 +142,7 @@ We can do this quickly using [`fviz_eig()`](https://rpkgs.datanovia.com/factoext
 fviz_eig(alkaloids_pca)
 ```
 
-You can actually do this very easily with base R plotting as well. If you weren't planning to publish this type of plot, it might not be important it look beautiful, and then both of these options would be great and quick. Note though that the base R plot is plotting at a different scale.
+You can actually do this very easily with base R plotting as well. If you weren't planning to publish this type of plot, it might not be important it look beautiful, and then both of these options would be great and quick. Note though that the base R plot is plottng variances (i.e., eigenvalues), not proportions.
 
 ```{r plot alkaloids_pca}
 plot(alkaloids_pca)
@@ -153,7 +155,7 @@ If you wanted to make a scree plot manually, you could by plotting using a wrang
 ```{r importance wrangling manual plot 1}
 importance_tidy <- importance |>
   rownames_to_column(var = "measure") |>
-  pivot_longer(cols = PC1:PC10,
+  pivot_longer(cols = -measure, # remove measure keep all else
                names_to = "PC",
                values_to = "value")
 
@@ -198,7 +200,8 @@ importance_tidy |>
   theme_minimal() +
   labs(x = "Principal component",
        y = "Percent variance explained",
-       title = "Scree plot of 10 alkaloids analyzed across 107 tomato accessions")
+ # use glue() to paste in the number of tomato accessions from our data      
+       title = glue("Scree plot of 10 alkaloids analyzed across {nrow(alkaloid_blups)} tomato accessions"))
   
 ```
 
@@ -206,7 +209,7 @@ This is a perfectly ready scree plot for the supplementary materials of a public
 
 ## Scores plot
 
-When people talk about PCA plots, what they most often mean is PCA scores plots. Here, each point represents a sample, and we are plotting their coordinates typically for the first 2 PCs. Sometimes people make 3D PCA plots with the first 3 PCs but I think these are not easy to look in 2D and I wouldn't recommend you to put them in your papers.
+When people talk about PCA plots, what they most often mean is PCA scores plots. Here, each point represents a sample, and we are plotting their coordinates typically for the first 2 PCs. Sometimes people make 3D PCA plots with the first 3 PCs but I think these are not easy to look in 2D and I wouldn't recommend that you to put them in your papers.
 
 #### Using `fviz_pca_ind()`
 
@@ -216,7 +219,7 @@ We can also look at a scores plot using [`fviz_pca_ind()`](https://rpkgs.datanov
 fviz_pca_ind(alkaloids_pca)
 ```
 
-Because our `alkaloids_pca` doesn't have any meta-data, this is a hard to interpret plot, where each number indicates the rownumber of that sample. Making the scores plot this way is useful because it shows us the shape of the plot which we can use to confirm that we have made a ggplot that looks like its been created correctly.
+Because our `alkaloids_pca` doesn't have any meta-data, this is a hard to interpret plot, where each number indicates the rownumber of that sample. Making the scores plot this way is useful because it shows us the shape of the plot which we can use to confirm that we have made a ggplot that looks like it has been created correctly.
 
 #### Manually
 
@@ -249,9 +252,9 @@ Our shapes are looking the same, this is good. Let's pretty up our plot.
 First let's wrangle.
 ```{r scores plotting 2}
 # create objects indicating percent variance explained by PC1 and PC2
-PC1_percent <- round((importance[2,1])*100, # index 2nd row, 1st column, times 100
+PC1_percent <- round((importance["Proportion of Variance", "PC1"])*100, 
                      1) # round to 1 decimal
-PC2_percent <- round((importance[2,2])*100, 1) 
+PC2_percent <- round((importance["Proportion of Variance", "PC1"])*100, 1) 
 
 # make Species a factor and set levels
 # from least wild to most wild
@@ -313,7 +316,6 @@ loadings |>
   geom_vline(xintercept = 0, linetype = "dashed") +
   geom_point() +
   geom_text() +
-  scale_fill_brewer() +
   theme_minimal() +
   labs(x = glue("PC1: {PC1_percent}%"), 
        y = glue("PC2: {PC2_percent}%"), 
@@ -336,9 +338,9 @@ alkaloid_labels <- c("Dehydrotomatidine",
                      "Alpha-Tomatine",
                      "Hydroxytomatine",
                      "Acetoxytomatine",
-                     "Dehydrlycoperoside F, G, \nor Dehydroescueloside A",
-                     "Lycoperoside F, G, \nor Escueloside A",
-                     "Escueloside B",
+                     "Dehydrolycoperoside F, G, \nor Dehydroescueloside A",
+                     "Lycoperoside F, G, \nor Esculeoside A",
+                     "Esculeoside B",
                      "Total Steroidal Alkaloids")
 ```
 
@@ -351,7 +353,6 @@ loadings |>
   geom_hline(yintercept = 0, linetype = "dashed") +
   geom_vline(xintercept = 0, linetype = "dashed") +  
   geom_text() +
-  scale_fill_brewer() +
   theme_minimal() +
   labs(x = glue("PC1: {PC1_percent}%"), 
        y = glue("PC2: {PC2_percent}%"), 
@@ -375,7 +376,6 @@ library(ggrepel)
   geom_vline(xintercept = 0, linetype = "dashed") +  
   geom_point() +
   geom_text_repel() +
-  scale_fill_brewer() +
   theme_minimal() +
   labs(x = glue("PC1: {PC1_percent}%"), 
        y = glue("PC2: {PC2_percent}%"), 
@@ -391,7 +391,6 @@ loadings |>
   geom_vline(xintercept = 0, linetype = "dashed") +
   geom_point() +
   geom_label_repel() +
-  scale_fill_brewer() +
   theme_minimal() +
   labs(x = glue("PC1: {PC1_percent}%"), 
        y = glue("PC2: {PC2_percent}%"), 
@@ -400,13 +399,13 @@ loadings |>
 
 ## `patchwork`
 
-You can pop these two plots side by side easing using the package [`patchwork`](https://patchwork.data-imaginist.com/).
+You can pop these two plots side by side easily using the package [`patchwork`](https://patchwork.data-imaginist.com/).
 
 ```{r patchwork cartoon, fig.alt = "Fuzzy cartoon monsters in white gloves and uniforms hanging multiple plots together on a wall, with an artist monster wearing a beret and smock directing them to the correct orientation. There is a blueprint plan on the wall showing how the plots should be arranged. Stylized title font reads “patchwork - combine & arrange your ggplots!”", fig.cap = "Artwork by [Allison Horst](https://twitter.com/allison_horst)", out.width = "70%", fig.align = "center", echo = FALSE}
 knitr::include_graphics("img/patchwork.jpeg")
 ```
 
-```{r pathwork 1, fig.width = 10}
+```{r patchwork 1, fig.width = 10}
 library(patchwork)
 
 scores_plot + loadings_plot
@@ -440,7 +439,7 @@ fviz_pca(alkaloids_pca, # pca object
        fill = "Species")
 ```
 
-This is almost what we want - except we have only the abbreviated names for the alkaloids. Since in a biplot, we are really plotting two different sets of data (the scores and the loadings)there isn't the ability to use `labeller` or similar with `fviz_pca` for the loadings only. There is a workaround though, we can go into our PCA object, change the rownames of `alkaloids_pca$rotation` to be our longer labels, and that should inherit to our new plot.
+This is almost what we want - except we have only the abbreviated names for the alkaloids. Since in a biplot, we are really plotting two different sets of data (the scores and the loadings) there isn't the ability to use `labeller` or similar with `fviz_pca` for the loadings only. There is a workaround though, we can go into our PCA object, change the rownames of `alkaloids_pca$rotation` to be our longer labels, and that should inherit to our new plot.
 
 ```{r fviz_pca relabelled plot 2}
 # save as a new df
@@ -491,19 +490,19 @@ The issue here is that the scores and loadings are on different scales - let's m
 
 I can write a quick function to allow normalization.
 ```{r}
-normalize <- function(x) return((x - min(x))/(max(x) - min(x)))
+mult <- min(max(abs(loadings$PC1)) / max(abs(scores$PC1)), max(abs(loadings$PC2)) / max(abs(scores$PC2)))
 ```
 
-Then I can nornalize the scores using the scale function, since the loadings are already normalized.
+Then I can normalize the scores by multiplying them by this factor, maintaining the spread of PC1 and PC2.
 ```{r}
 scores_normalized <- scores |>
-  mutate(PC1_norm = scale(normalize(PC1), center = TRUE, scale = FALSE)) |>
-  mutate(PC2_norm = scale(normalize(PC2), center = TRUE, scale = FALSE)) |>
+  mutate(PC1_norm = PC1*mult) |>
+  mutate(PC2_norm = PC2*mult) |>
   select(Genotype, Plot_Source, Species, 
          PC1_norm, PC2_norm, everything()) # pick metadata and reorder
 ```
 
-How did it go? PC1_norm and PC2_norm should all now be between -1 and 1
+The axes are now relatively scaled.
 ```{r}
 # look at first six rows
 head(scores_normalized)
