@@ -254,7 +254,7 @@ First let's wrangle.
 # create objects indicating percent variance explained by PC1 and PC2
 PC1_percent <- round((importance["Proportion of Variance", "PC1"])*100, 
                      1) # round to 1 decimal
-PC2_percent <- round((importance["Proportion of Variance", "PC1"])*100, 1) 
+PC2_percent <- round((importance["Proportion of Variance", "PC2"])*100, 1) 
 
 # make Species a factor and set levels
 # from least wild to most wild
